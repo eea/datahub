@@ -1,0 +1,220 @@
+<div class="min-h-screen bg-background">
+  <!-- Header -->
+  <header class="border-b border-border bg-card">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-8 text-accent"
+          aria-hidden="true"
+        >
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+          <path d="M3 12A9 3 0 0 0 21 12"></path>
+        </svg>
+        <h1 class="text-h2 font-semibold text-foreground">
+          {{ 'find.appName' | translate }}
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <app-language-switcher></app-language-switcher>
+        <button
+          type="button"
+          (click)="goHome()"
+          class="flex items-center gap-2 text-base font-medium text-foreground hover:text-accent transition-colors"
+        >
+          <i class="pi pi-arrow-left" style="font-size: 0.875rem"></i>
+          {{ 'find.common.backToHome' | translate }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    <!-- Search bar with chips -->
+    <div class="mb-6">
+      <app-search-bar-with-chips
+        [chips]="chips()"
+        [(query)]="query"
+        (search)="onSearch($event)"
+        (chipRemove)="onChipRemove($event)"
+      ></app-search-bar-with-chips>
+    </div>
+
+    <!-- Results count. A failed request has no count to report, so the error stands alone. -->
+    <div class="mb-4">
+      <p class="text-muted-foreground text-base">
+        @if (loading()) {
+          {{ 'find.searchResults.searching' | translate }}
+        } @else if (!failed()) {
+          {{ 'find.searchResults.showingResults' | translate: { count: total() } }}
+        }
+      </p>
+    </div>
+
+    <!-- Filter bar: extra filters flow in before the All Filters toggle, which stays last -->
+    <div class="flex flex-wrap gap-3 mb-8">
+      <app-sort-dropdown
+        [options]="sortOptions"
+        [selectedValue]="selectedSort()"
+        (sortChange)="onSortChange($event)"
+      ></app-sort-dropdown>
+
+      <app-filter-dropdown
+        labelKey="find.searchResults.filters.resourceType"
+        [options]="options.resourceType()"
+        [selectedValues]="filters.resourceType.included()"
+        [excludedValues]="filters.resourceType.excluded()"
+        (selectionChange)="onFilterChange('resourceType', $event)"
+      ></app-filter-dropdown>
+
+      <app-filter-dropdown
+        labelKey="find.searchResults.filters.organization"
+        [options]="options.organization()"
+        [selectedValues]="filters.organization.included()"
+        [excludedValues]="filters.organization.excluded()"
+        (selectionChange)="onFilterChange('organization', $event)"
+      ></app-filter-dropdown>
+
+      <app-filter-dropdown
+        labelKey="find.searchResults.filters.format"
+        [options]="options.format()"
+        [selectedValues]="filters.format.included()"
+        [excludedValues]="filters.format.excluded()"
+        (selectionChange)="onFilterChange('format', $event)"
+      ></app-filter-dropdown>
+
+      @if (showAllFilters()) {
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.availableIn"
+          [options]="options.availableIn()"
+          [selectedValues]="filters.availableIn.included()"
+          [excludedValues]="filters.availableIn.excluded()"
+          (selectionChange)="onFilterChange('availableIn', $event)"
+        ></app-filter-dropdown>
+
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.keywords"
+          [options]="options.keywords()"
+          [selectedValues]="filters.keywords.included()"
+          [excludedValues]="filters.keywords.excluded()"
+          (selectionChange)="onFilterChange('keywords', $event)"
+        ></app-filter-dropdown>
+
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.updateFrequency"
+          [options]="options.updated()"
+          [selectedValues]="filters.updated.included()"
+          [excludedValues]="filters.updated.excluded()"
+          (selectionChange)="onFilterChange('updated', $event)"
+        ></app-filter-dropdown>
+
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.scales"
+          [options]="options.scales()"
+          [selectedValues]="filters.scales.included()"
+          [excludedValues]="filters.scales.excluded()"
+          (selectionChange)="onFilterChange('scales', $event)"
+        ></app-filter-dropdown>
+
+        <app-date-filter-dropdown
+          (dateRangeChange)="onDateRangeChange($event)"
+        ></app-date-filter-dropdown>
+
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.creationYear"
+          [options]="options.creationYear()"
+          [selectedValues]="filters.creationYear.included()"
+          [excludedValues]="filters.creationYear.excluded()"
+          (selectionChange)="onFilterChange('creationYear', $event)"
+        ></app-filter-dropdown>
+
+        <app-filter-dropdown
+          labelKey="find.searchResults.filters.spatialRepresentationType"
+          [options]="options.spatialRepresentationType()"
+          [selectedValues]="filters.spatialRepresentationType.included()"
+          [excludedValues]="filters.spatialRepresentationType.excluded()"
+          (selectionChange)="onFilterChange('spatialRepresentationType', $event)"
+        ></app-filter-dropdown>
+      }
+
+      <!-- All Filters toggle: always the last item in the filter line -->
+      <button
+        type="button"
+        (click)="toggleAllFilters()"
+        class="border px-4 py-2.5 rounded-button flex items-center gap-2 text-base font-medium transition-colors"
+        [class]="
+          showAllFilters()
+            ? 'bg-accent text-accent-foreground border-accent hover:bg-accent/90'
+            : 'bg-card border-border hover:bg-secondary'
+        "
+      >
+        <i class="pi pi-sliders-h" style="font-size: 0.875rem"></i>
+        {{ 'find.searchResults.allFilters' | translate }}
+      </button>
+    </div>
+
+    @if (failed()) {
+      <p-message severity="error">{{ 'find.searchResults.loadFailed' | translate }}</p-message>
+    }
+
+    <!-- Results list -->
+    <div class="flex flex-col gap-6">
+      @for (record of records(); track record.id) {
+        <app-record-card [record]="record"></app-record-card>
+      } @empty {
+        @if (!loading() && !failed()) {
+          <div class="text-center py-16 text-muted-foreground text-base">
+            {{ 'find.searchResults.noResults' | translate }}
+          </div>
+        }
+      }
+    </div>
+
+    <!-- Pagination -->
+    @if (pageCount() > 1) {
+      <div class="mt-8 flex justify-center gap-2">
+        <button
+          type="button"
+          [disabled]="currentPage() === 1"
+          (click)="prevPage()"
+          class="bg-card border border-border px-4 py-2 rounded-button text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {{ 'find.searchResults.pagination.previous' | translate }}
+        </button>
+
+        @for (page of pages(); track page) {
+          <button
+            type="button"
+            (click)="goToPage(page)"
+            class="border px-4 py-2 rounded-button text-base font-medium transition-colors"
+            [class]="
+              page === currentPage()
+                ? 'bg-accent text-accent-foreground border-accent'
+                : 'bg-card border-border hover:bg-secondary'
+            "
+          >
+            {{ page }}
+          </button>
+        }
+
+        <button
+          type="button"
+          [disabled]="currentPage() === pageCount()"
+          (click)="nextPage()"
+          class="bg-card border border-border px-4 py-2 rounded-button text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {{ 'find.searchResults.pagination.next' | translate }}
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,424 @@
+{
+  "addToMap": "Ajouter à la carte",
+  "auth": {
+    "signin": {
+      "button": "Se connecter",
+      "forgotPassword": "Mot de passe oublié ?",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "or": "OU",
+      "password": {
+        "error": {
+          "required": "Le mot de passe est requis"
+        },
+        "placeholder": "Mot de passe"
+      },
+      "signInFailure": "Mot de passe incorrect. Réessayez ou cliquez sur \"Mot de passe oublié ?\" pour plus d'options.",
+      "signInWith": "Se connecter avec {{provider}}",
+      "signup": "S'inscrire",
+      "title": "Bienvenue",
+      "username": {
+        "error": {
+          "email": "Entrez une adresse email valide",
+          "required": "Email ou nom d'utilisateur est requis"
+        },
+        "placeholder": "Email ou nom d'utilisateur"
+      }
+    }
+  },
+  "cancel": "Annuler",
+  "citation": {
+    "detail_error": "Erreur lors du chargement des formats de citation",
+    "detail_error_loading": "Erreur lors du chargement de la citation pour",
+    "download": "Télécharger",
+    "loading": "Chargement de la citation ...",
+    "title": "Citer l'ensemble de données",
+    "title_error": "Erreur"
+  },
+  "copy": {
+    "detail_success": "Copie réussie dans le presse-papiers",
+    "title": "Copie",
+    "title_success": "Copie réussie"
+  },
+  "data": {
+    "datasource": {
+      "available": "{{count}} sources de données disponibles",
+      "select": "Choisissez une source de données"
+    }
+  },
+  "delete": "Supprimer",
+  "discussions": "Discussions",
+  "error": "Erreur",
+  "exploreData": "Explorer les données",
+  "find": {
+    "appName": "EEA Datahub",
+    "common": {
+      "backToHome": "Retour à l'accueil",
+      "search": "Rechercher",
+      "selectLanguage": "Choisir la langue"
+    },
+    "landing": {
+      "footer": {
+        "copyright": "© 2026 EEA. Tous droits réservés.",
+        "tagline": "EEA Datahub - Basé sur GeoNetwork Opensource"
+      },
+      "signIn": "Se connecter",
+      "signInModal": {
+        "close": "Fermer la fenêtre de connexion",
+        "demoHint": "Identifiants de démonstration : utilisez n'importe quel email avec le mot de passe",
+        "demoPassword": "demo123",
+        "email": "Email",
+        "emailPlaceholder": "votre.email@exemple.com",
+        "errorGeneric": "Échec de la connexion. Veuillez réessayer.",
+        "errorInvalidCredentials": "Identifiants invalides. Utilisez le mot de passe : demo123",
+        "errorMissingFields": "Veuillez saisir l'email et le mot de passe.",
+        "password": "Mot de passe",
+        "passwordPlaceholder": "••••••••",
+        "submit": "Se connecter",
+        "submitting": "Connexion en cours...",
+        "subtitle": "Saisissez vos identifiants pour accéder à vos services",
+        "title": "Connexion"
+      },
+      "stats": {
+        "records": "Enregistrements de métadonnées gérés",
+        "uptime": "Disponibilité du système",
+        "support": "Assistance disponible"
+      }
+    },
+    "searchBar": {
+      "advanced": {
+        "accessRights": "Droits d'accès",
+        "cancel": "Annuler",
+        "clearAll": "Effacer tous les filtres",
+        "close": "Fermer la recherche avancée",
+        "dataFormat": "Format de données",
+        "dataFormatPlaceholder": "Sélectionner un format",
+        "geographicRegion": "Région géographique",
+        "organization": "Organisation",
+        "organizationPlaceholder": "Sélectionner une organisation",
+        "popularKeywords": "Mots-clés populaires",
+        "publicationDate": "Date de publication",
+        "publicationDatePlaceholder": "Sélectionner une période",
+        "resourceType": "Type de ressource",
+        "title": "Recherche avancée",
+        "topicCategory": "Catégorie thématique"
+      },
+      "ariaLabel": "Rechercher dans le catalogue de métadonnées",
+      "clear": "Effacer la recherche",
+      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation..."
+    },
+    "searchResults": {
+      "allFilters": "Tous les filtres",
+      "card": {
+        "thumbnailPlaceholder": "Vignette ou emprise spatiale",
+        "updated": "Mis à jour le {{date}}"
+      },
+      "chips": {
+        "remove": "Supprimer {{label}}"
+      },
+      "dateFilter": {
+        "apply": "Appliquer",
+        "clear": "Effacer",
+        "endDate": "Date de fin",
+        "startDate": "Date de début"
+      },
+      "dropdown": {
+        "deselect": "Désélectionner",
+        "exclude": "Exclure",
+        "include": "Inclure",
+        "noResults": "Aucun résultat trouvé",
+        "reset": "Réinitialiser",
+        "save": "Enregistrer",
+        "selectPlaceholder": "Sélectionner : {{label}}"
+      },
+      "filters": {
+        "availableIn": "Disponible en",
+        "creationYear": "Année de création",
+        "dateAdded": "Date d'ajout",
+        "format": "Format",
+        "keywords": "Mots-clés",
+        "organization": "Organisation",
+        "resourceType": "Type de ressource",
+        "scales": "Échelles",
+        "spatialRepresentationType": "Type de représentation spatiale",
+        "updateFrequency": "Fréquence de mise à jour"
+      },
+      "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
+      "noResults": "Aucun résultat trouvé",
+      "pagination": {
+        "next": "Suivant",
+        "previous": "Précédent"
+      },
+      "searching": "Recherche…",
+      "showingResults": "{{count}} résultats affichés",
+      "sort": {
+        "dateNewest": "Date (plus récente)",
+        "dateOldest": "Date (plus ancienne)",
+        "label": "Trier par",
+        "relevance": "Pertinence"
+      }
+    }
+  },
+  "home": {
+    "discover": "Découvrez nos thèmes",
+    "subtitle": "Données géospatiales marines et côtières ouvertes et de haute qualité pour la science et les politiques publiques, fournies par l'Ifremer.",
+    "title": "Retracer l'histoire des océans à travers les données"
+  },
+  "i18n": {
+    "languageSwitcher": {
+      "select": "Choisissez votre langue."
+    }
+  },
+  "languages": {
+    "eng": "Anglais",
+    "fre": "Français"
+  },
+  "menu": {
+    "addrecord": "Ajouter",
+    "addRecord": "Ajouter une fiche",
+    "home": "Accueil",
+    "importRecord": "Importer une fiche",
+    "map": "Visualiser",
+    "search": "Rechercher",
+    "settings": "Configurer",
+    "signin": "Se connecter",
+    "signout": "Se déconnecter"
+  },
+  "record": {
+    "action": {
+      "addWms": {
+        "addToMap": "Ajouter à la carte",
+        "allLayersFound": "Toutes les couches disponibles dans le service : {{layerNames}}",
+        "checking": "Vérification du service WMS...",
+        "chooseServiceLayer": "Choisir une couche dans le service.",
+        "layerNotFoundButChooseAnother": "La couche '{{layerName}}' n'a pas été trouvée dans le service WMS. Choisir une autre couche dans le service.",
+        "unreachable": "Le service WMS est inaccessible."
+      },
+      "deleteConfirmationMessage": "Êtes-vous sûr de vouloir supprimer cette fiche ? Cette action ne peut pas être annulée.",
+      "deleteConfirmationTitle": "Confirmation de suppression",
+      "deleteError": "Une erreur s'est produite lors de la suppression de la fiche.",
+      "deleteSuccess": "La fiche a été supprimée avec succès.",
+      "deleteTitle": "Supprimer cette fiche",
+      "edit": "Éditer",
+      "editTitle": "Éditer cette fiche",
+      "menu": "Quick actions",
+      "metadataDownload": "Metadata (XML)",
+      "metadataDownloadHelp": "Download the record in XML format",
+      "relatedRecordsWarning": "Cette fiche est associée à d'autres ressources :",
+      "share": "Share",
+      "shareHelp": "Permalink to the record",
+      "typeToConfirm": "Tapez \"{{word}}\" pour confirmer"
+    },
+    "association": {
+      "associated": "Associé à {{count}} ressource(s)",
+      "brothersAndSisters": "{{count}} frères et sœurs",
+      "children": "Composé de {{ count }} ressources",
+      "datasets": "{{count}} données",
+      "fcats": "{{count}} modèles de données",
+      "hasfeaturecats": "{{count}} données associées",
+      "hassources": "Utilisé pour {{count}} ressource(s)",
+      "parent": "Faisant partie de {{ count }} ressources",
+      "services": "{{count}} services",
+      "siblings": "{{count}} frères et sœurs",
+      "sources": "Dérivé de {{count}} ressource(s)"
+    },
+    "card": {
+      "moreKeywords": "+{{count}} de plus"
+    },
+    "field": {
+      "abstract": "Aperçu",
+      "catalogue": {
+        "help": "Origine de la fiche",
+        "logo": {
+          "alt": "Logo du catalogue"
+        },
+        "title": "Catalogue"
+      },
+      "cl_accessConstraints": "Contraintes d'accès",
+      "contact": {
+        "address": "Adresse",
+        "email": "Email",
+        "phone": "Téléphone",
+        "website": "Site web"
+      },
+      "coordinateSystem": "Système de coordonnées",
+      "coverage": {
+        "east": "Est",
+        "north": "Nord",
+        "overviewAltText": "Geospatial coverage overview image",
+        "south": "Sud",
+        "spatial": "Emprise géographique",
+        "temporal": "Étendue temporelle",
+        "vertical": "Étendue verticale",
+        "west": "Ouest"
+      },
+      "credit": "Source",
+      "datamodel": {
+        "description": "Description",
+        "field": "Colonne",
+        "label": "Libellé",
+        "type": "Type"
+      },
+      "dateStamp": "Mis à jour",
+      "distribution": {
+        "format": "Format",
+        "sections": {
+          "api": "Visualiser",
+          "download": "Télécharger",
+          "featureCatalog": "Modèle de données",
+          "links": "Liens",
+          "mapLegend": "Légende",
+          "quality": "Qualité"
+        }
+      },
+      "keywords": "Mots-clés",
+      "lastUpdated": "Mis à jour le",
+      "lineage": "Généalogie",
+      "otherConstraints": "Autres contraintes",
+      "overview": {
+        "notAvailable": "Pas d'aperçu"
+      },
+      "resolution": "Échelle",
+      "resourceDate": "Dates",
+      "resourceTitle": "Titre",
+      "resourceType": "Type de resource",
+      "themes": "Thèmes",
+      "title": {
+        "notAvailable": "-- Titre manquant --"
+      },
+      "useConstraints": "Utiliser des contraintes",
+      "useLimitation": "Limitation d'utilisation"
+    },
+    "view": {
+      "notFoundOrNotShared": "La fiche avec l'identifiant {{uuid}} n'a pas été trouvée ou n'est pas partagée avec vous. Essayez de vous connecter ou effectuez une autre recherche.",
+      "section": {
+        "about": "À propos",
+        "associatedResources": "Resources associées",
+        "citation": "Citer",
+        "classification": "Classification",
+        "contact": "Contact",
+        "contacts": "Contacts",
+        "content": "Contenu",
+        "coverage": "Couverture",
+        "dataAccess": "Accéder & télécharger",
+        "dataExplorer": "Explorateur de données",
+        "dataModel": "Modèle de données",
+        "dates": "Dates",
+        "description": "Comprendre",
+        "discussions": "Discussions",
+        "explore": "Explorer",
+        "lineage": "Provenance",
+        "publications": "Publications",
+        "relatedResources": "Ressources connexes",
+        "similarResources": "Ressources similaires",
+        "spatialInfo": "Informations spatiales",
+        "usageAndAccess": "Utilisation et accès"
+      }
+    }
+  },
+  "relations": {
+    "seeAll": "Voir tout"
+  },
+  "results": {
+    "layout": {
+      "grid": "Vue en grille",
+      "list": "Vue en liste"
+    }
+  },
+  "search": {
+    "aggregations": {
+      "cl_status.key": "Statut de la ressource",
+      "creationYearForResource": "Année de création",
+      "groupPublishedId": "Catalogues",
+      "isHarvested": "Moissonné",
+      "isPublishedToAll": "Public",
+      "isTemplate": "Modèle",
+      "less": "moins",
+      "more": "plus",
+      "OrgForResource": "Organisation",
+      "resourceType": "Type de ressource",
+      "tag.default": "Mots-clés",
+      "th_dcsmm-area_tree.key": "Sous-régions marines",
+      "th_dcsmm-descripteur_tree.key": "Descripteurs DCSMM",
+      "th_httpinspireeceuropaeutheme-theme_tree.key": "Thèmes INSPIRE",
+      "th_NVS-OD1_tree.key": "Paramètres d'agrégation ODATIS et noms de variables essentielles",
+      "th_odatis_centre_donnees_tree.key": "Centres de données ODATIS",
+      "th_geonetwork5-theme_tree.key": "Thèmes GeoNetwork 5",
+      "th_simm-reglementaire_tree.key": "Cadre Réglementaire - SIMM"
+    },
+    "backToResults": "Retour aux résultats",
+    "button": {
+      "title": "Rechercher"
+    },
+    "filter": {
+      "activeFilters": "Filtres actifs",
+      "panel": {
+        "open": "Filtrer"
+      },
+      "title": "Tous les filtres"
+    },
+    "input": {
+      "placeholder": "Rechercher ...",
+      "popover": {
+        "resourceType": {
+          "title": "Type de ressource"
+        }
+      }
+    },
+    "result": "résultat",
+    "results": "résultats",
+    "searchLink": "Rechercher {{value}}",
+    "sort": {
+      "options": {
+        "_score": "Pertinence",
+        "-changeDate": "Dernier enregistrement",
+        "-createDate": "Nouveau record",
+        "-popularity": "Popularité",
+        "-rating": "Notation",
+        "-revisionDateForResource,-publicationDateForResource,-creationDateForResource": "Dernière mise à jour",
+        "resourceTitleObject.default.sort": "Titre"
+      },
+      "placeholder": "Trier par"
+    },
+    "welcome": {
+      "default": "Explorez ...",
+      "text": "Explorez plus de {{count}} {{mainBuckets}}, ..."
+    }
+  },
+  "share": {
+    "detail_error": "Impossible de récupérer le lien permanent",
+    "title_error": "Erreur"
+  },
+  "shared": {
+    "show-more-toggle": {
+      "less": "Réduire",
+      "more": "Lire la suite"
+    }
+  },
+  "success": "Succès",
+  "user": {
+    "bookmark": "Mes favoris",
+    "bookmarks": "Favoris",
+    "contributions": "contributions",
+    "dashboard": {
+      "allWork": "Tout votre travail",
+      "bookmarks": "Vos favoris",
+      "noBookmarks": "Vous n'avez pas encore ajouté de fiches à vos favoris.",
+      "noWork": "Vous n'avez encore contribué à aucune fiche.",
+      "statistics": "Statistiques",
+      "subtitle": "Gérez vos contributions et accédez aux ressources clés",
+      "title": "Tableau de bord de l'éditeur"
+    },
+    "profile": "Mon profil",
+    "recentWork": "Travail récent",
+    "settings": "Paramètres",
+    "welcome": "Bienvenue, {{name}}",
+    "work": "Mon travail"
+  },
+  "vocabulary": {
+    "moreInfoOnKeyword": "En savoir plus sur ce mot-clé",
+    "noDefinitionAvailable": "Aucune définition disponible",
+    "otherKeywords": "Autres mots-clés",
+    "searchByKeyword": "Rechercher",
+    "searchByKeywordHelp": "D'autres fiches avec ce mot-clé"
+  }
+}

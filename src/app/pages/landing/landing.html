@@ -1,0 +1,197 @@
+<!--
+
+    (c) 2003 Open Source Geospatial Foundation - all rights reserved
+    This code is licensed under the GPL 2.0 license,
+    available at the root application directory.
+
+-->
+<div class="min-h-screen bg-background">
+  <header class="border-b border-border bg-card">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-8 text-accent"
+          aria-hidden="true"
+        >
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+          <path d="M3 12A9 3 0 0 0 21 12"></path>
+        </svg>
+        <h1
+          class="text-foreground"
+          style="font-size: var(--text-h2); font-weight: var(--font-weight-semibold)"
+        >
+          {{ 'find.appName' | translate }}
+        </h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <app-language-switcher></app-language-switcher>
+        <button
+          disabled
+          type="button"
+          (click)="openSignInModal()"
+          class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent/90 transition-colors rounded-button text-accent-foreground"
+          style="font-size: var(--text-base); font-weight: var(--font-weight-medium)"
+        >
+          {{ 'find.landing.signIn' | translate }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-6 py-20 md:py-32">
+    <div class="text-center max-w-4xl mx-auto">
+      <div class="mb-10">
+        <app-search-bar (search)="onSearch($event)"></app-search-bar>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-border bg-card mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-6 text-accent"
+            aria-hidden="true"
+          >
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+            <path d="M3 12A9 3 0 0 0 21 12"></path>
+          </svg>
+          <p class="text-muted-foreground" style="font-size: var(--text-base)">
+            {{ 'find.landing.footer.tagline' | translate }}
+          </p>
+        </div>
+        <p class="text-muted-foreground" style="font-size: var(--text-label)">
+          {{ 'find.landing.footer.copyright' | translate }}
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<p-dialog
+  [visible]="isSignInModalOpen()"
+  (visibleChange)="onSignInModalVisibilityChange($event)"
+  (onHide)="closeSignInModal()"
+  [modal]="true"
+  [showHeader]="false"
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  appendTo="body"
+  [style]="{ width: '425px' }"
+  [contentStyle]="{ padding: '24px' }"
+  styleClass="bg-card border border-border rounded-card"
+>
+  <div class="flex items-start justify-between gap-4 mb-4">
+    <div>
+      <h3
+        class="text-card-foreground"
+        style="font-size: var(--text-h3); font-weight: var(--font-weight-semibold)"
+      >
+        {{ 'find.landing.signInModal.title' | translate }}
+      </h3>
+      <p class="text-muted-foreground mt-1" style="font-size: var(--text-base)">
+        {{ 'find.landing.signInModal.subtitle' | translate }}
+      </p>
+    </div>
+    <button
+      type="button"
+      (click)="closeSignInModal()"
+      [attr.aria-label]="'find.landing.signInModal.close' | translate"
+      class="h-7 w-7 flex items-center justify-center rounded-button text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors shrink-0"
+    >
+      <i class="pi pi-times" style="font-size: 0.75rem"></i>
+    </button>
+  </div>
+
+  <form (ngSubmit)="onSignInSubmit()" class="space-y-4">
+    <div class="space-y-2">
+      <label
+        for="modal-username"
+        class="text-card-foreground"
+        style="font-size: var(--text-label); font-weight: var(--font-weight-medium)"
+      >
+        {{ 'find.landing.signInModal.email' | translate }}
+      </label>
+      <input
+        id="modal-username"
+        pInputText
+        name="email"
+        type="email"
+        [(ngModel)]="signInEmail"
+        [placeholder]="'find.landing.signInModal.emailPlaceholder' | translate"
+        autocomplete="email"
+        inputmode="email"
+        required
+        class="!w-full !h-9 !border !border-border !rounded-button !bg-input-background !text-foreground placeholder:!text-muted-foreground !shadow-none"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label
+        for="modal-password"
+        class="text-card-foreground"
+        style="font-size: var(--text-label); font-weight: var(--font-weight-medium)"
+      >
+        {{ 'find.landing.signInModal.password' | translate }}
+      </label>
+      <input
+        id="modal-password"
+        pInputText
+        name="password"
+        type="password"
+        [(ngModel)]="signInPassword"
+        [placeholder]="'find.landing.signInModal.passwordPlaceholder' | translate"
+        autocomplete="current-password"
+        required
+        class="!w-full !h-9 !border !border-border !rounded-button !bg-input-background !text-foreground placeholder:!text-muted-foreground !shadow-none"
+      />
+    </div>
+
+    @if (signInError()) {
+      <p class="text-destructive" style="font-size: var(--text-base)">{{ signInError() }}</p>
+    }
+
+    <div
+      class="text-muted-foreground bg-secondary p-3 rounded-md border border-border"
+      style="font-size: var(--text-label)"
+    >
+      {{ 'find.landing.signInModal.demoHint' | translate }}
+      <span class="text-foreground" style="font-weight: var(--font-weight-semibold)">
+        {{ 'find.landing.signInModal.demoPassword' | translate }}
+      </span>
+    </div>
+
+    <button
+      pButton
+      type="submit"
+      [disabled]="isSigningIn()"
+      class="w-full h-9 px-4 rounded-button transition-colors"
+      style="font-size: var(--text-base); font-weight: var(--font-weight-medium)"
+    >
+      {{
+        isSigningIn()
+          ? ('find.landing.signInModal.submitting' | translate)
+          : ('find.landing.signInModal.submit' | translate)
+      }}
+    </button>
+  </form>
+</p-dialog>
