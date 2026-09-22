@@ -77,11 +77,6 @@
         "submitting": "Connexion en cours...",
         "subtitle": "Saisissez vos identifiants pour accéder à vos services",
         "title": "Connexion"
-      },
-      "stats": {
-        "records": "Enregistrements de métadonnées gérés",
-        "uptime": "Disponibilité du système",
-        "support": "Assistance disponible"
       }
     },
     "searchBar": {

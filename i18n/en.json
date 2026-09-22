@@ -75,11 +75,6 @@
         "submitting": "Signing in...",
         "subtitle": "Enter your credentials to access your services",
         "title": "Sign In"
-      },
-      "stats": {
-        "records": "Metadata Records Managed",
-        "uptime": "System Uptime",
-        "support": "Support Available"
       }
     },
     "searchBar": {

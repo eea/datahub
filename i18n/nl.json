@@ -76,11 +76,6 @@
         "submitting": "Bezig met aanmelden...",
         "subtitle": "Voer uw gegevens in om toegang te krijgen tot uw services",
         "title": "Aanmelden"
-      },
-      "stats": {
-        "records": "Metadatarecords beheerd",
-        "uptime": "Systeembeschikbaarheid",
-        "support": "Ondersteuning beschikbaar"
       }
     },
     "searchBar": {
