@@ -39,11 +39,9 @@ App runs at `http://localhost:4200`.
 
 ### Verify the Build
 
-CI runs `npm run build` followed by the format check:
-
-```sh
-npm run build:check
-```
+Verify the build by:
+- making sure the app builds: `npm run build`
+- running the format check: `npm run build:check`
 
 Run both before pushing to confirm the build and formatting are clean.
 
@@ -52,11 +50,11 @@ Run both before pushing to confirm the build and formatting are clean.
 | Command                       | Description                                   |
 | ----------------------------- | --------------------------------------------- |
 | `npm run start`               | Start dev server at `http://localhost:4200`   |
-| `npm run build`               | Full production build (all libraries + app)   |
-| `npm run build:check`         | CI gate: format check                         |
+| `npm run build`               | Full production build                         |
+| `npm run build:check`         | Format check                                  |
 | `npm run prettier`            | Auto-format all source files                  |
 | `npm run format:check`        | Check formatting without modifying files      |
-| `npm run test`                | Run library unit tests (interactive)          |
+| `npm run test`                | Run unit tests (interactive)                  |
 
 ## API Endpoint Configuration
 
@@ -79,7 +77,6 @@ Environment base path is configured in `src/environments/environment.ts`:
 export const environment = {
   production: false,
   geonetworkApiUrl: '/geonetwork',
-  backgroundUrl: 'https://your-host.example.com/background.svg',
 };
 ```
 
