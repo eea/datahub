@@ -28,10 +28,12 @@ This repository contains the frontend for the EEA Datahub.
 
 ```sh
 nvm use
-npm install
+npm install --legacy-peer-deps
 npm run build
 npm run start
 ```
+
+Note: for installing packages, the `--legacy-peer-deps` option is used to workaround the following npm error: `Cannot read properties of null (reading 'edgesOut')`.
 
 App runs at `http://localhost:4200`.
 
