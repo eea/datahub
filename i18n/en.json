@@ -1,0 +1,414 @@
+{
+  "auth": {
+    "signin": {
+      "button": "Sign In",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "or": "OR",
+      "password": {
+        "error": {
+          "required": "Password is required"
+        },
+        "placeholder": "Password"
+      },
+      "signInFailure": "Incorrect password. Try again or click \"Forgot your password?\" for more options.",
+      "signInWith": "Sign in with {{provider}}",
+      "signup": "Sign up",
+      "title": "Welcome back",
+      "username": {
+        "error": {
+          "email": "Enter a valid email address",
+          "required": "Email or username is required"
+        },
+        "placeholder": "Email or username"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "citation": {
+    "detail_error": "Error loading citation formats..",
+    "download": "Download",
+    "loading": "Loading citation ...",
+    "title": "Cite dataset",
+    "title_error": "Error"
+  },
+  "copy": {
+    "detail_success": "Successfully copied to clipboard",
+    "title": "Copy",
+    "title_success": "Copy success"
+  },
+  "data": {
+    "datasource": {
+      "available": "{{count}} data sources available",
+      "select": "Choose a datasource"
+    }
+  },
+  "delete": "Delete",
+  "discussions": "Discussions",
+  "error": "Error",
+  "exploreData": "Explore data",
+  "find": {
+    "appName": "EEA Datahub",
+    "common": {
+      "backToHome": "Back to Home",
+      "search": "Search",
+      "selectLanguage": "Select language"
+    },
+    "landing": {
+      "footer": {
+        "copyright": "© 2026 EEA. All rights reserved.",
+        "tagline": "EEA Datahub - Based on GeoNetwork Opensource"
+      },
+      "signIn": "Sign In",
+      "signInModal": {
+        "close": "Close sign in modal",
+        "demoHint": "Demo credentials: Use any email with password",
+        "demoPassword": "demo123",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "errorGeneric": "Sign in failed. Please try again.",
+        "errorInvalidCredentials": "Invalid credentials. Use password: demo123",
+        "errorMissingFields": "Please enter both email and password.",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "submit": "Sign In",
+        "submitting": "Signing in...",
+        "subtitle": "Enter your credentials to access your services",
+        "title": "Sign In"
+      }
+    },
+    "searchBar": {
+      "advanced": {
+        "accessRights": "Access Rights",
+        "cancel": "Cancel",
+        "clearAll": "Clear All Filters",
+        "close": "Close advanced search",
+        "dataFormat": "Data Format",
+        "dataFormatPlaceholder": "Select format",
+        "geographicRegion": "Geographic Region",
+        "organization": "Organization",
+        "organizationPlaceholder": "Select organization",
+        "popularKeywords": "Popular Keywords",
+        "publicationDate": "Publication Date",
+        "publicationDatePlaceholder": "Select timeframe",
+        "resourceType": "Resource Type",
+        "title": "Advanced Search",
+        "topicCategory": "Topic Category"
+      },
+      "ariaLabel": "Search metadata catalog",
+      "clear": "Clear search",
+      "placeholder": "Search datasets, maps, or documentation..."
+    },
+    "searchResults": {
+      "allFilters": "All filters",
+      "card": {
+        "thumbnailPlaceholder": "Thumbnail or spatial footprint",
+        "updated": "Updated {{date}}"
+      },
+      "chips": {
+        "remove": "Remove {{label}}"
+      },
+      "dateFilter": {
+        "apply": "Apply",
+        "clear": "Clear",
+        "endDate": "End date",
+        "startDate": "Start date"
+      },
+      "dropdown": {
+        "deselect": "Deselect",
+        "exclude": "Exclude",
+        "include": "Include",
+        "noResults": "No results found",
+        "reset": "Reset",
+        "save": "Save",
+        "selectPlaceholder": "Select {{label}}"
+      },
+      "filters": {
+        "availableIn": "Available in",
+        "creationYear": "Creation Year",
+        "dateAdded": "Date added",
+        "format": "Format",
+        "keywords": "Keywords",
+        "organization": "Organization",
+        "resourceType": "Resource Type",
+        "scales": "Scales",
+        "spatialRepresentationType": "Spatial Representation",
+        "updateFrequency": "Update frequency"
+      },
+      "loadFailed": "Could not load search results. Please try again.",
+      "noResults": "No results found",
+      "pagination": {
+        "next": "Next",
+        "previous": "Previous"
+      },
+      "searching": "Searching…",
+      "showingResults": "Showing {{count}} results",
+      "sort": {
+        "dateNewest": "Date (Newest)",
+        "dateOldest": "Date (Oldest)",
+        "label": "Sort by",
+        "relevance": "Relevance"
+      }
+    }
+  },
+  "home": {
+    "discover": "Discover our themes",
+    "subtitle": "Open, high-quality marine & coastal geospatial data for science-policy from Ifremer.",
+    "title": "Charting the ocean's story through data"
+  },
+  "i18n": {
+    "languageSwitcher": {
+      "select": "Choose your language."
+    }
+  },
+  "languages": {
+    "eng": "English",
+    "fre": "Français"
+  },
+  "menu": {
+    "addRecord": "Add record",
+    "home": "Home",
+    "importRecord": "Import record",
+    "map": "Map",
+    "search": "Search",
+    "settings": "Configure",
+    "signin": "Sign in",
+    "signout": "Sign out"
+  },
+  "record": {
+    "action": {
+      "addWms": {
+        "addToMap": "Add to map",
+        "allLayersFound": "All layers found in the endpoint: {{layerNames}}",
+        "checking": "Checking WMS service...",
+        "chooseServiceLayer": "Choose a layer from the service.",
+        "layerNotFoundButChooseAnother": "Layer '{{layerName}}' not found in the WMS service. Choose another layer from the service.",
+        "unreachable": "The WMS service is unreachable."
+      },
+      "deleteConfirmationMessage": "Are you sure you want to delete this record? This action cannot be undone.",
+      "deleteConfirmationTitle": "Delete confirmation",
+      "deleteError": "An error occurred while deleting the record.",
+      "deleteSuccess": "Record deleted successfully.",
+      "deleteTitle": "Delete this record",
+      "edit": "Edit",
+      "editTitle": "Edit this record",
+      "menu": "Quick actions",
+      "metadataDownload": "Metadata (XML)",
+      "metadataDownloadHelp": "Download the record in XML format",
+      "relatedRecordsWarning": "This record is associated with other resources:",
+      "share": "Share",
+      "shareHelp": "Permalink to the record",
+      "typeToConfirm": "Type \"{{word}}\" to confirm"
+    },
+    "association": {
+      "associated": "Associated with {{count}} resource(s)",
+      "brothersAndSisters": "{{count}} siblings",
+      "children": "Composed of {{count}} resource(s)",
+      "datasets": "{{count}} datasets",
+      "fcats": "{{count}}  data models",
+      "hasfeaturecats": "{{count}} associated data",
+      "hassources": "Used for {{count}} resource(s)",
+      "parent": "Part of {{count}} resource(s)",
+      "services": "{{count}} services",
+      "siblings": "{{count}} siblings",
+      "sources": "Derived from {{count}} resource(s)"
+    },
+    "card": {
+      "moreKeywords": "+{{count}} more"
+    },
+    "field": {
+      "abstract": "Overview",
+      "catalogue": {
+        "help": "Origin of the record",
+        "logo": {
+          "alt": "Catalogue logo"
+        },
+        "title": "Catalogue"
+      },
+      "cl_accessConstraints": "Access constraints",
+      "contact": {
+        "address": "Address",
+        "email": "Email",
+        "phone": "Phone",
+        "website": "Website"
+      },
+      "coordinateSystem": "Coordinate system",
+      "coverage": {
+        "east": "East",
+        "north": "North",
+        "overviewAltText": "Geospatial coverage overview image",
+        "south": "South",
+        "spatial": "Geospatial coverage",
+        "temporal": "Temporal coverage",
+        "vertical": "Vertical coverage",
+        "west": "West"
+      },
+      "credit": "Credits",
+      "datamodel": {
+        "description": "Description",
+        "field": "Field",
+        "label": "Label",
+        "type": "Type"
+      },
+      "dateStamp": "Updated",
+      "distribution": {
+        "format": "Format",
+        "sections": {
+          "api": "View",
+          "download": "Download",
+          "featureCatalog": "Data model",
+          "links": "Links",
+          "mapLegend": "Map legend",
+          "quality": "Quality"
+        }
+      },
+      "keywords": "Keywords",
+      "lastUpdated": "Last updated on ",
+      "lineage": "Lineage",
+      "otherConstraints": "Other constraints",
+      "overview": {
+        "notAvailable": "No preview"
+      },
+      "resolution": "Resolution",
+      "resourceDate": "Dates",
+      "resourceTitle": "Title",
+      "resourceType": "Resource type",
+      "themes": "Themes",
+      "title": {
+        "notAvailable": "-- Missing title --"
+      },
+      "useConstraints": "Use constraints",
+      "useLimitation": "Use limitation"
+    },
+    "view": {
+      "notFoundOrNotShared": "Record with identifier {{uuid}} was not found or is not shared with you. Try to sign in or do another search.",
+      "section": {
+        "about": "About",
+        "associatedResources": "Associated resources",
+        "citation": "Citation",
+        "classification": "Classification",
+        "contact": "Contact",
+        "contacts": "Contacts",
+        "content": "Content",
+        "coverage": "Coverage",
+        "dataAccess": "Data access",
+        "dataExplorer": "Data explorer",
+        "dataModel": "Data model",
+        "dates": "Dates",
+        "description": "Description",
+        "discussions": "Discussions",
+        "explore": "Explore",
+        "lineage": "Lineage",
+        "publications": "Publications",
+        "relatedResources": "Related resources",
+        "similarResources": "Similar resources",
+        "spatialInfo": "Spatial information",
+        "usageAndAccess": "Usage and access"
+      }
+    }
+  },
+  "relations": {
+    "seeAll": "See all"
+  },
+  "results": {
+    "layout": {
+      "grid": "Grid view",
+      "list": "List view"
+    }
+  },
+  "search": {
+    "aggregations": {
+      "cl_status.key": "Resource status",
+      "creationYearForResource": "Creation year",
+      "groupPublishedId": "Groups",
+      "isHarvested": "Harvested",
+      "isPublishedToAll": "Public",
+      "isTemplate": "Template",
+      "less": "less",
+      "more": "more",
+      "OrgForResource": "Organisation",
+      "resourceType": "Resource type",
+      "tag.default": "Keywords",
+      "th_dcsmm-area_tree.key": "Marine regions",
+      "th_dcsmm-descripteur_tree.key": "DCSMM Descriptors",
+      "th_httpinspireeceuropaeutheme-theme_tree.key": "INSPIRE themes",
+      "th_NVS-OD1_tree.key": "ODATIS aggregation parameters and Essential Variable names",
+      "th_odatis_centre_donnees_tree.key": "ODATIS Data centers",
+      "th_geonetwork5-theme_tree.key": "GeoNetwork 5 themes",
+      "th_simm-reglementaire_tree.key": "Cadre Réglementaire - SIMM"
+    },
+    "backToResults": "Back to results",
+    "button": {
+      "title": "Search"
+    },
+    "filter": {
+      "activeFilters": "Active filters",
+      "panel": {
+        "open": "Filter"
+      },
+      "title": "All filters"
+    },
+    "input": {
+      "placeholder": "Search ...",
+      "popover": {
+        "resourceType": {
+          "title": "Resource type"
+        }
+      }
+    },
+    "result": "result",
+    "results": "results",
+    "searchLink": "Search for {{value}}",
+    "sort": {
+      "options": {
+        "_score": "Relevance",
+        "-changeDate": "Latest record",
+        "-createDate": "New record",
+        "-popularity": "Popularity",
+        "-rating": "Rating",
+        "-revisionDateForResource,-publicationDateForResource,-creationDateForResource": "Last update",
+        "resourceTitleObject.default.sort": "Title"
+      },
+      "placeholder": "Sort by"
+    },
+    "welcome": {
+      "default": "Search ...",
+      "text": "Search over {{count}} {{mainBuckets}}, ..."
+    }
+  },
+  "share": {
+    "detail_error": "Failed to fetch permalink",
+    "title_error": "Error"
+  },
+  "shared": {
+    "show-more-toggle": {
+      "less": "View less",
+      "more": "Read more"
+    }
+  },
+  "success": "Success",
+  "user": {
+    "bookmarks": "Bookmarks",
+    "contributions": "contributions",
+    "dashboard": {
+      "allWork": "All of your work",
+      "bookmarks": "Your bookmarks",
+      "noBookmarks": "You haven't added any records to your bookmarks yet.",
+      "noWork": "You haven't contributed to any records yet.",
+      "statistics": "Statistics",
+      "subtitle": "Manage your contributions and access key resources",
+      "title": "Editor dashboard"
+    },
+    "profile": "Profile",
+    "recentWork": "Recent work",
+    "settings": "Settings",
+    "welcome": "Welcome, {{name}}"
+  },
+  "vocabulary": {
+    "moreInfoOnKeyword": "Read more information about this keyword",
+    "noDefinitionAvailable": "No definition available",
+    "otherKeywords": "Other keywords",
+    "searchByKeyword": "Search by keyword",
+    "searchByKeywordHelp": "More records with this keyword"
+  }
+}

@@ -1,0 +1,7 @@
+if ! command -v node >/dev/null 2>&1; then
+  if [ -n "$NVM_BIN" ]; then
+    PATH="$PATH:$NVM_BIN"
+  fi
+fi
+
+npx --no -- @commitlint/cli --edit "$1"

@@ -1,0 +1,419 @@
+{
+  "addToMap": "Add to map",
+  "auth": {
+    "signin": {
+      "button": "Sign In",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "or": "OR",
+      "password": {
+        "error": {
+          "required": "Password is required"
+        },
+        "placeholder": "Password"
+      },
+      "signInFailure": "Incorrect password. Try again or click \"Forgot your password?\" for more options.",
+      "signInWith": "Sign in with {{provider}}",
+      "signup": "Sign up",
+      "title": "Welcome back",
+      "username": {
+        "error": {
+          "email": "Enter a valid email address",
+          "required": "Email or username is required"
+        },
+        "placeholder": "Email or username"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "citation": {
+    "detail_error": "Fout bij laden van citatieformaten..",
+    "download": "Download",
+    "loading": "Loading citation ...",
+    "title": "Cite dataset",
+    "title_error": "Fout"
+  },
+  "copy": {
+    "detail_success": "Successfully copied to clipboard",
+    "title": "Copy",
+    "title_success": "Copy success"
+  },
+  "data": {
+    "datasource": {
+      "available": "{{count}} data sources available",
+      "select": "Choose a datasource"
+    }
+  },
+  "delete": "Delete",
+  "discussions": "Discussions",
+  "error": "Fout",
+  "exploreData": "Explore data",
+  "find": {
+    "appName": "EEA Datahub",
+    "common": {
+      "backToHome": "Terug naar start",
+      "search": "Zoeken",
+      "selectLanguage": "Taal kiezen"
+    },
+    "landing": {
+      "footer": {
+        "copyright": "© 2026 EEA. Alle rechten voorbehouden.",
+        "tagline": "EEA Datahub - Gebaseerd op GeoNetwork Opensource"
+      },
+      "signIn": "Aanmelden",
+      "signInModal": {
+        "close": "Aanmeldvenster sluiten",
+        "demoHint": "Demogegevens: gebruik een willekeurig e-mailadres met wachtwoord",
+        "demoPassword": "demo123",
+        "email": "E-mail",
+        "emailPlaceholder": "uw.email@voorbeeld.com",
+        "errorGeneric": "Aanmelden mislukt. Probeer het opnieuw.",
+        "errorInvalidCredentials": "Ongeldige gegevens. Gebruik wachtwoord: demo123",
+        "errorMissingFields": "Voer zowel e-mail als wachtwoord in.",
+        "password": "Wachtwoord",
+        "passwordPlaceholder": "••••••••",
+        "submit": "Aanmelden",
+        "submitting": "Bezig met aanmelden...",
+        "subtitle": "Voer uw gegevens in om toegang te krijgen tot uw services",
+        "title": "Aanmelden"
+      }
+    },
+    "searchBar": {
+      "advanced": {
+        "accessRights": "Toegangsrechten",
+        "cancel": "Annuleren",
+        "clearAll": "Alle filters wissen",
+        "close": "Geavanceerd zoeken sluiten",
+        "dataFormat": "Gegevensformaat",
+        "dataFormatPlaceholder": "Selecteer een formaat",
+        "geographicRegion": "Geografische regio",
+        "organization": "Organisatie",
+        "organizationPlaceholder": "Selecteer een organisatie",
+        "popularKeywords": "Populaire trefwoorden",
+        "publicationDate": "Publicatiedatum",
+        "publicationDatePlaceholder": "Selecteer een periode",
+        "resourceType": "Brontype",
+        "title": "Geavanceerd zoeken",
+        "topicCategory": "Onderwerpcategorie"
+      },
+      "ariaLabel": "Zoeken in metadatacatalogus",
+      "clear": "Zoekopdracht wissen",
+      "placeholder": "Zoek datasets, kaarten of documentatie..."
+    },
+    "searchResults": {
+      "allFilters": "Alle filters",
+      "card": {
+        "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
+        "updated": "Bijgewerkt op {{date}}"
+      },
+      "chips": {
+        "remove": "{{label}} verwijderen"
+      },
+      "dateFilter": {
+        "apply": "Toepassen",
+        "clear": "Wissen",
+        "endDate": "Einddatum",
+        "startDate": "Startdatum"
+      },
+      "dropdown": {
+        "deselect": "Deselecteren",
+        "exclude": "Uitsluiten",
+        "include": "Opnemen",
+        "noResults": "Geen resultaten gevonden",
+        "reset": "Opnieuw instellen",
+        "save": "Opslaan",
+        "selectPlaceholder": "Selecteer {{label}}"
+      },
+      "filters": {
+        "availableIn": "Beschikbaar in",
+        "creationYear": "Aanmaakjaar",
+        "dateAdded": "Datum toegevoegd",
+        "format": "Formaat",
+        "keywords": "Trefwoorden",
+        "organization": "Organisatie",
+        "resourceType": "Brontype",
+        "scales": "Schalen",
+        "spatialRepresentationType": "Ruimtelijk representatietype",
+        "updateFrequency": "Bijwerkfrequentie"
+      },
+      "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
+      "noResults": "Geen resultaten gevonden",
+      "pagination": {
+        "next": "Volgende",
+        "previous": "Vorige"
+      },
+      "searching": "Zoeken…",
+      "showingResults": "{{count}} resultaten weergegeven",
+      "sort": {
+        "dateNewest": "Datum (nieuwste)",
+        "dateOldest": "Datum (oudste)",
+        "label": "Sorteren op",
+        "relevance": "Relevantie"
+      }
+    }
+  },
+  "home": {
+    "discover": "Discover our themes",
+    "subtitle": "Open, high-quality marine & coastal geospatial data for science-policy from Ifremer.",
+    "title": "Charting the ocean's story through data"
+  },
+  "i18n": {
+    "languageSwitcher": {
+      "select": "Choose your language."
+    }
+  },
+  "languages": {
+    "eng": "English",
+    "fre": "Français"
+  },
+  "menu": {
+    "addrecord": "Add",
+    "addRecord": "Record toevoegen",
+    "home": "Home",
+    "importRecord": "Record importeren",
+    "map": "Map",
+    "search": "Search",
+    "settings": "Configure",
+    "signin": "Sign in",
+    "signout": "Sign out"
+  },
+  "record": {
+    "action": {
+      "addWms": {
+        "addToMap": "Add to map",
+        "allLayersFound": "All layers found in the endpoint: {{layerNames}}",
+        "checking": "Checking WMS service...",
+        "chooseLayer": "Choose layer:",
+        "chooseServiceLayer": "Choose a layer from the service.",
+        "layerNotFoundButChooseAnother": "Layer '{{layerName}}' not found in the WMS service. Choose another layer from the service.",
+        "unreachable": "The WMS service is unreachable."
+      },
+      "deleteConfirmationMessage": "Are you sure you want to delete this record? This action cannot be undone.",
+      "deleteConfirmationTitle": "Delete confirmation",
+      "deleteError": "Er is een fout opgetreden bij het verwijderen van het record.",
+      "deleteSuccess": "Record deleted successfully.",
+      "deleteTitle": "Delete this record",
+      "edit": "Bewerken",
+      "editTitle": "Edit record",
+      "menu": "Quick actions",
+      "metadataDownload": "Metadata (XML)",
+      "metadataDownloadHelp": "Download the record in XML format",
+      "relatedRecordsWarning": "Dit record is gekoppeld aan andere bronnen:",
+      "share": "Share",
+      "shareHelp": "Permalink to the record",
+      "typeToConfirm": "Type \"{{word}}\" to confirm"
+    },
+    "association": {
+      "associated": "Associated with {{count}} resource(s)",
+      "brothersAndSisters": "{{count}} Siblings",
+      "children": "Composed of {{count}} resource(s)",
+      "datasets": "{{count}} datasets",
+      "fcats": "{{count}}  data models",
+      "hasfeaturecats": "{{count}} associated data",
+      "hassources": "Used for {{count}} resource(s)",
+      "parent": "Part of {{count}} resource(s)",
+      "services": "{{count}} services",
+      "siblings": "{{count}} siblings",
+      "sources": "Derived from {{count}} resource(s)"
+    },
+    "card": {
+      "moreKeywords": "+{{count}} meer"
+    },
+    "field": {
+      "abstract": "Overview",
+      "catalogue": {
+        "help": "Origin of the record",
+        "logo": {
+          "alt": "Catalogue logo"
+        },
+        "title": "Catalogue"
+      },
+      "cl_accessConstraints": "Access constraints",
+      "contact": {
+        "address": "Adres",
+        "email": "E-mail",
+        "phone": "Telefoon",
+        "website": "Website"
+      },
+      "coordinateSystem": "Coordinate system",
+      "coverage": {
+        "east": "Oost",
+        "north": "Noord",
+        "overviewAltText": "Overzichtsafbeelding van georuimtelijke dekking",
+        "south": "Zuid",
+        "spatial": "Ruimtelijke dekking",
+        "temporal": "Temporele dekking",
+        "vertical": "Verticale dekking",
+        "west": "West"
+      },
+      "credit": "Credits",
+      "datamodel": {
+        "description": "Description",
+        "field": "Field",
+        "label": "Label",
+        "type": "Type"
+      },
+      "dateStamp": "Updated",
+      "distribution": {
+        "format": "Format",
+        "sections": {
+          "api": "API",
+          "download": "Download",
+          "featureCatalog": "Data model",
+          "links": "Links",
+          "mapLegend": "Map legend",
+          "quality": "Quality"
+        }
+      },
+      "keywords": "Trefwoorden",
+      "lastUpdated": "Last updated on ",
+      "lineage": "Lineage",
+      "otherConstraints": "Other constraints",
+      "overview": {
+        "notAvailable": "No preview"
+      },
+      "resolution": "Resolution",
+      "resourceDate": "Dates",
+      "resourceTitle": "Title",
+      "resourceType": "Resource type",
+      "themes": "Thema's",
+      "title": {
+        "notAvailable": "-- Geen titel --"
+      },
+      "useConstraints": "Use constraints",
+      "useLimitation": "Use limitation"
+    },
+    "view": {
+      "notFoundOrNotShared": "Record met identificatie {{uuid}} is niet gevonden of wordt niet met u gedeeld. Probeer in te loggen of probeer een andere zoekopdracht.",
+      "section": {
+        "about": "Over deze",
+        "associatedResources": "Gerelateerde bronnen",
+        "citation": "Citation",
+        "classification": "Classification",
+        "contact": "Contact",
+        "contacts": "Contacten",
+        "content": "Content",
+        "coverage": "Coverage",
+        "dataAccess": "Data toegang",
+        "dataExplorer": "Data explorer",
+        "dataModel": "Data model",
+        "dates": "Datums",
+        "description": "Beschrijving",
+        "discussions": "Discussies",
+        "explore": "Ontdek",
+        "lineage": "Lineage",
+        "publications": "Publicaties",
+        "relatedResources": "Related resources",
+        "similarResources": "Similar resources",
+        "spatialInfo": "Spatial informatie",
+        "usageAndAccess": "Use and access"
+      }
+    }
+  },
+  "relations": {
+    "seeAll": "See all"
+  },
+  "results": {
+    "layout": {
+      "grid": "Rasterweergave",
+      "list": "Lijstweergave"
+    }
+  },
+  "search": {
+    "aggregations": {
+      "cl_status.key": "Resource status",
+      "creationYearForResource": "Creation year",
+      "groupPublishedId": "Groups",
+      "isHarvested": "Harvested",
+      "isPublishedToAll": "Public",
+      "isTemplate": "Template",
+      "less": "less",
+      "more": "more",
+      "OrgForResource": "Organisation",
+      "resourceType": "Resource type",
+      "tag.default": "Keywords",
+      "th_dcsmm-area_tree.key": "Marine regions",
+      "th_dcsmm-descripteur_tree.key": "DCSMM Descriptors",
+      "th_httpinspireeceuropaeutheme-theme_tree.key": "INSPIRE themes",
+      "th_NVS-OD1_tree.key": "ODATIS aggregation parameters and Essential Variable names",
+      "th_odatis_centre_donnees_tree.key": "ODATIS Data centers",
+      "th_geonetwork5-theme_tree.key": "GeoNetwork 5 themes",
+      "th_simm-reglementaire_tree.key": "Cadre Réglementaire - SIMM"
+    },
+    "backToResults": "Back to results",
+    "button": {
+      "title": "Zoeken"
+    },
+    "filter": {
+      "activeFilters": "Actieve filters",
+      "panel": {
+        "open": "Filter"
+      },
+      "title": "Alle filters"
+    },
+    "input": {
+      "placeholder": "Zoeken ...",
+      "popover": {
+        "resourceType": {
+          "title": "Bron type"
+        }
+      }
+    },
+    "result": "result",
+    "results": "results",
+    "searchLink": "Search for {{value}}",
+    "sort": {
+      "options": {
+        "_score": "Relevantie",
+        "-changeDate": "Laatste record",
+        "-createDate": "Nieuw record",
+        "-popularity": "Populariteit",
+        "-rating": "Oordeel",
+        "-revisionDateForResource,-publicationDateForResource,-creationDateForResource": "Laaste update",
+        "resourceTitleObject.default.sort": "Titel"
+      },
+      "placeholder": "Sorteer op"
+    },
+    "welcome": {
+      "default": "Search ...",
+      "text": "Search over {{count}} {{mainBuckets}}, ..."
+    }
+  },
+  "share": {
+    "detail_error": "Ophalen van permalink mislukt",
+    "title_error": "Fout"
+  },
+  "shared": {
+    "show-more-toggle": {
+      "less": "View less",
+      "more": "Read more"
+    }
+  },
+  "success": "Succes",
+  "user": {
+    "bookmark": "My bookmarks",
+    "bookmarks": "Favorieten",
+    "contributions": "bijdragen",
+    "dashboard": {
+      "allWork": "Al uw werk",
+      "bookmarks": "Uw favorieten",
+      "noBookmarks": "U heeft nog geen favoriete records opgeslagen.",
+      "noWork": "U heeft nog geen bijgewerkte records.",
+      "statistics": "Statistieken",
+      "subtitle": "Beheer uw bijdragen en krijg toegang tot belangrijke bronnen",
+      "title": "Editor dashboard"
+    },
+    "profile": "Profile",
+    "recentWork": "Recent werk",
+    "settings": "Settings",
+    "welcome": "Welkom, {{name}}",
+    "work": "My work"
+  },
+  "vocabulary": {
+    "moreInfoOnKeyword": "Read more information about this keyword",
+    "noDefinitionAvailable": "No definition available",
+    "otherKeywords": "Other keywords",
+    "searchByKeyword": "Search by keyword",
+    "searchByKeywordHelp": "More records with this keyword"
+  }
+}

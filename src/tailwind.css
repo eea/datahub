@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@import '@openng/optimus-ui-tailwindcss';
+@custom-variant dark (&:where(.p-dark, .p-dark *));
+
+@layer appstyles {
+  html {
+    font-size: 14px;
+  }
+
+  * {
+    font-family: var(--app-font-family-sans);
+  }
+
+  button,
+  input,
+  select,
+  textarea,
+  ::file-selector-button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .markdown-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold mb-6;
+    }
+    ul {
+      @apply mb-4 ml-10 list-disc;
+    }
+
+    li {
+      @apply text-gray-800;
+    }
+
+    p {
+      @apply mb-4;
+    }
+
+    a {
+      @apply text-primary-500;
+    }
+    a:hover {
+      @apply underline;
+    }
+  }
+
+  .header-row {
+    @apply items-center;
+    @apply min-h-28;
+  }
+}
