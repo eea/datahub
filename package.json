@@ -61,7 +61,7 @@
     "@angular/build": "^22.1.7",
     "@angular/cli": "^22.1.7",
     "@angular/compiler-cli": "^22.1.5",
-    "@commitlint/cli": "^19.8.1",
+    "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^19.8.1",
     "husky": "^9.1.7",
     "istanbul-lib-instrument": "^6.0.3",
