@@ -46,6 +46,8 @@
 @theme {
   --font-sans: 'Roboto', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
+  --container-7xl: 73rem;
+
   --text-base: 14px;
   --text-body: 14px;
   --text-body--line-height: 1.5;
