@@ -16,7 +16,7 @@ const AppTheme = definePreset(Aura, {
     violet: undefined,
     eea: {
       blue: {
-        50: '#f2f6f8',
+        50: '#eff6ff',
         100: '#a0d7ff',
         200: '#47b3ff',
         300: '#008ff5',
@@ -201,7 +201,7 @@ const AppTheme = definePreset(Aura, {
       colorScheme: {
         light: {
           primary: {
-            background: '{blue.50}',
+            background: '{primary.50}',
             color: '{primary.color}',
           },
         },
