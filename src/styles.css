@@ -91,6 +91,13 @@ body {
   box-sizing: border-box;
 }
 
+@layer base {
+  :focus-visible {
+    outline: var(--p-focus-ring-width) var(--p-focus-ring-style) var(--p-focus-ring-color);
+    outline-offset: var(--p-focus-ring-offset);
+  }
+}
+
 .p-component,
 .p-inputtext,
 .p-card,
