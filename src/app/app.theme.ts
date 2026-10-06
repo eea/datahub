@@ -42,6 +42,7 @@ const AppTheme = definePreset(Aura, {
       oldSilver: '#808285',
       supplementary: '#f9f9f9',
       infoBackground: '#f8ffff',
+      hover: '#edf1f2',
       header: '#2e3e4c',
       footer: '#212d38',
     },
@@ -75,6 +76,10 @@ const AppTheme = definePreset(Aura, {
         },
         text: {
           color: '{eea.text}',
+          hoverColor: '{eea.text}',
+        },
+        highlight: {
+          focusBackground: '{eea.hover}',
         },
         formField: {
           color: '{text.color}',
