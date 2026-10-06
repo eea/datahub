@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @plugin "@openng/optimus-ui-tailwindcss";
 @import '@openng/icons/openng-icons.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/600.css';
+@import '@fontsource/roboto/700.css';
 
 @source "./app/**/*.{html,ts}";
 @source "../node_modules/gn-library/";
@@ -40,14 +44,29 @@
 }
 
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-sans: 'Roboto', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
   --text-base: 14px;
   --text-body: 14px;
-  --text-h1: 32px;
-  --text-h2: 24px;
-  --text-h3: 17.5px;
+  --text-body--line-height: 1.5;
+  --text-h1: 2.75rem;
+  --text-h1--line-height: 1.2;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h2: 2rem;
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h3: 1.625rem;
+  --text-h3--line-height: 1.18;
   --text-label: 12.25px;
+  --text-label--line-height: 1.5;
+}
+
+@media (width < 48rem) {
+  :root {
+    --text-h1: 1.875rem;
+    --text-h2: 1.5rem;
+    --text-h3: 1.25rem;
+  }
 }
 
 :root {
