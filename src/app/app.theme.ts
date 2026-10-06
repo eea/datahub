@@ -14,30 +14,84 @@ const AppTheme = definePreset(Aura, {
     stone: undefined,
     teal: undefined,
     violet: undefined,
+    eea: {
+      blue: {
+        50: '#f2f6f8',
+        100: '#a0d7ff',
+        200: '#47b3ff',
+        300: '#008ff5',
+        400: '#0079cf',
+        500: '#006bb8',
+        600: '#004b7f',
+        700: '#003c66',
+        800: '#003052',
+        900: '#002d4c',
+        950: '#001e33',
+      },
+      red: {
+        50: '#fbeef8',
+        100: '#f6ddf0',
+        200: '#e7b2c0',
+        400: '#c65b59',
+        500: '#b83230',
+        600: '#5c1918',
+      },
+      green: '#007b6c',
+      text: '#3d5265',
+      silver: '#e6e7e8',
+      oldSilver: '#808285',
+      supplementary: '#f9f9f9',
+      infoBackground: '#f8ffff',
+      header: '#2e3e4c',
+      footer: '#212d38',
+    },
   },
   semantic: {
     primary: {
-      50: '{blue.50}',
-      100: '{blue.100}',
-      200: '{blue.200}',
-      300: '{blue.300}',
-      400: '{blue.400}',
-      500: '{blue.500}',
-      600: '{blue.600}',
-      700: '{blue.700}',
-      800: '{blue.800}',
-      900: '{blue.900}',
-      950: '{blue.950}',
+      50: '{eea.blue.50}',
+      100: '{eea.blue.100}',
+      200: '{eea.blue.200}',
+      300: '{eea.blue.300}',
+      400: '{eea.blue.400}',
+      500: '{eea.blue.500}',
+      600: '{eea.blue.600}',
+      700: '{eea.blue.700}',
+      800: '{eea.blue.800}',
+      900: '{eea.blue.900}',
+      950: '{eea.blue.950}',
+    },
+    focusRing: {
+      width: '2px',
+      color: '{primary.300}',
+      offset: '2px',
+    },
+    content: {
+      borderRadius: '{border.radius.md}',
+    },
+    colorScheme: {
+      light: {
+        primary: {
+          activeColor: '{primary.800}',
+        },
+        text: {
+          color: '{eea.text}',
+        },
+        formField: {
+          color: '{text.color}',
+          borderColor: '{eea.oldSilver}',
+          hoverBorderColor: '{text.color}',
+        },
+      },
     },
     secondary: {
-      background: 'rgba(241, 245, 249, 1)',
-      foreground: 'rgba(71, 85, 105, 1)',
+      background: '{eea.supplementary}',
+      foreground: '{text.color}',
     },
-    tertiary: 'rgba(245, 245, 243)',
+    tertiary: '#ffffff',
     muted: '{slate.300}',
     mutedForeground: '{slate.500}',
     destructive: {
-      color: '{red.500}',
+      color: '{eea.red.500}',
       contrastColor: '#ffffff',
     },
     decorative: {
@@ -59,23 +113,23 @@ const AppTheme = definePreset(Aura, {
     },
     filterAction: {
       include: {
-        color: 'oklch(62.3% 0.214 259.815)',
-        hoverColor: 'oklch(54.6% 0.245 262.881)',
+        color: '{primary.500}',
+        hoverColor: '{primary.600}',
       },
       exclude: {
-        color: 'oklch(63.7% 0.237 25.331)',
-        hoverColor: 'oklch(57.7% 0.245 27.325)',
+        color: '{eea.red.500}',
+        hoverColor: '{eea.red.600}',
       },
       deselect: {
-        color: 'oklch(55.1% 0.027 264.364)',
-        hoverColor: 'oklch(44.6% 0.03 256.802)',
+        color: '{eea.oldSilver}',
+        hoverColor: '{eea.text}',
       },
     },
     excludedChip: {
-      background: 'oklch(97.1% 0.013 17.38)',
-      color: 'oklch(50.5% 0.213 27.518)',
-      borderColor: 'oklch(88.5% 0.062 18.334)',
-      hoverBackground: 'oklch(88.5% 0.062 18.334)',
+      background: '{eea.red.50}',
+      color: '{eea.red.500}',
+      borderColor: '{eea.red.200}',
+      hoverBackground: '{eea.red.100}',
     },
     fontSize: {
       label: '12.25px',
@@ -84,11 +138,24 @@ const AppTheme = definePreset(Aura, {
   components: {
     card: {
       root: {
-        borderRadius: '6px',
+        borderRadius: '{border.radius.md}',
         shadow: 'none',
       },
       body: {
         padding: '1.75rem 2rem',
+      },
+    },
+    checkbox: {
+      root: {
+        width: '1rem',
+        height: '1rem',
+        borderRadius: '{border.radius.xs}',
+        borderColor: '{eea.oldSilver}',
+        hoverBorderColor: '{text.color}',
+        focusBorderColor: '{eea.oldSilver}',
+      },
+      icon: {
+        size: '0.75rem',
       },
     },
     inputtext: {
@@ -98,9 +165,30 @@ const AppTheme = definePreset(Aura, {
         invalidPlaceholderColor: '{text.muted.color}',
       },
     },
+    message: {
+      root: {
+        borderRadius: '{content.border.radius}',
+      },
+      colorScheme: {
+        light: {
+          error: {
+            background: '#ffffff',
+            borderColor: '{eea.red.400}',
+            color: '{eea.red.500}',
+            shadow: 'none',
+          },
+          info: {
+            background: '{eea.infoBackground}',
+            borderColor: '{primary.500}',
+            color: '{primary.800}',
+            shadow: 'none',
+          },
+        },
+      },
+    },
     tag: {
       root: {
-        borderRadius: '0.25rem',
+        borderRadius: '{border.radius.sm}',
         fontSize: '{fontSize.label}',
         fontWeight: '400',
         padding: '0.25rem 0.5rem',
@@ -108,8 +196,8 @@ const AppTheme = definePreset(Aura, {
       colorScheme: {
         light: {
           primary: {
-            background: '{secondary.background}',
-            color: '{secondary.foreground}',
+            background: '{blue.50}',
+            color: '{primary.color}',
           },
         },
       },

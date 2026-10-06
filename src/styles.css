@@ -36,6 +36,7 @@
   --color-excluded-chip: var(--p-excluded-chip-background);
   --color-excluded-chip-foreground: var(--p-excluded-chip-color);
   --color-excluded-chip-border: var(--p-excluded-chip-border-color);
+  --radius-md: var(--p-content-border-radius);
 }
 
 @theme {
