@@ -71,7 +71,7 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "prebundle": {
-              "exclude": ["gn-library"]
+              "exclude": ["@geocat/frontend-library"]
             }
           },
           "configurations": {

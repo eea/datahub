@@ -45,6 +45,8 @@
     "@angular/forms": "^22.1.5",
     "@angular/platform-browser": "^22.1.5",
     "@angular/router": "^22.1.5",
+    "@geocat/frontend-api-client": "^0.0.1",
+    "@geocat/frontend-library": "^0.2.0",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@openng/icons": "^1.0.0",
