@@ -66,6 +66,15 @@ const AppTheme = definePreset(Aura, {
       color: '{primary.300}',
       offset: '2px',
     },
+    formField: {
+      focusRing: {
+        width: '{focus.ring.width}',
+        style: '{focus.ring.style}',
+        color: '{focus.ring.color}',
+        offset: '{focus.ring.offset}',
+        shadow: 'none',
+      },
+    },
     content: {
       borderRadius: '{border.radius.md}',
     },
