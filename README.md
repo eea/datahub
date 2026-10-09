@@ -17,11 +17,18 @@ This repository contains the frontend for the EEA Datahub.
 - Node.js `v22.23.0`
 - npm
 
-### Link GeoNetwork frontend API client and library
+### GeoCat packages
+The GeoNetwork frontend library and API client are installed from GitHub Packages as `@geocat/frontend-library` and `@geocat/frontend-api-client`. The `.npmrc` points the `@geocat` scope at that registry. Set `GITHUB_PACKAGES_AUTH_TOKEN` to a GitHub personal access token (classic) with the `read:packages` scope before installing:
+
+```sh
+export GITHUB_PACKAGES_AUTH_TOKEN=<your token>
+```
+
+### Use a local build of the library
 - Make sure to run `nvm use` and confirm node v22.23.0 is used in the GeoCat frontend repo and this project repo.
 - build all packages in your local copy of the GeoCat frontend repo: `npm run build`
-- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`. This should create two symlinks - gn-api-client and gn-library - in `<user-home-dir>/.nvm/versions/node/v22.23.0/lib/node_modules`.
-- in your local copy of this repo run: `npm link gn-library gn-api-client`
+- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`.
+- in your local copy of this repo run: `npm link @geocat/frontend-library @geocat/frontend-api-client`
 - confirm your local copy of this project builds without errors
 
 ### Setup and Run

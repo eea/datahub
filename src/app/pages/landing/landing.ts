@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LanguageSwitcher, SearchBar, SearchRequest } from '@geocat/frontend-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
-import { LanguageSwitcher, SearchBar, SearchRequest } from 'gn-library';
 
 @Component({
   selector: 'app-landing',

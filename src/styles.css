@@ -3,7 +3,7 @@
 @import '@openng/icons/openng-icons.css';
 
 @source "./app/**/*.{html,ts}";
-@source "../node_modules/gn-library/";
+@source "../node_modules/@geocat/frontend-library/";
 
 :root {
   color-scheme: light;
