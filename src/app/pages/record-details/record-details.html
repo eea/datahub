@@ -12,7 +12,27 @@
           </p-message>
         } @else {
           <p-card>
+            <div class="flex items-center gap-3 mb-4">
+              <app-record-field-type [record]="record()" />
+
+              <app-record-field-org-for-resource [record]="record()" />
+            </div>
+
             <app-record-field-title [record]="record()" />
+
+            <div class="space-y-2 mb-5">
+              <app-record-field-themes
+                [record]="record()"
+                class="flex flex-wrap gap-2 items-center"
+              />
+
+              <app-record-field-keywords
+                [record]="record()"
+                class="flex flex-wrap gap-2 items-center"
+              />
+            </div>
+
+            <app-record-description [record]="record()" />
           </p-card>
         }
       </div>
