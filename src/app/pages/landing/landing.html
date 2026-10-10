@@ -10,17 +10,14 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="size-8 text-accent"
+          class="size-8 text-primary"
           aria-hidden="true"
         >
           <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
           <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
           <path d="M3 12A9 3 0 0 0 21 12"></path>
         </svg>
-        <h1
-          class="text-foreground"
-          style="font-size: var(--text-h2); font-weight: var(--font-weight-semibold)"
-        >
+        <h1 class="text-foreground text-h2 font-semibold">
           {{ 'find.appName' | translate }}
         </h1>
       </div>
@@ -30,8 +27,7 @@
           disabled
           type="button"
           (click)="openSignInModal()"
-          class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent/90 transition-colors rounded-button text-accent-foreground"
-          style="font-size: var(--text-base); font-weight: var(--font-weight-medium)"
+          class="inline-flex items-center px-6 py-2.5 bg-primary hover:bg-primary/90 disabled:bg-primary/75 disabled:hover:bg-primary/75 transition-colors rounded-md text-primary-contrast text-body font-medium"
         >
           {{ 'find.landing.signIn' | translate }}
         </button>
@@ -59,18 +55,18 @@
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="size-6 text-accent"
+            class="size-6 text-primary"
             aria-hidden="true"
           >
             <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
             <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
             <path d="M3 12A9 3 0 0 0 21 12"></path>
           </svg>
-          <p class="text-muted-foreground" style="font-size: var(--text-base)">
+          <p class="text-muted-foreground text-body">
             {{ 'find.landing.footer.tagline' | translate }}
           </p>
         </div>
-        <p class="text-muted-foreground" style="font-size: var(--text-label)">
+        <p class="text-muted-foreground text-label">
           {{ 'find.landing.footer.copyright' | translate }}
         </p>
       </div>
@@ -91,17 +87,14 @@
   appendTo="body"
   [style]="{ width: '425px' }"
   [contentStyle]="{ padding: '24px' }"
-  styleClass="bg-card border border-border rounded-card"
+  styleClass="bg-card border border-border rounded-md"
 >
   <div class="flex items-start justify-between gap-4 mb-4">
     <div>
-      <h3
-        class="text-card-foreground"
-        style="font-size: var(--text-h3); font-weight: var(--font-weight-semibold)"
-      >
+      <h3 class="text-card-foreground text-h3 font-semibold">
         {{ 'find.landing.signInModal.title' | translate }}
       </h3>
-      <p class="text-muted-foreground mt-1" style="font-size: var(--text-base)">
+      <p class="text-muted-foreground mt-1 text-body">
         {{ 'find.landing.signInModal.subtitle' | translate }}
       </p>
     </div>
@@ -109,19 +102,15 @@
       type="button"
       (click)="closeSignInModal()"
       [attr.aria-label]="'find.landing.signInModal.close' | translate"
-      class="h-7 w-7 flex items-center justify-center rounded-button text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors shrink-0"
+      class="h-7 w-7 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors shrink-0"
     >
-      <i class="pi pi-times" style="font-size: 0.75rem"></i>
+      <i class="pi pi-times text-[0.75rem]!"></i>
     </button>
   </div>
 
   <form (ngSubmit)="onSignInSubmit()" class="space-y-4">
     <div class="space-y-2">
-      <label
-        for="modal-username"
-        class="text-card-foreground"
-        style="font-size: var(--text-label); font-weight: var(--font-weight-medium)"
-      >
+      <label for="modal-username" class="text-card-foreground text-label font-medium">
         {{ 'find.landing.signInModal.email' | translate }}
       </label>
       <input
@@ -134,16 +123,12 @@
         autocomplete="email"
         inputmode="email"
         required
-        class="!w-full !h-9 !border !border-border !rounded-button !bg-input-background !text-foreground placeholder:!text-muted-foreground !shadow-none"
+        class="!w-full !h-9 !border !border-border !rounded-md !bg-input !text-foreground placeholder:!text-muted-foreground !shadow-none"
       />
     </div>
 
     <div class="space-y-2">
-      <label
-        for="modal-password"
-        class="text-card-foreground"
-        style="font-size: var(--text-label); font-weight: var(--font-weight-medium)"
-      >
+      <label for="modal-password" class="text-card-foreground text-label font-medium">
         {{ 'find.landing.signInModal.password' | translate }}
       </label>
       <input
@@ -155,20 +140,17 @@
         [placeholder]="'find.landing.signInModal.passwordPlaceholder' | translate"
         autocomplete="current-password"
         required
-        class="!w-full !h-9 !border !border-border !rounded-button !bg-input-background !text-foreground placeholder:!text-muted-foreground !shadow-none"
+        class="!w-full !h-9 !border !border-border !rounded-md !bg-input !text-foreground placeholder:!text-muted-foreground !shadow-none"
       />
     </div>
 
     @if (signInError()) {
-      <p class="text-destructive" style="font-size: var(--text-base)">{{ signInError() }}</p>
+      <p class="text-destructive text-body">{{ signInError() }}</p>
     }
 
-    <div
-      class="text-muted-foreground bg-secondary p-3 rounded-md border border-border"
-      style="font-size: var(--text-label)"
-    >
+    <div class="text-muted-foreground bg-secondary p-3 rounded-md border border-border text-label">
       {{ 'find.landing.signInModal.demoHint' | translate }}
-      <span class="text-foreground" style="font-weight: var(--font-weight-semibold)">
+      <span class="text-foreground font-semibold">
         {{ 'find.landing.signInModal.demoPassword' | translate }}
       </span>
     </div>
@@ -177,8 +159,7 @@
       pButton
       type="submit"
       [disabled]="isSigningIn()"
-      class="w-full h-9 px-4 rounded-button transition-colors"
-      style="font-size: var(--text-base); font-weight: var(--font-weight-medium)"
+      class="w-full h-9 px-4 rounded-md transition-colors text-body font-medium"
     >
       {{
         isSigningIn()

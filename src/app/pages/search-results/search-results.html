@@ -11,7 +11,7 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="size-8 text-accent"
+          class="size-8 text-primary"
           aria-hidden="true"
         >
           <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
@@ -28,9 +28,9 @@
         <button
           type="button"
           (click)="goHome()"
-          class="flex items-center gap-2 text-base font-medium text-foreground hover:text-accent transition-colors"
+          class="flex items-center gap-2 text-base font-medium text-foreground hover:text-primary transition-colors"
         >
-          <i class="pi pi-arrow-left" style="font-size: 0.875rem"></i>
+          <i class="pi pi-arrow-left text-[0.875rem]!"></i>
           {{ 'find.common.backToHome' | translate }}
         </button>
       </div>
@@ -150,14 +150,9 @@
       <button
         type="button"
         (click)="toggleAllFilters()"
-        class="border px-4 py-2.5 rounded-button flex items-center gap-2 text-base font-medium transition-colors"
-        [class]="
-          showAllFilters()
-            ? 'bg-accent text-accent-foreground border-accent hover:bg-accent/90'
-            : 'bg-card border-border hover:bg-secondary'
-        "
+        class="relative bg-card border border-border pl-9 pr-3 py-1.5 rounded-sm text-base font-extrabold text-primary transition-colors hover:bg-secondary"
       >
-        <i class="pi pi-sliders-h" style="font-size: 0.875rem"></i>
+        <i class="pi pi-sliders-h absolute left-2.5 top-1/2 -translate-y-1/2 text-[1rem]!"></i>
         {{ 'find.searchResults.allFilters' | translate }}
       </button>
     </div>
@@ -167,7 +162,7 @@
     }
 
     <!-- Results list -->
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-4">
       @for (record of records(); track record.id) {
         <app-record-card [record]="record"></app-record-card>
       } @empty {
@@ -181,12 +176,12 @@
 
     <!-- Pagination -->
     @if (pageCount() > 1) {
-      <div class="mt-8 flex justify-center gap-2">
+      <div class="mt-16 flex items-center justify-center gap-1">
         <button
           type="button"
           [disabled]="currentPage() === 1"
           (click)="prevPage()"
-          class="bg-card border border-border px-4 py-2 rounded-button text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+          class="bg-card border border-border px-3.5 py-2 rounded-sm text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {{ 'find.searchResults.pagination.previous' | translate }}
         </button>
@@ -195,10 +190,10 @@
           <button
             type="button"
             (click)="goToPage(page)"
-            class="border px-4 py-2 rounded-button text-base font-medium transition-colors"
+            class="border size-9 rounded-sm text-base font-medium transition-colors"
             [class]="
               page === currentPage()
-                ? 'bg-accent text-accent-foreground border-accent'
+                ? 'bg-primary text-primary-contrast border-primary'
                 : 'bg-card border-border hover:bg-secondary'
             "
           >
@@ -210,7 +205,7 @@
           type="button"
           [disabled]="currentPage() === pageCount()"
           (click)="nextPage()"
-          class="bg-card border border-border px-4 py-2 rounded-button text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+          class="bg-card border border-border px-3.5 py-2 rounded-sm text-base font-medium transition-colors hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {{ 'find.searchResults.pagination.next' | translate }}
         </button>
