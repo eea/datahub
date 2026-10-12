@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   AVAILABLE_IN_OPTIONS,
+  camelCaseToWords,
   CREATION_YEAR_OPTIONS,
   DateFilterDropdown,
   DateRange,
@@ -23,7 +24,6 @@ import {
   FilterSelection,
   LanguageSwitcher,
   RecordCard,
-  RESOURCE_TYPE_OPTIONS,
   SCALES_RANGES,
   SearchBarWithChips,
   SearchParams,
@@ -31,6 +31,7 @@ import {
   SORT_OPTIONS,
   SortDropdown,
   SortKey,
+  withLabels,
 } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
@@ -115,12 +116,12 @@ export class SearchResults implements OnInit {
   ) as Record<FilterKey, FilterState>;
 
   /**
-   * Option lists per filter. Resource Type, Available in, Scales and Creation Year start from
-   * the design's fixed lists; the rest start empty and are filled from the API facets. Every
-   * list is refreshed on each response (see applyFacets).
+   * Option lists per filter. Available in, Scales and Creation Year start from the design's
+   * fixed lists; the rest start empty and are filled from the API facets. Every list is
+   * refreshed on each response (see applyFacets).
    */
   protected readonly options: Record<FilterKey, WritableSignal<FilterOption[]>> = {
-    resourceType: signal<FilterOption[]>(RESOURCE_TYPE_OPTIONS),
+    resourceType: signal<FilterOption[]>([]),
     organization: signal<FilterOption[]>([]),
     format: signal<FilterOption[]>([]),
     availableIn: signal<FilterOption[]>(AVAILABLE_IN_OPTIONS),
@@ -186,27 +187,15 @@ export class SearchResults implements OnInit {
   }
 
   private applyFacets(facets: Record<string, FilterOption[]>): void {
-    // Controlled filters: fixed design list, live counts overlaid (0 where the data has none).
-    this.options.resourceType.set(this.withCounts(RESOURCE_TYPE_OPTIONS, facets['resourceType']));
+    // Controlled filter: fixed design list, live counts overlaid (0 where the data has none).
     this.options.availableIn.set(this.availableInWithCounts(facets['availableIn']));
     // Data-driven filters: values and counts straight from the API facets.
+    this.options.resourceType.set(withLabels(facets['resourceType'], camelCaseToWords));
     this.options.organization.set(facets['organization'] ?? []);
     this.options.format.set(facets['format'] ?? []);
     this.options.keywords.set(facets['keywords'] ?? []);
     this.options.updated.set(facets['updated'] ?? []);
     this.options.spatialRepresentationType.set(facets['spatialRepresentationType'] ?? []);
-  }
-
-  /** Overlay live facet counts (matched by value) onto a fixed design option list. */
-  private withCounts(fixed: FilterOption[], live?: FilterOption[]): FilterOption[] {
-    const counts = new Map(
-      (live ?? []).map((option) => [option.value.toLowerCase(), option.count ?? 0]),
-    );
-    return fixed.map((option) => ({
-      value: option.value,
-      label: option.label,
-      count: counts.get(option.value.toLowerCase()) ?? 0,
-    }));
   }
 
   /** Available-in design options matched to their API facet value for live counts. */
