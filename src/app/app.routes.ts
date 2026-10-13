@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { RECORD_SLUG } from 'gn-library';
+import { RECORD_SLUG } from '@geocat/frontend-library';
 import { Landing } from './pages/landing/landing';
 
 export const routes: Routes = [

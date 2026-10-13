@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { OgcApiRecordsRecordGeoJSONDto, RecordService } from '@geocat/frontend-api-client';
+import { Header, RecordFieldTitle, RecordSkeleton } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Card } from '@openng/optimus-ui/card';
 import { Message } from '@openng/optimus-ui/message';
-import { OgcApiRecordsRecordGeoJSONDto, RecordService } from 'gn-api-client';
-import { Header, RecordFieldTitle, RecordSkeleton } from 'gn-library';
 import { Observable, of } from 'rxjs';
 
 const COLLECTION_ID = '3bef299d-cf82-4033-871b-875f6936b2e2';
