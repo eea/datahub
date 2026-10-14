@@ -27,7 +27,7 @@ export GITHUB_PACKAGES_AUTH_TOKEN=<your token>
 ### Use a local build of the library
 - Make sure to run `nvm use` and confirm node v22.23.0 is used in the GeoCat frontend repo and this project repo.
 - build all packages in your local copy of the GeoCat frontend repo: `npm run build`
-- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`.
+- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`. This should create two symlinks - frontend-library and frontend-api-client - in `<user-home-dir>/.nvm/versions/node/<node_version>/lib/node_modules/@geocat`.
 - in your local copy of this repo run: `npm link @geocat/frontend-library @geocat/frontend-api-client`
 - confirm your local copy of this project builds without errors
 
