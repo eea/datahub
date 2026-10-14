@@ -1,12 +1,13 @@
 FROM node:22.23.0-alpine AS build
 
-# Read by .npmrc to install the @geocat packages from GitHub Packages.
-# Only lives in this stage, the final image does not contain it.
-ARG GITHUB_PACKAGES_AUTH_TOKEN
-
 WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
-RUN npm ci --legacy-peer-deps --ignore-scripts
+# The npm_token secret is read by .npmrc to install the @geocat packages
+# from GitHub Packages. It is only mounted for this RUN, so it ends up
+# in no layer, image metadata or build cache.
+RUN --mount=type=secret,id=npm_token,required=true \
+    GITHUB_PACKAGES_AUTH_TOKEN="$(cat /run/secrets/npm_token)" \
+    npm ci --legacy-peer-deps --ignore-scripts
 
 COPY . .
 RUN npx ng build

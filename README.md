@@ -99,11 +99,11 @@ The production build uses `/catalogue`, the GeoNetwork 5 context path in the `sd
 The `Dockerfile` builds the app and serves it with nginx on port 8080. It is deployed by the `sdi-catalogue` Helm chart, where Apache proxies the site root to it (`datahub.enabled`), while GeoNetwork stays under `/catalogue`.
 
 ```sh
-docker build --build-arg GITHUB_PACKAGES_AUTH_TOKEN -t eea-datahub .
+docker build --secret id=npm_token,env=GITHUB_PACKAGES_AUTH_TOKEN -t eea-datahub .
 docker run --rm -p 8080:8080 eea-datahub
 ```
 
-`--build-arg GITHUB_PACKAGES_AUTH_TOKEN` without a value takes the token from your environment (see [GeoCat packages](#geocat-packages)).
+The token is passed as a BuildKit secret, taken from `GITHUB_PACKAGES_AUTH_TOKEN` in your environment (see [GeoCat packages](#geocat-packages)), so it is not stored in the image or the build cache.
 
 Jenkins builds and pushes `eeacms/eea-datahub` on every branch push (see `Jenkinsfile`). Images from `main` are tagged with the first 8 characters of the commit, and other branches with `<branch>-<commit>`. The token comes from the `eea-datahub-github-packages-token` Jenkins credential.
 

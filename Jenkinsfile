@@ -28,10 +28,10 @@ pipeline {
             }
             try {
                 // GitHub PAT (classic) with read:packages, used by .npmrc to install the @geocat packages.
-                // "--build-arg NAME" without a value makes docker read it from the environment,
-                // so the token never ends up in the command line or the build log.
+                // Passed as a BuildKit secret read from the environment, so the token never ends up
+                // in the command line, the build log or the image.
                 withCredentials([string(credentialsId: 'eea-datahub-github-packages-token', variable: 'GITHUB_PACKAGES_AUTH_TOKEN')]) {
-                    dockerImage = docker.build("$registry:$tagName", "--pull --no-cache --build-arg GITHUB_PACKAGES_AUTH_TOKEN .")
+                    dockerImage = docker.build("$registry:$tagName", "--pull --no-cache --secret id=npm_token,env=GITHUB_PACKAGES_AUTH_TOKEN .")
                 }
                 docker.withRegistry( '', 'eeajenkins' ) {
                     dockerImage.push()
