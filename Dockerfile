@@ -14,7 +14,13 @@ RUN npx ng build
 
 FROM nginxinc/nginx-unprivileged:1.30-alpine
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# GeoNetwork 5 API base path used by the UI, served in /config.json.
+# nginx.conf is a template: the image entrypoint runs envsubst on it at
+# startup, limited to GEONETWORK_* so nginx variables are left alone.
+ENV GEONETWORK_API_URL=/catalogue \
+    NGINX_ENVSUBST_FILTER=^GEONETWORK_
+
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist/eea-datahub/browser /usr/share/nginx/html
 
 EXPOSE 8080

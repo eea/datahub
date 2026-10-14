@@ -92,7 +92,7 @@ export const environment = {
 
 Additional environment files (`environment.prod.ts`) are selected through the `production`, build configurations in `angular.json`.
 
-The production build uses `/catalogue`, the GeoNetwork 5 context path in the `sdi-catalogue` Helm chart.
+The production build uses `/catalogue`, the GeoNetwork 5 context path in the `sdi-catalogue` Helm chart. At startup the app first reads `config.json`, served by the Docker image, and only falls back to the environment file when it is missing, for example with `ng serve`.
 
 ## Docker Image
 
@@ -104,6 +104,16 @@ docker run --rm -p 8080:8080 eea-datahub
 ```
 
 The token is passed as a BuildKit secret, taken from `GITHUB_PACKAGES_AUTH_TOKEN` in your environment (see [GeoCat packages](#geocat-packages)), so it is not stored in the image or the build cache.
+
+The container is configured with environment variables, served to the app in `/config.json`:
+
+| Variable             | Default      | Description                                                      |
+| -------------------- | ------------ | ---------------------------------------------------------------- |
+| `GEONETWORK_API_URL` | `/catalogue` | GeoNetwork 5 base path or URL used by the UI to call its API     |
+
+```sh
+docker run --rm -p 8080:8080 -e GEONETWORK_API_URL=/geonetwork eea-datahub
+```
 
 Jenkins builds and pushes `eeacms/eea-datahub` on every branch push (see `Jenkinsfile`). Images from `main` are tagged with the first 8 characters of the commit, and other branches with `<branch>-<commit>`. The token comes from the `eea-datahub-github-packages-token` Jenkins credential.
 

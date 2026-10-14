@@ -8,17 +8,16 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideOptimus } from '@openng/optimus-ui/config';
 
-import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import AppTheme from './app.theme';
 
-export const appConfig: ApplicationConfig = {
+export const appConfig = (geonetworkApiUrl: string): ApplicationConfig => ({
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withXhr()),
-    provideApi(environment.geonetworkApiUrl),
+    provideApi(geonetworkApiUrl),
     provideTranslateService({
       loader: provideTranslateHttpLoader({ prefix: 'i18n/', suffix: '.json' }),
       fallbackLang: DEFAULT_LANGUAGE,
@@ -34,4 +33,4 @@ export const appConfig: ApplicationConfig = {
       ripple: true,
     }),
   ],
-};
+});
