@@ -10,9 +10,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
-import { Message } from '@openng/optimus-ui/message';
-import { OgcApiRecordsRecordGeoJSONDto } from 'gn-api-client';
+import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   AVAILABLE_IN_OPTIONS,
   camelCaseToWords,
@@ -34,7 +32,9 @@ import {
   SortDropdown,
   SortKey,
   withLabels,
-} from 'gn-library';
+} from '@geocat/frontend-library';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Message } from '@openng/optimus-ui/message';
 
 /** The filters this page offers. Drives the state, the option lists and the chips. */
 const FILTER_KEYS = [

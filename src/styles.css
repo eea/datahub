@@ -8,7 +8,7 @@
 @import '@fontsource/roboto/800.css';
 
 @source "./app/**/*.{html,ts}";
-@source "../node_modules/gn-library/";
+@source "../node_modules/@geocat/frontend-library/";
 
 @theme inline {
   --color-background: var(--p-content-background);
