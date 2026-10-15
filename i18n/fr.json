@@ -53,6 +53,7 @@
     "appName": "EEA Datahub",
     "common": {
       "backToHome": "Retour à l'accueil",
+      "bannerTitle": "Datahub",
       "search": "Rechercher",
       "selectLanguage": "Choisir la langue"
     },
