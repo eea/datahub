@@ -84,8 +84,11 @@ Environment base path is configured in `src/environments/environment.ts`:
 export const environment = {
   production: false,
   geonetworkApiUrl: '/geonetwork',
+  collectionId: 'your-ogc-api-records-collection-id',
 };
 ```
+
+`collectionId` is the OGC API - Records collection the search and record pages query. `app.config.ts` provides it to the library through the `COLLECTION_ID` token.
 
 Additional environment files (`environment.prod.ts`) are selected through the `production`, build configurations in `angular.json`.
 
