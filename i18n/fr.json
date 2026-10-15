@@ -132,7 +132,6 @@
         "format": "Format",
         "keywords": "Mots-clés",
         "organization": "Organisation",
-        "resourceType": "Type de ressource",
         "scales": "Échelles",
         "spatialRepresentationType": "Type de représentation spatiale",
         "updateFrequency": "Fréquence de mise à jour"

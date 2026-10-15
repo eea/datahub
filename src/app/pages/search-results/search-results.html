@@ -69,14 +69,6 @@
       ></app-sort-dropdown>
 
       <app-filter-dropdown
-        labelKey="find.searchResults.filters.resourceType"
-        [options]="options.resourceType()"
-        [selectedValues]="filters.resourceType.included()"
-        [excludedValues]="filters.resourceType.excluded()"
-        (selectionChange)="onFilterChange('resourceType', $event)"
-      ></app-filter-dropdown>
-
-      <app-filter-dropdown
         labelKey="find.searchResults.filters.organization"
         [options]="options.organization()"
         [selectedValues]="filters.organization.included()"
