@@ -38,9 +38,19 @@
   --color-filter-exclude-hover: var(--p-filter-action-exclude-hover-color);
   --color-filter-deselect: var(--p-filter-action-deselect-color);
   --color-filter-deselect-hover: var(--p-filter-action-deselect-hover-color);
+  --color-filter-contrast: var(--p-filter-action-contrast-color);
   --color-excluded-chip: var(--p-excluded-chip-background);
   --color-excluded-chip-foreground: var(--p-excluded-chip-color);
   --color-excluded-chip-border: var(--p-excluded-chip-border-color);
+  --text-base: var(--p-font-size-base);
+  --text-body: var(--p-font-size-body);
+  --text-h1: var(--p-font-size-h1);
+  --text-h1--font-weight: var(--p-font-weight-h1);
+  --text-h2: var(--p-font-size-h2);
+  --text-h2--font-weight: var(--p-font-weight-h2);
+  --text-h3: var(--p-font-size-h3);
+  --text-h3--font-weight: var(--p-font-weight-h3);
+  --text-label: var(--p-font-size-label);
   --radius-md: var(--p-content-border-radius);
 }
 
@@ -49,27 +59,13 @@
 
   --container-7xl: 73rem;
 
-  --text-base: 14px;
-  --text-body: 14px;
   --text-body--line-height: 1.5;
-  --text-h1: 2.75rem;
   --text-h1--line-height: 1.2;
   --text-h1--letter-spacing: -0.015em;
-  --text-h2: 2rem;
   --text-h2--line-height: 1.2;
   --text-h2--letter-spacing: -0.015em;
-  --text-h3: 1.625rem;
   --text-h3--line-height: 1.18;
-  --text-label: 12.25px;
   --text-label--line-height: 1.5;
-}
-
-@media (width < 48rem) {
-  :root {
-    --text-h1: 1.875rem;
-    --text-h2: 1.5rem;
-    --text-h3: 1.25rem;
-  }
 }
 
 :root {

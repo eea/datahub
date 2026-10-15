@@ -126,6 +126,7 @@ const AppTheme = definePreset(Aura, {
       },
     },
     filterAction: {
+      contrastColor: '#ffffff',
       include: {
         color: '{primary.500}',
         hoverColor: '{primary.600}',
@@ -146,9 +147,33 @@ const AppTheme = definePreset(Aura, {
       hoverBackground: '{eea.red.100}',
     },
     fontSize: {
+      base: '14px',
+      body: '14px',
+      h1: '2.75rem',
+      h2: '2rem',
+      h3: '1.625rem',
       label: '12.25px',
+      mobile: {
+        h1: '1.875rem',
+        h2: '1.5rem',
+        h3: '1.25rem',
+      },
+    },
+    fontWeight: {
+      h1: '700',
+      h2: '600',
+      h3: '600',
     },
   },
+  css: ({ dt }) => `
+    @media (width < 48rem) {
+      :root {
+        --p-font-size-h1: ${dt('fontSize.mobile.h1')};
+        --p-font-size-h2: ${dt('fontSize.mobile.h2')};
+        --p-font-size-h3: ${dt('fontSize.mobile.h3')};
+      }
+    }
+  `,
   components: {
     card: {
       root: {
