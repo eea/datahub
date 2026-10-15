@@ -48,7 +48,7 @@
     "@geocat/frontend-api-client": "^0.1.0",
     "@geocat/frontend-library": "^0.4.0",
     "@ngx-translate/core": "^17.0.0",
-    "@ngx-translate/http-loader": "^17.0.0",
+    "@ngx-translate/http-loader": "^18.0.0",
     "@openng/icons": "^1.0.0",
     "@openng/optimus-ui": "^2.0.2",
     "@openng/optimus-ui-tailwindcss": "^2.0.2",
