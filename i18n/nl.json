@@ -144,8 +144,8 @@
         "next": "Volgende",
         "previous": "Vorige"
       },
+      "results": "Resultaten:",
       "searching": "Zoeken…",
-      "showingResults": "{{count}} resultaten weergegeven",
       "sort": {
         "dateNewest": "Datum (nieuwste)",
         "dateOldest": "Datum (oudste)",

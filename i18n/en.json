@@ -143,8 +143,8 @@
         "next": "Next",
         "previous": "Previous"
       },
+      "results": "Results:",
       "searching": "Searching…",
-      "showingResults": "Showing {{count}} results",
       "sort": {
         "dateNewest": "Date (Newest)",
         "dateOldest": "Date (Oldest)",
