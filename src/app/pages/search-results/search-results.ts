@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   AVAILABLE_IN_OPTIONS,
-  camelCaseToWords,
   CREATION_YEAR_OPTIONS,
   DateFilterDropdown,
   DateRange,
@@ -31,14 +30,12 @@ import {
   SORT_OPTIONS,
   SortDropdown,
   SortKey,
-  withLabels,
 } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
 /** The filters this page offers. Drives the state, the option lists and the chips. */
 const FILTER_KEYS = [
-  'resourceType',
   'organization',
   'format',
   'availableIn',
@@ -121,7 +118,6 @@ export class SearchResults implements OnInit {
    * refreshed on each response (see applyFacets).
    */
   protected readonly options: Record<FilterKey, WritableSignal<FilterOption[]>> = {
-    resourceType: signal<FilterOption[]>([]),
     organization: signal<FilterOption[]>([]),
     format: signal<FilterOption[]>([]),
     availableIn: signal<FilterOption[]>(AVAILABLE_IN_OPTIONS),
@@ -154,7 +150,7 @@ export class SearchResults implements OnInit {
       query: this.query(),
       page: this.currentPage(),
       pageSize: this.pageSize,
-      resourceTypes: this.selectionOf('resourceType'),
+      resourceTypes: { included: ['series'] },
       keywords: this.selectionOf('keywords'),
       organizations: this.selectionOf('organization'),
       updateFrequencies: this.selectionOf('updated'),
@@ -190,7 +186,6 @@ export class SearchResults implements OnInit {
     // Controlled filter: fixed design list, live counts overlaid (0 where the data has none).
     this.options.availableIn.set(this.availableInWithCounts(facets['availableIn']));
     // Data-driven filters: values and counts straight from the API facets.
-    this.options.resourceType.set(withLabels(facets['resourceType'], camelCaseToWords));
     this.options.organization.set(facets['organization'] ?? []);
     this.options.format.set(facets['format'] ?? []);
     this.options.keywords.set(facets['keywords'] ?? []);

@@ -131,7 +131,6 @@
         "format": "Formaat",
         "keywords": "Trefwoorden",
         "organization": "Organisatie",
-        "resourceType": "Brontype",
         "scales": "Schalen",
         "spatialRepresentationType": "Ruimtelijk representatietype",
         "updateFrequency": "Bijwerkfrequentie"
