@@ -40,11 +40,12 @@
   </header>
 
   <section class="max-w-7xl mx-auto px-6 py-20 md:py-32">
-    <div class="text-center max-w-4xl mx-auto">
-      <div class="mb-10">
-        <app-search-bar (search)="onSearch($event)"></app-search-bar>
-      </div>
-    </div>
+    <!-- Search and filter area: identical to the one on the search results page -->
+    <app-search-panel
+      class="block mb-10"
+      (search)="onSearch()"
+      (filtersChange)="onFiltersChange()"
+    ></app-search-panel>
   </section>
 
   <footer class="border-t border-border bg-card mt-20">
