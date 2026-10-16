@@ -97,7 +97,8 @@
       },
       "ariaLabel": "Search metadata catalog",
       "clear": "Clear search",
-      "placeholder": "Search datasets, maps, or documentation..."
+      "placeholder": "Search datasets, maps, or documentation...",
+      "suggestions": "Search suggestions"
     },
     "searchResults": {
       "allFilters": "All filters",
