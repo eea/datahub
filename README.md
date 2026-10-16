@@ -29,7 +29,7 @@ export GITHUB_PACKAGES_AUTH_TOKEN=<your token>
 
 - Make sure to run `nvm use` and confirm node v22.23.0 is used in the GeoCat frontend repo and this project repo.
 - build all packages in your local copy of the GeoCat frontend repo: `npm run build`
-- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`.
+- in your local copy of the GeoCat frontend repo navigate to: `dist/gn-library` and run `npm link`. Do the same for `dist/gn-api-client`. This should create two symlinks - frontend-library and frontend-api-client - in `<user-home-dir>/.nvm/versions/node/<node_version>/lib/node_modules/@geocat`.
 - in your local copy of this repo run: `npm link @geocat/frontend-library @geocat/frontend-api-client`
 - confirm your local copy of this project builds without errors
 
@@ -87,8 +87,11 @@ Environment base path is configured in `src/environments/environment.ts`:
 export const environment = {
   production: false,
   geonetworkApiUrl: '/geonetwork',
+  collectionId: 'your-ogc-api-records-collection-id',
 };
 ```
+
+`collectionId` is the OGC API - Records collection the search and record pages query. `app.config.ts` provides it to the library through the `COLLECTION_ID` token.
 
 Additional environment files (`environment.prod.ts`) are selected through the `production`, build configurations in `angular.json`.
 

@@ -2,13 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto, RecordService } from '@geocat/frontend-api-client';
-import { Header, RecordFieldTitle, RecordSkeleton } from '@geocat/frontend-library';
+import { COLLECTION_ID, Header, RecordFieldTitle, RecordSkeleton } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Card } from '@openng/optimus-ui/card';
 import { Message } from '@openng/optimus-ui/message';
 import { Observable, of } from 'rxjs';
-
-const COLLECTION_ID = '3bef299d-cf82-4033-871b-875f6936b2e2';
 
 @Component({
   selector: 'app-record-details',
@@ -20,6 +18,7 @@ export class RecordDetails {
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   recordUuid = signal('');
   recordService = inject(RecordService);
+  private collectionId = inject(COLLECTION_ID);
 
   constructor() {
     this.activatedRoute.params.subscribe((params) => this.recordUuid.set(params['uuid']));
@@ -33,7 +32,7 @@ export class RecordDetails {
       if (!uuid) return of(undefined);
 
       return this.recordService.getRecord(
-        COLLECTION_ID,
+        this.collectionId,
         this.recordUuid(),
       ) as Observable<OgcApiRecordsRecordGeoJSONDto>;
     },
