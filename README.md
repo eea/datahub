@@ -95,4 +95,5 @@ Additional environment files (`environment.prod.ts`) are selected through the `p
 ## Theming
 
 Theme tokens are defined in `src/app/app.theme.ts` and layered on Optimus Aura.
-Global font defaults are defined in `src/styles.css`.
+`src/styles.css` maps them to Tailwind colours and type sizes and holds the line heights and the page width.
+Roboto is self-hosted from `@fontsource/roboto`.
