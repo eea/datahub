@@ -148,7 +148,10 @@
         "dateNewest": "Datum (nieuwste)",
         "dateOldest": "Datum (oudste)",
         "label": "Sorteren op",
-        "relevance": "Relevantie"
+        "popularity": "Populariteit",
+        "relevance": "Relevantie",
+        "titleAsc": "Titel (A-Z)",
+        "titleDesc": "Titel (Z-A)"
       }
     }
   },
