@@ -44,6 +44,7 @@
       <app-search-bar-with-chips
         [chips]="chips()"
         [(query)]="query"
+        [searchParams]="searchParams()"
         (search)="onSearch($event)"
         (chipRemove)="onChipRemove($event)"
       ></app-search-bar-with-chips>
