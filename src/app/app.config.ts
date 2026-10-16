@@ -12,13 +12,13 @@ import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import AppTheme from './app.theme';
 
-export const appConfig: ApplicationConfig = {
+export const appConfig = (geonetworkApiUrl: string): ApplicationConfig => ({
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withXhr()),
-    provideApi(environment.geonetworkApiUrl),
+    provideApi(geonetworkApiUrl),
     { provide: COLLECTION_ID, useValue: environment.collectionId },
     provideTranslateService({
       loader: provideTranslateHttpLoader({ prefix: 'i18n/', suffix: '.json' }),
@@ -35,4 +35,4 @@ export const appConfig: ApplicationConfig = {
       ripple: true,
     }),
   ],
-};
+});
