@@ -1,17 +1,36 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LanguageSwitcher, SearchBar, SearchRequest } from '@geocat/frontend-library';
+import {
+  LanguageSwitcher,
+  SearchPanel,
+  SearchService,
+  SearchStateService,
+} from '@geocat/frontend-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+/**
+ * The landing panel needs facet options and counts but shows no results, so it asks for the
+ * smallest page the API will serve and keeps only the facets.
+ */
+const FACETS_ONLY_PAGE_SIZE = 1;
+
 @Component({
   selector: 'app-landing',
   imports: [
     FormsModule,
-    SearchBar,
+    SearchPanel,
     ButtonModule,
     DialogModule,
     InputTextModule,
@@ -21,9 +40,12 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Landing {
+export class Landing implements OnInit {
   private readonly router = inject(Router);
   private readonly translate = inject(TranslateService);
+  private readonly searchService = inject(SearchService);
+  private readonly searchState = inject(SearchStateService);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly isSignInModalOpen = signal(false);
   protected readonly signInError = signal('');
@@ -31,10 +53,28 @@ export class Landing {
   protected signInEmail = '';
   protected signInPassword = '';
 
-  protected onSearch(request: SearchRequest): void {
-    this.router.navigate(['/search'], {
-      queryParams: request.query ? { q: request.query } : {},
-    });
+  ngOnInit(): void {
+    this.refreshFacets();
+  }
+
+  /** The panel already holds the query and filters, so the results page just has to open. */
+  protected onSearch(): void {
+    const query = this.searchState.query();
+    this.router.navigate(['/search'], { queryParams: query ? { q: query } : {} });
+  }
+
+  /** Filters stay here until the user searches; only their counts need to be brought up to date. */
+  protected onFiltersChange(): void {
+    this.refreshFacets();
+  }
+
+  private refreshFacets(): void {
+    this.searchService
+      .search(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE))
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (!result.failed) this.searchState.applyFacets(result.facets);
+      });
   }
 
   protected openSignInModal(): void {

@@ -99,7 +99,8 @@
       },
       "ariaLabel": "Rechercher dans le catalogue de métadonnées",
       "clear": "Effacer la recherche",
-      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation..."
+      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation...",
+      "suggestions": "Suggestions de recherche"
     },
     "searchResults": {
       "allFilters": "Tous les filtres",
@@ -132,8 +133,10 @@
         "format": "Format",
         "keywords": "Mots-clés",
         "organization": "Organisation",
+        "resourceType": "Type de ressource",
         "scales": "Échelles",
         "spatialRepresentationType": "Type de représentation spatiale",
+        "topic": "Thème",
         "updateFrequency": "Fréquence de mise à jour"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
@@ -148,7 +151,10 @@
         "dateNewest": "Date (plus récente)",
         "dateOldest": "Date (plus ancienne)",
         "label": "Trier par",
-        "relevance": "Pertinence"
+        "popularity": "Popularité",
+        "relevance": "Pertinence",
+        "titleAsc": "Titre (A-Z)",
+        "titleDesc": "Titre (Z-A)"
       }
     }
   },

@@ -97,7 +97,8 @@
       },
       "ariaLabel": "Search metadata catalog",
       "clear": "Clear search",
-      "placeholder": "Search datasets, maps, or documentation..."
+      "placeholder": "Search datasets, maps, or documentation...",
+      "suggestions": "Search suggestions"
     },
     "searchResults": {
       "allFilters": "All filters",
@@ -130,8 +131,10 @@
         "format": "Format",
         "keywords": "Keywords",
         "organization": "Organization",
+        "resourceType": "Resource Type",
         "scales": "Scales",
         "spatialRepresentationType": "Spatial Representation",
+        "topic": "Topic",
         "updateFrequency": "Update frequency"
       },
       "loadFailed": "Could not load search results. Please try again.",
@@ -146,7 +149,10 @@
         "dateNewest": "Date (Newest)",
         "dateOldest": "Date (Oldest)",
         "label": "Sort by",
-        "relevance": "Relevance"
+        "popularity": "Popularity",
+        "relevance": "Relevance",
+        "titleAsc": "Title (A-Z)",
+        "titleDesc": "Title (Z-A)"
       }
     }
   },
