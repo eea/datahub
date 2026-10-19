@@ -136,6 +136,7 @@
         "resourceType": "Type de ressource",
         "scales": "Échelles",
         "spatialRepresentationType": "Type de représentation spatiale",
+        "topic": "Thème",
         "updateFrequency": "Fréquence de mise à jour"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",

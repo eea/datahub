@@ -134,6 +134,7 @@
         "resourceType": "Resource Type",
         "scales": "Scales",
         "spatialRepresentationType": "Spatial Representation",
+        "topic": "Topic",
         "updateFrequency": "Update frequency"
       },
       "loadFailed": "Could not load search results. Please try again.",
