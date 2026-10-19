@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier": "prettier --write \"**/*.{ts,html,scss,css,json}\"",
-    "format:check": "prettier --check \"**/*.{ts,html,scss,css,json}\"",
+    "prettier": "prettier --write \"**/*.{ts,html,css,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,html,css,json}\"",
     "build:check": "npm run format:check && echo '✔ Build check passed'",
     "prepare": "husky"
   },
@@ -31,7 +31,7 @@
     ]
   },
   "lint-staged": {
-    "**/*.{ts,html,scss,css,json}": [
+    "**/*.{ts,html,css,json}": [
       "prettier --write"
     ]
   },
