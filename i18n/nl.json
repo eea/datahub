@@ -99,7 +99,8 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie..."
+      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "suggestions": "Zoeksuggesties"
     },
     "searchResults": {
       "allFilters": "Alle filters",
@@ -135,6 +136,7 @@
         "resourceType": "Brontype",
         "scales": "Schalen",
         "spatialRepresentationType": "Ruimtelijk representatietype",
+        "topic": "Onderwerp",
         "updateFrequency": "Bijwerkfrequentie"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
@@ -149,7 +151,10 @@
         "dateNewest": "Datum (nieuwste)",
         "dateOldest": "Datum (oudste)",
         "label": "Sorteren op",
-        "relevance": "Relevantie"
+        "popularity": "Populariteit",
+        "relevance": "Relevantie",
+        "titleAsc": "Titel (A-Z)",
+        "titleDesc": "Titel (Z-A)"
       }
     }
   },
