@@ -108,23 +108,6 @@ const AppTheme = definePreset(Aura, {
       color: '{eea.red.500}',
       contrastColor: '#ffffff',
     },
-    decorative: {
-      blue: {
-        50: 'oklch(97% 0.014 254.604)',
-        200: 'oklch(88.2% 0.059 254.128)',
-        600: 'oklch(54.6% 0.245 262.881)',
-      },
-      purple: {
-        50: 'oklch(97.7% 0.014 308.299)',
-        200: 'oklch(90.2% 0.063 306.703)',
-        600: 'oklch(55.8% 0.288 302.321)',
-      },
-      orange: {
-        50: 'oklch(98% 0.016 73.684)',
-        200: 'oklch(90.1% 0.076 70.697)',
-        600: 'oklch(64.6% 0.222 41.116)',
-      },
-    },
     filterAction: {
       contrastColor: '#ffffff',
       include: {
