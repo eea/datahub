@@ -20,6 +20,8 @@ import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+import { seriesOnly } from '../../series-only';
+
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
  * smallest page the API will serve and keeps only the facets.
@@ -70,7 +72,7 @@ export class Landing implements OnInit {
 
   private refreshFacets(): void {
     this.searchService
-      .search(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE))
+      .search(seriesOnly(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE)))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (!result.failed) this.searchState.applyFacets(result.facets);

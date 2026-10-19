@@ -21,6 +21,8 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
+import { seriesOnly } from '../../series-only';
+
 /** Page buttons the paginator shows at once. */
 const PAGE_WINDOW = 7;
 
@@ -70,7 +72,7 @@ export class SearchResults implements OnInit {
   private runSearch(): void {
     this.loading.set(true);
     this.searchService
-      .search(this.searchState.toParams(this.currentPage(), this.pageSize))
+      .search(seriesOnly(this.searchState.toParams(this.currentPage(), this.pageSize)))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         this.records.set(result.records);
