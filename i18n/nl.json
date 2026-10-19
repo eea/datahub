@@ -98,7 +98,8 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie..."
+      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "suggestions": "Zoeksuggesties"
     },
     "searchResults": {
       "allFilters": "Alle filters",
@@ -149,7 +150,10 @@
         "dateNewest": "Datum (nieuwste)",
         "dateOldest": "Datum (oudste)",
         "label": "Sorteren op",
-        "relevance": "Relevantie"
+        "popularity": "Populariteit",
+        "relevance": "Relevantie",
+        "titleAsc": "Titel (A-Z)",
+        "titleDesc": "Titel (Z-A)"
       }
     }
   },
