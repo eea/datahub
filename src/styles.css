@@ -16,7 +16,6 @@
   --color-foreground: var(--p-text-color);
   --color-card-foreground: var(--p-text-color);
   --color-secondary: var(--p-secondary-background);
-  --color-secondary-foreground: var(--p-secondary-foreground);
   --color-tertiary: var(--p-tertiary);
   --color-muted: var(--p-muted);
   --color-muted-foreground: var(--p-muted-foreground);
