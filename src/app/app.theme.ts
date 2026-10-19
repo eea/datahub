@@ -45,6 +45,7 @@ const AppTheme = definePreset(Aura, {
       hover: '#edf1f2',
       header: '#2e3e4c',
       footer: '#212d38',
+      white: '#ffffff',
     },
   },
   semantic: {
@@ -101,15 +102,15 @@ const AppTheme = definePreset(Aura, {
       background: '{eea.supplementary}',
       foreground: '{text.color}',
     },
-    tertiary: '#ffffff',
+    tertiary: '{eea.white}',
     muted: '{slate.300}',
     mutedForeground: '{slate.500}',
     destructive: {
       color: '{eea.red.500}',
-      contrastColor: '#ffffff',
+      contrastColor: '{eea.white}',
     },
     filterAction: {
-      contrastColor: '#ffffff',
+      contrastColor: '{eea.white}',
       include: {
         color: '{primary.500}',
         hoverColor: '{primary.600}',
@@ -194,7 +195,7 @@ const AppTheme = definePreset(Aura, {
       colorScheme: {
         light: {
           error: {
-            background: '#ffffff',
+            background: '{eea.white}',
             borderColor: '{eea.red.400}',
             color: '{eea.red.500}',
             shadow: 'none',
