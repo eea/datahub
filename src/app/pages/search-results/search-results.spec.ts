@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { SearchService } from '@geocat/frontend-library';
+import { SearchService, SearchStateService } from '@geocat/frontend-library';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
@@ -29,16 +29,12 @@ describe('SearchResults', () => {
     );
   });
 
-  it('offers no resource type filter', () => {
-    const fixture = TestBed.createComponent(SearchResults);
-    fixture.detectChanges();
+  it('keeps series only when another resource type is picked', () => {
+    TestBed.inject(SearchStateService).filters.resourceType.included.set(['dataset']);
+    TestBed.createComponent(SearchResults).detectChanges();
 
-    const labels = Array.from(
-      (fixture.nativeElement as HTMLElement).querySelectorAll('app-filter-dropdown button'),
-      (button) => button.textContent?.trim(),
+    expect(search).toHaveBeenCalledWith(
+      expect.objectContaining({ resourceTypes: { included: ['series'] } }),
     );
-
-    expect(labels).toContain('find.searchResults.filters.organization');
-    expect(labels).not.toContain('find.searchResults.filters.resourceType');
   });
 });

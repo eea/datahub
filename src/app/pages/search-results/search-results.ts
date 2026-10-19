@@ -70,7 +70,10 @@ export class SearchResults implements OnInit {
   private runSearch(): void {
     this.loading.set(true);
     this.searchService
-      .search(this.searchState.toParams(this.currentPage(), this.pageSize))
+      .search({
+        ...this.searchState.toParams(this.currentPage(), this.pageSize),
+        resourceTypes: { included: ['series'] },
+      })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         this.records.set(result.records);
