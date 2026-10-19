@@ -147,29 +147,30 @@ export class SearchResults implements OnInit {
     this.runSearch();
   }
 
-  /** Collect current UI state and fetch a fresh page of results + facet counts. */
+  /** Current UI state as the service expects it; also narrows the type-ahead suggestions. */
+  protected readonly searchParams = computed<SearchParams>(() => ({
+    query: this.query(),
+    page: this.currentPage(),
+    pageSize: this.pageSize,
+    resourceTypes: this.selectionOf('resourceType'),
+    keywords: this.selectionOf('keywords'),
+    organizations: this.selectionOf('organization'),
+    updateFrequencies: this.selectionOf('updated'),
+    scales: this.selectionOf('scales'),
+    formats: this.selectionOf('format'),
+    availableIn: this.selectionOf('availableIn'),
+    creationYears: this.selectionOf('creationYear'),
+    spatialRepresentationTypes: this.selectionOf('spatialRepresentationType'),
+    dateFrom: this.dateFrom(),
+    dateTo: this.dateTo(),
+    sort: this.selectedSort(),
+  }));
+
+  /** Fetch a fresh page of results + facet counts for the current UI state. */
   private runSearch(): void {
     this.loading.set(true);
-    const params: SearchParams = {
-      query: this.query(),
-      page: this.currentPage(),
-      pageSize: this.pageSize,
-      resourceTypes: this.selectionOf('resourceType'),
-      keywords: this.selectionOf('keywords'),
-      organizations: this.selectionOf('organization'),
-      updateFrequencies: this.selectionOf('updated'),
-      scales: this.selectionOf('scales'),
-      formats: this.selectionOf('format'),
-      availableIn: this.selectionOf('availableIn'),
-      creationYears: this.selectionOf('creationYear'),
-      spatialRepresentationTypes: this.selectionOf('spatialRepresentationType'),
-      dateFrom: this.dateFrom(),
-      dateTo: this.dateTo(),
-      sort: this.selectedSort(),
-    };
-
     this.searchService
-      .search(params)
+      .search(this.searchParams())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         this.records.set(result.records);
