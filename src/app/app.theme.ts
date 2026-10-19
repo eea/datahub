@@ -131,12 +131,12 @@ const AppTheme = definePreset(Aura, {
       hoverBackground: '{eea.red.100}',
     },
     fontSize: {
-      base: '14px',
-      body: '14px',
+      base: '0.875rem',
+      body: '0.875rem',
       h1: '2.75rem',
       h2: '2rem',
       h3: '1.625rem',
-      label: '12.25px',
+      label: '0.765625rem',
       mobile: {
         h1: '1.875rem',
         h2: '1.5rem',
