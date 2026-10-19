@@ -58,7 +58,11 @@
     "landing": {
       "placeholder": {
         "footer": "Voettekst van het Europees Milieuagentschap",
-        "header": "Koptekst van het Europees Milieuagentschap"
+        "header": "Koptekst van het Europees Milieuagentschap",
+        "intro": "Over de Datahub",
+        "popularRecords": "Populaire records",
+        "resourceTypes": "Populaire brontypen",
+        "topics": "In één oogopslag: onze belangrijkste onderwerpen"
       },
       "signInModal": {
         "close": "Aanmeldvenster sluiten",

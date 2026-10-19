@@ -59,7 +59,11 @@
     "landing": {
       "placeholder": {
         "footer": "Pied de page de l'Agence européenne pour l'environnement",
-        "header": "En-tête de l'Agence européenne pour l'environnement"
+        "header": "En-tête de l'Agence européenne pour l'environnement",
+        "intro": "À propos du Datahub",
+        "popularRecords": "Fiches populaires",
+        "resourceTypes": "Types de ressources populaires",
+        "topics": "En bref : nos principaux thèmes"
       },
       "signInModal": {
         "close": "Fermer la fenêtre de connexion",

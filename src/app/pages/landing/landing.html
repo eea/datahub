@@ -9,17 +9,45 @@
     </div>
   </header>
 
-  <section class="max-w-7xl mx-auto px-6 py-20 md:py-32">
+  <section class="max-w-7xl mx-auto px-6 pt-20 md:pt-32">
     <!-- Search and filter area: identical to the one on the search results page -->
     <app-search-panel
       class="block mb-10"
       (search)="onSearch()"
       (filtersChange)="onFiltersChange()"
     ></app-search-panel>
+    <img
+      src="placeholders/intro.webp"
+      [alt]="'find.landing.placeholder.intro' | translate"
+      class="w-full"
+    />
+    <img
+      src="placeholders/topics.webp"
+      [alt]="'find.landing.placeholder.topics' | translate"
+      class="w-full mt-18"
+    />
   </section>
 
+  <div class="my-12 py-16 bg-[#f2f3f4]">
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/resource-types.webp"
+        [alt]="'find.landing.placeholder.resourceTypes' | translate"
+        class="w-full"
+      />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <img
+      src="placeholders/popular-records.webp"
+      [alt]="'find.landing.placeholder.popularRecords' | translate"
+      class="w-full"
+    />
+  </div>
+
   <footer
-    class="mt-20 bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
+    class="bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
   >
     <div class="max-w-7xl mx-auto px-6">
       <img

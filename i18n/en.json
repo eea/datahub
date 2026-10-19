@@ -57,7 +57,11 @@
     "landing": {
       "placeholder": {
         "footer": "European Environment Agency footer",
-        "header": "European Environment Agency header"
+        "header": "European Environment Agency header",
+        "intro": "About the Datahub",
+        "popularRecords": "Popular records",
+        "resourceTypes": "Popular resource types",
+        "topics": "At a glance: our main topics"
       },
       "signInModal": {
         "close": "Close sign in modal",
