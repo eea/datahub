@@ -48,10 +48,9 @@
   "error": "Error",
   "exploreData": "Explore data",
   "find": {
-    "appName": "EEA Datahub",
+    "appName": "Datahub",
     "common": {
       "backToHome": "Back to Home",
-      "bannerTitle": "Datahub",
       "search": "Search",
       "selectLanguage": "Select language"
     },
