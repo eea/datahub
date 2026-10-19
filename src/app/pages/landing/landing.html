@@ -1,41 +1,11 @@
 <div class="min-h-screen bg-background">
-  <header class="border-b border-border bg-card">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-8 text-accent"
-          aria-hidden="true"
-        >
-          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-          <path d="M3 12A9 3 0 0 0 21 12"></path>
-        </svg>
-        <h1
-          class="text-foreground"
-          style="font-size: var(--text-h2); font-weight: var(--font-weight-semibold)"
-        >
-          {{ 'find.appName' | translate }}
-        </h1>
-      </div>
-      <div class="flex items-center gap-3">
-        <app-language-switcher></app-language-switcher>
-        <button
-          disabled
-          type="button"
-          (click)="openSignInModal()"
-          class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent/90 transition-colors rounded-button text-accent-foreground"
-          style="font-size: var(--text-base); font-weight: var(--font-weight-medium)"
-        >
-          {{ 'find.landing.signIn' | translate }}
-        </button>
-      </div>
+  <header class="bg-linear-[#f2f3f4_11.3%,#e6e7e8_11.3%_27.6%,#fff_27.6%]">
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/header.webp"
+        [alt]="'find.landing.placeholder.header' | translate"
+        class="w-full"
+      />
     </div>
   </header>
 
@@ -48,33 +18,15 @@
     ></app-search-panel>
   </section>
 
-  <footer class="border-t border-border bg-card mt-20">
-    <div class="max-w-7xl mx-auto px-6 py-8">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="size-6 text-accent"
-            aria-hidden="true"
-          >
-            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-            <path d="M3 12A9 3 0 0 0 21 12"></path>
-          </svg>
-          <p class="text-muted-foreground" style="font-size: var(--text-base)">
-            {{ 'find.landing.footer.tagline' | translate }}
-          </p>
-        </div>
-        <p class="text-muted-foreground" style="font-size: var(--text-label)">
-          {{ 'find.landing.footer.copyright' | translate }}
-        </p>
-      </div>
+  <footer
+    class="mt-20 bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
+  >
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/footer.webp"
+        [alt]="'find.landing.placeholder.footer' | translate"
+        class="w-full"
+      />
     </div>
   </footer>
 </div>

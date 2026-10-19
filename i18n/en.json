@@ -55,11 +55,10 @@
       "selectLanguage": "Select language"
     },
     "landing": {
-      "footer": {
-        "copyright": "© 2026 EEA. All rights reserved.",
-        "tagline": "EEA Datahub - Based on GeoNetwork Opensource"
+      "placeholder": {
+        "footer": "European Environment Agency footer",
+        "header": "European Environment Agency header"
       },
-      "signIn": "Sign In",
       "signInModal": {
         "close": "Close sign in modal",
         "demoHint": "Demo credentials: Use any email with password",
