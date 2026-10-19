@@ -147,7 +147,10 @@
         "dateNewest": "Date (Newest)",
         "dateOldest": "Date (Oldest)",
         "label": "Sort by",
-        "relevance": "Relevance"
+        "popularity": "Popularity",
+        "relevance": "Relevance",
+        "titleAsc": "Title (A-Z)",
+        "titleDesc": "Title (Z-A)"
       }
     }
   },
