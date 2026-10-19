@@ -145,8 +145,8 @@
         "next": "Suivant",
         "previous": "Précédent"
       },
+      "results": "Résultats:",
       "searching": "Recherche…",
-      "showingResults": "{{count}} résultats affichés",
       "sort": {
         "dateNewest": "Date (plus récente)",
         "dateOldest": "Date (plus ancienne)",

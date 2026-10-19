@@ -51,7 +51,7 @@
           @if (loading()) {
             {{ 'find.searchResults.searching' | translate }}
           } @else if (!failed()) {
-            {{ 'find.searchResults.showingResults' | translate: { count: total() } }}
+            {{ 'find.searchResults.results' | translate }} <strong>{{ total() }}</strong>
           }
         </p>
       </div>
