@@ -52,15 +52,20 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Terug naar start",
+      "placeholder": {
+        "footer": "Voettekst van het Europees Milieuagentschap",
+        "header": "Koptekst van het Europees Milieuagentschap"
+      },
       "search": "Zoeken",
       "selectLanguage": "Taal kiezen"
     },
     "landing": {
-      "footer": {
-        "copyright": "© 2026 EEA. Alle rechten voorbehouden.",
-        "tagline": "EEA Datahub - Gebaseerd op GeoNetwork Opensource"
+      "placeholder": {
+        "intro": "Over de Datahub",
+        "popularRecords": "Populaire records",
+        "resourceTypes": "Populaire brontypen",
+        "topics": "In één oogopslag: onze belangrijkste onderwerpen"
       },
-      "signIn": "Aanmelden",
       "signInModal": {
         "close": "Aanmeldvenster sluiten",
         "demoHint": "Demogegevens: gebruik een willekeurig e-mailadres met wachtwoord",

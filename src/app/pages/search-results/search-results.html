@@ -1,39 +1,11 @@
 <div class="min-h-screen bg-background">
-  <!-- Header -->
-  <header class="border-b border-border bg-card">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-8 text-primary"
-          aria-hidden="true"
-        >
-          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-          <path d="M3 12A9 3 0 0 0 21 12"></path>
-        </svg>
-        <h1 class="text-h2">
-          {{ 'find.appName' | translate }}
-        </h1>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <app-language-switcher></app-language-switcher>
-        <button
-          type="button"
-          (click)="goHome()"
-          class="flex items-center gap-2 text-base font-medium hover:text-primary transition-colors"
-        >
-          <i class="pi pi-arrow-left text-[0.875rem]!"></i>
-          {{ 'find.common.backToHome' | translate }}
-        </button>
-      </div>
+  <header class="bg-linear-[#f2f3f4_11.3%,#e6e7e8_11.3%_27.6%,#fff_27.6%]">
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/header.webp"
+        [alt]="'find.common.placeholder.header' | translate"
+        class="w-full"
+      />
     </div>
   </header>
 
@@ -47,6 +19,15 @@
 
   <!-- Main content -->
   <div class="max-w-7xl mx-auto px-6 py-8">
+    <button
+      type="button"
+      (click)="goHome()"
+      class="flex items-center gap-2 mb-4 text-base font-medium hover:text-primary transition-colors"
+    >
+      <i class="pi pi-arrow-left text-[0.875rem]!"></i>
+      {{ 'find.common.backToHome' | translate }}
+    </button>
+
     <!-- Search and filter area: identical to the one on the landing page -->
     <app-search-panel
       class="block mb-8"
@@ -120,4 +101,16 @@
       </div>
     }
   </div>
+
+  <footer
+    class="bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
+  >
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/footer.webp"
+        [alt]="'find.common.placeholder.footer' | translate"
+        class="w-full"
+      />
+    </div>
+  </footer>
 </div>

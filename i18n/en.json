@@ -51,15 +51,20 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Back to Home",
+      "placeholder": {
+        "footer": "European Environment Agency footer",
+        "header": "European Environment Agency header"
+      },
       "search": "Search",
       "selectLanguage": "Select language"
     },
     "landing": {
-      "footer": {
-        "copyright": "© 2026 EEA. All rights reserved.",
-        "tagline": "EEA Datahub - Based on GeoNetwork Opensource"
+      "placeholder": {
+        "intro": "About the Datahub",
+        "popularRecords": "Popular records",
+        "resourceTypes": "Popular resource types",
+        "topics": "At a glance: our main topics"
       },
-      "signIn": "Sign In",
       "signInModal": {
         "close": "Close sign in modal",
         "demoHint": "Demo credentials: Use any email with password",

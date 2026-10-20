@@ -9,12 +9,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  LanguageSwitcher,
-  SearchPanel,
-  SearchService,
-  SearchStateService,
-} from '@geocat/frontend-library';
+import { SearchPanel, SearchService, SearchStateService } from '@geocat/frontend-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
@@ -30,15 +25,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
 
 @Component({
   selector: 'app-landing',
-  imports: [
-    FormsModule,
-    SearchPanel,
-    ButtonModule,
-    DialogModule,
-    InputTextModule,
-    TranslatePipe,
-    LanguageSwitcher,
-  ],
+  imports: [FormsModule, SearchPanel, ButtonModule, DialogModule, InputTextModule, TranslatePipe],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

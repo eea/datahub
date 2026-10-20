@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   DEFAULT_PAGE_SIZE,
-  LanguageSwitcher,
   RecordCard,
   SearchPanel,
   SearchService,
@@ -28,7 +27,7 @@ const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, SearchPanel, RecordCard, LanguageSwitcher, Message],
+  imports: [TranslatePipe, SearchPanel, RecordCard, Message],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
