@@ -51,13 +51,15 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Back to Home",
+      "placeholder": {
+        "footer": "European Environment Agency footer",
+        "header": "European Environment Agency header"
+      },
       "search": "Search",
       "selectLanguage": "Select language"
     },
     "landing": {
       "placeholder": {
-        "footer": "European Environment Agency footer",
-        "header": "European Environment Agency header",
         "intro": "About the Datahub",
         "popularRecords": "Popular records",
         "resourceTypes": "Popular resource types",
