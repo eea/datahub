@@ -60,8 +60,8 @@
       "selectLanguage": "Taal kiezen"
     },
     "landing": {
+      "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
       "placeholder": {
-        "intro": "Over de Datahub",
         "popularRecords": "Populaire records",
         "resourceTypes": "Populaire brontypen",
         "topics": "In één oogopslag: onze belangrijkste onderwerpen"
