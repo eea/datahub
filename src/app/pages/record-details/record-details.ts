@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto, RecordService } from '@geocat/frontend-api-client';
-import { COLLECTION_ID, Header, RecordFieldTitle, RecordSkeleton } from '@geocat/frontend-library';
+import { COLLECTION_ID, RecordFieldTitle, RecordSkeleton } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Card } from '@openng/optimus-ui/card';
 import { Message } from '@openng/optimus-ui/message';
@@ -10,11 +10,12 @@ import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-record-details',
-  imports: [Header, TranslatePipe, Message, Card, RecordFieldTitle, RecordSkeleton],
+  imports: [TranslatePipe, Message, Card, RecordFieldTitle, RecordSkeleton],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordDetails {
+  private router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   recordUuid = signal('');
   recordService = inject(RecordService);
@@ -42,4 +43,8 @@ export class RecordDetails {
   recordStatus = computed(() =>
     this.recordResource.error() ? 'record.view.notFoundOrNotShared' : undefined,
   );
+
+  protected goHome(): void {
+    this.router.navigate(['/home']);
+  }
 }
