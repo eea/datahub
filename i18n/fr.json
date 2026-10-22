@@ -84,6 +84,9 @@
         "title": "Connexion"
       }
     },
+    "recordDetails": {
+      "viewInCatalogue": "Voir la fiche complète dans le catalogue"
+    },
     "searchBar": {
       "advanced": {
         "accessRights": "Droits d'accès",
