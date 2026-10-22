@@ -122,7 +122,7 @@
       },
       "ariaLabel": "Rechercher dans le catalogue de métadonnées",
       "clear": "Effacer la recherche",
-      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation...",
+      "placeholder": "Rechercher dans le Datahub...",
       "suggestions": "Suggestions de recherche"
     },
     "searchResults": {
