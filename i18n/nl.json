@@ -83,6 +83,9 @@
         "title": "Aanmelden"
       }
     },
+    "recordDetails": {
+      "viewInCatalogue": "Bekijk het volledige record in de catalogus"
+    },
     "searchBar": {
       "advanced": {
         "accessRights": "Toegangsrechten",
