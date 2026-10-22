@@ -1,7 +1,32 @@
-<div class="min-h-screen bg-tertiary">
-  <app-header />
+<div class="min-h-screen bg-background">
+  <header class="bg-linear-[#f2f3f4_11.3%,#e6e7e8_11.3%_27.6%,#fff_27.6%]">
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/header.webp"
+        [alt]="'find.common.placeholder.header' | translate"
+        class="w-full"
+      />
+    </div>
+  </header>
+
+  <div class="bg-primary">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-10">
+      <p class="text-h1 text-primary-contrast">
+        {{ 'find.appName' | translate }}
+      </p>
+    </div>
+  </div>
 
   <article class="max-w-7xl mx-auto px-6 py-8">
+    <button
+      type="button"
+      (click)="goHome()"
+      class="flex items-center gap-2 mb-4 text-base font-medium hover:text-primary transition-colors"
+    >
+      <i class="pi pi-arrow-left text-[0.875rem]!"></i>
+      {{ 'find.common.backToHome' | translate }}
+    </button>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 space-y-6">
         @if (recordResource.isLoading()) {
@@ -18,4 +43,16 @@
       </div>
     </div>
   </article>
+
+  <footer
+    class="bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
+  >
+    <div class="max-w-7xl mx-auto px-6">
+      <img
+        src="placeholders/footer.webp"
+        [alt]="'find.common.placeholder.footer' | translate"
+        class="w-full"
+      />
+    </div>
+  </footer>
 </div>
