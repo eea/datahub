@@ -97,7 +97,6 @@ const AppTheme = definePreset(Aura, {
     secondary: {
       background: '{eea.supplementary}',
     },
-    tertiary: '{eea.white}',
     muted: '{slate.300}',
     mutedForeground: '{slate.500}',
     destructive: {
