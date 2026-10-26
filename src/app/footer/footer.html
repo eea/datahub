@@ -22,14 +22,14 @@
       >
         @if (contacts().main; as main) {
           <div class="flex flex-wrap justify-center md:justify-start gap-x-4">
-            <a [href]="main.url" class="font-bold">{{ label(main) }}</a>
+            <a [href]="main.url" class="font-bold hover:underline">{{ label(main) }}</a>
             @for (link of links().contact_extra_actions; track link.id) {
-              <a [href]="link.url">{{ label(link) }}</a>
+              <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
             }
           </div>
         }
         @for (link of contacts().others; track link.id) {
-          <a [href]="link.url" class="font-bold">{{ label(link) }}</a>
+          <a [href]="link.url" class="font-bold hover:underline">{{ label(link) }}</a>
         }
       </div>
     </div>
@@ -63,14 +63,14 @@
       <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
         @for (link of links().footer_actions; track link.id) {
           <li>
-            <a [href]="link.url">{{ label(link) }}</a>
+            <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
           </li>
         }
       </ul>
       <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
         @for (link of links().copyright_actions; track link.id) {
           <li>
-            <a [href]="link.url">{{ label(link) }}</a>
+            <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
           </li>
         }
       </ul>
