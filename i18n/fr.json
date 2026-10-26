@@ -54,11 +54,34 @@
     "common": {
       "backToHome": "Retour à l'accueil",
       "placeholder": {
-        "footer": "Pied de page de l'Agence européenne pour l'environnement",
         "header": "En-tête de l'Agence européenne pour l'environnement"
       },
       "search": "Rechercher",
       "selectLanguage": "Choisir la langue"
+    },
+    "footer": {
+      "eeaLogo": "Agence européenne pour l'environnement",
+      "eionetLogo": "Réseau européen d'information et d'observation pour l'environnement (Eionet)",
+      "informationSystems": "Découvrez nos systèmes d'information sur l'environnement",
+      "links": {
+        "about": "À propos de nous",
+        "contact": "Nous contacter",
+        "newsletter": "Abonnez-vous à notre lettre d'information",
+        "faqs": "FAQ",
+        "careers": "Carrières",
+        "privacy": "Déclaration de confidentialité",
+        "accessibility": "Accessibilité",
+        "legal": "Mentions légales",
+        "sitemap": "Plan du site",
+        "status_page": "État du système",
+        "login": "Connexion",
+        "twitter": "X",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "bluesky": "Bluesky"
+      }
     },
     "landing": {
       "placeholder": {

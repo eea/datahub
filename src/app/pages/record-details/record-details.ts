@@ -8,9 +8,11 @@ import { Card } from '@openng/optimus-ui/card';
 import { Message } from '@openng/optimus-ui/message';
 import { Observable, of } from 'rxjs';
 
+import { Footer } from '../../footer/footer';
+
 @Component({
   selector: 'app-record-details',
-  imports: [TranslatePipe, Message, Card, RecordFieldTitle, RecordSkeleton],
+  imports: [TranslatePipe, Message, Card, RecordFieldTitle, RecordSkeleton, Footer],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

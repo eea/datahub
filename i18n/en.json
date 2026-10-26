@@ -52,11 +52,34 @@
     "common": {
       "backToHome": "Back to Home",
       "placeholder": {
-        "footer": "European Environment Agency footer",
         "header": "European Environment Agency header"
       },
       "search": "Search",
       "selectLanguage": "Select language"
+    },
+    "footer": {
+      "eeaLogo": "European Environment Agency",
+      "eionetLogo": "European Environment Information and Observation Network (Eionet)",
+      "informationSystems": "Explore our environmental information systems",
+      "links": {
+        "about": "About us",
+        "contact": "Contact us",
+        "newsletter": "Sign up to our newsletter",
+        "faqs": "FAQs",
+        "careers": "Careers",
+        "privacy": "Privacy statement",
+        "accessibility": "Accessibility",
+        "legal": "Legal notice",
+        "sitemap": "Sitemap",
+        "status_page": "System status",
+        "login": "Login",
+        "twitter": "X",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "bluesky": "Bluesky"
+      }
     },
     "landing": {
       "placeholder": {

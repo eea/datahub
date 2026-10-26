@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { SearchService, SearchStateService } from '@geocat/frontend-library';
@@ -15,6 +17,8 @@ describe('SearchResults', () => {
       imports: [SearchResults],
       providers: [
         provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         provideTranslateService(),
         { provide: SearchService, useValue: { search } },
       ],

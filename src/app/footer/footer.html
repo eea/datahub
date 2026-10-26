@@ -1,0 +1,79 @@
+<footer
+  class="bg-linear-212/srgb from-footer-start from-[6.78%] to-footer-end to-[69.54%] text-footer-foreground"
+>
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-14 flex flex-col items-center">
+    <div class="w-full grid grid-cols-2 md:grid-cols-[1fr_1fr_1.4fr] items-center gap-6">
+      <a href="https://www.eea.europa.eu/" class="flex justify-center">
+        <img
+          src="https://www.eea.europa.eu/static/media/eea-logo-white.da328514.svg"
+          [alt]="'find.footer.eeaLogo' | translate"
+          class="h-14"
+        />
+      </a>
+      <a href="https://www.eionet.europa.eu/" class="flex justify-center">
+        <img
+          src="https://www.eea.europa.eu/static/media/eionet.33f37fbf.svg"
+          [alt]="'find.footer.eionetLogo' | translate"
+          class="h-14"
+        />
+      </a>
+      <div
+        class="col-span-2 md:col-span-1 flex flex-col items-center md:items-start gap-1.5 text-footer-contact"
+      >
+        @if (contacts().main; as main) {
+          <div class="flex flex-wrap justify-center md:justify-start gap-x-4">
+            <a [href]="main.url" class="font-bold">{{ label(main) }}</a>
+            @for (link of links().contact_extra_actions; track link.id) {
+              <a [href]="link.url">{{ label(link) }}</a>
+            }
+          </div>
+        }
+        @for (link of contacts().others; track link.id) {
+          <a [href]="link.url" class="font-bold">{{ label(link) }}</a>
+        }
+      </div>
+    </div>
+
+    <a
+      href="https://www.eea.europa.eu/en/information-systems"
+      class="mt-16 mb-4 border border-footer-foreground px-8 py-4 text-center text-footer-button font-medium"
+    >
+      {{ 'find.footer.informationSystems' | translate }}
+    </a>
+
+    <ul class="flex flex-wrap justify-center gap-3 pt-13">
+      @for (link of links().social_actions; track link.id) {
+        <li>
+          <a
+            [href]="link.url"
+            class="min-w-10 h-10 px-3 flex items-center justify-center rounded-full border-[1.5px] border-footer-foreground text-label font-semibold"
+          >
+            @if (socialIcons[link.id]; as icon) {
+              <i class="pi" [class]="icon" aria-hidden="true"></i>
+              <span class="sr-only">{{ label(link) }}</span>
+            } @else {
+              {{ label(link) }}
+            }
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="w-full grid md:grid-cols-2 gap-6 pt-13 text-base">
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        @for (link of links().footer_actions; track link.id) {
+          <li>
+            <a [href]="link.url">{{ label(link) }}</a>
+          </li>
+        }
+      </ul>
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        @for (link of links().copyright_actions; track link.id) {
+          <li>
+            <a [href]="link.url">{{ label(link) }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

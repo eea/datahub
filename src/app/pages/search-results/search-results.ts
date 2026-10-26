@@ -20,6 +20,7 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
+import { Footer } from '../../footer/footer';
 import { seriesOnly } from '../../series-only';
 
 /** Page buttons the paginator shows at once. */
@@ -27,7 +28,7 @@ const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, SearchPanel, RecordCard, Message],
+  imports: [TranslatePipe, SearchPanel, RecordCard, Message, Footer],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

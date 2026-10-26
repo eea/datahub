@@ -15,6 +15,7 @@ import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+import { Footer } from '../../footer/footer';
 import { seriesOnly } from '../../series-only';
 
 /**
@@ -25,7 +26,15 @@ const FACETS_ONLY_PAGE_SIZE = 1;
 
 @Component({
   selector: 'app-landing',
-  imports: [FormsModule, SearchPanel, ButtonModule, DialogModule, InputTextModule, TranslatePipe],
+  imports: [
+    FormsModule,
+    SearchPanel,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+    TranslatePipe,
+    Footer,
+  ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
