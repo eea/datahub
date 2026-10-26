@@ -51,6 +51,7 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Back to Home",
+      "eeaLogo": "European Environment Agency",
       "placeholder": {
         "header": "European Environment Agency header"
       },
@@ -58,7 +59,6 @@
       "selectLanguage": "Select language"
     },
     "footer": {
-      "eeaLogo": "European Environment Agency",
       "eionetLogo": "European Environment Information and Observation Network (Eionet)",
       "informationSystems": "Explore our environmental information systems",
       "links": {

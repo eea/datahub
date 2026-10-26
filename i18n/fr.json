@@ -53,6 +53,7 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Retour à l'accueil",
+      "eeaLogo": "Agence européenne pour l'environnement",
       "placeholder": {
         "header": "En-tête de l'Agence européenne pour l'environnement"
       },
@@ -60,7 +61,6 @@
       "selectLanguage": "Choisir la langue"
     },
     "footer": {
-      "eeaLogo": "Agence européenne pour l'environnement",
       "eionetLogo": "Réseau européen d'information et d'observation pour l'environnement (Eionet)",
       "informationSystems": "Découvrez nos systèmes d'information sur l'environnement",
       "links": {

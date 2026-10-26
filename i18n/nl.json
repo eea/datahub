@@ -52,6 +52,7 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Terug naar start",
+      "eeaLogo": "Europees Milieuagentschap",
       "placeholder": {
         "header": "Koptekst van het Europees Milieuagentschap"
       },
@@ -59,7 +60,6 @@
       "selectLanguage": "Taal kiezen"
     },
     "footer": {
-      "eeaLogo": "Europees Milieuagentschap",
       "eionetLogo": "Europees milieuinformatie- en observatienetwerk (Eionet)",
       "informationSystems": "Ontdek onze milieu-informatiesystemen",
       "links": {
