@@ -1,19 +1,15 @@
-import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 
-import { EEA_WEBSITE_ACTIONS } from '../eea-website/eea-website-links';
+import { EEA_WEBSITE_ACTIONS, EeaWebsiteLinks } from '../eea-website/eea-website-links';
 import { Footer } from './footer';
 
 describe('Footer', () => {
-  async function render(
-    answer: (request: ReturnType<HttpTestingController['expectOne']>) => void,
-  ): Promise<ComponentFixture<Footer>> {
+  const footer = signal(EEA_WEBSITE_ACTIONS);
+
+  function render(): ComponentFixture<Footer> {
     const fixture = TestBed.createComponent(Footer);
-    fixture.detectChanges();
-    answer(TestBed.inject(HttpTestingController).expectOne('eea-website/@actions'));
-    await fixture.whenStable();
     fixture.detectChanges();
     return fixture;
   }
@@ -23,13 +19,14 @@ describe('Footer', () => {
   }
 
   beforeEach(async () => {
+    footer.set(EEA_WEBSITE_ACTIONS);
     await TestBed.configureTestingModule({
       imports: [Footer],
-      providers: [provideHttpClient(), provideHttpClientTesting(), provideTranslateService()],
+      providers: [provideTranslateService(), { provide: EeaWebsiteLinks, useValue: { footer } }],
     }).compileComponents();
   });
 
-  it('labels the links the EEA website returns with our own translation', async () => {
+  it('labels the links with our own translation', () => {
     const translate = TestBed.inject(TranslateService);
     translate.setTranslation('fr', { find: { footer: { links: { about: 'À propos de nous' } } } });
     translate.use('fr');
@@ -38,30 +35,24 @@ describe('Footer', () => {
       title: 'About us',
       url: 'https://www.eea.europa.eu/en/who-we-are',
     };
+    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_actions: [about] });
 
-    const fixture = await render((request) =>
-      request.flush({ ...EEA_WEBSITE_ACTIONS, contact_actions: [about] }),
-    );
-
-    expect(linkText(fixture, about.url)).toBe('À propos de nous');
+    expect(linkText(render(), about.url)).toBe('À propos de nous');
   });
 
-  it("shows the EEA website's name for a link we have no translation for", async () => {
+  it("shows the EEA website's name for a link we have no translation for", () => {
     const jobs = { id: 'jobs', title: 'Jobs', url: 'https://www.eea.europa.eu/en/jobs' };
+    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_extra_actions: [jobs] });
 
-    const fixture = await render((request) =>
-      request.flush({ ...EEA_WEBSITE_ACTIONS, contact_extra_actions: [jobs] }),
-    );
-
-    expect(linkText(fixture, jobs.url)).toBe('Jobs');
+    expect(linkText(render(), jobs.url)).toBe('Jobs');
   });
 
-  it('shows the bundled links when the EEA website does not answer', async () => {
-    const fixture = await render((request) =>
-      request.flush(null, { status: 502, statusText: 'Bad Gateway' }),
-    );
+  it('shows the links of every group', () => {
+    const fixture = render();
 
-    const bundled = Object.values(EEA_WEBSITE_ACTIONS).flat();
-    expect(bundled.filter(({ url }) => linkText(fixture, url) === undefined)).toEqual([]);
+    const missing = Object.values(EEA_WEBSITE_ACTIONS)
+      .flat()
+      .filter(({ url }) => linkText(fixture, url) === undefined);
+    expect(missing).toEqual([]);
   });
 });
