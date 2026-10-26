@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   BASE_PATH,
   OgcApiRecordsRecordGeoJSONDto,
@@ -9,7 +9,6 @@ import {
 import {
   COLLECTION_ID,
   DEFAULT_SPACE,
-  Header,
   RecordFieldTitle,
   RecordSkeleton,
 } from '@geocat/frontend-library';
@@ -21,19 +20,12 @@ import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-record-details',
-  imports: [
-    Header,
-    TranslatePipe,
-    Message,
-    Card,
-    ButtonDirective,
-    RecordFieldTitle,
-    RecordSkeleton,
-  ],
+  imports: [TranslatePipe, Message, Card, ButtonDirective, RecordFieldTitle, RecordSkeleton],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordDetails {
+  private router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   recordUuid = signal('');
   recordService = inject(RecordService);
@@ -65,4 +57,8 @@ export class RecordDetails {
   gn4RecordUrl = computed(
     () => `${this.basePath}/${DEFAULT_SPACE}/eng/catalog.search#/metadata/${this.recordUuid()}`,
   );
+
+  protected goHome(): void {
+    this.router.navigate(['/home']);
+  }
 }
