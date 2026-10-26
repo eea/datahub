@@ -54,9 +54,6 @@
     "common": {
       "backToHome": "Retour à l'accueil",
       "eeaLogo": "Agence européenne pour l'environnement",
-      "placeholder": {
-        "header": "En-tête de l'Agence européenne pour l'environnement"
-      },
       "search": "Rechercher",
       "selectLanguage": "Choisir la langue"
     },
@@ -81,6 +78,36 @@
         "youtube": "YouTube",
         "instagram": "Instagram",
         "bluesky": "Bluesky"
+      }
+    },
+    "header": {
+      "informationSystems": {
+        "title": "Systèmes d'information sur l'environnement",
+        "eea": "Site web de l'Agence européenne pour l'environnement",
+        "wiseMarine": "WISE marine - Système d'information sur le milieu marin pour l'Europe",
+        "wiseFreshwater": "WISE freshwater - Système d'information sur l'eau douce pour l'Europe",
+        "bise": "BISE - Système d'information sur la biodiversité pour l'Europe",
+        "fise": "FISE - Système d'information sur les forêts pour l'Europe",
+        "climateHealth": "Observatoire européen du climat et de la santé",
+        "climateAdapt": "ClimateADAPT",
+        "industrialEmissions": "Portail européen des émissions industrielles",
+        "climateEnergy": "Climat et énergie dans l'UE",
+        "copernicusLand": "Service Copernicus de surveillance des terres",
+        "copernicusInSitu": "Copernicus InSitu",
+        "circularity": "Circularity Metrics Lab"
+      },
+      "navigation": {
+        "featured-data": "Données à la une",
+        "copernicus-data": "Données Copernicus",
+        "statistical-data": "Données statistiques",
+        "eea-data-policy": "Politique de données de l'AEE"
+      },
+      "navigationLabel": "Navigation du Datahub",
+      "official": {
+        "website": "Un site officiel de l'Union européenne",
+        "howDoYouKnow": "Comment le savoir?",
+        "domain": "Toutes les adresses des sites web officiels de l'Union européenne se trouvent dans le domaine europa.eu.",
+        "institutions": "Voir toutes les institutions et tous les organes de l'UE"
       }
     },
     "landing": {

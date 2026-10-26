@@ -16,6 +16,7 @@ import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
 import { Footer } from '../../footer/footer';
+import { Header } from '../../header/header';
 import { seriesOnly } from '../../series-only';
 
 /**
@@ -34,6 +35,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
     InputTextModule,
     TranslatePipe,
     Footer,
+    Header,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

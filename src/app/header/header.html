@@ -1,0 +1,109 @@
+<header>
+  <div class="bg-header-official border-b border-header-systems text-header-top">
+    <div class="max-w-7xl mx-auto px-6 py-1.5 flex flex-wrap items-center gap-2">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg"
+        alt=""
+        class="w-5 h-3.5 object-cover"
+      />
+      <span>{{ 'find.header.official.website' | translate }}</span>
+      <span class="text-header-separator" aria-hidden="true">|</span>
+      <button
+        type="button"
+        (click)="toggleOfficialSiteInfo()"
+        [attr.aria-expanded]="officialSiteInfoOpen()"
+        aria-controls="official-site-info"
+        class="font-bold text-primary hover:text-primary-700 hover:underline cursor-pointer"
+      >
+        {{ 'find.header.official.howDoYouKnow' | translate }}
+      </button>
+    </div>
+    @if (officialSiteInfoOpen()) {
+      <div id="official-site-info" class="max-w-7xl mx-auto px-6 pb-2">
+        <p>{{ 'find.header.official.domain' | translate }}</p>
+        <a
+          href="https://europa.eu/european-union/contact/institutions-bodies_en"
+          target="_blank"
+          rel="noopener"
+          class="font-bold text-primary hover:text-primary-700 hover:underline"
+        >
+          {{ 'find.header.official.institutions' | translate }}
+        </a>
+      </div>
+    }
+  </div>
+
+  <div class="bg-header-systems text-header-systems-foreground font-bold">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <button
+        type="button"
+        (click)="systemsMenu.toggle($event)"
+        aria-haspopup="menu"
+        class="py-2 flex items-center gap-1 text-header-top cursor-pointer"
+      >
+        {{ 'find.header.informationSystems.title' | translate }}
+        <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
+      </button>
+      <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+
+      <button
+        type="button"
+        (click)="languageMenu.toggle($event)"
+        aria-haspopup="menu"
+        [attr.aria-label]="'find.common.selectLanguage' | translate"
+        class="py-2 flex items-center gap-1.5 text-header-language uppercase cursor-pointer"
+      >
+        <i class="pi pi-globe text-primary-600 text-[1.125rem]!" aria-hidden="true"></i>
+        {{ language() }}
+      </button>
+      <p-menu #languageMenu [model]="languages" [popup]="true" appendTo="body" />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 flex md:h-40">
+    <div class="flex-1 flex flex-wrap items-center gap-x-5 gap-y-3 py-4">
+      <div class="flex items-center gap-3.5">
+        <a href="https://www.eea.europa.eu/en" class="shrink-0">
+          <img
+            src="https://www.eea.europa.eu/static/media/eea-logo.55fb94a4.svg"
+            [alt]="'find.common.eeaLogo' | translate"
+            class="h-12 md:h-20"
+          />
+        </a>
+        <a routerLink="/home" class="text-header-title font-bold text-primary">
+          {{ 'find.appName' | translate }}
+        </a>
+      </div>
+
+      <nav class="md:ml-auto" [attr.aria-label]="'find.header.navigationLabel' | translate">
+        <ul class="flex flex-wrap gap-5 text-header-navigation font-medium text-primary-700">
+          @for (item of navigation(); track item.url) {
+            <li>
+              @if (item.items.length) {
+                <button
+                  type="button"
+                  (click)="itemMenu.toggle($event)"
+                  aria-haspopup="menu"
+                  class="hover:underline cursor-pointer"
+                >
+                  {{ item.label }}
+                </button>
+                <p-menu #itemMenu [model]="item.items" [popup]="true" appendTo="body" />
+              } @else {
+                <a [href]="item.url" class="hover:underline">{{ item.label }}</a>
+              }
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <button
+      type="button"
+      [attr.aria-label]="'find.common.search' | translate"
+      class="ml-5 w-14 md:w-18 flex items-center justify-center bg-primary text-primary-contrast"
+    >
+      <i class="pi pi-search text-[1.625rem]!" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>

@@ -44,6 +44,9 @@ const AppTheme = definePreset(Aura, {
       white: '#ffffff',
       green: '#007b6c',
       navy: '#212d38',
+      lightGrey: '#f2f3f4',
+      grey: '#e6e7e8',
+      darkGrey: '#2e3e4c',
     },
   },
   semantic: {
@@ -133,6 +136,16 @@ const AppTheme = definePreset(Aura, {
       },
       color: '{eea.white}',
     },
+    header: {
+      official: {
+        background: '{eea.lightGrey}',
+      },
+      systems: {
+        background: '{eea.grey}',
+        color: '{eea.darkGrey}',
+      },
+      separatorColor: '{slate.400}',
+    },
     fontSize: {
       base: '0.875rem',
       body: '0.875rem',
@@ -148,6 +161,12 @@ const AppTheme = definePreset(Aura, {
       footer: {
         contact: '1.25rem',
         button: '1rem',
+      },
+      header: {
+        top: '0.75rem',
+        language: '1rem',
+        title: '2rem',
+        navigation: '1.125rem',
       },
     },
     fontWeight: {

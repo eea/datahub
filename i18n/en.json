@@ -52,9 +52,6 @@
     "common": {
       "backToHome": "Back to Home",
       "eeaLogo": "European Environment Agency",
-      "placeholder": {
-        "header": "European Environment Agency header"
-      },
       "search": "Search",
       "selectLanguage": "Select language"
     },
@@ -79,6 +76,36 @@
         "youtube": "YouTube",
         "instagram": "Instagram",
         "bluesky": "Bluesky"
+      }
+    },
+    "header": {
+      "informationSystems": {
+        "title": "Environmental information systems",
+        "eea": "European Environment Agency website",
+        "wiseMarine": "WISE marine - Marine information system for Europe",
+        "wiseFreshwater": "WISE freshwater - Freshwater information system for Europe",
+        "bise": "BISE - Biodiversity information system for Europe",
+        "fise": "FISE - Forest information system for Europe",
+        "climateHealth": "European Climate and health observatory",
+        "climateAdapt": "ClimateADAPT",
+        "industrialEmissions": "European Industrial Emissions Portal",
+        "climateEnergy": "Climate and energy in the EU",
+        "copernicusLand": "Copernicus Land Monitoring Service",
+        "copernicusInSitu": "Copernicus InSitu",
+        "circularity": "Circularity Metrics Lab"
+      },
+      "navigation": {
+        "featured-data": "Featured data",
+        "copernicus-data": "Copernicus data",
+        "statistical-data": "Statistical data",
+        "eea-data-policy": "EEA data policy"
+      },
+      "navigationLabel": "Datahub navigation",
+      "official": {
+        "website": "An official website of the European Union",
+        "howDoYouKnow": "How do you know?",
+        "domain": "All official European Union website addresses are in the europa.eu domain.",
+        "institutions": "See all EU institutions and bodies"
       }
     },
     "landing": {
