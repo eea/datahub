@@ -7,11 +7,12 @@ import {
 import { COLLECTION_ID } from '@geocat/frontend-library';
 import { map, Observable } from 'rxjs';
 
+import { FACETS_ONLY_PAGE_SIZE } from '../facets-only';
+
 export const BUSINESS_DOMAIN_PROPERTY = 'eeaBusinessDomain';
 export const LEVEL_SEPARATOR = '^';
 
 const SERIES_FILTER = "resourceType = 'series'";
-const FACETS_ONLY_PAGE_SIZE = 1;
 
 export interface Subdomain {
   name: string;
