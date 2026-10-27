@@ -55,4 +55,13 @@ describe('Footer', () => {
       .filter(({ url }) => linkText(fixture, url) === undefined);
     expect(missing).toEqual([]);
   });
+
+  it('shows Bluesky as an icon with its name for screen readers', () => {
+    const bluesky: HTMLAnchorElement = render().nativeElement.querySelector(
+      'a[href="https://bsky.app/profile/eea.europa.eu"]',
+    );
+
+    expect(bluesky.querySelector('svg')).not.toBeNull();
+    expect(bluesky.querySelector('.sr-only')).not.toBeNull();
+  });
 });
