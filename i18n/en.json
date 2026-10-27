@@ -82,6 +82,9 @@
         "title": "Sign In"
       }
     },
+    "recordDetails": {
+      "viewInCatalogue": "View the full record in the catalogue"
+    },
     "searchBar": {
       "advanced": {
         "accessRights": "Access Rights",

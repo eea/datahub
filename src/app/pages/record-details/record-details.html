@@ -38,6 +38,9 @@
         } @else {
           <p-card>
             <app-record-field-title [record]="record()" />
+            <a pButton [href]="gn4RecordUrl()" class="mt-4" data-testid="gn4-record-link">
+              {{ 'find.recordDetails.viewInCatalogue' | translate }}
+            </a>
           </p-card>
         }
       </div>
