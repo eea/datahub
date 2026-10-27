@@ -17,7 +17,6 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
-import { seriesOnly } from '../../series-only';
 
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
@@ -70,7 +69,7 @@ export class Landing implements OnInit {
 
   private refreshFacets(): void {
     this.searchService
-      .search(seriesOnly(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE)))
+      .search(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (!result.failed) this.searchState.applyFacets(result.facets);

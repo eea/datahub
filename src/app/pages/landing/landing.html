@@ -16,11 +16,9 @@
       (search)="onSearch()"
       (filtersChange)="onFiltersChange()"
     ></app-search-panel>
-    <img
-      src="placeholders/intro.webp"
-      [alt]="'find.landing.placeholder.intro' | translate"
-      class="w-full"
-    />
+    <p class="border-l-8 border-primary-700 px-7 py-2.5 text-lead">
+      {{ 'find.landing.intro' | translate }}
+    </p>
     <img
       src="placeholders/topics.webp"
       [alt]="'find.landing.placeholder.topics' | translate"

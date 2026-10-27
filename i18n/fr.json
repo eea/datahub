@@ -111,8 +111,8 @@
       }
     },
     "landing": {
+      "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
       "placeholder": {
-        "intro": "À propos du Datahub",
         "popularRecords": "Fiches populaires",
         "resourceTypes": "Types de ressources populaires",
         "topics": "En bref : nos principaux thèmes"
@@ -133,6 +133,9 @@
         "subtitle": "Saisissez vos identifiants pour accéder à vos services",
         "title": "Connexion"
       }
+    },
+    "recordDetails": {
+      "viewInCatalogue": "Voir la fiche complète dans le catalogue"
     },
     "searchBar": {
       "advanced": {
