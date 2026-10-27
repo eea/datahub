@@ -30,7 +30,9 @@ describe('Landing', () => {
     const section: HTMLElement = fixture.nativeElement.querySelector(
       'section[aria-labelledby="all-topics-title"]',
     );
-    expect(section.querySelector('h2')?.textContent?.trim()).toBe('find.landing.topics.title');
+    expect(section.querySelector('#all-topics-title')?.textContent?.trim()).toBe(
+      'find.landing.topics.title',
+    );
     expect(section.querySelector('app-domain-tree')).not.toBeNull();
   });
 

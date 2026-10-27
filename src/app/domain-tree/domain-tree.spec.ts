@@ -47,7 +47,7 @@ describe('DomainTree', () => {
 
   const toggle = async (fixture: ComponentFixture<DomainTree>, label: string): Promise<void> => {
     const row = rows(fixture).find((candidate) => candidate.textContent?.trim() === label);
-    row?.querySelector('button')?.click();
+    row?.querySelector<HTMLButtonElement>('p-treetable-toggler button')?.click();
     fixture.detectChanges();
     await fixture.whenStable();
   };
@@ -72,8 +72,8 @@ describe('DomainTree', () => {
     domains.mockReturnValue(of(DOMAINS));
     const fixture = render();
     const clickName = async (label: string): Promise<void> => {
-      const row = rows(fixture).find((candidate) => candidate.textContent?.trim() === label);
-      row?.querySelector('span')?.click();
+      const names: HTMLSpanElement[] = [...fixture.nativeElement.querySelectorAll('tbody span')];
+      names.find((name) => name.textContent?.trim() === label)?.click();
       fixture.detectChanges();
       await fixture.whenStable();
     };
