@@ -45,6 +45,7 @@
   --text-footer-contact: var(--p-font-size-footer-contact);
   --text-footer-button: var(--p-font-size-footer-button);
   --text-label: var(--p-font-size-label);
+  --text-lead: var(--p-font-size-lead);
   --radius-md: var(--p-content-border-radius);
 }
 
@@ -62,6 +63,7 @@
   --text-footer-contact--line-height: 1.2;
   --text-footer-button--line-height: 1.2;
   --text-label--line-height: 1.5;
+  --text-lead--line-height: 1.5;
 }
 
 :root {
