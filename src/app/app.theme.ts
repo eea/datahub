@@ -131,6 +131,8 @@ const AppTheme = definePreset(Aura, {
       h2: '2rem',
       h3: '1.625rem',
       label: '0.765625rem',
+      paragraph: '1rem',
+      paragraphSmall: '0.9375rem',
       mobile: {
         h1: '1.875rem',
         h2: '1.5rem',
@@ -201,6 +203,18 @@ const AppTheme = definePreset(Aura, {
             shadow: 'none',
           },
         },
+      },
+    },
+    treetable: {
+      headerCell: {
+        background: '{surface.50}',
+        padding: '0.625rem 0.875rem',
+      },
+      bodyCell: {
+        padding: '0.625rem 0.875rem',
+      },
+      nodeToggleButton: {
+        size: '1.5rem',
       },
     },
     tag: {

@@ -4,6 +4,7 @@ import { SearchService } from '@geocat/frontend-library';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
+import { BusinessDomainService } from '../../domain-tree/business-domain.service';
 import { Landing } from './landing';
 
 describe('Landing', () => {
@@ -17,8 +18,20 @@ describe('Landing', () => {
         provideRouter([]),
         provideTranslateService(),
         { provide: SearchService, useValue: { search } },
+        { provide: BusinessDomainService, useValue: { domains: () => of([]) } },
       ],
     }).compileComponents();
+  });
+
+  it('shows all topics as a tree', () => {
+    const fixture = TestBed.createComponent(Landing);
+    fixture.detectChanges();
+
+    const section: HTMLElement = fixture.nativeElement.querySelector(
+      'section[aria-labelledby="all-topics-title"]',
+    );
+    expect(section.querySelector('h2')?.textContent?.trim()).toBe('find.landing.topics.title');
+    expect(section.querySelector('app-domain-tree')).not.toBeNull();
   });
 
   it('asks for the facets of series only', () => {

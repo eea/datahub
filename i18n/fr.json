@@ -82,6 +82,15 @@
         "submitting": "Connexion en cours...",
         "subtitle": "Saisissez vos identifiants pour accéder à vos services",
         "title": "Connexion"
+      },
+      "topics": {
+        "empty": "Aucun thème trouvé.",
+        "failed": "Les thèmes n'ont pas pu être chargés.",
+        "intro": "Parcourez nos thèmes approfondis pour avoir une vue d'ensemble des enjeux, des faits clés et de l'action de l'UE. Ils mettent aussi en avant certaines des évaluations, publications et événements les plus pertinents, et donnent accès à d'autres plateformes qui fournissent des informations plus détaillées sur le thème.",
+        "loading": "Chargement...",
+        "name": "Nom",
+        "seriesFailed": "Les séries n'ont pas pu être chargées.",
+        "title": "Tous les thèmes"
       }
     },
     "searchBar": {

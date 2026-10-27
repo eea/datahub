@@ -40,6 +40,8 @@
   --text-h3: var(--p-font-size-h3);
   --text-h3--font-weight: var(--p-font-weight-h3);
   --text-label: var(--p-font-size-label);
+  --text-paragraph: var(--p-font-size-paragraph);
+  --text-paragraph-small: var(--p-font-size-paragraph-small);
   --radius-md: var(--p-content-border-radius);
 }
 
@@ -55,6 +57,8 @@
   --text-h2--letter-spacing: -0.015em;
   --text-h3--line-height: 1.18;
   --text-label--line-height: 1.5;
+  --text-paragraph--line-height: 1.5;
+  --text-paragraph-small--line-height: 1.5;
 }
 
 :root {
