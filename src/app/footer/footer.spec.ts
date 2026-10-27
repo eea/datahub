@@ -28,16 +28,12 @@ describe('Footer', () => {
 
   it('labels the links with our own translation', () => {
     const translate = TestBed.inject(TranslateService);
-    translate.setTranslation('fr', { find: { footer: { links: { about: 'À propos de nous' } } } });
-    translate.use('fr');
-    const about = {
-      id: 'about',
-      title: 'About us',
-      url: 'https://www.eea.europa.eu/en/who-we-are',
-    };
-    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_actions: [about] });
+    translate.setTranslation('en', { find: { footer: { links: { twitter: 'X' } } } });
+    translate.use('en');
+    const twitter = { id: 'twitter', title: 'Twitter', url: 'https://twitter.com/euenvironment' };
+    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_actions: [twitter] });
 
-    expect(linkText(render(), about.url)).toBe('À propos de nous');
+    expect(linkText(render(), twitter.url)).toBe('X');
   });
 
   it("shows the EEA website's name for a link we have no translation for", () => {
