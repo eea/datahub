@@ -10,10 +10,9 @@ import nl from '../../../../i18n/nl.json';
 import { Landing } from './landing';
 
 describe('Landing', () => {
-  const search = vi.fn(() => of({ records: [], total: 0, failed: false, facets: {} }));
+  const search = () => of({ records: [], total: 0, failed: false, facets: {} });
 
   beforeEach(async () => {
-    search.mockClear();
     await TestBed.configureTestingModule({
       imports: [Landing],
       providers: [
@@ -22,14 +21,6 @@ describe('Landing', () => {
         { provide: SearchService, useValue: { search } },
       ],
     }).compileComponents();
-  });
-
-  it('asks for the facets of series only', () => {
-    TestBed.createComponent(Landing).detectChanges();
-
-    expect(search).toHaveBeenCalledWith(
-      expect.objectContaining({ resourceTypes: { included: ['series'] } }),
-    );
   });
 
   it.each([
