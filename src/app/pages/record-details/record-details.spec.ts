@@ -28,7 +28,9 @@ describe('RecordDetails', () => {
     const fixture = TestBed.createComponent(RecordDetails);
     await fixture.whenStable();
 
-    const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a[pButton]');
+    const link: HTMLAnchorElement = fixture.nativeElement.querySelector(
+      '[data-testid="gn4-record-link"]',
+    );
     expect(link.getAttribute('href')).toBe(`/catalogue/srv/eng/catalog.search#/metadata/${uuid}`);
   });
 });
