@@ -53,32 +53,12 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Retour à l'accueil",
-      "eeaLogo": "Agence européenne pour l'environnement",
+      "placeholder": {
+        "footer": "Pied de page de l'Agence européenne pour l'environnement",
+        "header": "En-tête de l'Agence européenne pour l'environnement"
+      },
       "search": "Rechercher",
       "selectLanguage": "Choisir la langue"
-    },
-    "footer": {
-      "eionetLogo": "Réseau européen d'information et d'observation pour l'environnement (Eionet)",
-      "informationSystems": "Découvrez nos systèmes d'information sur l'environnement",
-      "links": {
-        "about": "À propos de nous",
-        "contact": "Nous contacter",
-        "newsletter": "Abonnez-vous à notre lettre d'information",
-        "faqs": "FAQ",
-        "careers": "Carrières",
-        "privacy": "Déclaration de confidentialité",
-        "accessibility": "Accessibilité",
-        "legal": "Mentions légales",
-        "sitemap": "Plan du site",
-        "status_page": "État du système",
-        "login": "Connexion",
-        "twitter": "X",
-        "facebook": "Facebook",
-        "linkedin": "LinkedIn",
-        "youtube": "YouTube",
-        "instagram": "Instagram",
-        "bluesky": "Bluesky"
-      }
     },
     "landing": {
       "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",

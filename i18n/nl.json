@@ -52,32 +52,12 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Terug naar start",
-      "eeaLogo": "Europees Milieuagentschap",
+      "placeholder": {
+        "footer": "Voettekst van het Europees Milieuagentschap",
+        "header": "Koptekst van het Europees Milieuagentschap"
+      },
       "search": "Zoeken",
       "selectLanguage": "Taal kiezen"
-    },
-    "footer": {
-      "eionetLogo": "Europees milieuinformatie- en observatienetwerk (Eionet)",
-      "informationSystems": "Ontdek onze milieu-informatiesystemen",
-      "links": {
-        "about": "Over ons",
-        "contact": "Contact",
-        "newsletter": "Abonneer u op onze nieuwsbrief",
-        "faqs": "Veelgestelde vragen",
-        "careers": "Vacatures",
-        "privacy": "Privacyverklaring",
-        "accessibility": "Toegankelijkheid",
-        "legal": "Juridische kennisgeving",
-        "sitemap": "Sitemap",
-        "status_page": "Systeemstatus",
-        "login": "Inloggen",
-        "twitter": "X",
-        "facebook": "Facebook",
-        "linkedin": "LinkedIn",
-        "youtube": "YouTube",
-        "instagram": "Instagram",
-        "bluesky": "Bluesky"
-      }
     },
     "landing": {
       "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
