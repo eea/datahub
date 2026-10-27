@@ -80,36 +80,6 @@
         "bluesky": "Bluesky"
       }
     },
-    "header": {
-      "informationSystems": {
-        "title": "Systèmes d'information sur l'environnement",
-        "eea": "Site web de l'Agence européenne pour l'environnement",
-        "wiseMarine": "WISE marine - Système d'information sur le milieu marin pour l'Europe",
-        "wiseFreshwater": "WISE freshwater - Système d'information sur l'eau douce pour l'Europe",
-        "bise": "BISE - Système d'information sur la biodiversité pour l'Europe",
-        "fise": "FISE - Système d'information sur les forêts pour l'Europe",
-        "climateHealth": "Observatoire européen du climat et de la santé",
-        "climateAdapt": "ClimateADAPT",
-        "industrialEmissions": "Portail européen des émissions industrielles",
-        "climateEnergy": "Climat et énergie dans l'UE",
-        "copernicusLand": "Service Copernicus de surveillance des terres",
-        "copernicusInSitu": "Copernicus InSitu",
-        "circularity": "Circularity Metrics Lab"
-      },
-      "navigation": {
-        "featured-data": "Données à la une",
-        "copernicus-data": "Données Copernicus",
-        "statistical-data": "Données statistiques",
-        "eea-data-policy": "Politique de données de l'AEE"
-      },
-      "navigationLabel": "Navigation du Datahub",
-      "official": {
-        "website": "Un site officiel de l'Union européenne",
-        "howDoYouKnow": "Comment le savoir?",
-        "domain": "Toutes les adresses des sites web officiels de l'Union européenne se trouvent dans le domaine europa.eu.",
-        "institutions": "Voir toutes les institutions et tous les organes de l'UE"
-      }
-    },
     "landing": {
       "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
       "placeholder": {

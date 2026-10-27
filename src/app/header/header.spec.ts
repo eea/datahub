@@ -45,7 +45,10 @@ describe('Header', () => {
     translate.setTranslation('en', {
       find: {
         header: {
-          navigation: { 'featured-data': 'Featured data', 'eea-data-policy': 'EEA data policy' },
+          navigation: {
+            'featured-data': 'Our featured data',
+            'eea-data-policy': 'Our data policy',
+          },
         },
       },
     });
@@ -53,23 +56,7 @@ describe('Header', () => {
   });
 
   it("labels the EEA website's navigation with our own translation, without About", () => {
-    const translate = TestBed.inject(TranslateService);
-    translate.setTranslation('fr', {
-      find: {
-        header: {
-          navigation: {
-            'featured-data': 'Données à la une',
-            'eea-data-policy': "Politique de données de l'AEE",
-          },
-        },
-      },
-    });
-    translate.use('fr');
-
-    expect(navigationTexts(render())).toEqual([
-      'Données à la une',
-      "Politique de données de l'AEE",
-    ]);
+    expect(navigationTexts(render())).toEqual(['Our featured data', 'Our data policy']);
   });
 
   it("shows the EEA website's name for a page we have no translation for", () => {
@@ -78,7 +65,7 @@ describe('Header', () => {
       { '@id': 'https://www.eea.europa.eu/en/datahub/news', title: 'News' },
     ]);
 
-    expect(navigationTexts(render())).toEqual(['Featured data', 'EEA data policy', 'News']);
+    expect(navigationTexts(render())).toEqual(['Our featured data', 'Our data policy', 'News']);
   });
 
   it('lists the Featured data pages in its menu', async () => {
@@ -90,18 +77,6 @@ describe('Header', () => {
       'https://www.eea.europa.eu/en/datahub/featured-data/copernicus-data',
       'https://www.eea.europa.eu/en/datahub/featured-data/statistical-data',
     ]);
-  });
-
-  it('switches the language from the language menu', async () => {
-    const fixture = render();
-    const languageButton: HTMLElement = fixture.nativeElement.querySelector('button.uppercase');
-
-    await click(fixture, languageButton);
-    const french = menuLinks().find((link) => link.textContent?.trim() === 'Français');
-    await click(fixture, french as HTMLElement);
-
-    expect(TestBed.inject(TranslateService).getCurrentLang()).toBe('fr');
-    expect(languageButton.textContent?.trim()).toBe('fr');
   });
 
   it('explains how to recognise an official EU website', async () => {

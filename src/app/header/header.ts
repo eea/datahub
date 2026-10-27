@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@geocat/frontend-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { Menu } from '@openng/optimus-ui/menu';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
   EEA_WEBSITE_NAVIGATION,
@@ -59,19 +58,7 @@ export class Header {
     { initialValue: {} as Record<string, string> },
   );
 
-  protected readonly language = toSignal(
-    this.translate.onLangChange.pipe(map(({ lang }) => lang)),
-    {
-      initialValue: this.translate.getCurrentLang() || DEFAULT_LANGUAGE,
-    },
-  );
-
   protected readonly officialSiteInfoOpen = signal(false);
-
-  protected readonly languages: MenuItem[] = SUPPORTED_LANGUAGES.map(({ code, label }) => ({
-    label,
-    command: () => this.translate.use(code),
-  }));
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({

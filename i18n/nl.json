@@ -79,36 +79,6 @@
         "bluesky": "Bluesky"
       }
     },
-    "header": {
-      "informationSystems": {
-        "title": "Milieu-informatiesystemen",
-        "eea": "Website van het Europees Milieuagentschap",
-        "wiseMarine": "WISE marine - Informatiesysteem over het mariene milieu in Europa",
-        "wiseFreshwater": "WISE freshwater - Informatiesysteem over zoet water in Europa",
-        "bise": "BISE - Informatiesysteem over biodiversiteit in Europa",
-        "fise": "FISE - Informatiesysteem over bossen in Europa",
-        "climateHealth": "Europees waarnemingscentrum voor klimaat en gezondheid",
-        "climateAdapt": "ClimateADAPT",
-        "industrialEmissions": "Europees portaal voor industriële emissies",
-        "climateEnergy": "Klimaat en energie in de EU",
-        "copernicusLand": "Copernicus-dienst voor landmonitoring",
-        "copernicusInSitu": "Copernicus InSitu",
-        "circularity": "Circularity Metrics Lab"
-      },
-      "navigation": {
-        "featured-data": "Uitgelichte data",
-        "copernicus-data": "Copernicus-data",
-        "statistical-data": "Statistische data",
-        "eea-data-policy": "Databeleid van het EMA"
-      },
-      "navigationLabel": "Datahub-navigatie",
-      "official": {
-        "website": "Een officiële website van de Europese Unie",
-        "howDoYouKnow": "Hoe weet u dat?",
-        "domain": "Alle officiële websites van de Europese Unie hebben een adres in het domein europa.eu.",
-        "institutions": "Bekijk alle instellingen en organen van de EU"
-      }
-    },
     "landing": {
       "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
       "placeholder": {
