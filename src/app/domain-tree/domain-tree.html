@@ -15,7 +15,7 @@
       </tr>
     </ng-template>
     <ng-template #body let-rowNode let-row="rowData">
-      <tr [ttRow]="rowNode" [class]="row.kind === 'series' ? 'bg-secondary!' : ''">
+      <tr [ttRow]="rowNode" [class]="rowClass(rowNode.node)" (click)="toggle($event, rowNode.node)">
         <td>
           <div class="flex items-center gap-2">
             <p-treetable-toggler [rowNode]="rowNode" />

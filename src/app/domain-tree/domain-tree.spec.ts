@@ -68,6 +68,23 @@ describe('DomainTree', () => {
     expect(series).not.toHaveBeenCalled();
   });
 
+  it('unfolds and folds a domain when its name is clicked', async () => {
+    domains.mockReturnValue(of(DOMAINS));
+    const fixture = render();
+    const clickName = async (label: string): Promise<void> => {
+      const row = rows(fixture).find((candidate) => candidate.textContent?.trim() === label);
+      row?.querySelector('span')?.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+    };
+
+    await clickName('Water');
+    expect(rowTexts(fixture)).toEqual(['Air', 'Water', 'Snow & Ice']);
+
+    await clickName('Water');
+    expect(rowTexts(fixture)).toEqual(['Air', 'Water']);
+  });
+
   it('loads the series of a subdomain when it unfolds, each linking to its record', async () => {
     domains.mockReturnValue(of(DOMAINS));
     series.mockReturnValue(

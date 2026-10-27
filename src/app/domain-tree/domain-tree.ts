@@ -33,6 +33,13 @@ type TreeRow =
   | { kind: 'series'; label: string; id: string }
   | { kind: 'message'; label: string };
 
+const ROW_CLASSES: Record<TreeRow['kind'], string> = {
+  domain: 'cursor-pointer',
+  subdomain: 'cursor-pointer',
+  series: 'bg-secondary!',
+  message: '',
+};
+
 @Component({
   selector: 'app-domain-tree',
   imports: [Message, RouterLink, TranslatePipe, TreeTableModule],
@@ -63,6 +70,21 @@ export class DomainTree {
 
   protected readonly trackByKey = (_index: number, serializedNode: { node: TreeNode<TreeRow> }) =>
     serializedNode.node.key;
+
+  protected rowClass(node: TreeNode<TreeRow>): string {
+    return node.data ? ROW_CLASSES[node.data.kind] : '';
+  }
+
+  protected toggle(event: MouseEvent, node: TreeNode<TreeRow>): void {
+    const kind = node.data?.kind;
+    if (kind !== 'domain' && kind !== 'subdomain') return;
+    if (event.target instanceof Element && event.target.closest('button')) return;
+    if (node.expanded) {
+      this.collapse(node);
+      return;
+    }
+    this.expand(node);
+  }
 
   protected expand(node: TreeNode<TreeRow>): void {
     const key = node.key;
