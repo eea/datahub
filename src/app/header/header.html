@@ -35,28 +35,32 @@
 
   <div class="bg-header-systems text-header-systems-foreground font-bold">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-      <button
-        type="button"
-        (click)="systemsMenu.toggle($event)"
-        aria-haspopup="menu"
-        class="py-2 flex items-center gap-1 text-header-top cursor-pointer"
-      >
-        {{ 'find.header.informationSystems.title' | translate }}
-        <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
-      </button>
-      <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+      <div>
+        <button
+          type="button"
+          (click)="systemsMenu.toggle($event)"
+          aria-haspopup="menu"
+          class="py-2 flex items-center gap-1 text-header-top cursor-pointer"
+        >
+          {{ 'find.header.informationSystems.title' | translate }}
+          <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
+        </button>
+        <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+      </div>
 
-      <button
-        type="button"
-        (click)="languageMenu.toggle($event)"
-        aria-haspopup="menu"
-        [attr.aria-label]="'find.common.selectLanguage' | translate"
-        class="py-2 flex items-center gap-1.5 text-header-language uppercase cursor-pointer"
-      >
-        <i class="pi pi-globe text-primary-600 text-[1.125rem]!" aria-hidden="true"></i>
-        {{ language() }}
-      </button>
-      <p-menu #languageMenu [model]="languages" [popup]="true" appendTo="body" />
+      <div>
+        <button
+          type="button"
+          (click)="languageMenu.toggle($event)"
+          aria-haspopup="menu"
+          [attr.aria-label]="'find.common.selectLanguage' | translate"
+          class="py-2 flex items-center gap-1.5 text-header-language uppercase cursor-pointer"
+        >
+          <i class="pi pi-globe text-primary-600 text-[1.125rem]!" aria-hidden="true"></i>
+          {{ language() }}
+        </button>
+        <p-menu #languageMenu [model]="languages" [popup]="true" appendTo="body" />
+      </div>
     </div>
   </div>
 
