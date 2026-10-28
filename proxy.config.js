@@ -5,7 +5,7 @@ module.exports = {
     logLevel: 'debug',
     changeOrigin: true,
   },
-  '/eea-website': {
+  '/eea-website/@actions': {
     target: 'https://www.eea.europa.eu',
     secure: true,
     changeOrigin: true,
