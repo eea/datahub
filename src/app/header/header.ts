@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { Menu } from '@openng/optimus-ui/menu';
-import { map, Observable } from 'rxjs';
 
 import { EeaWebsiteLinks, EeaWebsiteNavigationItem } from '../eea-website/eea-website-links';
+import { translatedLabels } from '../eea-website/translated-labels';
 
 const INFORMATION_SYSTEMS = [
   { id: 'eea', url: 'https://www.eea.europa.eu' },
@@ -25,9 +24,6 @@ const INFORMATION_SYSTEMS = [
 
 const HIDDEN_NAVIGATION = new Set(['about']);
 
-const SYSTEM_KEY_PREFIX = 'find.header.informationSystems.';
-const SYSTEM_KEYS = INFORMATION_SYSTEMS.map(({ id }) => SYSTEM_KEY_PREFIX + id);
-
 function slug(item: EeaWebsiteNavigationItem): string {
   return item['@id'].split('/').filter(Boolean).at(-1) ?? '';
 }
@@ -39,26 +35,16 @@ function slug(item: EeaWebsiteNavigationItem): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
-  private readonly translate = inject(TranslateService);
   private readonly links = inject(EeaWebsiteLinks).header;
 
-  private readonly systemLabels = toSignal(
-    this.translate.stream(SYSTEM_KEYS) as Observable<Record<string, string>>,
-    { initialValue: {} as Record<string, string> },
-  );
-
-  private readonly navigationLabels = toSignal(
-    this.translate
-      .stream('find.header.navigation')
-      .pipe(map((labels) => (typeof labels === 'object' ? labels : {}))),
-    { initialValue: {} as Record<string, string> },
-  );
+  private readonly systemLabels = translatedLabels('find.header.informationSystems');
+  private readonly navigationLabels = translatedLabels('find.header.navigation');
 
   protected readonly officialSiteInfoOpen = signal(false);
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({
-      label: this.systemLabels()[SYSTEM_KEY_PREFIX + id],
+      label: this.systemLabels()[id],
       url,
       target: '_blank',
     })),
