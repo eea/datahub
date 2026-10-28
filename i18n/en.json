@@ -51,12 +51,35 @@
     "appName": "Datahub",
     "common": {
       "backToHome": "Back to Home",
+      "eeaLogo": "European Environment Agency",
       "placeholder": {
-        "footer": "European Environment Agency footer",
         "header": "European Environment Agency header"
       },
       "search": "Search",
       "selectLanguage": "Select language"
+    },
+    "footer": {
+      "eionetLogo": "European Environment Information and Observation Network (Eionet)",
+      "informationSystems": "Explore our environmental information systems",
+      "links": {
+        "about": "About us",
+        "contact": "Contact us",
+        "newsletter": "Sign up to our newsletter",
+        "faqs": "FAQs",
+        "careers": "Careers",
+        "privacy": "Privacy statement",
+        "accessibility": "Accessibility",
+        "legal": "Legal notice",
+        "sitemap": "Sitemap",
+        "status_page": "System status",
+        "login": "Login",
+        "twitter": "X",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "bluesky": "Bluesky"
+      }
     },
     "landing": {
       "intro": "This data hub enables you to explore, access, and download high-quality datasets on environment, climate, and sustainability topics. Through our network and other institutional partners across 38 European countries, we collect, quality-assure and quality-check data on a wide set of topics and legislation related to the environment, climate and sustainability.",

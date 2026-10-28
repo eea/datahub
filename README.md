@@ -97,6 +97,12 @@ Additional environment files (`environment.prod.ts`) are selected through the `p
 
 The production build uses `/catalogue`, the GeoNetwork 5 context path in the `sdi-catalogue` Helm chart. At startup the app first reads `config.json`, served by the Docker image, and only falls back to the environment file when it is missing, for example with `ng serve`.
 
+## EEA Website Links
+
+The footer reads its links from the Datahub section of the EEA website (`https://www.eea.europa.eu/++api++/en/datahub/@actions`). The EEA website doesn't let other sites call it from the browser, so the app calls `/eea-website/` on its own host instead. `proxy.config.js` forwards it during development and nginx does it in the Docker image, where answers are cached for an hour. When the EEA website can't be reached the footer shows the copy of the links in `src/app/eea-website/eea-website-links.ts`.
+
+The labels come from the `find.footer.links` translations, keyed by the link id. A link the EEA website adds later shows its English name until it gets a translation.
+
 ## Docker Image
 
 The `Dockerfile` builds the app and serves it with nginx on port 8080. It is deployed by the `sdi-catalogue` Helm chart, where Apache proxies the site root to it (`datahub.enabled`), while GeoNetwork stays under `/catalogue`.
