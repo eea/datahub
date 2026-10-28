@@ -36,6 +36,13 @@ describe('Footer', () => {
     expect(linkText(render(), twitter.url)).toBe('X');
   });
 
+  it('keeps FAQs and Careers without the main contact link', () => {
+    const [faqs] = EEA_WEBSITE_ACTIONS.contact_extra_actions;
+    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_actions: [] });
+
+    expect(linkText(render(), faqs.url)).toBeDefined();
+  });
+
   it("shows the EEA website's name for a link we have no translation for", () => {
     const jobs = { id: 'jobs', title: 'Jobs', url: 'https://www.eea.europa.eu/en/jobs' };
     footer.set({ ...EEA_WEBSITE_ACTIONS, contact_extra_actions: [jobs] });

@@ -16,9 +16,11 @@
       <div
         class="col-span-2 md:col-span-1 flex flex-col items-center md:items-start gap-1.5 text-footer-contact"
       >
-        @if (contacts().main; as main) {
+        @if (contacts().main || links().contact_extra_actions.length) {
           <div class="flex flex-wrap justify-center md:justify-start gap-x-4">
-            <a [href]="main.url" class="font-bold hover:underline">{{ label(main) }}</a>
+            @if (contacts().main; as main) {
+              <a [href]="main.url" class="font-bold hover:underline">{{ label(main) }}</a>
+            }
             @for (link of links().contact_extra_actions; track link.id) {
               <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
             }
