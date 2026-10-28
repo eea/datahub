@@ -36,6 +36,16 @@ describe('Footer', () => {
     expect(linkText(render(), twitter.url)).toBe('X');
   });
 
+  it('labels a link the app does not bundle once it has a translation', () => {
+    const translate = TestBed.inject(TranslateService);
+    translate.setTranslation('en', { find: { footer: { links: { jobs: 'Vacancies' } } } });
+    translate.use('en');
+    const jobs = { id: 'jobs', title: 'Jobs', url: 'https://www.eea.europa.eu/en/jobs' };
+    footer.set({ ...EEA_WEBSITE_ACTIONS, contact_extra_actions: [jobs] });
+
+    expect(linkText(render(), jobs.url)).toBe('Vacancies');
+  });
+
   it('keeps FAQs and Careers without the main contact link', () => {
     const [faqs] = EEA_WEBSITE_ACTIONS.contact_extra_actions;
     footer.set({ ...EEA_WEBSITE_ACTIONS, contact_actions: [] });
