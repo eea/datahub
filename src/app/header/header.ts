@@ -4,13 +4,9 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { Menu } from '@openng/optimus-ui/menu';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-import {
-  EEA_WEBSITE_NAVIGATION,
-  EeaWebsiteLinks,
-  EeaWebsiteNavigationItem,
-} from '../eea-website/eea-website-links';
+import { EeaWebsiteLinks, EeaWebsiteNavigationItem } from '../eea-website/eea-website-links';
 
 const INFORMATION_SYSTEMS = [
   { id: 'eea', url: 'https://www.eea.europa.eu' },
@@ -30,18 +26,11 @@ const INFORMATION_SYSTEMS = [
 const HIDDEN_NAVIGATION = new Set(['about']);
 
 const SYSTEM_KEY_PREFIX = 'find.header.informationSystems.';
-const NAVIGATION_KEY_PREFIX = 'find.header.navigation.';
+const SYSTEM_KEYS = INFORMATION_SYSTEMS.map(({ id }) => SYSTEM_KEY_PREFIX + id);
 
 function slug(item: EeaWebsiteNavigationItem): string {
   return item['@id'].split('/').filter(Boolean).at(-1) ?? '';
 }
-
-const LABEL_KEYS = [
-  ...INFORMATION_SYSTEMS.map(({ id }) => SYSTEM_KEY_PREFIX + id),
-  ...EEA_WEBSITE_NAVIGATION.flatMap((item) => [item, ...(item.items ?? [])])
-    .filter((item) => !HIDDEN_NAVIGATION.has(slug(item)))
-    .map((item) => NAVIGATION_KEY_PREFIX + slug(item)),
-];
 
 @Component({
   selector: 'app-header',
@@ -53,8 +42,15 @@ export class Header {
   private readonly translate = inject(TranslateService);
   private readonly links = inject(EeaWebsiteLinks).header;
 
-  private readonly labels = toSignal(
-    this.translate.stream(LABEL_KEYS) as Observable<Record<string, string>>,
+  private readonly systemLabels = toSignal(
+    this.translate.stream(SYSTEM_KEYS) as Observable<Record<string, string>>,
+    { initialValue: {} as Record<string, string> },
+  );
+
+  private readonly navigationLabels = toSignal(
+    this.translate
+      .stream('find.header.navigation')
+      .pipe(map((labels) => (typeof labels === 'object' ? labels : {}))),
     { initialValue: {} as Record<string, string> },
   );
 
@@ -62,7 +58,7 @@ export class Header {
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({
-      label: this.labels()[SYSTEM_KEY_PREFIX + id],
+      label: this.systemLabels()[SYSTEM_KEY_PREFIX + id],
       url,
       target: '_blank',
     })),
@@ -83,6 +79,6 @@ export class Header {
   }
 
   private label(item: EeaWebsiteNavigationItem): string {
-    return this.labels()[NAVIGATION_KEY_PREFIX + slug(item)] ?? item.title;
+    return this.navigationLabels()[slug(item)] ?? item.title;
   }
 }

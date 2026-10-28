@@ -68,6 +68,20 @@ describe('Header', () => {
     expect(navigationTexts(render())).toEqual(['Our featured data', 'Our data policy', 'News']);
   });
 
+  it('labels a page the app does not bundle once it has a translation', () => {
+    TestBed.inject(TranslateService).setTranslation(
+      'en',
+      { find: { header: { navigation: { news: 'Our news' } } } },
+      true,
+    );
+    header.set([
+      ...EEA_WEBSITE_NAVIGATION,
+      { '@id': 'https://www.eea.europa.eu/en/datahub/news', title: 'News' },
+    ]);
+
+    expect(navigationTexts(render())).toEqual(['Our featured data', 'Our data policy', 'Our news']);
+  });
+
   it('lists the Featured data pages in its menu', async () => {
     const fixture = render();
 
