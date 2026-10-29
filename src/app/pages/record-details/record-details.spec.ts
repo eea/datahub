@@ -6,7 +6,11 @@ import { COLLECTION_ID } from '@geocat/frontend-library';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { EEA_WEBSITE_ACTIONS, EeaWebsiteLinks } from '../../eea-website/eea-website-links';
+import {
+  EEA_WEBSITE_ACTIONS,
+  EEA_WEBSITE_NAVIGATION,
+  EeaWebsiteLinks,
+} from '../../eea-website/eea-website-links';
 import { RecordDetails } from './record-details';
 
 describe('RecordDetails', () => {
@@ -22,7 +26,13 @@ describe('RecordDetails', () => {
         { provide: RecordService, useValue: { getRecord: () => of({ id: uuid }) } },
         { provide: COLLECTION_ID, useValue: 'collection' },
         { provide: BASE_PATH, useValue: '/catalogue' },
-        { provide: EeaWebsiteLinks, useValue: { footer: signal(EEA_WEBSITE_ACTIONS) } },
+        {
+          provide: EeaWebsiteLinks,
+          useValue: {
+            footer: signal(EEA_WEBSITE_ACTIONS),
+            header: signal(EEA_WEBSITE_NAVIGATION),
+          },
+        },
       ],
     }).compileComponents();
   });
