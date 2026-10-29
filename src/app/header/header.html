@@ -1,0 +1,132 @@
+<header class="relative">
+  <div class="bg-header-systems text-header-top text-header-systems-foreground">
+    <div
+      class="max-w-7xl mx-auto px-6 min-h-8.5 flex flex-wrap items-center justify-between gap-x-6"
+    >
+      <button
+        type="button"
+        (click)="officialSite.toggle($event)"
+        aria-haspopup="dialog"
+        class="flex items-center gap-2 cursor-pointer"
+      >
+        <img src="logos/eu-flag.svg" alt="" class="w-9 h-6 object-cover" />
+        {{ 'find.header.official.website' | translate }} |
+        {{ 'find.header.official.howDoYouKnow' | translate }}
+        <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
+      </button>
+      <p-popover #officialSite>
+        <p>{{ 'find.header.official.domain' | translate }}</p>
+        <a
+          href="https://europa.eu/european-union/contact/institutions-bodies_en"
+          target="_blank"
+          rel="noopener"
+          class="font-bold text-primary hover:text-primary-700 hover:underline"
+        >
+          {{ 'find.header.official.institutions' | translate }}
+        </a>
+      </p-popover>
+
+      <div>
+        <button
+          type="button"
+          (click)="systemsMenu.toggle($event)"
+          aria-haspopup="menu"
+          class="flex items-center gap-1 cursor-pointer"
+        >
+          {{ 'find.header.informationSystems.title' | translate }}
+          <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
+        </button>
+        <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+      </div>
+
+      <span class="flex items-center gap-1.5 text-header-language font-bold">
+        <i class="pi pi-globe text-[1.125rem]!" aria-hidden="true"></i>
+        EN
+      </span>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 flex md:h-40">
+    <div class="flex-1 flex flex-wrap items-center md:items-stretch gap-x-5 gap-y-3 py-4 md:py-0">
+      <div class="flex items-center gap-3.5 md:self-start md:mt-5">
+        <a href="https://www.eea.europa.eu/en" class="shrink-0">
+          <img
+            src="logos/eea-logo.svg"
+            [alt]="'find.common.eeaLogo' | translate"
+            class="h-12 md:h-32"
+          />
+        </a>
+        <a
+          routerLink="/home"
+          class="border-l border-primary pl-3.5 py-0.5 text-header-title font-bold text-primary"
+        >
+          {{ 'find.appName' | translate }}
+        </a>
+      </div>
+
+      <nav
+        class="md:ml-auto md:self-end"
+        [attr.aria-label]="'find.header.navigationLabel' | translate"
+      >
+        <ul class="flex flex-wrap gap-5 text-header-navigation font-medium text-primary-600">
+          @for (item of navigation(); track item.url) {
+            <li class="px-2 py-0.5">
+              @if (item.items.length) {
+                <button
+                  type="button"
+                  (click)="toggleMenu(item.url)"
+                  [attr.aria-expanded]="openMenu() === item.url"
+                  aria-controls="header-menu"
+                  class="border-b-4 border-transparent hover:underline cursor-pointer"
+                >
+                  {{ item.label }}
+                </button>
+              } @else {
+                <a [href]="item.url" class="block border-b-4 border-transparent hover:underline">
+                  {{ item.label }}
+                </a>
+              }
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <button
+      type="button"
+      [attr.aria-label]="'find.common.search' | translate"
+      class="ml-5 md:ml-10 w-14 md:w-18 flex items-center justify-center bg-primary"
+    >
+      <img src="icons/ai-search.svg" alt="" class="size-8 md:size-11.25" />
+    </button>
+  </div>
+
+  @if (openItem(); as item) {
+    <div
+      id="header-menu"
+      class="absolute inset-x-0 top-full z-50 py-4 bg-header-menu text-header-menu-foreground"
+    >
+      <div class="max-w-7xl mx-auto px-6 pt-8 pb-4">
+        <a
+          [href]="item.url"
+          class="inline-flex items-center gap-2 py-3 pl-7 pr-5 leading-4 font-medium inset-ring-2 inset-ring-current"
+        >
+          {{ 'find.header.menuOverview' | translate: { label: item.label } }}
+          <i class="pi pi-arrow-right" aria-hidden="true"></i>
+        </a>
+        <ul class="mt-9 grid md:grid-cols-4 gap-x-5">
+          @for (child of item.items; track child.url) {
+            <li>
+              <a
+                [href]="child.url"
+                class="block py-2 text-header-menu-link font-bold hover:underline"
+              >
+                {{ child.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+</header>
