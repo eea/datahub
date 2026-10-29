@@ -19,6 +19,7 @@ import { Message } from '@openng/optimus-ui/message';
 import { Observable, of } from 'rxjs';
 
 import { Footer } from '../../footer/footer';
+import { Header } from '../../header/header';
 
 @Component({
   selector: 'app-record-details',
@@ -30,6 +31,7 @@ import { Footer } from '../../footer/footer';
     RecordFieldTitle,
     RecordSkeleton,
     Footer,
+    Header,
   ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
