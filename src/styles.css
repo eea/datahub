@@ -34,6 +34,10 @@
   --color-footer-start: var(--p-footer-background-start);
   --color-footer-end: var(--p-footer-background-end);
   --color-footer-foreground: var(--p-footer-color);
+  --color-header-systems: var(--p-header-systems-background);
+  --color-header-systems-foreground: var(--p-header-systems-color);
+  --color-header-menu: var(--p-header-menu-background);
+  --color-header-menu-foreground: var(--p-header-menu-color);
   --text-base: var(--p-font-size-base);
   --text-body: var(--p-font-size-body);
   --text-h1: var(--p-font-size-h1);
@@ -44,6 +48,11 @@
   --text-h3--font-weight: var(--p-font-weight-h3);
   --text-footer-contact: var(--p-font-size-footer-contact);
   --text-footer-button: var(--p-font-size-footer-button);
+  --text-header-top: var(--p-font-size-header-top);
+  --text-header-language: var(--p-font-size-header-language);
+  --text-header-title: var(--p-font-size-header-title);
+  --text-header-navigation: var(--p-font-size-header-navigation);
+  --text-header-menu-link: var(--p-font-size-header-menu-link);
   --text-label: var(--p-font-size-label);
   --text-lead: var(--p-font-size-lead);
   --text-paragraph: var(--p-font-size-paragraph);
@@ -64,6 +73,12 @@
   --text-h3--line-height: 1.18;
   --text-footer-contact--line-height: 1.2;
   --text-footer-button--line-height: 1.2;
+  --text-header-top--line-height: 1.2;
+  --text-header-language--line-height: 1.2;
+  --text-header-title--line-height: 1.2;
+  --text-header-title--letter-spacing: -0.015em;
+  --text-header-navigation--line-height: 1.2;
+  --text-header-menu-link--line-height: 1.5;
   --text-label--line-height: 1.5;
   --text-lead--line-height: 1.5;
   --text-paragraph--line-height: 1.5;
