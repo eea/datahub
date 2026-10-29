@@ -15,9 +15,13 @@ import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
-import { DomainTree } from '../../domain-tree/domain-tree';
-import { FACETS_ONLY_PAGE_SIZE } from '../../facets-only';
 import { Footer } from '../../footer/footer';
+
+/**
+ * The landing panel needs facet options and counts but shows no results, so it asks for the
+ * smallest page the API will serve and keeps only the facets.
+ */
+const FACETS_ONLY_PAGE_SIZE = 1;
 
 @Component({
   selector: 'app-landing',
@@ -28,7 +32,6 @@ import { Footer } from '../../footer/footer';
     DialogModule,
     InputTextModule,
     TranslatePipe,
-    DomainTree,
     Footer,
   ],
   templateUrl: './landing.html',
