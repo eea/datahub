@@ -100,6 +100,7 @@
         "statistical-data": "Statistical data",
         "eea-data-policy": "EEA data policy"
       },
+      "menuOverview": "{{label}} overview",
       "navigationLabel": "Datahub navigation",
       "official": {
         "website": "An official website of the European Union",

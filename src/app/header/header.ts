@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { Menu } from '@openng/optimus-ui/menu';
+import { Popover } from '@openng/optimus-ui/popover';
 
 import { EeaWebsiteLinks, EeaWebsiteNavigationItem } from '../eea-website/eea-website-links';
 import { translatedLabels } from '../eea-website/translated-labels';
@@ -30,17 +38,22 @@ function slug(item: EeaWebsiteNavigationItem): string {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, TranslatePipe, Menu],
+  imports: [RouterLink, TranslatePipe, Menu, Popover],
   templateUrl: './header.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:click)': 'closeMenuOnOutsideClick($event)',
+    '(document:keydown.escape)': 'openMenu.set(null)',
+  },
 })
 export class Header {
   private readonly links = inject(EeaWebsiteLinks).header;
+  private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
 
   private readonly systemLabels = translatedLabels('find.header.informationSystems');
   private readonly navigationLabels = translatedLabels('find.header.navigation');
 
-  protected readonly officialSiteInfoOpen = signal(false);
+  protected readonly openMenu = signal<string | null>(null);
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({
@@ -60,8 +73,18 @@ export class Header {
       })),
   );
 
-  protected toggleOfficialSiteInfo(): void {
-    this.officialSiteInfoOpen.update((open) => !open);
+  protected readonly openItem = computed(() =>
+    this.navigation().find((item) => item.url === this.openMenu()),
+  );
+
+  protected toggleMenu(url: string): void {
+    this.openMenu.update((open) => (open === url ? null : url));
+  }
+
+  protected closeMenuOnOutsideClick(event: MouseEvent): void {
+    if (!this.host.nativeElement.contains(event.target as Node)) {
+      this.openMenu.set(null);
+    }
   }
 
   private label(item: EeaWebsiteNavigationItem): string {

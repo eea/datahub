@@ -21,8 +21,10 @@ describe('Header', () => {
     );
   }
 
-  function menuLinks(): HTMLAnchorElement[] {
-    return Array.from(document.querySelectorAll<HTMLAnchorElement>('.p-menu a'));
+  function menuLinks(fixture: ComponentFixture<Header>): string[] {
+    return Array.from<HTMLAnchorElement>(
+      fixture.nativeElement.querySelectorAll('#header-menu a'),
+    ).map((link) => link.getAttribute('href') ?? '');
   }
 
   async function click(fixture: ComponentFixture<Header>, element: HTMLElement): Promise<void> {
@@ -82,26 +84,35 @@ describe('Header', () => {
     expect(navigationTexts(render())).toEqual(['Our featured data', 'Our data policy', 'Our news']);
   });
 
-  it('lists the Featured data pages in its menu', async () => {
+  it('opens a panel with the Featured data overview and its pages', async () => {
     const fixture = render();
 
     await click(fixture, fixture.nativeElement.querySelector('nav button'));
 
-    expect(menuLinks().map((link) => link.getAttribute('href'))).toEqual([
+    expect(menuLinks(fixture)).toEqual([
+      'https://www.eea.europa.eu/en/datahub/featured-data',
       'https://www.eea.europa.eu/en/datahub/featured-data/copernicus-data',
       'https://www.eea.europa.eu/en/datahub/featured-data/statistical-data',
     ]);
   });
 
+  it('closes the Featured data panel on Escape', async () => {
+    const fixture = render();
+    await click(fixture, fixture.nativeElement.querySelector('nav button'));
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+
+    expect(menuLinks(fixture)).toEqual([]);
+  });
+
   it('explains how to recognise an official EU website', async () => {
     const fixture = render();
-    const howDoYouKnow: HTMLElement = fixture.nativeElement.querySelector(
-      'button[aria-controls="official-site-info"]',
+
+    await click(fixture, fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]'));
+
+    expect(document.querySelector('.p-popover')?.textContent).toContain(
+      'find.header.official.domain',
     );
-
-    await click(fixture, howDoYouKnow);
-
-    expect(howDoYouKnow.getAttribute('aria-expanded')).toBe('true');
-    expect(fixture.nativeElement.querySelector('#official-site-info')).not.toBeNull();
   });
 });

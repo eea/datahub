@@ -34,10 +34,10 @@
   --color-footer-start: var(--p-footer-background-start);
   --color-footer-end: var(--p-footer-background-end);
   --color-footer-foreground: var(--p-footer-color);
-  --color-header-official: var(--p-header-official-background);
   --color-header-systems: var(--p-header-systems-background);
   --color-header-systems-foreground: var(--p-header-systems-color);
-  --color-header-separator: var(--p-header-separator-color);
+  --color-header-menu: var(--p-header-menu-background);
+  --color-header-menu-foreground: var(--p-header-menu-color);
   --text-base: var(--p-font-size-base);
   --text-body: var(--p-font-size-body);
   --text-h1: var(--p-font-size-h1);
