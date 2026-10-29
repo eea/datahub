@@ -117,7 +117,10 @@
         <ul class="mt-9 grid md:grid-cols-4 gap-x-5">
           @for (child of item.items; track child.url) {
             <li>
-              <a [href]="child.url" class="block py-2 text-xl font-bold hover:underline">
+              <a
+                [href]="child.url"
+                class="block py-2 text-header-menu-link font-bold hover:underline"
+              >
                 {{ child.label }}
               </a>
             </li>

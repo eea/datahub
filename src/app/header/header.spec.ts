@@ -27,6 +27,12 @@ describe('Header', () => {
     ).map((link) => link.getAttribute('href') ?? '');
   }
 
+  function featuredDataButton(fixture: ComponentFixture<Header>): HTMLElement {
+    return Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('nav button')).find(
+      (button) => button.textContent?.trim() === 'Our featured data',
+    )!;
+  }
+
   async function click(fixture: ComponentFixture<Header>, element: HTMLElement): Promise<void> {
     element.click();
     fixture.detectChanges();
@@ -87,7 +93,7 @@ describe('Header', () => {
   it('opens a panel with the Featured data overview and its pages', async () => {
     const fixture = render();
 
-    await click(fixture, fixture.nativeElement.querySelector('nav button'));
+    await click(fixture, featuredDataButton(fixture));
 
     expect(menuLinks(fixture)).toEqual([
       'https://www.eea.europa.eu/en/datahub/featured-data',
@@ -98,7 +104,7 @@ describe('Header', () => {
 
   it('closes the Featured data panel on Escape', async () => {
     const fixture = render();
-    await click(fixture, fixture.nativeElement.querySelector('nav button'));
+    await click(fixture, featuredDataButton(fixture));
 
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();

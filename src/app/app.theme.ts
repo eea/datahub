@@ -168,6 +168,7 @@ const AppTheme = definePreset(Aura, {
         language: '1rem',
         title: '2rem',
         navigation: '1.125rem',
+        menuLink: '1.25rem',
       },
     },
     fontWeight: {
