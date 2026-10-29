@@ -31,7 +31,9 @@ pipeline {
                 // Passed as a BuildKit secret read from the environment, so the token never ends up
                 // in the command line, the build log or the image.
                 withCredentials([string(credentialsId: 'eea-datahub-github-packages-token', variable: 'GITHUB_PACKAGES_AUTH_TOKEN')]) {
-                    dockerImage = docker.build("$registry:$tagName", "--pull --no-cache --secret id=npm_token,env=GITHUB_PACKAGES_AUTH_TOKEN .")
+                    def sourceUrl = env.GIT_URL.replaceAll(/\.git$/, '')
+                    def buildDate = sh(returnStdout: true, script: 'date -u +%Y-%m-%dT%H:%M:%SZ').trim()
+                    dockerImage = docker.build("$registry:$tagName", "--pull --no-cache --label org.opencontainers.image.source=${sourceUrl} --label org.opencontainers.image.revision=${GIT_COMMIT} --label org.opencontainers.image.created=${buildDate} --label org.opencontainers.image.version=${tagName} --secret id=npm_token,env=GITHUB_PACKAGES_AUTH_TOKEN .")
                 }
                 docker.withRegistry( '', 'eeajenkins' ) {
                     dockerImage.push()
