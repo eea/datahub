@@ -17,7 +17,7 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
 import { DomainTree } from '../../domain-tree/domain-tree';
 import { FACETS_ONLY_PAGE_SIZE } from '../../facets-only';
-import { seriesOnly } from '../../series-only';
+import { Footer } from '../../footer/footer';
 
 @Component({
   selector: 'app-landing',
@@ -29,6 +29,7 @@ import { seriesOnly } from '../../series-only';
     InputTextModule,
     TranslatePipe,
     DomainTree,
+    Footer,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,7 +64,7 @@ export class Landing implements OnInit {
 
   private refreshFacets(): void {
     this.searchService
-      .search(seriesOnly(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE)))
+      .search(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (!result.failed) this.searchState.applyFacets(result.facets);

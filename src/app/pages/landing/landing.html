@@ -24,11 +24,9 @@
       (search)="onSearch()"
       (filtersChange)="onFiltersChange()"
     ></app-search-panel>
-    <img
-      src="placeholders/intro.webp"
-      [alt]="'find.landing.placeholder.intro' | translate"
-      class="w-full"
-    />
+    <p class="border-l-8 border-primary-700 px-7 py-2.5 text-lead">
+      {{ 'find.landing.intro' | translate }}
+    </p>
     <img
       src="placeholders/topics.webp"
       [alt]="'find.landing.placeholder.topics' | translate"
@@ -61,17 +59,7 @@
     />
   </div>
 
-  <footer
-    class="bg-[image:linear-gradient(#1a3d42,#202e39_33%,#222d38_67%),linear-gradient(#02796b,#134f4f)] bg-size-[50%_100%] bg-position-[left,right] bg-no-repeat"
-  >
-    <div class="max-w-7xl mx-auto px-6">
-      <img
-        src="placeholders/footer.webp"
-        [alt]="'find.common.placeholder.footer' | translate"
-        class="w-full"
-      />
-    </div>
-  </footer>
+  <app-footer />
 </div>
 
 <p-dialog
