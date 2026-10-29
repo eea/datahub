@@ -26,3 +26,8 @@ COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist/eea-datahub/browser /usr/share/nginx/html
 
 EXPOSE 8080
+
+# source, revision, created and version are added by the Jenkinsfile with
+# `docker build --label`.
+LABEL org.opencontainers.image.title="EEA DataHub" \
+      org.opencontainers.image.description="EEA DataHub Angular UI served by nginx"
