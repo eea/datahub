@@ -26,3 +26,13 @@ COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist/eea-datahub/browser /usr/share/nginx/html
 
 EXPOSE 8080
+
+# source, revision, created and version are added by the Jenkinsfile with
+# `docker build --label`.
+# maintainer, url and licenses override the ones inherited from the nginx
+# base image. licenses is empty until the project declares a license.
+LABEL maintainer="European Environment Agency" \
+      org.opencontainers.image.title="EEA DataHub" \
+      org.opencontainers.image.description="EEA DataHub Angular UI served by nginx" \
+      org.opencontainers.image.url="https://github.com/eea/datahub" \
+      org.opencontainers.image.licenses=""
