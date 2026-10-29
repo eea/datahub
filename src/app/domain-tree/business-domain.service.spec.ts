@@ -34,84 +34,71 @@ describe('BusinessDomainService', () => {
   const queryOf = ({ params }: HttpRequest<unknown>) =>
     Object.fromEntries(params.keys().map((key) => [key, params.get(key)]));
 
-  it('asks for the business domain facet of series only', () => {
-    const { request } = respond(service().domains(), { features: [] });
+  const businessDomain = (name: string) => ({
+    scheme:
+      'https://sdi.eea.europa.eu/catalogue/srv/api/registries/vocabularies/external.theme.eea-business-domains',
+    concepts: [{ id: name }],
+  });
+
+  const snowAndIce = { name: 'Snow & Ice', path: 'Freshwater & Water Management^Snow & Ice' };
+
+  it('lists the business domains with their subdomains', async () => {
+    const domains = await firstValueFrom(service().domains());
+
+    expect(domains.map((domain) => domain.name)).toContain('Freshwater & Water Management');
+    expect(domains.flatMap((domain) => domain.subdomains)).toContainEqual(snowAndIce);
+  });
+
+  it('asks for the series with the subdomain as keyword, sorted by title', () => {
+    const { request } = respond(service().series(snowAndIce), { features: [] });
 
     expect(queryOf(request)).toEqual({
-      limit: '1',
+      limit: '100',
       offset: '0',
-      filter: "resourceType = 'series'",
-      facets: 'eeaBusinessDomain',
+      sortby: 'resourceTitleObject',
+      filter: "resourceType = 'series' AND keywords = 'Snow & Ice'",
+      facets: '',
     });
     expect(request.headers.get('Accept')).toBe('application/json');
   });
 
-  it('groups the subdomain buckets under their domain, both sorted by name', async () => {
-    const { result } = respond(service().domains(), {
-      features: [],
-      facets: {
-        eeaBusinessDomain: {
-          buckets: [
-            { value: 'Water', count: 3 },
-            { value: 'Water^Snow & Ice', count: 1 },
-            { value: 'Air', count: 4 },
-            { value: 'Water^Floods & Droughts', count: 2 },
-            { value: 'Air^Noise', count: 4 },
-          ],
+  it('keeps only the series whose business domain is the subdomain', async () => {
+    const { result } = respond(service().series(snowAndIce), {
+      features: [
+        {
+          id: 'a',
+          properties: { title: 'Lake ice phenology', themes: [businessDomain('Snow & Ice')] },
         },
-      },
+        { id: 'b', properties: { themes: [businessDomain('Snow & Ice')] } },
+        {
+          id: 'c',
+          properties: {
+            title: 'Snow cover',
+            themes: [{ scheme: 'external.theme.gemet', concepts: [{ id: 'Snow & Ice' }] }],
+          },
+        },
+        {
+          id: 'd',
+          properties: { title: 'Glaciers', themes: [businessDomain('Floods & Droughts')] },
+        },
+        { id: 'e', properties: { title: 'Sea ice' } },
+      ],
     });
-
-    expect(await result).toEqual([
-      { name: 'Air', subdomains: [{ name: 'Noise', path: 'Air^Noise', seriesCount: 4 }] },
-      {
-        name: 'Water',
-        subdomains: [
-          { name: 'Floods & Droughts', path: 'Water^Floods & Droughts', seriesCount: 2 },
-          { name: 'Snow & Ice', path: 'Water^Snow & Ice', seriesCount: 1 },
-        ],
-      },
-    ]);
-  });
-
-  it('has no domains when the backend does not serve the facet', async () => {
-    const { result } = respond(service().domains(), { features: [], facets: {} });
-
-    expect(await result).toEqual([]);
-  });
-
-  it('lists every series of a subdomain by its full path, sorted by title', async () => {
-    const { request, result } = respond(
-      service().series({ name: 'Snow & Ice', path: 'Water^Snow & Ice', seriesCount: 2 }),
-      {
-        features: [
-          { id: 'a', properties: { title: 'Lake ice phenology' } },
-          { id: 'b', properties: {} },
-        ],
-      },
-    );
 
     expect(await result).toEqual([
       { id: 'a', title: 'Lake ice phenology' },
       { id: 'b', title: 'b' },
     ]);
-    expect(queryOf(request)).toEqual({
-      limit: '2',
-      offset: '0',
-      sortby: 'resourceTitleObject',
-      filter: "resourceType = 'series' AND eeaBusinessDomain = 'Water^Snow & Ice'",
-      facets: '',
-    });
   });
 
-  it('escapes quotes in the path of a subdomain', () => {
+  it('escapes quotes in the name of a subdomain', () => {
     const { request } = respond(
-      service().series({ name: "Europe's air", path: "Air^Europe's air", seriesCount: 1 }),
+      service().series({ name: "Europe's air", path: "Air^Europe's air" }),
       { features: [] },
     );
 
     expect(request.params.get('filter')).toBe(
-      "resourceType = 'series' AND eeaBusinessDomain = 'Air^Europe''s air'",
+      "resourceType = 'series' AND keywords = 'Europe''s air'",
     );
   });
 });

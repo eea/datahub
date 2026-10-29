@@ -8,10 +8,10 @@ import { BusinessDomain, BusinessDomainService } from './business-domain.service
 import { DomainTree } from './domain-tree';
 
 const DOMAINS: BusinessDomain[] = [
-  { name: 'Air', subdomains: [{ name: 'Noise', path: 'Air^Noise', seriesCount: 1 }] },
+  { name: 'Air', subdomains: [{ name: 'Noise', path: 'Air^Noise' }] },
   {
     name: 'Water',
-    subdomains: [{ name: 'Snow & Ice', path: 'Water^Snow & Ice', seriesCount: 2 }],
+    subdomains: [{ name: 'Snow & Ice', path: 'Water^Snow & Ice' }],
   },
 ];
 
