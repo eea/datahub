@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
@@ -18,7 +18,7 @@ export const appConfig = (geonetworkApiUrl: string): ApplicationConfig => ({
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withXhr(), withInterceptors(environment.httpInterceptors)),
+    provideHttpClient(withXhr()),
     provideApi(geonetworkApiUrl),
     { provide: COLLECTION_ID, useValue: environment.collectionId },
     { provide: SearchService, useClass: SeriesOnlySearchService },
