@@ -69,12 +69,13 @@ describe('Footer', () => {
     expect(missing).toEqual([]);
   });
 
-  it('shows Bluesky as an icon with its name for screen readers', () => {
-    const bluesky: HTMLAnchorElement = render().nativeElement.querySelector(
-      'a[href="https://bsky.app/profile/eea.europa.eu"]',
-    );
+  it('shows every social link as an icon with its name for screen readers', () => {
+    const fixture = render();
 
-    expect(bluesky.querySelector('svg')).not.toBeNull();
-    expect(bluesky.querySelector('.sr-only')).not.toBeNull();
+    const withoutIcon = EEA_WEBSITE_ACTIONS.social_actions.filter(({ url }) => {
+      const link: HTMLAnchorElement = fixture.nativeElement.querySelector(`a[href="${url}"]`);
+      return !link.querySelector('svg path[d]') || !link.querySelector('.sr-only');
+    });
+    expect(withoutIcon).toEqual([]);
   });
 });
