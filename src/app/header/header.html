@@ -94,13 +94,13 @@
       </nav>
     </div>
 
-    <button
-      type="button"
+    <a
+      routerLink="/search"
       [attr.aria-label]="'find.common.search' | translate"
       class="ml-5 md:ml-10 w-14 md:w-18 flex items-center justify-center bg-primary"
     >
       <img src="icons/ai-search.svg" alt="" class="size-8 md:size-11.25" />
-    </button>
+    </a>
   </div>
 
   @if (openItem(); as item) {

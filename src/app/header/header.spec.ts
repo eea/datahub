@@ -112,6 +112,12 @@ describe('Header', () => {
     expect(menuLinks(fixture)).toEqual([]);
   });
 
+  it('links the search button to the search page', () => {
+    const search = render().nativeElement.querySelector('a[aria-label="find.common.search"]');
+
+    expect(search.getAttribute('href')).toBe('/search');
+  });
+
   it('explains how to recognise an official EU website', async () => {
     const fixture = render();
 
