@@ -18,6 +18,7 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { Share } from '../../share/share';
 
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
@@ -37,6 +38,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
     DomainTree,
     Footer,
     Header,
+    Share,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

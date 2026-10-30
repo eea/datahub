@@ -1,45 +1,55 @@
 <header class="relative">
   <div class="bg-header-systems text-header-top text-header-systems-foreground">
     <div
-      class="max-w-7xl mx-auto px-6 min-h-8.5 flex flex-wrap items-center justify-between gap-x-6"
+      class="max-w-7xl mx-auto px-6 min-h-8.5 flex flex-wrap items-center justify-between gap-x-6 font-bold"
     >
-      <button
-        type="button"
-        (click)="officialSite.toggle($event)"
-        aria-haspopup="dialog"
-        class="flex items-center gap-2 cursor-pointer"
-      >
-        <img src="logos/eu-flag.svg" alt="" class="w-9 h-6 object-cover" />
-        {{ 'find.header.official.website' | translate }} |
-        {{ 'find.header.official.howDoYouKnow' | translate }}
-        <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
-      </button>
-      <p-popover #officialSite>
-        <p>{{ 'find.header.official.domain' | translate }}</p>
-        <a
-          href="https://europa.eu/european-union/contact/institutions-bodies_en"
-          target="_blank"
-          rel="noopener"
-          class="font-bold text-primary hover:text-primary-700 hover:underline"
+      <div>
+        <button
+          type="button"
+          (click)="officialSite.toggle($event)"
+          aria-haspopup="dialog"
+          [attr.aria-expanded]="officialSite.overlayVisible"
+          class="flex items-center gap-2 cursor-pointer"
         >
-          {{ 'find.header.official.institutions' | translate }}
-        </a>
-      </p-popover>
+          <img src="logos/eu-flag.svg" alt="" class="w-9 h-6 object-cover" />
+          {{ 'find.header.official.website' | translate }} |
+          {{ 'find.header.official.howDoYouKnow' | translate }}
+          <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
+        </button>
+        <p-popover #officialSite styleClass="text-header-top">
+          <p>{{ 'find.header.official.domain' | translate }}</p>
+          <a
+            href="https://europa.eu/european-union/contact/institutions-bodies_en"
+            target="_blank"
+            rel="noopener"
+            class="font-bold text-primary hover:text-primary-700 hover:underline"
+          >
+            {{ 'find.header.official.institutions' | translate }}
+          </a>
+        </p-popover>
+      </div>
 
       <div>
         <button
           type="button"
           (click)="systemsMenu.toggle($event)"
           aria-haspopup="menu"
+          [attr.aria-expanded]="systemsMenu.overlayVisible"
           class="flex items-center gap-1 cursor-pointer"
         >
           {{ 'find.header.informationSystems.title' | translate }}
           <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
         </button>
-        <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+        <p-menu
+          #systemsMenu
+          [model]="informationSystems()"
+          [popup]="true"
+          appendTo="body"
+          styleClass="text-header-top"
+        />
       </div>
 
-      <span class="flex items-center gap-1.5 text-header-language font-bold">
+      <span class="flex items-center gap-1.5 text-header-language">
         <i class="pi pi-globe text-[1.125rem]!" aria-hidden="true"></i>
         EN
       </span>
@@ -92,13 +102,13 @@
       </nav>
     </div>
 
-    <button
-      type="button"
+    <a
+      routerLink="/search"
       [attr.aria-label]="'find.common.search' | translate"
       class="ml-5 md:ml-10 w-14 md:w-18 flex items-center justify-center bg-primary"
     >
       <img src="icons/ai-search.svg" alt="" class="size-8 md:size-11.25" />
-    </button>
+    </a>
   </div>
 
   @if (openItem(); as item) {
