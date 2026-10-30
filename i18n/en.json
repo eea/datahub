@@ -131,6 +131,15 @@
         "submitting": "Signing in...",
         "subtitle": "Enter your credentials to access your services",
         "title": "Sign In"
+      },
+      "topics": {
+        "empty": "No topics found.",
+        "failed": "The topics could not be loaded.",
+        "intro": "Browse through our in-depth topics to get an overview of the issue at stake, a set of key facts and EU action. They also highlight some of the most relevant assessments, outputs and events, as well as access to other platforms, providing more detailed information on the topic.",
+        "loading": "Loading...",
+        "name": "Name",
+        "seriesFailed": "The series could not be loaded.",
+        "title": "All topics"
       }
     },
     "recordDetails": {

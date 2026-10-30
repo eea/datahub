@@ -1,0 +1,50 @@
+@if (state().status === 'failed') {
+  <p-message severity="error">{{ 'find.landing.topics.failed' | translate }}</p-message>
+} @else {
+  <p-treetable
+    class="block border border-border text-paragraph"
+    [value]="nodes()"
+    [loading]="state().status === 'loading'"
+    [rowTrackBy]="trackByKey"
+    (onNodeExpand)="expand($event.node)"
+    (onNodeCollapse)="collapse($event.node)"
+  >
+    <ng-template #header>
+      <tr>
+        <th>{{ 'find.landing.topics.name' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-rowNode let-row="rowData">
+      <tr [ttRow]="rowNode" [class]="rowClass(rowNode.node)" (click)="toggle($event, rowNode.node)">
+        <td>
+          <div class="flex items-center gap-2">
+            <p-treetable-toggler [rowNode]="rowNode" />
+            @switch (row.kind) {
+              @case ('series') {
+                <a
+                  [routerLink]="['/', recordSlug, row.id]"
+                  class="text-paragraph-small text-primary hover:underline"
+                >
+                  {{ row.label }}
+                </a>
+              }
+              @case ('message') {
+                <span class="text-muted-foreground">{{ row.label | translate }}</span>
+              }
+              @default {
+                <span [class.font-medium]="row.kind === 'domain'">{{ row.label }}</span>
+              }
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      @if (state().status === 'loaded') {
+        <tr>
+          <td>{{ 'find.landing.topics.empty' | translate }}</td>
+        </tr>
+      }
+    </ng-template>
+  </p-treetable>
+}

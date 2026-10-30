@@ -1,0 +1,57 @@
+export const SUBDOMAINS_BY_DOMAIN: Record<string, string[]> = {
+  'Biodiversity & Ecosystems': [
+    'Ecosystem Condition & Restoration',
+    'Habitats & Ecosystems',
+    'Invasive Alien Species',
+    'Protected Areas',
+    'Species',
+  ],
+  'Circular Economy, Resources & Clean Industry': [
+    'Production & Industry',
+    'Products & Consumption',
+    'Secondary Materials & Circularity',
+  ],
+  'Climate Change Impacts, Risks & Adaptation': [
+    'Adaptation & Resilience',
+    'Climate Hazards & Extremes',
+    'Climate Impacts & Vulnerability',
+    'Climate Risk',
+  ],
+  'Climate Change Mitigation & Energy': [
+    'Energy Production & Supply',
+    'Energy Transition & Decarbonisation',
+    'Energy Use & Efficiency',
+    'Greenhouse Gas Emissions',
+    'Mitigation Finance',
+  ],
+  'Freshwater & Water Management': [
+    'Floods & Droughts',
+    'Snow & Ice',
+    'Water Bodies & Ecological Status',
+    'Water Quality & Pollution',
+    'Water Resources & Hydrology',
+    'Water Use, Supply & Sanitation',
+  ],
+  'Land, Agriculture, Soil & Forestry': [
+    'Agriculture & Food Systems',
+    'Forests & Forestry',
+    'Land Cover & Land Use',
+    'Soil',
+    'Urban & Settlement Structure',
+  ],
+  'Marine, Coastal & Fisheries': [
+    'Coastal Systems',
+    'Marine Ecosystems & Biodiversity',
+    'Marine Pressures & Pollution',
+    'Marine Use & Management',
+  ],
+  'Pollution & Environmental Health': [
+    'Air Pollutant Emissions',
+    'Air Quality',
+    'Chemicals',
+    'Environmental Exposure & Health',
+    'Environmental Noise',
+  ],
+  'Reference Data': ['Administrative Boundaries', 'Basemaps', 'Elevation', 'Reference Grids'],
+  'Transport & Mobility': ['Maritime & Inland Waterway Transport', 'Road Transport'],
+};

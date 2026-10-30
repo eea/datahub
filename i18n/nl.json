@@ -81,6 +81,15 @@
         "submitting": "Bezig met aanmelden...",
         "subtitle": "Voer uw gegevens in om toegang te krijgen tot uw services",
         "title": "Aanmelden"
+      },
+      "topics": {
+        "empty": "Geen onderwerpen gevonden.",
+        "failed": "De onderwerpen konden niet worden geladen.",
+        "intro": "Blader door onze uitgebreide onderwerpen voor een overzicht van wat er op het spel staat, de belangrijkste feiten en het EU-beleid. Ze belichten ook enkele van de meest relevante beoordelingen, publicaties en evenementen en geven toegang tot andere platforms met meer gedetailleerde informatie over het onderwerp.",
+        "loading": "Laden...",
+        "name": "Naam",
+        "seriesFailed": "De series konden niet worden geladen.",
+        "title": "Alle onderwerpen"
       }
     },
     "recordDetails": {

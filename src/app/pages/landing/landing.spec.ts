@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import en from '../../../../i18n/en.json';
 import fr from '../../../../i18n/fr.json';
 import nl from '../../../../i18n/nl.json';
+import { BusinessDomainService } from '../../domain-tree/business-domain.service';
 import { Landing } from './landing';
 
 describe('Landing', () => {
@@ -23,8 +24,22 @@ describe('Landing', () => {
         provideHttpClientTesting(),
         provideTranslateService(),
         { provide: SearchService, useValue: { search } },
+        { provide: BusinessDomainService, useValue: { domains: () => of([]) } },
       ],
     }).compileComponents();
+  });
+
+  it('shows all topics as a tree', () => {
+    const fixture = TestBed.createComponent(Landing);
+    fixture.detectChanges();
+
+    const section: HTMLElement = fixture.nativeElement.querySelector(
+      'section[aria-labelledby="all-topics-title"]',
+    );
+    expect(section.querySelector('#all-topics-title')?.textContent?.trim()).toBe(
+      'find.landing.topics.title',
+    );
+    expect(section.querySelector('app-domain-tree')).not.toBeNull();
   });
 
   it.each([

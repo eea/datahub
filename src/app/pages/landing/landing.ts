@@ -15,6 +15,7 @@ import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 
@@ -33,6 +34,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
     DialogModule,
     InputTextModule,
     TranslatePipe,
+    DomainTree,
     Footer,
     Header,
   ],

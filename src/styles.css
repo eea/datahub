@@ -55,6 +55,8 @@
   --text-header-menu-link: var(--p-font-size-header-menu-link);
   --text-label: var(--p-font-size-label);
   --text-lead: var(--p-font-size-lead);
+  --text-paragraph: var(--p-font-size-paragraph);
+  --text-paragraph-small: var(--p-font-size-paragraph-small);
   --radius-md: var(--p-content-border-radius);
 }
 
@@ -79,6 +81,8 @@
   --text-header-menu-link--line-height: 1.5;
   --text-label--line-height: 1.5;
   --text-lead--line-height: 1.5;
+  --text-paragraph--line-height: 1.5;
+  --text-paragraph-small--line-height: 1.5;
 }
 
 :root {
