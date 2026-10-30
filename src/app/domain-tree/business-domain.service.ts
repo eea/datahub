@@ -50,7 +50,7 @@ export class BusinessDomainService {
           .filter((record) =>
             (record.properties.themes ?? []).some(
               (theme) =>
-                theme.scheme.endsWith(BUSINESS_DOMAIN_SCHEME) &&
+                theme.scheme?.endsWith(BUSINESS_DOMAIN_SCHEME) &&
                 theme.concepts.some((concept) => concept.id === subdomain.name),
             ),
           )

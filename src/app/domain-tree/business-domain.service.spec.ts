@@ -91,6 +91,23 @@ describe('BusinessDomainService', () => {
     ]);
   });
 
+  it('skips a record whose themes lack a scheme', async () => {
+    const { result } = respond(service().series(snowAndIce), {
+      features: [
+        {
+          id: 'a',
+          properties: { title: 'No scheme', themes: [{ concepts: [{ id: 'Snow & Ice' }] }] },
+        },
+        {
+          id: 'b',
+          properties: { title: 'Lake ice phenology', themes: [businessDomain('Snow & Ice')] },
+        },
+      ],
+    });
+
+    expect(await result).toEqual([{ id: 'b', title: 'Lake ice phenology' }]);
+  });
+
   it('finds no series when GN5 leaves out an empty features list', async () => {
     const { result } = respond(service().series(snowAndIce), {
       type: 'FeatureCollection',
