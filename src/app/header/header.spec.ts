@@ -120,11 +120,27 @@ describe('Header', () => {
 
   it('explains how to recognise an official EU website', async () => {
     const fixture = render();
+    const button = fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]');
 
-    await click(fixture, fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]'));
+    expect(button.getAttribute('aria-expanded')).toBe('false');
 
-    expect(document.querySelector('.p-popover')?.textContent).toContain(
-      'find.header.official.domain',
-    );
+    await click(fixture, button);
+
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    const popover = document.querySelector('.p-popover');
+    expect(popover?.textContent).toContain('find.header.official.domain');
+    expect(popover?.classList).toContain('text-header-top');
+  });
+
+  it('lists the information systems in the top bar size', async () => {
+    const fixture = render();
+    const button = fixture.nativeElement.querySelector('button[aria-haspopup="menu"]');
+
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+
+    await click(fixture, button);
+
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(document.querySelector('.p-menu')?.classList).toContain('text-header-top');
   });
 });

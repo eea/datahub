@@ -8,6 +8,7 @@
           type="button"
           (click)="officialSite.toggle($event)"
           aria-haspopup="dialog"
+          [attr.aria-expanded]="officialSite.overlayVisible"
           class="flex items-center gap-2 cursor-pointer"
         >
           <img src="logos/eu-flag.svg" alt="" class="w-9 h-6 object-cover" />
@@ -15,7 +16,7 @@
           {{ 'find.header.official.howDoYouKnow' | translate }}
           <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
         </button>
-        <p-popover #officialSite>
+        <p-popover #officialSite styleClass="text-header-top">
           <p>{{ 'find.header.official.domain' | translate }}</p>
           <a
             href="https://europa.eu/european-union/contact/institutions-bodies_en"
@@ -33,12 +34,19 @@
           type="button"
           (click)="systemsMenu.toggle($event)"
           aria-haspopup="menu"
+          [attr.aria-expanded]="systemsMenu.overlayVisible"
           class="flex items-center gap-1 cursor-pointer"
         >
           {{ 'find.header.informationSystems.title' | translate }}
           <i class="pi pi-chevron-down text-[0.625rem]!" aria-hidden="true"></i>
         </button>
-        <p-menu #systemsMenu [model]="informationSystems()" [popup]="true" appendTo="body" />
+        <p-menu
+          #systemsMenu
+          [model]="informationSystems()"
+          [popup]="true"
+          appendTo="body"
+          styleClass="text-header-top"
+        />
       </div>
 
       <span class="flex items-center gap-1.5 text-header-language">

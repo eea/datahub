@@ -2,6 +2,7 @@
   type="button"
   (click)="toggle(sharePopover, $event)"
   aria-haspopup="dialog"
+  [attr.aria-expanded]="sharePopover.overlayVisible"
   class="flex items-center gap-1 text-base text-primary-contrast cursor-pointer"
   data-testid="share-button"
 >
