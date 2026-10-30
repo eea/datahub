@@ -1,20 +1,29 @@
 <footer
-  class="bg-linear-212/srgb from-footer-start from-[6.78%] to-footer-end to-[69.54%] text-footer-foreground"
+  class="relative bg-linear-212/srgb from-footer-start from-[6.78%] to-footer-end to-[69.54%] text-footer-foreground"
 >
-  <div class="max-w-7xl mx-auto px-6 pt-16 pb-14 flex flex-col items-center">
-    <div class="w-full grid grid-cols-2 md:grid-cols-[1fr_1fr_1.4fr] items-center gap-6">
+  <img
+    src="images/footer-visual.svg"
+    alt=""
+    class="absolute inset-0 size-full pointer-events-none"
+  />
+  <div class="relative max-w-7xl mx-auto px-6 pt-20 pb-18 flex flex-col items-center">
+    <div class="w-full grid grid-cols-2 md:grid-cols-3 items-center gap-6">
       <a href="https://www.eea.europa.eu/" class="flex justify-center">
         <img
           src="logos/eea-logo-white.svg"
           [alt]="'find.common.eeaLogo' | translate"
-          class="h-14"
+          class="h-25 object-contain"
         />
       </a>
       <a href="https://www.eionet.europa.eu/" class="flex justify-center">
-        <img src="logos/eionet.svg" [alt]="'find.footer.eionetLogo' | translate" class="h-14" />
+        <img
+          src="logos/eionet.svg"
+          [alt]="'find.footer.eionetLogo' | translate"
+          class="h-25 object-contain"
+        />
       </a>
       <div
-        class="col-span-2 md:col-span-1 flex flex-col items-center md:items-start gap-1.5 text-footer-contact"
+        class="col-span-2 md:col-span-1 md:justify-self-center flex flex-col items-center md:items-start gap-0.5 text-footer-contact"
       >
         @if (contacts().main || links().contact_extra_actions.length) {
           <div class="flex flex-wrap justify-center md:justify-start gap-x-4">
@@ -34,26 +43,21 @@
 
     <a
       href="https://www.eea.europa.eu/en/information-systems"
-      class="mt-16 mb-4 border border-footer-foreground px-8 py-4 text-center text-footer-button font-medium"
+      class="mt-20 mb-4 border border-footer-foreground px-8 py-4 text-center text-footer-button font-medium"
     >
       {{ 'find.footer.informationSystems' | translate }}
     </a>
 
-    <ul class="flex flex-wrap justify-center gap-3 pt-13">
+    <ul class="flex flex-wrap justify-center gap-6 pt-13">
       @for (link of links().social_actions; track link.id) {
         <li>
           <a
             [href]="link.url"
-            class="min-w-10 h-10 px-3 flex items-center justify-center rounded-full border-[1.5px] border-footer-foreground text-label font-semibold"
+            class="min-w-10 h-10 flex items-center justify-center text-label font-semibold"
           >
-            @if (socialIcons[link.id]; as icon) {
-              <i class="pi" [class]="icon" aria-hidden="true"></i>
-              <span class="sr-only">{{ label(link) }}</span>
-            } @else if (link.id === 'bluesky') {
-              <svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true">
-                <path
-                  d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"
-                />
+            @if (socialIconPaths[link.id]; as path) {
+              <svg viewBox="0 0 24 24" fill="currentColor" class="size-10" aria-hidden="true">
+                <path [attr.d]="path" />
               </svg>
               <span class="sr-only">{{ label(link) }}</span>
             } @else {
