@@ -18,7 +18,7 @@ describe('Share', () => {
     const fixture = TestBed.createComponent(Share);
     fixture.detectChanges();
 
-    fixture.nativeElement.querySelector('button').click();
+    fixture.nativeElement.querySelector('[data-testid="share-button"]').click();
     fixture.detectChanges();
     await fixture.whenStable();
 
