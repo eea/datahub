@@ -15,7 +15,7 @@ const SHARE_TARGETS = [
     icon: 'pi-facebook',
     url: 'https://www.facebook.com/sharer/sharer.php?u=',
   },
-  { label: 'find.share.twitter', icon: 'pi-twitter', url: 'https://twitter.com/intent/tweet?url=' },
+  { label: 'find.share.twitter', icon: 'pi-twitter', url: 'https://x.com/intent/post?url=' },
   {
     label: 'find.share.linkedin',
     icon: 'pi-linkedin',
