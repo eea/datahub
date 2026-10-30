@@ -22,13 +22,14 @@ import { Message } from '@openng/optimus-ui/message';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { Share } from '../../share/share';
 
 /** Page buttons the paginator shows at once. */
 const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, SearchPanel, RecordCard, Message, Footer, Header],
+  imports: [TranslatePipe, SearchPanel, RecordCard, Message, Footer, Header, Share],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

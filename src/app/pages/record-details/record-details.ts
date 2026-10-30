@@ -20,6 +20,7 @@ import { Observable, of } from 'rxjs';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { Share } from '../../share/share';
 
 @Component({
   selector: 'app-record-details',
@@ -32,6 +33,7 @@ import { Header } from '../../header/header';
     RecordSkeleton,
     Footer,
     Header,
+    Share,
   ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
