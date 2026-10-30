@@ -91,6 +91,16 @@ describe('BusinessDomainService', () => {
     ]);
   });
 
+  it('finds no series when GN5 leaves out an empty features list', async () => {
+    const { result } = respond(service().series(snowAndIce), {
+      type: 'FeatureCollection',
+      numberMatched: 0,
+      numberReturned: 0,
+    });
+
+    expect(await result).toEqual([]);
+  });
+
   it('escapes quotes in the name of a subdomain', () => {
     const { request } = respond(
       service().series({ name: "Europe's air", path: "Air^Europe's air" }),

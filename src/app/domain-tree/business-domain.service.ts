@@ -46,7 +46,7 @@ export class BusinessDomainService {
   series(subdomain: Subdomain): Observable<SeriesLink[]> {
     return this.getRecords(`${SERIES_FILTER} AND keywords = '${escapeCql(subdomain.name)}'`).pipe(
       map((response) =>
-        response.features
+        (response.features ?? [])
           .filter((record) =>
             (record.properties.themes ?? []).some(
               (theme) =>
