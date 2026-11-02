@@ -94,7 +94,11 @@
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "Voir la fiche complète dans le catalogue"
+      "datahubOverview": "Aperçu du Datahub",
+      "lastModified": "Dernière modification le {{date}}",
+      "rss": "RSS",
+      "seeLess": "Voir moins",
+      "seeMore": "Voir plus"
     },
     "searchBar": {
       "advanced": {
