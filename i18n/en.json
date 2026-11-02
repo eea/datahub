@@ -143,7 +143,11 @@
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "View the full record in the catalogue"
+      "datahubOverview": "Datahub overview",
+      "lastModified": "Last modified {{date}}",
+      "rss": "RSS",
+      "seeLess": "See less",
+      "seeMore": "See more"
     },
     "searchBar": {
       "advanced": {

@@ -28,6 +28,7 @@ const AppTheme = definePreset(Aura, {
         900: '#002d4c',
         950: '#001e33',
       },
+      paleBlue: '#cfe6f7',
       red: {
         50: '#fbeef8',
         100: '#f6ddf0',
@@ -136,6 +137,9 @@ const AppTheme = definePreset(Aura, {
       },
       color: '{eea.white}',
     },
+    banner: {
+      mutedColor: '{eea.paleBlue}',
+    },
     header: {
       systems: {
         background: '{eea.grey}',
@@ -172,6 +176,9 @@ const AppTheme = definePreset(Aura, {
         navigation: '1.125rem',
         menuLink: '1.25rem',
       },
+      record: {
+        title: '2.5rem',
+      },
     },
     fontWeight: {
       h1: '700',
@@ -185,6 +192,7 @@ const AppTheme = definePreset(Aura, {
         --p-font-size-h1: ${dt('fontSize.mobile.h1')};
         --p-font-size-h2: ${dt('fontSize.mobile.h2')};
         --p-font-size-h3: ${dt('fontSize.mobile.h3')};
+        --p-font-size-record-title: ${dt('fontSize.mobile.h1')};
       }
     }
   `,

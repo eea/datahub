@@ -93,7 +93,11 @@
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "Bekijk het volledige record in de catalogus"
+      "datahubOverview": "Datahub-overzicht",
+      "lastModified": "Laatst gewijzigd op {{date}}",
+      "rss": "RSS",
+      "seeLess": "Minder tonen",
+      "seeMore": "Meer tonen"
     },
     "searchBar": {
       "advanced": {
