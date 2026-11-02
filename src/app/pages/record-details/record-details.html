@@ -4,7 +4,8 @@
   <div class="bg-primary">
     <div class="max-w-7xl mx-auto px-6 py-12.5">
       <a
-        routerLink="/home"
+        routerLink="/search"
+        [queryParams]="resultsQueryParams()"
         class="flex w-fit items-center gap-1.5 mb-3 text-lead font-bold text-primary-contrast hover:underline"
         data-testid="datahub-overview-link"
       >

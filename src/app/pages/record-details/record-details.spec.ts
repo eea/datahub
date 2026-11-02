@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { BASE_PATH, RecordService } from '@geocat/frontend-api-client';
-import { COLLECTION_ID } from '@geocat/frontend-library';
+import { COLLECTION_ID, SearchStateService } from '@geocat/frontend-library';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
 
@@ -93,10 +93,19 @@ describe('RecordDetails', () => {
     );
   });
 
-  it('links Datahub overview to the landing page', async () => {
+  it('links Datahub overview back to the results of the current search', async () => {
+    TestBed.inject(SearchStateService).setQuery('urban atlas');
     const fixture = await render();
 
-    expect(byTestId(fixture, 'datahub-overview-link').getAttribute('href')).toBe('/home');
+    expect(byTestId(fixture, 'datahub-overview-link').getAttribute('href')).toBe(
+      '/search?q=urban%20atlas',
+    );
+  });
+
+  it('links Datahub overview to all results when nothing was searched', async () => {
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'datahub-overview-link').getAttribute('href')).toBe('/search');
   });
 
   it('cuts a long description after 220 characters and shows all of it on See more', async () => {

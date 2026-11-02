@@ -7,7 +7,7 @@ import {
   OgcApiRecordsRecordGeoJSONDto,
   RecordService,
 } from '@geocat/frontend-api-client';
-import { COLLECTION_ID, RecordSkeleton } from '@geocat/frontend-library';
+import { COLLECTION_ID, RecordSkeleton, SearchStateService } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 import { Observable, of } from 'rxjs';
@@ -28,7 +28,12 @@ export class RecordDetails {
   recordUuid = signal('');
   recordService = inject(RecordService);
   private collectionId = inject(COLLECTION_ID);
+  private searchQuery = inject(SearchStateService).query;
   protected readonly rssUrl = `${inject(BASE_PATH)}/rss`;
+  protected readonly resultsQueryParams = computed(() => {
+    const query = this.searchQuery();
+    return query ? { q: query } : {};
+  });
 
   constructor() {
     this.activatedRoute.params.subscribe((params) => this.recordUuid.set(params['uuid']));
