@@ -28,7 +28,7 @@ import { Dataset, SeriesDatasetsService } from './series-datasets.service';
 
 const OTHER_PERIOD = 'other';
 
-export interface DatasetPeriod {
+interface DatasetPeriod {
   key: string;
   years?: string;
   datasets: Dataset[];
@@ -54,7 +54,7 @@ const byNewestPeriod = (a: DatasetPeriod, b: DatasetPeriod): number => {
 const byNewestPublished = (a: Dataset, b: Dataset): number =>
   (b.published ?? '').localeCompare(a.published ?? '') || a.title.localeCompare(b.title);
 
-export const groupByPeriod = (datasets: Dataset[]): DatasetPeriod[] =>
+const groupByPeriod = (datasets: Dataset[]): DatasetPeriod[] =>
   [...new Set(datasets.map(periodKey))]
     .map((key) => {
       const inPeriod = datasets.filter((dataset) => periodKey(dataset) === key);

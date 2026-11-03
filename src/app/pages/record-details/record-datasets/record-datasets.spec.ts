@@ -112,7 +112,9 @@ describe('RecordDatasets', () => {
 
     expect(visibleDatasets(fixture)).toEqual(['new-a', 'new-b']);
 
-    all(fixture, 'period-tab')[2].click();
+    all(fixture, 'period-tab')
+      .find((tab) => tab.textContent?.trim() === '2005–2013')
+      ?.click();
     await fixture.whenStable();
 
     expect(visibleDatasets(fixture)).toEqual(['old']);
