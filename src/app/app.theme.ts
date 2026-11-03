@@ -136,6 +136,18 @@ const AppTheme = definePreset(Aura, {
       },
       color: '{eea.white}',
     },
+    statCard: {
+      value: {
+        color: '{eea.blue.700}',
+        fontSize: '3rem',
+        fontWeight: '400',
+      },
+      label: {
+        color: '{eea.text}',
+        fontSize: '{fontSize.paragraph}',
+      },
+      gap: '0',
+    },
     header: {
       systems: {
         background: '{eea.grey}',
