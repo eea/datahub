@@ -37,7 +37,7 @@ describe('SeriesDatasetsService', () => {
   it('asks for each dataset once', async () => {
     respondWith();
 
-    await firstValueFrom(service.currentDatasets(['a', 'b', 'a']));
+    await firstValueFrom(service.datasets(['a', 'b', 'a']));
 
     expect(getRecords).toHaveBeenCalledTimes(1);
     expect(requestedIds(0)).toEqual(['a', 'b']);
@@ -47,7 +47,7 @@ describe('SeriesDatasetsService', () => {
     respondWith();
     const ids = Array.from({ length: 150 }, (_, i) => `id-${i}`);
 
-    await firstValueFrom(service.currentDatasets(ids));
+    await firstValueFrom(service.datasets(ids));
 
     expect(getRecords).toHaveBeenCalledTimes(2);
     expect(requestedIds(0)).toHaveLength(100);
@@ -55,20 +55,24 @@ describe('SeriesDatasetsService', () => {
   });
 
   it('makes no request for a series without datasets', async () => {
-    expect(await firstValueFrom(service.currentDatasets([]))).toEqual([]);
+    expect(await firstValueFrom(service.datasets([]))).toEqual([]);
     expect(getRecords).not.toHaveBeenCalled();
   });
 
-  it('leaves out superseded and obsolete datasets', async () => {
+  it('marks superseded and obsolete datasets as superseded', async () => {
     respondWith(
-      feature('current'),
+      feature('current', { properties: { title: 'Current', status: ['completed'] } }),
       feature('old', { properties: { title: 'Old', status: ['superseded'] } }),
       feature('gone', { properties: { title: 'Gone', status: ['obsolete'] } }),
     );
 
-    const datasets = await firstValueFrom(service.currentDatasets(['current', 'old', 'gone']));
+    const datasets = await firstValueFrom(service.datasets(['current', 'old', 'gone']));
 
-    expect(datasets.map((dataset) => dataset.id)).toEqual(['current']);
+    expect(datasets.map(({ id, superseded }) => ({ id, superseded }))).toEqual([
+      { id: 'current', superseded: false },
+      { id: 'old', superseded: true },
+      { id: 'gone', superseded: true },
+    ]);
   });
 
   it('reads the formats, publication date and temporal coverage', async () => {
@@ -83,7 +87,7 @@ describe('SeriesDatasetsService', () => {
       }),
     );
 
-    const [dataset] = await firstValueFrom(service.currentDatasets(['a']));
+    const [dataset] = await firstValueFrom(service.datasets(['a']));
 
     expect(dataset).toMatchObject({
       title: 'Urban Atlas 2018',
@@ -112,7 +116,7 @@ describe('SeriesDatasetsService', () => {
       }),
     );
 
-    const [dataset] = await firstValueFrom(service.currentDatasets(['a']));
+    const [dataset] = await firstValueFrom(service.datasets(['a']));
 
     expect(dataset.downloads).toEqual([
       { href: 'https://a/zip', title: 'Direct download', isDoi: false },

@@ -104,6 +104,8 @@
         "metadataFactsheet": "Fiche de métadonnées",
         "otherPeriod": "Autres",
         "published": "Publié :",
+        "superseded": "Remplacé",
+        "supersededTitle": "Jeux de données remplacés ou restreints",
         "temporalCoverage": "Couverture temporelle :",
         "title": "Jeux de données"
       },
