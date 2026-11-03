@@ -103,6 +103,8 @@
         "metadataFactsheet": "Metadatafiche",
         "otherPeriod": "Overige",
         "published": "Gepubliceerd:",
+        "superseded": "Vervangen",
+        "supersededTitle": "Vervangen of beperkte datasets",
         "temporalCoverage": "Tijdsdekking:",
         "title": "Datasets"
       },
