@@ -47,6 +47,7 @@ const AppTheme = definePreset(Aura, {
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
+      lightGrey: '#eef1f4',
       darkGrey: '#2e3e4c',
     },
   },
@@ -197,6 +198,31 @@ const AppTheme = definePreset(Aura, {
     }
   `,
   components: {
+    accordion: {
+      panel: {
+        borderWidth: '1px',
+      },
+      header: {
+        color: '{text.color}',
+        hoverColor: '{text.color}',
+        activeColor: '{text.color}',
+        activeHoverColor: '{text.color}',
+        padding: '1rem 1.25rem',
+        background: '{eea.lightGrey}',
+        hoverBackground: '{eea.lightGrey}',
+        activeBackground: '{eea.lightGrey}',
+        activeHoverBackground: '{eea.lightGrey}',
+        toggleIcon: {
+          color: '{surface.500}',
+          hoverColor: '{surface.500}',
+          activeColor: '{surface.500}',
+          activeHoverColor: '{surface.500}',
+        },
+      },
+      content: {
+        padding: '1.75rem',
+      },
+    },
     card: {
       root: {
         borderRadius: '{border.radius.md}',
@@ -259,6 +285,35 @@ const AppTheme = definePreset(Aura, {
         size: '1.5rem',
       },
     },
+    tabs: {
+      tab: {
+        borderWidth: '0 0 0.25rem 0',
+        borderColor: 'transparent',
+        hoverBorderColor: 'transparent',
+        color: '{text.color}',
+        hoverColor: '{primary.color}',
+        padding: '0 0 0.75rem 0',
+        fontWeight: '400',
+      },
+      tabpanel: {
+        padding: '2rem 0 0 0',
+      },
+      activeBar: {
+        height: '0',
+      },
+      extend: {
+        list: {
+          rowGap: '0.75rem',
+          columnGap: '1.75rem',
+        },
+      },
+      css: ({ dt }) => `
+        .p-tablist-tab-list {
+          flex-wrap: wrap;
+          gap: ${dt('tabs.list.row.gap')} ${dt('tabs.list.column.gap')};
+        }
+      `,
+    },
     tag: {
       root: {
         borderRadius: '{border.radius.sm}',
@@ -272,8 +327,28 @@ const AppTheme = definePreset(Aura, {
             background: '{primary.50}',
             color: '{primary.color}',
           },
+          secondary: {
+            background: '{surface.100}',
+            color: '{surface.500}',
+          },
         },
       },
+      extend: {
+        secondary: {
+          borderRadius: '{border.radius.md}',
+          fontSize: '0.75rem',
+          fontWeight: '600',
+          padding: '0.0625rem 0.5rem',
+        },
+      },
+      css: ({ dt }) => `
+        .p-tag-secondary {
+          border-radius: ${dt('tag.secondary.border.radius')};
+          font-size: ${dt('tag.secondary.font.size')};
+          font-weight: ${dt('tag.secondary.font.weight')};
+          padding: ${dt('tag.secondary.padding')};
+        }
+      `,
     },
   },
 });
