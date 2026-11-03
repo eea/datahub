@@ -11,7 +11,6 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
@@ -90,7 +89,6 @@ export class DatasetPeriods {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly injector = inject(Injector);
-  private readonly fragment = toSignal(this.route.fragment);
 
   protected readonly periods = computed(() => groupByPeriod(this.datasets()));
 
@@ -104,8 +102,8 @@ export class DatasetPeriods {
   protected readonly openDatasets = signal<string[]>([]);
 
   constructor() {
+    const id = this.route.snapshot.fragment;
     const showLinkedDataset = effect(() => {
-      const id = this.fragment();
       const period = this.periods().find((candidate) =>
         candidate.datasets.some((dataset) => dataset.id === id),
       );

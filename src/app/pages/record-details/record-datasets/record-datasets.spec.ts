@@ -51,7 +51,7 @@ describe('RecordDatasets', () => {
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { fragment: of(null) } },
+        { provide: ActivatedRoute, useValue: { fragment: of(null), snapshot: { fragment: null } } },
         { provide: SeriesDatasetsService, useValue: { datasets } },
       ],
     }).compileComponents();

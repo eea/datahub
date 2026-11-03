@@ -8,6 +8,8 @@ import { Dataset } from './series-datasets.service';
 
 describe('DatasetPeriods', () => {
   const fragment = new BehaviorSubject<string | null>(null);
+  const snapshot = { fragment: null as string | null };
+  const scrollIntoView = vi.fn();
 
   const dataset = (id: string, overrides: Partial<Dataset> = {}): Dataset => ({
     id,
@@ -72,12 +74,18 @@ describe('DatasetPeriods', () => {
       },
     );
     fragment.next(null);
+    snapshot.fragment = null;
+    scrollIntoView.mockReset();
+    Object.defineProperty(Element.prototype, 'scrollIntoView', {
+      value: scrollIntoView,
+      configurable: true,
+    });
     await TestBed.configureTestingModule({
       imports: [DatasetPeriods],
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { fragment } },
+        { provide: ActivatedRoute, useValue: { fragment, snapshot } },
       ],
     }).compileComponents();
 
@@ -162,11 +170,23 @@ describe('DatasetPeriods', () => {
   });
 
   it('opens the dataset in the URL fragment on its period', async () => {
-    fragment.next('old');
+    snapshot.fragment = 'old';
     const fixture = await render();
 
     expect(activeTab(fixture)).toBe('2005–2013');
     expect(panel(fixture, 'old').getAttribute('data-p-active')).toBe('true');
+    expect(scrollIntoView).toHaveBeenCalledTimes(1);
+  });
+
+  it('leaves the page where it is when a dataset is opened', async () => {
+    const fixture = await render();
+    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+
+    panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header')?.click();
+    fragment.next('new-b');
+    await fixture.whenStable();
+
+    expect(scrollIntoView).not.toHaveBeenCalled();
   });
 
   it('puts an opened dataset in the URL so it can be bookmarked', async () => {
