@@ -11,7 +11,7 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
@@ -93,7 +93,6 @@ export class RecordDatasets {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly injector = inject(Injector);
-  private readonly fragment = toSignal(this.route.fragment);
 
   protected readonly datasetsResource = rxResource({
     params: () => ({ ids: this.childUuids() }),
@@ -114,8 +113,8 @@ export class RecordDatasets {
   protected readonly openDatasets = signal<string[]>([]);
 
   constructor() {
+    const id = this.route.snapshot.fragment;
     const showLinkedDataset = effect(() => {
-      const id = this.fragment();
       const period = this.periods().find((candidate) =>
         candidate.datasets.some((dataset) => dataset.id === id),
       );

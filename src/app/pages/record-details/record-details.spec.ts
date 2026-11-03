@@ -39,7 +39,10 @@ describe('RecordDetails', () => {
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { params: of({ uuid }), fragment: of(null) } },
+        {
+          provide: ActivatedRoute,
+          useValue: { params: of({ uuid }), fragment: of(null), snapshot: { fragment: null } },
+        },
         {
           provide: RecordService,
           useValue: {
