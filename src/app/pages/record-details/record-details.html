@@ -52,34 +52,39 @@
       <p-message severity="error">
         {{ recordStatus() | translate: { uuid: recordUuid() } }}
       </p-message>
-    } @else if (visibleDescription()) {
-      <p
-        class="border-l-8 border-primary-700 px-7 py-2.5 mt-5 text-lead whitespace-pre-line"
-        data-testid="record-description"
-      >
-        {{ visibleDescription() }}
-        @if (isDescriptionLong()) {
-          <button
-            type="button"
-            (click)="isDescriptionExpanded.set(!isDescriptionExpanded())"
-            [attr.aria-expanded]="isDescriptionExpanded()"
-            class="inline-flex items-center gap-1 text-paragraph font-semibold text-primary cursor-pointer"
-            data-testid="description-toggle"
-          >
-            {{
-              (isDescriptionExpanded()
-                ? 'find.recordDetails.seeLess'
-                : 'find.recordDetails.seeMore'
-              ) | translate
-            }}
-            <i
-              class="pi pi-chevron-down text-[0.625rem]! transition-transform"
-              [class.rotate-180]="isDescriptionExpanded()"
-              aria-hidden="true"
-            ></i>
-          </button>
-        }
-      </p>
+    } @else {
+      @if (visibleDescription()) {
+        <p
+          class="border-l-8 border-primary-700 px-7 py-2.5 mt-5 text-lead whitespace-pre-line"
+          data-testid="record-description"
+        >
+          {{ visibleDescription() }}
+          @if (isDescriptionLong()) {
+            <button
+              type="button"
+              (click)="isDescriptionExpanded.set(!isDescriptionExpanded())"
+              [attr.aria-expanded]="isDescriptionExpanded()"
+              class="inline-flex items-center gap-1 text-paragraph font-semibold text-primary cursor-pointer"
+              data-testid="description-toggle"
+            >
+              {{
+                (isDescriptionExpanded()
+                  ? 'find.recordDetails.seeLess'
+                  : 'find.recordDetails.seeMore'
+                ) | translate
+              }}
+              <i
+                class="pi pi-chevron-down text-[0.625rem]! transition-transform"
+                [class.rotate-180]="isDescriptionExpanded()"
+                aria-hidden="true"
+              ></i>
+            </button>
+          }
+        </p>
+      }
+      @if (childUuids().length) {
+        <app-record-datasets [childUuids]="childUuids()" />
+      }
     }
   </article>
 

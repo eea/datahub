@@ -94,6 +94,18 @@
     },
     "recordDetails": {
       "datahubOverview": "Datahub-overzicht",
+      "datasets": {
+        "directDownload": "Direct downloaden",
+        "doi": "Digital Object Identifier (DOI)",
+        "download": "Downloaden:",
+        "links": "Links:",
+        "loadFailed": "De datasets van deze serie konden niet worden geladen.",
+        "metadataFactsheet": "Metadatafiche",
+        "otherPeriod": "Overige",
+        "published": "Gepubliceerd:",
+        "temporalCoverage": "Tijdsdekking:",
+        "title": "Datasets"
+      },
       "lastModified": "Laatst gewijzigd op {{date}}",
       "rss": "RSS",
       "seeLess": "Minder tonen",

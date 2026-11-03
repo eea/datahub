@@ -14,12 +14,22 @@ import { Observable, of } from 'rxjs';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { RecordDatasets } from './record-datasets/record-datasets';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
 @Component({
   selector: 'app-record-details',
-  imports: [DatePipe, RouterLink, TranslatePipe, Message, RecordSkeleton, Footer, Header],
+  imports: [
+    DatePipe,
+    RouterLink,
+    TranslatePipe,
+    Message,
+    RecordSkeleton,
+    Footer,
+    Header,
+    RecordDatasets,
+  ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -58,6 +68,10 @@ export class RecordDetails {
   );
   recordStatus = computed(() =>
     this.recordResource.error() ? 'record.view.notFoundOrNotShared' : undefined,
+  );
+
+  protected readonly childUuids = computed(
+    () => (this.record()?.properties as { childUuid?: string[] } | undefined)?.childUuid ?? [],
   );
 
   private description = computed(() => this.record()?.properties?.description ?? '');
