@@ -1,0 +1,16 @@
+<section aria-labelledby="at-a-glance-title">
+  <h2 id="at-a-glance-title" class="text-h2 font-bold mb-6">
+    {{ 'find.landing.atAGlance.title' | translate }}
+  </h2>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (tile of tiles(); track tile.url) {
+      <li>
+        <app-image-tile
+          [label]="tile.key ? (tile.key | translate) : tile.title"
+          [link]="tile.url"
+          [image]="tile.image"
+        />
+      </li>
+    }
+  </ul>
+</section>

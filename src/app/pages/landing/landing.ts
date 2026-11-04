@@ -19,6 +19,7 @@ import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Share } from '../../share/share';
+import { TopicTiles } from '../../topic-tiles/topic-tiles';
 
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
@@ -39,6 +40,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
     Footer,
     Header,
     Share,
+    TopicTiles,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,6 +52,7 @@ export class Landing implements OnInit {
   private readonly searchState = inject(SearchStateService);
   private readonly destroyRef = inject(DestroyRef);
 
+  protected readonly showAllTopics = signal(false);
   protected readonly isSignInModalOpen = signal(false);
   protected readonly signInError = signal('');
   protected readonly isSigningIn = signal(false);

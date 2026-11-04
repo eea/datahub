@@ -146,6 +146,18 @@ const AppTheme = definePreset(Aura, {
         color: '{eea.white}',
       },
     },
+    imageTile: {
+      height: '210px',
+      overlay: {
+        color: 'rgba(29, 42, 54, 0.6)',
+      },
+      title: {
+        color: '{eea.white}',
+        fontSize: '1.875rem',
+        fontWeight: '700',
+        lineHeight: '2.25rem',
+      },
+    },
     fontSize: {
       base: '0.875rem',
       body: '0.875rem',
