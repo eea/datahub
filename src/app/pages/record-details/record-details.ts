@@ -15,6 +15,7 @@ import { Observable, of } from 'rxjs';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { RecordDatasets } from './record-datasets/record-datasets';
+import { RecordMoreInformation } from './record-more-information/record-more-information';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
@@ -29,6 +30,7 @@ const DESCRIPTION_PREVIEW_LENGTH = 220;
     Footer,
     Header,
     RecordDatasets,
+    RecordMoreInformation,
   ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

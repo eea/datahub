@@ -73,24 +73,30 @@ const indexedDatasets = (
     catchError(() => of({})),
   );
 
+const RECORD_PATH = /\/items\/([^/?]+)$/;
+
+const withIndexedBody = (
+  body: MockedFeature | { features?: MockedFeature[] },
+  indexed: Record<string, IndexedDataset>,
+) =>
+  'id' in body
+    ? withIndexedFields(body, indexed[body.id])
+    : {
+        ...body,
+        features: (body.features ?? []).map((feature) =>
+          withIndexedFields(feature, indexed[feature.id]),
+        ),
+      };
+
 export const mockDatasetFields: HttpInterceptorFn = (request, next) => {
-  const ids = request.params.get('ids')?.split(',');
+  const ids = request.params.get('ids')?.split(',') ?? request.url.match(RECORD_PATH)?.slice(1);
   if (!ids) return next(request);
   return next(request).pipe(
     switchMap((event) => {
-      if (!(event instanceof HttpResponse)) return of(event);
-      const body = event.body as { features?: MockedFeature[] } | null;
+      if (!(event instanceof HttpResponse) || !event.body) return of(event);
+      const body = event.body as MockedFeature | { features?: MockedFeature[] };
       return indexedDatasets(request, ids, next).pipe(
-        map((indexed) =>
-          event.clone({
-            body: {
-              ...body,
-              features: (body?.features ?? []).map((feature) =>
-                withIndexedFields(feature, indexed[feature.id]),
-              ),
-            },
-          }),
-        ),
+        map((indexed) => event.clone({ body: withIndexedBody(body, indexed) })),
       );
     }),
   );

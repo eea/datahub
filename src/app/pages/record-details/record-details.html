@@ -85,6 +85,9 @@
       @if (childUuids().length) {
         <app-record-datasets [childUuids]="childUuids()" />
       }
+      @if (record(); as record) {
+        <app-record-more-information [record]="record" />
+      }
     }
   </article>
 

@@ -158,4 +158,11 @@ describe('RecordDetails', () => {
     expect(datasets).not.toHaveBeenCalled();
     expect(byTestId(fixture, 'record-datasets')).toBeNull();
   });
+
+  it('ends with More information', async () => {
+    properties.set({ title: 'Urban Atlas' });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'more-information')).not.toBeNull();
+  });
 });

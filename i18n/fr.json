@@ -101,7 +101,6 @@
         "download": "Téléchargement :",
         "links": "Liens :",
         "loadFailed": "Les jeux de données de cette série n'ont pas pu être chargés.",
-        "metadataFactsheet": "Fiche de métadonnées",
         "otherPeriod": "Autres",
         "published": "Publié :",
         "superseded": "Remplacé",
@@ -110,6 +109,7 @@
         "title": "Jeux de données"
       },
       "lastModified": "Dernière modification le {{date}}",
+      "metadataFactsheet": "Fiche de métadonnées",
       "rss": "RSS",
       "seeLess": "Voir moins",
       "seeMore": "Voir plus"
