@@ -13,12 +13,16 @@
       <ng-template #item let-record>
         <!-- Half the 20px gap on each side of every card. -->
         <a [routerLink]="record.link" class="group block px-2.5 text-foreground">
-          <img
-            [src]="record.image"
-            alt=""
-            class="w-full h-[200px] object-cover"
-            (error)="dropBroken(record)"
-          />
+          @if (record.image) {
+            <img
+              [src]="record.image"
+              alt=""
+              class="w-full h-[200px] object-cover"
+              (error)="dropImage(record)"
+            />
+          } @else {
+            <div class="w-full h-[200px] bg-muted"></div>
+          }
           <p class="text-paragraph text-right mt-2">
             {{ 'find.landing.popular.views' | translate: { count: record.views } }}
           </p>

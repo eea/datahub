@@ -1,12 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
-import {
-  RECORD_SLUG,
-  SearchParams,
-  SearchService,
-  SearchStateService,
-} from '@geocat/frontend-library';
+import { RECORD_SLUG, SearchService, SearchStateService } from '@geocat/frontend-library';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
@@ -37,19 +32,9 @@ describe('toPopularRecord', () => {
 describe('PopularRecords', () => {
   const withImage = (id: string) => record(id, { title: id, thumbnails: [{ url: `${id}.png` }] });
   const withoutImage = (id: string) => record(id, { title: id });
-  const ids = (prefix: string, count: number) =>
-    Array.from({ length: count }, (_unused, index) => `${prefix}${index}`);
 
-  /** Serves `catalogue` one page at a time, as the items endpoint does. */
-  const setup = (catalogue: OgcApiRecordsRecordGeoJSONDto[]) => {
-    const search = vi.fn(({ page = 1, pageSize = 10 }: SearchParams) =>
-      of({
-        records: catalogue.slice((page - 1) * pageSize, page * pageSize),
-        total: catalogue.length,
-        failed: false,
-        facets: {},
-      }),
-    );
+  const setup = (records: OgcApiRecordsRecordGeoJSONDto[]) => {
+    const search = vi.fn(() => of({ records, total: records.length, failed: false, facets: {} }));
     TestBed.configureTestingModule({
       imports: [PopularRecords],
       providers: [
@@ -63,46 +48,34 @@ describe('PopularRecords', () => {
     return { fixture, search };
   };
 
-  const titles = (fixture: { nativeElement: HTMLElement }) =>
-    Array.from(fixture.nativeElement.querySelectorAll('h3'), (h3) => h3.textContent?.trim());
+  const cards = (fixture: { nativeElement: HTMLElement }) =>
+    Array.from(fixture.nativeElement.querySelectorAll('a'), (card) => ({
+      title: card.querySelector('h3')?.textContent?.trim(),
+      image: card.querySelector('img')?.getAttribute('src') ?? null,
+    }));
 
-  it('asks for the most popular records', () => {
+  it('asks for the nine most popular records', () => {
     const { search } = setup([]);
-    expect(search).toHaveBeenCalledWith({ sort: 'popularity', pageSize: 18, page: 1 });
+    expect(search).toHaveBeenCalledWith({ sort: 'popularity', pageSize: 9 });
   });
 
-  it('leaves out records without a thumbnail and shows nine', () => {
-    const { fixture, search } = setup([withoutImage('none'), ...ids('r', 12).map(withImage)]);
-    expect(titles(fixture)).toEqual(ids('r', 9));
-    expect(search).toHaveBeenCalledTimes(1);
-  });
-
-  it('fetches the next page when the first has too few thumbnails', () => {
-    const { fixture, search } = setup([
-      ...ids('none', 18).map(withoutImage),
-      ...ids('r', 9).map(withImage),
+  it('keeps a series without a thumbnail in its place, with an empty image slot', () => {
+    const { fixture } = setup([withImage('a'), withoutImage('b'), withImage('c')]);
+    expect(cards(fixture)).toEqual([
+      { title: 'a', image: 'a.png' },
+      { title: 'b', image: null },
+      { title: 'c', image: 'c.png' },
     ]);
-    expect(titles(fixture)).toEqual(ids('r', 9));
-    expect(search).toHaveBeenCalledTimes(2);
   });
 
-  it('replaces a card whose thumbnail fails to load with the next record', () => {
-    const { fixture } = setup(ids('r', 10).map(withImage));
+  it('empties the image slot when the thumbnail fails to load', () => {
+    const { fixture } = setup([withImage('a'), withImage('b')]);
     fixture.nativeElement.querySelector('img').dispatchEvent(new Event('error'));
     fixture.detectChanges();
-    expect(titles(fixture)).toEqual(ids('r', 10).slice(1));
-  });
-
-  it('shows fewer cards once the catalogue runs out', () => {
-    const { fixture, search } = setup(ids('r', 3).map(withImage));
-    expect(titles(fixture)).toEqual(ids('r', 3));
-    expect(search).toHaveBeenCalledTimes(1);
-  });
-
-  it('stops looking after five pages', () => {
-    const { fixture, search } = setup(ids('none', 200).map(withoutImage));
-    expect(search).toHaveBeenCalledTimes(5);
-    expect(fixture.nativeElement.querySelector('section')).toBeNull();
+    expect(cards(fixture)).toEqual([
+      { title: 'a', image: null },
+      { title: 'b', image: 'b.png' },
+    ]);
   });
 
   it('stays hidden when there is nothing to show', () => {

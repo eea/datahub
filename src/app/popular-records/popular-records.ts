@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   DestroyRef,
   inject,
   OnInit,
@@ -18,13 +17,6 @@ import { Carousel } from '@openng/optimus-ui/carousel';
 /** Three pages of three cards, as the design's three dots show. */
 const POPULAR_COUNT = 9;
 const CARDS_PER_PAGE = 3;
-/**
- * Records without a thumbnail, or whose thumbnail fails to load, are skipped, so candidates are
- * fetched in pages of this size until there are enough to fill every card.
- */
-const FETCH_COUNT = POPULAR_COUNT * 2;
-/** Stops looking after this many pages, so a catalogue of mostly imageless series isn't walked. */
-const MAX_PAGES = 5;
 
 export interface PopularRecord {
   link: string[];
@@ -62,46 +54,21 @@ export class PopularRecords implements OnInit {
 
   protected readonly CARDS_PER_PAGE = CARDS_PER_PAGE;
   protected readonly responsiveOptions = [{ breakpoint: '767px', numVisible: 1, numScroll: 1 }];
-  /** Every series with a thumbnail fetched so far, most popular first. */
-  private readonly candidates = signal<PopularRecord[]>([]);
-  protected readonly records = computed(() => this.candidates().slice(0, POPULAR_COUNT));
-
-  private fetchedPages = 0;
-  private total = 0;
-  private loading = false;
+  protected readonly records = signal<PopularRecord[]>([]);
 
   /** The app's SearchService only returns series, so these are the most popular series. */
   ngOnInit(): void {
-    this.fillUp();
-  }
-
-  /** A thumbnail that fails to load counts as no thumbnail: the next candidate takes its place. */
-  protected dropBroken(broken: PopularRecord): void {
-    this.candidates.update((records) => records.filter((record) => record !== broken));
-    this.fillUp();
-  }
-
-  /** Fetches the next page while the cards can't all be filled and the catalogue has more. */
-  private fillUp(): void {
-    const short = this.candidates().length < POPULAR_COUNT;
-    const exhausted =
-      this.fetchedPages >= MAX_PAGES ||
-      (this.fetchedPages > 0 && this.fetchedPages * FETCH_COUNT >= this.total);
-    if (this.loading || !short || exhausted) return;
-
-    this.loading = true;
     this.searchService
-      .search({ sort: 'popularity', pageSize: FETCH_COUNT, page: this.fetchedPages + 1 })
+      .search({ sort: 'popularity', pageSize: POPULAR_COUNT })
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((result) => {
-        this.loading = false;
-        // A failed request reports no total, which also stops further fetching.
-        this.fetchedPages++;
-        this.total = result.total;
-        const withImage = result.records.map(toPopularRecord).filter((record) => record.image);
-        this.candidates.update((records) => [...records, ...withImage]);
-        this.fillUp();
-      });
+      .subscribe((result) => this.records.set(result.records.map(toPopularRecord)));
+  }
+
+  /** A thumbnail that fails to load counts as no thumbnail: the card keeps its place. */
+  protected dropImage(broken: PopularRecord): void {
+    this.records.update((records) =>
+      records.map((record) => (record === broken ? { ...record, image: undefined } : record)),
+    );
   }
 
   /** Opens the results page sorted by Most popular, with whatever else the panel holds. */
