@@ -100,7 +100,6 @@
         "download": "Downloaden:",
         "links": "Links:",
         "loadFailed": "De datasets van deze serie konden niet worden geladen.",
-        "metadataFactsheet": "Metadatafiche",
         "otherPeriod": "Overige",
         "published": "Gepubliceerd:",
         "superseded": "Vervangen",
@@ -109,6 +108,7 @@
         "title": "Datasets"
       },
       "lastModified": "Laatst gewijzigd op {{date}}",
+      "metadataFactsheet": "Metadatafiche",
       "rss": "RSS",
       "seeLess": "Minder tonen",
       "seeMore": "Meer tonen"

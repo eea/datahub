@@ -6,8 +6,11 @@ import {
   OgcApiRecordsRecordGeoJSONDto,
   RecordsService,
 } from '@geocat/frontend-api-client';
-import { COLLECTION_ID, DEFAULT_SPACE } from '@geocat/frontend-library';
+import { COLLECTION_ID } from '@geocat/frontend-library';
 import { forkJoin, map, Observable, of } from 'rxjs';
+
+import { factsheetUrl } from '../gn4-links';
+import { RecordTime, yearRange } from '../year-range';
 
 const IDS_PER_REQUEST = 100;
 const SUPERSEDED_STATUSES = ['superseded', 'obsolete'];
@@ -39,10 +42,6 @@ interface DatasetProperties {
   publicationDateForResource?: string[];
 }
 
-interface DatasetTime {
-  interval?: (string | null)[];
-}
-
 const isWebLink = (link: OgcApiRecordsLinkDto): boolean => /^https?:\/\//.test(link.href);
 
 const isServiceLink = (link: OgcApiRecordsLinkDto): boolean =>
@@ -53,11 +52,6 @@ const toDatasetLink = (link: OgcApiRecordsLinkDto): DatasetLink => ({
   title: link.title || undefined,
   isDoi: link.type === DOI_TYPE,
 });
-
-const yearOf = (date: string | null | undefined): number | undefined => {
-  const year = date ? new Date(date).getUTCFullYear() : NaN;
-  return Number.isNaN(year) ? undefined : year;
-};
 
 @Injectable({ providedIn: 'root' })
 export class SeriesDatasetsService {
@@ -85,7 +79,7 @@ export class SeriesDatasetsService {
   private toDataset(record: OgcApiRecordsRecordGeoJSONDto): Dataset {
     const properties = record.properties as OgcApiRecordsRecordGeoJSONDto['properties'] &
       DatasetProperties;
-    const [start, end] = (record.time as DatasetTime | undefined)?.interval ?? [];
+    const years = yearRange(record.time as RecordTime | undefined);
     const links = (record.links ?? []).filter(isWebLink);
 
     return {
@@ -93,8 +87,8 @@ export class SeriesDatasetsService {
       title: properties.title ?? record.id,
       formats: [...new Set((properties.formats ?? []).flatMap((format) => format.name ?? []))],
       published: properties.publicationDateForResource?.[0],
-      startYear: yearOf(start) ?? yearOf(end),
-      endYear: yearOf(end) ?? yearOf(start),
+      startYear: years?.start,
+      endYear: years?.end,
       downloads: links.filter((link) => link.rel === 'enclosure').map(toDatasetLink),
       links: links
         .filter(
@@ -102,7 +96,7 @@ export class SeriesDatasetsService {
             link.rel === 'related' && !isServiceLink(link) && link.type !== FOLDER_PATH_TYPE,
         )
         .map(toDatasetLink),
-      factsheetUrl: `${this.basePath}/${DEFAULT_SPACE}/api/records/${record.id}/formatters/xsl-view?output=pdf&language=eng&approved=true`,
+      factsheetUrl: factsheetUrl(this.basePath, record.id),
       superseded: (properties.status ?? []).some((status) => SUPERSEDED_STATUSES.includes(status)),
     };
   }
