@@ -27,7 +27,11 @@ export class RecordMoreInformation {
     (this.record().properties.themes ?? [])
       .filter((theme) => theme.scheme.endsWith(REPORTING_OBLIGATIONS_SCHEME))
       .flatMap((theme) => theme.concepts)
-      .map((concept) => ({ label: concept.title ?? concept.id, url: concept.url })),
+      .map((concept) => ({ label: concept.title ?? concept.id, url: concept.url }))
+      .filter(
+        (obligation, index, obligations) =>
+          obligations.findIndex(({ label }) => label === obligation.label) === index,
+      ),
   );
 
   protected readonly temporalCoverage = computed(() => {

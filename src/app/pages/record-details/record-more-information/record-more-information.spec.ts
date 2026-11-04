@@ -67,6 +67,18 @@ describe('RecordMoreInformation', () => {
     );
   });
 
+  it('lists a reporting obligation the record repeats once', async () => {
+    const obligation = {
+      id: 'Information on Natura 2000 sites (SPAs, Birds Directive)',
+      url: 'http://rod.eionet.europa.eu/obligations/274',
+    };
+    const fixture = await render(
+      record({ themes: [{ scheme: ROD_SCHEME, concepts: [obligation, obligation] }] }),
+    );
+
+    expect(byTestId(fixture, 'reporting-obligations').querySelectorAll('a').length).toBe(1);
+  });
+
   it('shows the temporal coverage and each organisation once', async () => {
     const fixture = await render(
       record(
