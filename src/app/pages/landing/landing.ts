@@ -119,12 +119,13 @@ export class Landing implements OnInit {
         next: (response) => {
           const buckets: { value?: string; count?: number }[] =
             response['facets']?.resourceType?.buckets ?? [];
-          const count = (type: string) => buckets.find((b) => b.value === type)?.count ?? 0;
+          // A type the facet doesn't report is left out rather than shown as "0"; with no
+          // counts at all the block stays hidden.
           this.stats.set(
-            STAT_TYPES.map(({ resourceType, labelKey }) => ({
-              value: roundedCount(count(resourceType)),
-              labelKey,
-            })),
+            STAT_TYPES.flatMap(({ resourceType, labelKey }) => {
+              const count = buckets.find((b) => b.value === resourceType)?.count;
+              return count ? [{ value: roundedCount(count), labelKey }] : [];
+            }),
           );
         },
         // No numbers is better than wrong ones: the block stays hidden.

@@ -1,11 +1,11 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RecordsService } from '@geocat/frontend-api-client';
 import { COLLECTION_ID, SearchService } from '@geocat/frontend-library';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import en from '../../../../i18n/en.json';
 import fr from '../../../../i18n/fr.json';
@@ -15,22 +15,32 @@ import { Landing, roundedCount } from './landing';
 
 describe('Landing', () => {
   const search = () => of({ records: [], total: 0, failed: false, facets: {} });
-  const getRecords = vi.fn((..._args: unknown[]) =>
-    of({
-      facets: {
-        resourceType: {
-          buckets: [
-            { value: 'dataset', count: 2425 },
-            { value: 'nonGeographicDataset', count: 578 },
-            { value: 'series', count: 322 },
-            { value: 'featureCatalog', count: 94 },
-          ],
-        },
-      },
-    }),
-  );
+  const facets = (buckets: { value: string; count: number }[]) => ({
+    facets: { resourceType: { buckets } },
+  });
+  const getRecords = vi.fn((..._args: unknown[]): Observable<unknown> => of({}));
+
+  const statsSection = (fixture: ComponentFixture<Landing>): HTMLElement | null =>
+    fixture.nativeElement.querySelector('section[aria-labelledby="stats-title"]');
+
+  const statValues = (fixture: ComponentFixture<Landing>) =>
+    [...(statsSection(fixture)?.querySelectorAll('app-stat-card') ?? [])].map((card) =>
+      card.querySelector('p')?.textContent?.trim(),
+    );
 
   beforeEach(async () => {
+    getRecords.mockReset();
+    getRecords.mockReturnValue(
+      of(
+        facets([
+          { value: 'dataset', count: 2425 },
+          { value: 'nonGeographicDataset', count: 578 },
+          { value: 'series', count: 322 },
+          { value: 'featureCatalog', count: 94 },
+        ]),
+      ),
+    );
+
     await TestBed.configureTestingModule({
       imports: [Landing],
       providers: [
@@ -50,14 +60,33 @@ describe('Landing', () => {
     const fixture = TestBed.createComponent(Landing);
     fixture.detectChanges();
 
-    const section: HTMLElement = fixture.nativeElement.querySelector(
-      'section[aria-labelledby="stats-title"]',
-    );
-    const values = [...section.querySelectorAll('app-stat-card')].map((card) =>
-      card.querySelector('p')?.textContent?.trim(),
-    );
-    expect(values).toEqual(['320+', '2400+', '570+', '94']);
-    expect(getRecords.mock.calls[0][14]).toBe('resourceType');
+    expect(statValues(fixture)).toEqual(['320+', '2400+', '570+', '94']);
+    const [collection, , , limit, , , , , , , , , , , facetNames] = getRecords.mock.calls[0];
+    expect({ collection, limit, facetNames }).toEqual({
+      collection: 'main',
+      limit: '1',
+      facetNames: 'resourceType',
+    });
+  });
+
+  it('leaves out a type the facet does not report', () => {
+    getRecords.mockReturnValue(of(facets([{ value: 'series', count: 322 }])));
+    const fixture = TestBed.createComponent(Landing);
+    fixture.detectChanges();
+
+    expect(statValues(fixture)).toEqual(['320+']);
+  });
+
+  it.each([
+    ['the facet is missing', () => of({})],
+    ['the facet has no buckets', () => of(facets([]))],
+    ['the request fails', () => throwError(() => new Error('502'))],
+  ])('hides the block when %s', (_case, response) => {
+    getRecords.mockReturnValue(response());
+    const fixture = TestBed.createComponent(Landing);
+    fixture.detectChanges();
+
+    expect(statsSection(fixture)).toBeNull();
   });
 
   it.each([
