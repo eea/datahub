@@ -41,6 +41,7 @@ const AppTheme = definePreset(Aura, {
       supplementary: '#f9f9f9',
       infoBackground: '#f8ffff',
       hover: '#edf1f2',
+      overlay: 'rgba(29, 42, 54, 0.6)',
       white: '#ffffff',
       green: '#007b6c',
       navy: '#212d38',
@@ -149,9 +150,9 @@ const AppTheme = definePreset(Aura, {
     imageTile: {
       height: '210px',
       overlay: {
-        color: 'rgba(29, 42, 54, 0.6)',
+        color: '{eea.overlay}',
       },
-      title: {
+      label: {
         color: '{eea.white}',
         fontSize: '1.875rem',
         fontWeight: '700',
