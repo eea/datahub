@@ -190,6 +190,10 @@ const AppTheme = definePreset(Aura, {
   `,
   components: {
     carousel: {
+      indicatorList: {
+        padding: '1rem 1rem 2rem',
+        gap: '0.625rem',
+      },
       indicator: {
         width: '1.25rem',
         height: '1.25rem',
