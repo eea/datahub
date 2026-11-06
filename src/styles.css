@@ -38,6 +38,7 @@
   --color-header-systems-foreground: var(--p-header-systems-color);
   --color-header-menu: var(--p-header-menu-background);
   --color-header-menu-foreground: var(--p-header-menu-color);
+  --color-stats: var(--p-stats-background);
   --color-stat-value-foreground: var(--p-stat-card-value-color);
   --color-stat-label-foreground: var(--p-stat-card-label-color);
   --text-base: var(--p-font-size-base);
