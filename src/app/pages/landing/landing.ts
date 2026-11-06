@@ -18,6 +18,7 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { PopularRecords } from '../../popular-records/popular-records';
 import { Share } from '../../share/share';
 
 /**
@@ -38,6 +39,7 @@ const FACETS_ONLY_PAGE_SIZE = 1;
     DomainTree,
     Footer,
     Header,
+    PopularRecords,
     Share,
   ],
   templateUrl: './landing.html',
