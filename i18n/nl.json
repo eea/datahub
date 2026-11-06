@@ -130,9 +130,6 @@
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"
       },
-      "chips": {
-        "remove": "{{label}} verwijderen"
-      },
       "dateFilter": {
         "apply": "Toepassen",
         "clear": "Wissen",

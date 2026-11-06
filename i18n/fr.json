@@ -131,9 +131,6 @@
         "thumbnailPlaceholder": "Vignette ou emprise spatiale",
         "updated": "Mis à jour le {{date}}"
       },
-      "chips": {
-        "remove": "Supprimer {{label}}"
-      },
       "dateFilter": {
         "apply": "Appliquer",
         "clear": "Effacer",

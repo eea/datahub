@@ -180,9 +180,6 @@
         "thumbnailPlaceholder": "Thumbnail or spatial footprint",
         "updated": "Updated {{date}}"
       },
-      "chips": {
-        "remove": "Remove {{label}}"
-      },
       "dateFilter": {
         "apply": "Apply",
         "clear": "Clear",
