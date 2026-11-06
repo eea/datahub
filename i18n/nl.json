@@ -183,12 +183,6 @@
         "relevance": "Relevantie",
         "titleAsc": "Titel (A-Z)",
         "titleDesc": "Titel (Z-A)"
-      },
-      "activeFilters": {
-        "clearAll": "alles wissen",
-        "remove": "{{label}} verwijderen",
-        "removeExcluded": "Uitsluiting {{label}} verwijderen",
-        "title": "Actieve filters"
       }
     }
   },

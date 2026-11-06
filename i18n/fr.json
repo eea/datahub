@@ -184,12 +184,6 @@
         "relevance": "Pertinence",
         "titleAsc": "Titre (A-Z)",
         "titleDesc": "Titre (Z-A)"
-      },
-      "activeFilters": {
-        "clearAll": "tout effacer",
-        "remove": "Supprimer {{label}}",
-        "removeExcluded": "Supprimer l'exclusion {{label}}",
-        "title": "Filtres actifs"
       }
     }
   },
