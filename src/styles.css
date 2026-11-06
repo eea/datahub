@@ -38,6 +38,8 @@
   --color-header-systems-foreground: var(--p-header-systems-color);
   --color-header-menu: var(--p-header-menu-background);
   --color-header-menu-foreground: var(--p-header-menu-color);
+  --color-image-tile-overlay: var(--p-image-tile-overlay-color);
+  --color-image-tile-label-foreground: var(--p-image-tile-label-color);
   --text-base: var(--p-font-size-base);
   --text-body: var(--p-font-size-body);
   --text-h1: var(--p-font-size-h1);
@@ -57,6 +59,10 @@
   --text-lead: var(--p-font-size-lead);
   --text-paragraph: var(--p-font-size-paragraph);
   --text-paragraph-small: var(--p-font-size-paragraph-small);
+  --text-image-tile-label: var(--p-image-tile-label-font-size);
+  --text-image-tile-label--font-weight: var(--p-image-tile-label-font-weight);
+  --text-image-tile-label--line-height: var(--p-image-tile-label-line-height);
+  --spacing-image-tile: var(--p-image-tile-height);
   --radius-md: var(--p-content-border-radius);
 }
 
