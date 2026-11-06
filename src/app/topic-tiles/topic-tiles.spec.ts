@@ -7,7 +7,7 @@ import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { parseTopicTiles, TOPIC_TILES, TopicTiles } from './topic-tiles';
 
 const NATURE = 'https://www.eea.europa.eu/en/topics/at-a-glance/nature';
-const URL = 'eea-website/at-a-glance';
+const AT_A_GLANCE_URL = 'eea-website/at-a-glance';
 const OCEANS = 'https://www.eea.europa.eu/en/topics/at-a-glance/oceans';
 
 describe('parseTopicTiles', () => {
@@ -50,7 +50,7 @@ describe('TopicTiles', () => {
     const answer = async (
       flush: (request: ReturnType<HttpTestingController['expectOne']>) => void,
     ) => {
-      flush(TestBed.inject(HttpTestingController).expectOne(URL));
+      flush(TestBed.inject(HttpTestingController).expectOne(AT_A_GLANCE_URL));
       await TestBed.inject(ApplicationRef).whenStable();
       fixture.detectChanges();
     };
