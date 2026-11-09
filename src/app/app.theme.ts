@@ -47,7 +47,8 @@ const AppTheme = definePreset(Aura, {
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
-      lightGrey: '#eef1f4',
+      lightGrey: '#f2f3f4',
+      coolGrey: '#eef1f4',
       darkGrey: '#2e3e4c',
     },
   },
@@ -141,6 +142,21 @@ const AppTheme = definePreset(Aura, {
     banner: {
       mutedColor: '{eea.paleBlue}',
     },
+    stats: {
+      background: '{eea.lightGrey}',
+    },
+    statCard: {
+      value: {
+        color: '{eea.blue.700}',
+        fontSize: '3rem',
+        fontWeight: '400',
+      },
+      label: {
+        color: '{eea.text}',
+        fontSize: '{fontSize.paragraph}',
+      },
+      gap: '0',
+    },
     header: {
       systems: {
         background: '{eea.grey}',
@@ -208,10 +224,10 @@ const AppTheme = definePreset(Aura, {
         activeColor: '{text.color}',
         activeHoverColor: '{text.color}',
         padding: '1rem 1.25rem',
-        background: '{eea.lightGrey}',
-        hoverBackground: '{eea.lightGrey}',
-        activeBackground: '{eea.lightGrey}',
-        activeHoverBackground: '{eea.lightGrey}',
+        background: '{eea.coolGrey}',
+        hoverBackground: '{eea.coolGrey}',
+        activeBackground: '{eea.coolGrey}',
+        activeHoverBackground: '{eea.coolGrey}',
         toggleIcon: {
           color: '{surface.500}',
           hoverColor: '{surface.500}',
