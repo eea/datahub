@@ -126,6 +126,7 @@
     },
     "searchResults": {
       "allFilters": "Alle filters",
+      "backToSearchHome": "Terug naar de zoekstartpagina",
       "card": {
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"
