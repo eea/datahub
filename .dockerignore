@@ -1,0 +1,6 @@
+.git
+.angular
+.claude
+.husky
+dist
+node_modules

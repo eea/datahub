@@ -1,29 +1,79 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LanguageSwitcher, SearchBar, SearchRequest } from '@geocat/frontend-library';
+import { RecordsService } from '@geocat/frontend-api-client';
+import {
+  COLLECTION_ID,
+  SearchPanel,
+  SearchService,
+  SearchStateService,
+  StatCard,
+} from '@geocat/frontend-library';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+import { DomainTree } from '../../domain-tree/domain-tree';
+import { Footer } from '../../footer/footer';
+import { Header } from '../../header/header';
+import { Share } from '../../share/share';
+
+/**
+ * The landing panel needs facet options and counts but shows no results, so it asks for the
+ * smallest page the API will serve and keeps only the facets.
+ */
+const FACETS_ONLY_PAGE_SIZE = 1;
+
+/** The resource types the "in numbers" block counts, in display order. */
+const STAT_TYPES = [
+  { resourceType: 'series', labelKey: 'find.landing.stats.series' },
+  { resourceType: 'dataset', labelKey: 'find.landing.stats.datasets' },
+  { resourceType: 'nonGeographicDataset', labelKey: 'find.landing.stats.tabularDatasets' },
+  { resourceType: 'featureCatalog', labelKey: 'find.landing.stats.featureCatalogs' },
+];
+
+/** Counts are shown rounded down to two significant digits: 2425 -> "2400+", 94 -> "94". */
+export const roundedCount = (count: number): string => {
+  if (count < 100) return String(count);
+  const step = 10 ** (String(count).length - 2);
+  return `${Math.floor(count / step) * step}+`;
+};
+
 @Component({
   selector: 'app-landing',
   imports: [
     FormsModule,
-    SearchBar,
+    SearchPanel,
     ButtonModule,
     DialogModule,
     InputTextModule,
     TranslatePipe,
-    LanguageSwitcher,
+    DomainTree,
+    Footer,
+    Header,
+    Share,
+    StatCard,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Landing {
+export class Landing implements OnInit {
   private readonly router = inject(Router);
   private readonly translate = inject(TranslateService);
+  private readonly searchService = inject(SearchService);
+  private readonly searchState = inject(SearchStateService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly recordsApi = inject(RecordsService);
+  private readonly collectionId = inject(COLLECTION_ID);
 
   protected readonly isSignInModalOpen = signal(false);
   protected readonly signInError = signal('');
@@ -31,10 +81,76 @@ export class Landing {
   protected signInEmail = '';
   protected signInPassword = '';
 
-  protected onSearch(request: SearchRequest): void {
-    this.router.navigate(['/search'], {
-      queryParams: request.query ? { q: request.query } : {},
-    });
+  protected readonly stats = signal<{ value: string; labelKey: string }[]>([]);
+
+  ngOnInit(): void {
+    this.refreshFacets();
+    this.loadStats();
+  }
+
+  /**
+   * Counts for the whole catalogue, so this goes straight to the items endpoint: the app's
+   * SearchService narrows every search to series. The `resourceType` facet carries the counts.
+   */
+  private loadStats(): void {
+    this.recordsApi
+      .getRecords(
+        this.collectionId,
+        undefined, // bbox
+        undefined, // datetime
+        String(FACETS_ONLY_PAGE_SIZE), // limit
+        undefined, // offset
+        undefined, // q
+        undefined, // type
+        undefined, // externalIds
+        undefined, // ids
+        undefined, // sortby
+        undefined, // filter
+        undefined, // filter-lang
+        undefined, // filter-crs
+        undefined, // profile
+        'resourceType', // facets
+        'body',
+        false,
+        { httpHeaderAccept: 'application/json' },
+      )
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          const buckets: { value?: string; count?: number }[] =
+            response['facets']?.resourceType?.buckets ?? [];
+          // A type the facet doesn't report is left out rather than shown as "0"; with no
+          // counts at all the block stays hidden.
+          this.stats.set(
+            STAT_TYPES.flatMap(({ resourceType, labelKey }) => {
+              const count = buckets.find((b) => b.value === resourceType)?.count;
+              return count ? [{ value: roundedCount(count), labelKey }] : [];
+            }),
+          );
+        },
+        // No numbers is better than wrong ones: the block stays hidden.
+        error: () => this.stats.set([]),
+      });
+  }
+
+  /** The panel already holds the query and filters, so the results page just has to open. */
+  protected onSearch(): void {
+    const query = this.searchState.query();
+    this.router.navigate(['/search'], { queryParams: query ? { q: query } : {} });
+  }
+
+  /** Filters stay here until the user searches; only their counts need to be brought up to date. */
+  protected onFiltersChange(): void {
+    this.refreshFacets();
+  }
+
+  private refreshFacets(): void {
+    this.searchService
+      .search(this.searchState.toParams(1, FACETS_ONLY_PAGE_SIZE))
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (!result.failed) this.searchState.applyFacets(result.facets);
+      });
   }
 
   protected openSignInModal(): void {

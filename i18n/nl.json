@@ -49,18 +49,22 @@
   "error": "Fout",
   "exploreData": "Explore data",
   "find": {
-    "appName": "EEA Datahub",
+    "appName": "Datahub",
     "common": {
       "backToHome": "Terug naar start",
+      "placeholder": {
+        "footer": "Voettekst van het Europees Milieuagentschap",
+        "header": "Koptekst van het Europees Milieuagentschap"
+      },
       "search": "Zoeken",
       "selectLanguage": "Taal kiezen"
     },
     "landing": {
-      "footer": {
-        "copyright": "© 2026 EEA. Alle rechten voorbehouden.",
-        "tagline": "EEA Datahub - Gebaseerd op GeoNetwork Opensource"
+      "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
+      "placeholder": {
+        "popularRecords": "Populaire records",
+        "topics": "In één oogopslag: onze belangrijkste onderwerpen"
       },
-      "signIn": "Aanmelden",
       "signInModal": {
         "close": "Aanmeldvenster sluiten",
         "demoHint": "Demogegevens: gebruik een willekeurig e-mailadres met wachtwoord",
@@ -76,7 +80,26 @@
         "submitting": "Bezig met aanmelden...",
         "subtitle": "Voer uw gegevens in om toegang te krijgen tot uw services",
         "title": "Aanmelden"
+      },
+      "stats": {
+        "datasets": "Datasets",
+        "featureCatalogs": "Objectcatalogi",
+        "series": "Series",
+        "tabularDatasets": "Tabulaire datasets",
+        "title": "De Datahub in cijfers"
+      },
+      "topics": {
+        "empty": "Geen onderwerpen gevonden.",
+        "failed": "De onderwerpen konden niet worden geladen.",
+        "intro": "Blader door onze uitgebreide onderwerpen voor een overzicht van wat er op het spel staat, de belangrijkste feiten en het EU-beleid. Ze belichten ook enkele van de meest relevante beoordelingen, publicaties en evenementen en geven toegang tot andere platforms met meer gedetailleerde informatie over het onderwerp.",
+        "loading": "Laden...",
+        "name": "Naam",
+        "seriesFailed": "De series konden niet worden geladen.",
+        "title": "Alle onderwerpen"
       }
+    },
+    "recordDetails": {
+      "viewInCatalogue": "Bekijk het volledige record in de catalogus"
     },
     "searchBar": {
       "advanced": {
@@ -98,16 +121,15 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie..."
+      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "suggestions": "Zoeksuggesties"
     },
     "searchResults": {
       "allFilters": "Alle filters",
+      "backToSearchHome": "Terug naar de zoekstartpagina",
       "card": {
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"
-      },
-      "chips": {
-        "remove": "{{label}} verwijderen"
       },
       "dateFilter": {
         "apply": "Toepassen",
@@ -134,6 +156,7 @@
         "resourceType": "Brontype",
         "scales": "Schalen",
         "spatialRepresentationType": "Ruimtelijk representatietype",
+        "topic": "Onderwerp",
         "updateFrequency": "Bijwerkfrequentie"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
@@ -142,8 +165,8 @@
         "next": "Volgende",
         "previous": "Vorige"
       },
+      "results": "Resultaten:",
       "searching": "Zoeken…",
-      "showingResults": "{{count}} resultaten weergegeven",
       "sort": {
         "dateNewest": "Datum (nieuwste)",
         "dateOldest": "Datum (oudste)",
@@ -152,6 +175,12 @@
         "relevance": "Relevantie",
         "titleAsc": "Titel (A-Z)",
         "titleDesc": "Titel (Z-A)"
+      },
+      "activeFilters": {
+        "clearAll": "alles wissen",
+        "remove": "{{label}} verwijderen",
+        "removeExcluded": "Uitsluiting {{label}} verwijderen",
+        "title": "Actieve filters"
       }
     }
   },

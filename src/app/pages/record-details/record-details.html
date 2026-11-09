@@ -1,7 +1,27 @@
-<div class="min-h-screen bg-tertiary">
+<div class="min-h-screen bg-background">
   <app-header />
 
+  <div class="bg-primary">
+    <div
+      class="max-w-7xl mx-auto px-6 pt-16 pb-10 flex flex-wrap items-end justify-between gap-x-6"
+    >
+      <p class="text-h1 text-primary-contrast">
+        {{ 'find.appName' | translate }}
+      </p>
+      <app-share />
+    </div>
+  </div>
+
   <article class="max-w-7xl mx-auto px-6 py-8">
+    <button
+      type="button"
+      (click)="goHome()"
+      class="flex items-center gap-2 mb-4 text-base font-medium hover:text-primary transition-colors cursor-pointer"
+    >
+      <i class="pi pi-arrow-left text-[0.875rem]!"></i>
+      {{ 'find.common.backToHome' | translate }}
+    </button>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 space-y-6">
         @if (recordResource.isLoading()) {
@@ -13,9 +33,14 @@
         } @else {
           <p-card>
             <app-record-field-title [record]="record()" />
+            <a pButton [href]="gn4RecordUrl()" class="mt-4" data-testid="gn4-record-link">
+              {{ 'find.recordDetails.viewInCatalogue' | translate }}
+            </a>
           </p-card>
         }
       </div>
     </div>
   </article>
+
+  <app-footer />
 </div>

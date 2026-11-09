@@ -50,18 +50,22 @@
   "error": "Erreur",
   "exploreData": "Explorer les données",
   "find": {
-    "appName": "EEA Datahub",
+    "appName": "Datahub",
     "common": {
       "backToHome": "Retour à l'accueil",
+      "placeholder": {
+        "footer": "Pied de page de l'Agence européenne pour l'environnement",
+        "header": "En-tête de l'Agence européenne pour l'environnement"
+      },
       "search": "Rechercher",
       "selectLanguage": "Choisir la langue"
     },
     "landing": {
-      "footer": {
-        "copyright": "© 2026 EEA. Tous droits réservés.",
-        "tagline": "EEA Datahub - Basé sur GeoNetwork Opensource"
+      "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
+      "placeholder": {
+        "popularRecords": "Fiches populaires",
+        "topics": "En bref : nos principaux thèmes"
       },
-      "signIn": "Se connecter",
       "signInModal": {
         "close": "Fermer la fenêtre de connexion",
         "demoHint": "Identifiants de démonstration : utilisez n'importe quel email avec le mot de passe",
@@ -77,7 +81,26 @@
         "submitting": "Connexion en cours...",
         "subtitle": "Saisissez vos identifiants pour accéder à vos services",
         "title": "Connexion"
+      },
+      "stats": {
+        "datasets": "Jeux de données",
+        "featureCatalogs": "Catalogues d'entités",
+        "series": "Séries",
+        "tabularDatasets": "Jeux de données tabulaires",
+        "title": "Le Datahub en chiffres"
+      },
+      "topics": {
+        "empty": "Aucun thème trouvé.",
+        "failed": "Les thèmes n'ont pas pu être chargés.",
+        "intro": "Parcourez nos thèmes approfondis pour avoir une vue d'ensemble des enjeux, des faits clés et de l'action de l'UE. Ils mettent aussi en avant certaines des évaluations, publications et événements les plus pertinents, et donnent accès à d'autres plateformes qui fournissent des informations plus détaillées sur le thème.",
+        "loading": "Chargement...",
+        "name": "Nom",
+        "seriesFailed": "Les séries n'ont pas pu être chargées.",
+        "title": "Tous les thèmes"
       }
+    },
+    "recordDetails": {
+      "viewInCatalogue": "Voir la fiche complète dans le catalogue"
     },
     "searchBar": {
       "advanced": {
@@ -99,16 +122,15 @@
       },
       "ariaLabel": "Rechercher dans le catalogue de métadonnées",
       "clear": "Effacer la recherche",
-      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation..."
+      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation...",
+      "suggestions": "Suggestions de recherche"
     },
     "searchResults": {
       "allFilters": "Tous les filtres",
+      "backToSearchHome": "Retour à l'accueil de la recherche",
       "card": {
         "thumbnailPlaceholder": "Vignette ou emprise spatiale",
         "updated": "Mis à jour le {{date}}"
-      },
-      "chips": {
-        "remove": "Supprimer {{label}}"
       },
       "dateFilter": {
         "apply": "Appliquer",
@@ -135,6 +157,7 @@
         "resourceType": "Type de ressource",
         "scales": "Échelles",
         "spatialRepresentationType": "Type de représentation spatiale",
+        "topic": "Thème",
         "updateFrequency": "Fréquence de mise à jour"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
@@ -143,8 +166,8 @@
         "next": "Suivant",
         "previous": "Précédent"
       },
+      "results": "Résultats:",
       "searching": "Recherche…",
-      "showingResults": "{{count}} résultats affichés",
       "sort": {
         "dateNewest": "Date (plus récente)",
         "dateOldest": "Date (plus ancienne)",
@@ -153,6 +176,12 @@
         "relevance": "Pertinence",
         "titleAsc": "Titre (A-Z)",
         "titleDesc": "Titre (Z-A)"
+      },
+      "activeFilters": {
+        "clearAll": "tout effacer",
+        "remove": "Supprimer {{label}}",
+        "removeExcluded": "Supprimer l'exclusion {{label}}",
+        "title": "Filtres actifs"
       }
     }
   },
