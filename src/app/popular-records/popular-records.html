@@ -14,7 +14,7 @@
       <ng-template #item let-record>
         <!-- Half the 20px gap on each side of every card; the carousel's negative margin
              lines the outer cards up with the heading and the button. -->
-        <a [routerLink]="record.link" class="group block px-2.5 text-foreground">
+        <a [routerLink]="record.link" class="group block px-2.5">
           @if (record.image) {
             <img
               [src]="record.image"
