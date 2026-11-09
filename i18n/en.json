@@ -112,8 +112,7 @@
     "landing": {
       "intro": "This data hub enables you to explore, access, and download high-quality datasets on environment, climate, and sustainability topics. Through our network and other institutional partners across 38 European countries, we collect, quality-assure and quality-check data on a wide set of topics and legislation related to the environment, climate and sustainability.",
       "placeholder": {
-        "popularRecords": "Popular records",
-        "resourceTypes": "Popular resource types"
+        "popularRecords": "Popular records"
       },
       "signInModal": {
         "close": "Close sign in modal",
@@ -130,6 +129,13 @@
         "submitting": "Signing in...",
         "subtitle": "Enter your credentials to access your services",
         "title": "Sign In"
+      },
+      "stats": {
+        "datasets": "Datasets",
+        "featureCatalogs": "Feature catalogs",
+        "series": "Series",
+        "tabularDatasets": "Tabular datasets",
+        "title": "The Datahub in numbers"
       },
       "topics": {
         "empty": "No topics found.",
@@ -186,9 +192,6 @@
         "thumbnailPlaceholder": "Thumbnail or spatial footprint",
         "updated": "Updated {{date}}"
       },
-      "chips": {
-        "remove": "Remove {{label}}"
-      },
       "dateFilter": {
         "apply": "Apply",
         "clear": "Clear",
@@ -233,6 +236,12 @@
         "relevance": "Relevance",
         "titleAsc": "Title (A-Z)",
         "titleDesc": "Title (Z-A)"
+      },
+      "activeFilters": {
+        "clearAll": "clear all",
+        "remove": "Remove {{label}}",
+        "removeExcluded": "Remove excluded {{label}}",
+        "title": "Active filters"
       }
     },
     "share": {
