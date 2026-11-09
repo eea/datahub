@@ -25,7 +25,7 @@
       </a>
 
       <!-- Results count. A failed request has no count to report, so the error stands alone. -->
-      <p data-testid="results-count" class="text-muted-foreground text-base">
+      <p data-testid="results-count" aria-live="polite" class="text-muted-foreground text-base">
         @if (loading()) {
           {{ 'find.searchResults.searching' | translate }}
         } @else if (!failed()) {

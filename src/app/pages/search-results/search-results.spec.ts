@@ -64,6 +64,12 @@ describe('SearchResults', () => {
     expect(panel.textContent?.trim()).toBe('');
   });
 
+  it('announces the result count to screen readers', () => {
+    const fixture = render();
+
+    expect(count(fixture).getAttribute('aria-live')).toBe('polite');
+  });
+
   it('says it is searching while the request runs', () => {
     search.mockReturnValue(NEVER);
     const fixture = render();
