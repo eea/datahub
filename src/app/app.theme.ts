@@ -146,6 +146,14 @@ const AppTheme = definePreset(Aura, {
         color: '{eea.white}',
       },
     },
+    popularRecord: {
+      imageHeight: '200px',
+      title: {
+        fontSize: '1.125rem',
+        fontWeight: '700',
+        lineHeight: '1.375rem',
+      },
+    },
     fontSize: {
       base: '0.875rem',
       body: '0.875rem',

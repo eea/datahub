@@ -19,11 +19,11 @@
             <img
               [src]="record.image"
               alt=""
-              class="w-full h-[200px] object-cover"
+              class="w-full h-popular-record-image object-cover"
               (error)="dropImage(record)"
             />
           } @else {
-            <div class="w-full h-[200px] bg-muted"></div>
+            <div class="w-full h-popular-record-image bg-muted"></div>
           }
           <div class="p-4">
             <p class="text-paragraph text-right">

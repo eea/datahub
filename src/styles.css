@@ -57,6 +57,10 @@
   --text-lead: var(--p-font-size-lead);
   --text-paragraph: var(--p-font-size-paragraph);
   --text-paragraph-small: var(--p-font-size-paragraph-small);
+  --text-popular-record-title: var(--p-popular-record-title-font-size);
+  --text-popular-record-title--font-weight: var(--p-popular-record-title-font-weight);
+  --text-popular-record-title--line-height: var(--p-popular-record-title-line-height);
+  --spacing-popular-record-image: var(--p-popular-record-image-height);
   --radius-md: var(--p-content-border-radius);
 }
 
