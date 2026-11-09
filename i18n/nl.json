@@ -63,7 +63,6 @@
       "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
       "placeholder": {
         "popularRecords": "Populaire records",
-        "resourceTypes": "Populaire brontypen",
         "topics": "In één oogopslag: onze belangrijkste onderwerpen"
       },
       "signInModal": {
@@ -81,6 +80,13 @@
         "submitting": "Bezig met aanmelden...",
         "subtitle": "Voer uw gegevens in om toegang te krijgen tot uw services",
         "title": "Aanmelden"
+      },
+      "stats": {
+        "datasets": "Datasets",
+        "featureCatalogs": "Objectcatalogi",
+        "series": "Series",
+        "tabularDatasets": "Tabulaire datasets",
+        "title": "De Datahub in cijfers"
       },
       "topics": {
         "empty": "Geen onderwerpen gevonden.",
@@ -140,9 +146,6 @@
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"
       },
-      "chips": {
-        "remove": "{{label}} verwijderen"
-      },
       "dateFilter": {
         "apply": "Toepassen",
         "clear": "Wissen",
@@ -187,6 +190,12 @@
         "relevance": "Relevantie",
         "titleAsc": "Titel (A-Z)",
         "titleDesc": "Titel (Z-A)"
+      },
+      "activeFilters": {
+        "clearAll": "alles wissen",
+        "remove": "{{label}} verwijderen",
+        "removeExcluded": "Uitsluiting {{label}} verwijderen",
+        "title": "Actieve filters"
       }
     }
   },
