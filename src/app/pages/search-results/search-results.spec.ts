@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { provideRouter, RouterLink } from '@angular/router';
 import { SearchResult, SearchService } from '@geocat/frontend-library';
 import { provideTranslateService, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
@@ -20,7 +20,7 @@ describe('SearchResults', () => {
   });
   const search = vi.fn((): Observable<SearchResult> => of(result(322)));
 
-  const backLink = (fixture: ComponentFixture<SearchResults>): HTMLButtonElement =>
+  const backLink = (fixture: ComponentFixture<SearchResults>): HTMLAnchorElement =>
     fixture.nativeElement.querySelector('[data-testid="back-to-search-home"]');
   const count = (fixture: ComponentFixture<SearchResults>): HTMLElement =>
     fixture.nativeElement.querySelector('[data-testid="results-count"]');
@@ -47,7 +47,7 @@ describe('SearchResults', () => {
       ],
     })
       .overrideComponent(SearchResults, {
-        set: { imports: [TranslatePipe, Message], schemas: [NO_ERRORS_SCHEMA] },
+        set: { imports: [TranslatePipe, RouterLink, Message], schemas: [NO_ERRORS_SCHEMA] },
       })
       .compileComponents();
   });
@@ -79,13 +79,10 @@ describe('SearchResults', () => {
     expect(fixture.nativeElement.querySelector('p-message')).not.toBeNull();
   });
 
-  it('goes back to the landing page', () => {
+  it('links back to the landing page', () => {
     const fixture = render();
-    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
 
-    backLink(fixture).click();
-
-    expect(navigate).toHaveBeenCalledWith(['/home']);
+    expect(backLink(fixture).getAttribute('href')).toBe('/home');
   });
 
   it.each([

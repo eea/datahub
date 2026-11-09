@@ -15,15 +15,14 @@
   <!-- Main content -->
   <div class="max-w-7xl mx-auto px-6 pt-6 pb-8">
     <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 mb-3">
-      <button
-        type="button"
-        (click)="goHome()"
+      <a
+        routerLink="/home"
         data-testid="back-to-search-home"
-        class="flex items-center gap-1.5 text-base text-primary hover:underline cursor-pointer"
+        class="flex items-center gap-1.5 text-base text-primary hover:underline"
       >
         <i class="pi pi-chevron-left text-[0.875rem]!"></i>
         {{ 'find.searchResults.backToSearchHome' | translate }}
-      </button>
+      </a>
 
       <!-- Results count. A failed request has no count to report, so the error stands alone. -->
       <p data-testid="results-count" class="text-muted-foreground text-base">
