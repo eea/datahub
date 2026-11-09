@@ -87,7 +87,7 @@ describe('PopularRecords', () => {
     const { fixture } = setup([withImage('a')]);
     const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
 
-    fixture.nativeElement.querySelector('button[pButton]').click();
+    fixture.nativeElement.querySelector('[data-testid="see-popular-records"]').click();
 
     expect(TestBed.inject(SearchStateService).sort()).toBe('popularity');
     expect(navigate).toHaveBeenCalledWith(['/search']);
