@@ -38,6 +38,9 @@
   --color-header-systems-foreground: var(--p-header-systems-color);
   --color-header-menu: var(--p-header-menu-background);
   --color-header-menu-foreground: var(--p-header-menu-color);
+  --color-stats: var(--p-stats-background);
+  --color-stat-value-foreground: var(--p-stat-card-value-color);
+  --color-stat-label-foreground: var(--p-stat-card-label-color);
   --text-base: var(--p-font-size-base);
   --text-body: var(--p-font-size-body);
   --text-h1: var(--p-font-size-h1);
@@ -61,6 +64,10 @@
   --text-popular-record-title--font-weight: var(--p-popular-record-title-font-weight);
   --text-popular-record-title--line-height: var(--p-popular-record-title-line-height);
   --spacing-popular-record-image: var(--p-popular-record-image-height);
+  --text-stat-value: var(--p-stat-card-value-font-size);
+  --text-stat-value--font-weight: var(--p-stat-card-value-font-weight);
+  --text-stat-label: var(--p-stat-card-label-font-size);
+  --spacing-stat-gap: var(--p-stat-card-gap);
   --radius-md: var(--p-content-border-radius);
 }
 
@@ -87,6 +94,8 @@
   --text-lead--line-height: 1.5;
   --text-paragraph--line-height: 1.5;
   --text-paragraph-small--line-height: 1.5;
+  --text-stat-value--line-height: 1.5;
+  --text-stat-label--line-height: 1.5;
 }
 
 :root {

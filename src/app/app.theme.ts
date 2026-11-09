@@ -46,6 +46,7 @@ const AppTheme = definePreset(Aura, {
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
+      lightGrey: '#f2f3f4',
       darkGrey: '#2e3e4c',
     },
   },
@@ -135,6 +136,21 @@ const AppTheme = definePreset(Aura, {
         end: '{eea.navy}',
       },
       color: '{eea.white}',
+    },
+    stats: {
+      background: '{eea.lightGrey}',
+    },
+    statCard: {
+      value: {
+        color: '{eea.blue.700}',
+        fontSize: '3rem',
+        fontWeight: '400',
+      },
+      label: {
+        color: '{eea.text}',
+        fontSize: '{fontSize.paragraph}',
+      },
+      gap: '0',
     },
     header: {
       systems: {

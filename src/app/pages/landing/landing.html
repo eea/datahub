@@ -36,15 +36,18 @@
     </section>
   </section>
 
-  <div class="my-12 py-16 bg-[#f2f3f4]">
-    <div class="max-w-7xl mx-auto px-6">
-      <img
-        src="placeholders/resource-types.webp"
-        [alt]="'find.landing.placeholder.resourceTypes' | translate"
-        class="w-full"
-      />
-    </div>
-  </div>
+  @if (stats().length) {
+    <section class="my-12 py-16 bg-stats" aria-labelledby="stats-title">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 id="stats-title" class="text-h2 mb-4">{{ 'find.landing.stats.title' | translate }}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          @for (stat of stats(); track stat.labelKey) {
+            <app-stat-card [value]="stat.value" [label]="stat.labelKey | translate"></app-stat-card>
+          }
+        </div>
+      </div>
+    </section>
+  }
 
   <app-popular-records />
 

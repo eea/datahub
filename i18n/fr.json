@@ -63,7 +63,6 @@
     "landing": {
       "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
       "placeholder": {
-        "resourceTypes": "Types de ressources populaires",
         "topics": "En bref : nos principaux thèmes"
       },
       "signInModal": {
@@ -81,6 +80,13 @@
         "submitting": "Connexion en cours...",
         "subtitle": "Saisissez vos identifiants pour accéder à vos services",
         "title": "Connexion"
+      },
+      "stats": {
+        "datasets": "Jeux de données",
+        "featureCatalogs": "Catalogues d'entités",
+        "series": "Séries",
+        "tabularDatasets": "Jeux de données tabulaires",
+        "title": "Le Datahub en chiffres"
       },
       "topics": {
         "empty": "Aucun thème trouvé.",
@@ -129,9 +135,6 @@
         "thumbnailPlaceholder": "Vignette ou emprise spatiale",
         "updated": "Mis à jour le {{date}}"
       },
-      "chips": {
-        "remove": "Supprimer {{label}}"
-      },
       "dateFilter": {
         "apply": "Appliquer",
         "clear": "Effacer",
@@ -176,6 +179,12 @@
         "relevance": "Pertinence",
         "titleAsc": "Titre (A-Z)",
         "titleDesc": "Titre (Z-A)"
+      },
+      "activeFilters": {
+        "clearAll": "tout effacer",
+        "remove": "Supprimer {{label}}",
+        "removeExcluded": "Supprimer l'exclusion {{label}}",
+        "title": "Filtres actifs"
       }
     }
   },
