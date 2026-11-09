@@ -127,6 +127,7 @@
     },
     "searchResults": {
       "allFilters": "Tous les filtres",
+      "backToSearchHome": "Retour à l'accueil de la recherche",
       "card": {
         "thumbnailPlaceholder": "Vignette ou emprise spatiale",
         "updated": "Mis à jour le {{date}}"
