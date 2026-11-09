@@ -1,5 +1,5 @@
 @if (records().length) {
-  <section aria-labelledby="popular-records-title">
+  <section aria-labelledby="popular-records-title" class="max-w-7xl mx-auto px-6 py-12">
     <h2 id="popular-records-title" class="text-h2 mb-4">
       {{ 'find.landing.popular.title' | translate }}
     </h2>
@@ -37,7 +37,7 @@
       </ng-template>
     </p-carousel>
     <div class="flex justify-end">
-      <button pButton type="button" (click)="seeAll()">
+      <button pButton type="button" data-testid="see-popular-records" (click)="seeAll()">
         <span pButtonLabel>{{ 'find.landing.popular.seeAll' | translate }}</span>
       </button>
     </div>
