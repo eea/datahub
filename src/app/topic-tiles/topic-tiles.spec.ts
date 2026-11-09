@@ -10,15 +10,39 @@ const NATURE = 'https://www.eea.europa.eu/en/topics/at-a-glance/nature';
 const AT_A_GLANCE_URL = 'eea-website/at-a-glance';
 const OCEANS = 'https://www.eea.europa.eu/en/topics/at-a-glance/oceans';
 
+const teaser = (title: string, url: string, image_field?: string) => ({
+  '@type': 'teaser',
+  title,
+  href: [{ '@id': url, image_field }],
+});
+
+/** A page with its teasers in grids, as the EEA website lays it out. */
+const page = (...grids: object[][]) => ({
+  blocks: {
+    title: { '@type': 'title' },
+    ...Object.fromEntries(
+      grids.map((teasers, i) => [
+        `grid${i}`,
+        {
+          '@type': 'gridBlock',
+          blocks: Object.fromEntries(teasers.map((block, j) => [`teaser${j}`, block])),
+          blocks_layout: { items: teasers.map((_, j) => `teaser${j}`) },
+        },
+      ]),
+    ),
+  },
+  blocks_layout: { items: ['title', ...grids.map((_, i) => `grid${i}`)] },
+});
+
 describe('parseTopicTiles', () => {
-  it('builds a tile from each page that has an image', () => {
+  it('builds a tile from each teaser that has an image, in page order', () => {
     expect(
-      parseTopicTiles({
-        items: [
-          { '@id': NATURE, title: 'Nature', image_field: 'image' },
-          { '@id': `${NATURE}-draft`, title: 'Draft' },
-        ],
-      }),
+      parseTopicTiles(
+        page(
+          [teaser('Nature', NATURE, 'image'), teaser('Draft', `${NATURE}-draft`)],
+          [teaser('Oceans', OCEANS, 'image')],
+        ),
+      ),
     ).toEqual([
       {
         title: 'Nature',
@@ -26,12 +50,14 @@ describe('parseTopicTiles', () => {
         url: NATURE,
         image: `${NATURE}/@@images/image/large`,
       },
+      { title: 'Oceans', key: undefined, url: OCEANS, image: `${OCEANS}/@@images/image/large` },
     ]);
   });
 
-  it('rejects an answer without usable pages', () => {
+  it('rejects an answer without usable teasers', () => {
+    expect(() => parseTopicTiles(null)).toThrow();
     expect(() => parseTopicTiles({})).toThrow();
-    expect(() => parseTopicTiles({ items: [{ '@id': NATURE, title: 'Nature' }] })).toThrow();
+    expect(() => parseTopicTiles(page([teaser('Nature', NATURE)]))).toThrow();
   });
 });
 
@@ -63,12 +89,7 @@ describe('TopicTiles', () => {
   it('shows the topics the EEA website returns, translating the ones it knows', async () => {
     const { answer, links } = setup();
     await answer((request) =>
-      request.flush({
-        items: [
-          { '@id': NATURE, title: 'Nature', image_field: 'image' },
-          { '@id': OCEANS, title: 'Oceans', image_field: 'image' },
-        ],
-      }),
+      request.flush(page([teaser('Nature', NATURE, 'image'), teaser('Oceans', OCEANS, 'image')])),
     );
 
     expect(links().map((link) => [link.textContent?.trim(), link.href])).toEqual([
