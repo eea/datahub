@@ -51,7 +51,7 @@ describe('PopularRecords', () => {
   const cards = (fixture: { nativeElement: HTMLElement }) =>
     Array.from(fixture.nativeElement.querySelectorAll('a'), (card) => ({
       title: card.querySelector('h3')?.textContent?.trim(),
-      image: card.querySelector('img')?.getAttribute('src') ?? null,
+      image: card.querySelector(':scope > img')?.getAttribute('src') ?? null,
     }));
 
   it('asks for the nine most popular records', () => {

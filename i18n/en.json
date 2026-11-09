@@ -149,7 +149,8 @@
       "popular": {
         "title": "Popular records",
         "views": "{{count}} views",
-        "seeAll": "See popular records"
+        "seeAll": "See popular records",
+        "noPreview": "No preview available"
       }
     },
     "recordDetails": {

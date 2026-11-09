@@ -100,7 +100,8 @@
       "popular": {
         "title": "Fiches populaires",
         "views": "{{count}} vues",
-        "seeAll": "Voir les fiches populaires"
+        "seeAll": "Voir les fiches populaires",
+        "noPreview": "Aucun aperçu disponible"
       }
     },
     "recordDetails": {

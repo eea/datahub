@@ -99,7 +99,8 @@
       "popular": {
         "title": "Populaire records",
         "views": "{{count}} weergaven",
-        "seeAll": "Bekijk populaire records"
+        "seeAll": "Bekijk populaire records",
+        "noPreview": "Geen voorbeeld beschikbaar"
       }
     },
     "recordDetails": {

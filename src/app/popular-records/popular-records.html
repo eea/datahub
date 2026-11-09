@@ -23,7 +23,16 @@
               (error)="dropImage(record)"
             />
           } @else {
-            <div class="w-full h-popular-record-image bg-muted"></div>
+            <!-- Hidden from screen readers like the alt="" image: the title names the card. -->
+            <div
+              class="w-full h-popular-record-image bg-primary p-4 flex flex-col text-primary-contrast"
+              aria-hidden="true"
+            >
+              <img src="logos/eea-logo-white.svg" alt="" class="w-24" />
+              <p class="text-h2 font-bold leading-tight text-center m-auto">
+                {{ 'find.landing.popular.noPreview' | translate }}
+              </p>
+            </div>
           }
           <div class="p-4">
             <p class="text-paragraph text-right">
