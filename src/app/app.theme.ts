@@ -218,6 +218,26 @@ const AppTheme = definePreset(Aura, {
     }
   `,
   components: {
+    button: {
+      root: {
+        borderRadius: '0',
+        paddingX: '1.75rem',
+      },
+      colorScheme: {
+        light: {
+          root: {
+            primary: {
+              background: '{primary.600}',
+              hoverBackground: '{primary.700}',
+              activeBackground: '{primary.800}',
+              borderColor: '{primary.600}',
+              hoverBorderColor: '{primary.700}',
+              activeBorderColor: '{primary.800}',
+            },
+          },
+        },
+      },
+    },
     card: {
       root: {
         borderRadius: '{border.radius.md}',

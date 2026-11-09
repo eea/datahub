@@ -31,10 +31,10 @@
         [attr.aria-expanded]="showAllTopics()"
         (click)="showAllTopics.set(!showAllTopics())"
       >
-        {{
+        <span pButtonLabel>{{
           (showAllTopics() ? 'find.landing.topics.hideAll' : 'find.landing.topics.showAll')
             | translate
-        }}
+        }}</span>
       </button>
     </div>
     @if (showAllTopics()) {
