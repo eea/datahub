@@ -88,6 +88,20 @@ describe('BusinessDomainService', () => {
     expect(await result).toEqual([]);
   });
 
+  it('skips facet buckets without a value', async () => {
+    const { result } = respond(service().domains(), {
+      facets: {
+        eeaBusinessDomain: {
+          type: 'term',
+          property: 'eeaBusinessDomain',
+          buckets: [{ value: '', count: 1 }, { count: 1 }, { value: 'Reference Data', count: 1 }],
+        },
+      },
+    });
+
+    expect(await result).toEqual([{ name: 'Reference Data', subdomains: [] }]);
+  });
+
   it('asks for the series of the subdomain by its full path, sorted by title', () => {
     const { request } = respond(service().series(snowAndIce), { features: [] });
 
