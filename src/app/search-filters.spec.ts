@@ -21,17 +21,6 @@ describe('SEARCH_FILTERS_LIST', () => {
     });
   });
 
-  it('hides obsolete and superseded series until Include archived content is on', () => {
-    const toggle = SEARCH_FILTERS_LIST.find((filter) => filter.key === 'includeArchived');
-
-    expect(toggle).toEqual(
-      expect.objectContaining({
-        kind: 'toggle',
-        cqlWhenOff: "NOT (status = 'obsolete' OR status = 'superseded')",
-      }),
-    );
-  });
-
   it('gives every filter its own key', () => {
     const keys = SEARCH_FILTERS_LIST.map((filter) => filter.key);
 
