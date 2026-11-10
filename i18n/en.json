@@ -198,6 +198,7 @@
       },
       "filters": {
         "format": "Available formats",
+        "includeArchived": "Include archived content",
         "organization": "Organisations",
         "spatialRepresentationType": "Spatial representation type"
       },
