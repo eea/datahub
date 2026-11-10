@@ -1,13 +1,10 @@
 import en from '../../i18n/en.json';
 import { SEARCH_SORT_OPTIONS_LIST } from './search-sort-options';
+import { translationOf } from './testing/translation-of';
 
 describe('SEARCH_SORT_OPTIONS_LIST', () => {
   it("lists the design's options in the design's order", () => {
-    const labels = SEARCH_SORT_OPTIONS_LIST.map((option) =>
-      option.labelKey
-        .split('.')
-        .reduce<unknown>((node, part) => (node as Record<string, unknown>)[part], en),
-    );
+    const labels = SEARCH_SORT_OPTIONS_LIST.map((option) => translationOf(en, option.labelKey));
 
     expect(labels).toEqual([
       'Relevance',
