@@ -161,13 +161,13 @@
       "results": "Résultats:",
       "searching": "Recherche…",
       "sort": {
-        "dateNewest": "Date (plus récente)",
-        "dateOldest": "Date (plus ancienne)",
+        "dateNewest": "Plus récents",
+        "dateOldest": "Plus anciens",
         "label": "Trier par",
-        "popularity": "Popularité",
+        "popularity": "Les plus populaires",
         "relevance": "Pertinence",
-        "titleAsc": "Titre (A-Z)",
-        "titleDesc": "Titre (Z-A)"
+        "titleAsc": "Titre a-z",
+        "titleDesc": "Titre z-a"
       },
       "activeFilters": {
         "clearAll": "tout effacer",

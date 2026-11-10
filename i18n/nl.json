@@ -160,13 +160,13 @@
       "results": "Resultaten:",
       "searching": "Zoeken…",
       "sort": {
-        "dateNewest": "Datum (nieuwste)",
-        "dateOldest": "Datum (oudste)",
+        "dateNewest": "Nieuwste",
+        "dateOldest": "Oudste",
         "label": "Sorteren op",
-        "popularity": "Populariteit",
+        "popularity": "Populairste",
         "relevance": "Relevantie",
-        "titleAsc": "Titel (A-Z)",
-        "titleDesc": "Titel (Z-A)"
+        "titleAsc": "Titel a-z",
+        "titleDesc": "Titel z-a"
       },
       "activeFilters": {
         "clearAll": "alles wissen",
