@@ -289,6 +289,13 @@ const AppTheme = definePreset(Aura, {
         },
       },
     },
+    toggleswitch: {
+      root: {
+        width: '2.25rem',
+        height: '1.25rem',
+        gap: '0.125rem',
+      },
+    },
   },
 });
 

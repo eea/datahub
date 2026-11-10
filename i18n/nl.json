@@ -148,6 +148,7 @@
       },
       "filters": {
         "format": "Beschikbare formaten",
+        "includeArchived": "Gearchiveerde inhoud tonen",
         "organization": "Organisaties",
         "spatialRepresentationType": "Type ruimtelijke representatie"
       },
