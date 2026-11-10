@@ -121,7 +121,7 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "placeholder": "Zoeken in de Datahub...",
       "suggestions": "Zoeksuggesties"
     },
     "searchResults": {

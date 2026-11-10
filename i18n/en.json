@@ -171,7 +171,7 @@
       },
       "ariaLabel": "Search metadata catalog",
       "clear": "Clear search",
-      "placeholder": "Search datasets, maps, or documentation...",
+      "placeholder": "Search Datahub...",
       "suggestions": "Search suggestions"
     },
     "searchResults": {
