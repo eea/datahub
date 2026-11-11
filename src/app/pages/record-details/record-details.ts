@@ -18,6 +18,10 @@ import { RecordDatasets } from './record-datasets/record-datasets';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
+interface RecordDates {
+  issued?: string[];
+}
+
 @Component({
   selector: 'app-record-details',
   imports: [
@@ -72,6 +76,10 @@ export class RecordDetails {
 
   protected readonly childUuids = computed(
     () => (this.record()?.properties as { childUuid?: string[] } | undefined)?.childUuid ?? [],
+  );
+
+  protected readonly published = computed(
+    () => (this.record()?.properties as RecordDates | undefined)?.issued?.[0],
   );
 
   private description = computed(() => this.record()?.properties?.description ?? '');

@@ -62,10 +62,6 @@
     },
     "landing": {
       "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
-      "placeholder": {
-        "popularRecords": "Fiches populaires",
-        "topics": "En bref : nos principaux thèmes"
-      },
       "signInModal": {
         "close": "Fermer la fenêtre de connexion",
         "demoHint": "Identifiants de démonstration : utilisez n'importe quel email avec le mot de passe",
@@ -96,7 +92,26 @@
         "loading": "Chargement...",
         "name": "Nom",
         "seriesFailed": "Les séries n'ont pas pu être chargées.",
-        "title": "Tous les thèmes"
+        "title": "Tous les thèmes",
+        "showAll": "Voir tous les thèmes",
+        "hideAll": "Masquer tous les thèmes"
+      },
+      "atAGlance": {
+        "title": "En bref : nos principaux thèmes",
+        "topics": {
+          "europesEnvironment": "L’état de l’environnement en Europe",
+          "climate": "Climat",
+          "economyAndResources": "Économie et ressources",
+          "health": "Santé",
+          "nature": "Nature",
+          "sustainability": "Durabilité"
+        }
+      },
+      "popular": {
+        "title": "Fiches populaires",
+        "views": "{{count}} vues",
+        "seeAll": "Voir les fiches populaires",
+        "noPreview": "Aucun aperçu disponible"
       }
     },
     "recordDetails": {
@@ -116,6 +131,7 @@
         "title": "Jeux de données"
       },
       "lastModified": "Dernière modification le {{date}}",
+      "published": "Publié le {{date}}",
       "rss": "RSS",
       "seeLess": "Voir moins",
       "seeMore": "Voir plus"
@@ -140,11 +156,12 @@
       },
       "ariaLabel": "Rechercher dans le catalogue de métadonnées",
       "clear": "Effacer la recherche",
-      "placeholder": "Rechercher des jeux de données, des cartes ou de la documentation...",
+      "placeholder": "Rechercher dans le Datahub...",
       "suggestions": "Suggestions de recherche"
     },
     "searchResults": {
       "allFilters": "Tous les filtres",
+      "backToSearchHome": "Retour à l'accueil de la recherche",
       "card": {
         "thumbnailPlaceholder": "Vignette ou emprise spatiale",
         "updated": "Mis à jour le {{date}}"

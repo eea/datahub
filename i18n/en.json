@@ -111,10 +111,6 @@
     },
     "landing": {
       "intro": "This data hub enables you to explore, access, and download high-quality datasets on environment, climate, and sustainability topics. Through our network and other institutional partners across 38 European countries, we collect, quality-assure and quality-check data on a wide set of topics and legislation related to the environment, climate and sustainability.",
-      "placeholder": {
-        "popularRecords": "Popular records",
-        "topics": "At a glance: our main topics"
-      },
       "signInModal": {
         "close": "Close sign in modal",
         "demoHint": "Demo credentials: Use any email with password",
@@ -145,7 +141,26 @@
         "loading": "Loading...",
         "name": "Name",
         "seriesFailed": "The series could not be loaded.",
-        "title": "All topics"
+        "title": "All topics",
+        "showAll": "See all topics",
+        "hideAll": "Hide all topics"
+      },
+      "atAGlance": {
+        "title": "At a glance: our main topics",
+        "topics": {
+          "europesEnvironment": "State of Europe's environment",
+          "climate": "Climate",
+          "economyAndResources": "Economy and resources",
+          "health": "Health",
+          "nature": "Nature",
+          "sustainability": "Sustainability"
+        }
+      },
+      "popular": {
+        "title": "Popular records",
+        "views": "{{count}} views",
+        "seeAll": "See popular records",
+        "noPreview": "No preview available"
       }
     },
     "recordDetails": {
@@ -165,6 +180,7 @@
         "title": "Datasets"
       },
       "lastModified": "Last modified {{date}}",
+      "published": "Published {{date}}",
       "rss": "RSS",
       "seeLess": "See less",
       "seeMore": "See more"
@@ -189,11 +205,12 @@
       },
       "ariaLabel": "Search metadata catalog",
       "clear": "Clear search",
-      "placeholder": "Search datasets, maps, or documentation...",
+      "placeholder": "Search Datahub...",
       "suggestions": "Search suggestions"
     },
     "searchResults": {
       "allFilters": "All filters",
+      "backToSearchHome": "Back to search home",
       "card": {
         "thumbnailPlaceholder": "Thumbnail or spatial footprint",
         "updated": "Updated {{date}}"

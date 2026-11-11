@@ -8,7 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   DEFAULT_PAGE_SIZE,
@@ -29,12 +29,11 @@ const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, SearchPanel, RecordCard, Message, Footer, Header, Share],
+  imports: [TranslatePipe, RouterLink, SearchPanel, RecordCard, Message, Footer, Header, Share],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResults implements OnInit {
-  private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly searchService = inject(SearchService);
   private readonly searchState = inject(SearchStateService);
@@ -82,10 +81,6 @@ export class SearchResults implements OnInit {
         this.searchState.applyFacets(result.facets);
         this.loading.set(false);
       });
-  }
-
-  protected goHome(): void {
-    this.router.navigate(['/home']);
   }
 
   /** The panel changed the search: back to the first page and fetch again. */
