@@ -27,6 +27,7 @@ import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { PopularRecords } from '../../popular-records/popular-records';
 import { Share } from '../../share/share';
+import { TopicTiles } from '../../topic-tiles/topic-tiles';
 
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
@@ -63,6 +64,7 @@ export const roundedCount = (count: number): string => {
     Header,
     PopularRecords,
     Share,
+    TopicTiles,
     StatCard,
   ],
   templateUrl: './landing.html',
@@ -77,6 +79,7 @@ export class Landing implements OnInit {
   private readonly recordsApi = inject(RecordsService);
   private readonly collectionId = inject(COLLECTION_ID);
 
+  protected readonly showAllTopics = signal(false);
   protected readonly isSignInModalOpen = signal(false);
   protected readonly signInError = signal('');
   protected readonly isSigningIn = signal(false);

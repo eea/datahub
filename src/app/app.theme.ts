@@ -41,6 +41,7 @@ const AppTheme = definePreset(Aura, {
       supplementary: '#f9f9f9',
       infoBackground: '#f8ffff',
       hover: '#edf1f2',
+      overlay: 'rgba(29, 42, 54, 0.6)',
       white: '#ffffff',
       green: '#007b6c',
       navy: '#212d38',
@@ -162,6 +163,18 @@ const AppTheme = definePreset(Aura, {
         color: '{eea.white}',
       },
     },
+    imageTile: {
+      height: '210px',
+      overlay: {
+        color: '{eea.overlay}',
+      },
+      label: {
+        color: '{eea.white}',
+        fontSize: '1.875rem',
+        fontWeight: '700',
+        lineHeight: '2.25rem',
+      },
+    },
     popularRecord: {
       imageHeight: '200px',
       title: {
@@ -219,6 +232,26 @@ const AppTheme = definePreset(Aura, {
     }
   `,
   components: {
+    button: {
+      root: {
+        borderRadius: '0',
+        paddingX: '1.75rem',
+      },
+      colorScheme: {
+        light: {
+          root: {
+            primary: {
+              background: '{primary.600}',
+              hoverBackground: '{primary.700}',
+              activeBackground: '{primary.800}',
+              borderColor: '{primary.600}',
+              hoverBorderColor: '{primary.700}',
+              activeBorderColor: '{primary.800}',
+            },
+          },
+        },
+      },
+    },
     carousel: {
       indicatorList: {
         padding: '1rem 1rem 2rem',

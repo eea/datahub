@@ -39,6 +39,8 @@
   --color-header-systems-foreground: var(--p-header-systems-color);
   --color-header-menu: var(--p-header-menu-background);
   --color-header-menu-foreground: var(--p-header-menu-color);
+  --color-image-tile-overlay: var(--p-image-tile-overlay-color);
+  --color-image-tile-label-foreground: var(--p-image-tile-label-color);
   --color-stats: var(--p-stats-background);
   --color-stat-value-foreground: var(--p-stat-card-value-color);
   --color-stat-label-foreground: var(--p-stat-card-label-color);
@@ -61,6 +63,10 @@
   --text-lead: var(--p-font-size-lead);
   --text-paragraph: var(--p-font-size-paragraph);
   --text-paragraph-small: var(--p-font-size-paragraph-small);
+  --text-image-tile-label: var(--p-image-tile-label-font-size);
+  --text-image-tile-label--font-weight: var(--p-image-tile-label-font-weight);
+  --text-image-tile-label--line-height: var(--p-image-tile-label-line-height);
+  --spacing-image-tile: var(--p-image-tile-height);
   --text-popular-record-title: var(--p-popular-record-title-font-size);
   --text-popular-record-title--font-weight: var(--p-popular-record-title-font-weight);
   --text-popular-record-title--line-height: var(--p-popular-record-title-line-height);
