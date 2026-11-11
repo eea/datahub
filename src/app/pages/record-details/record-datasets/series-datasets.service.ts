@@ -39,7 +39,7 @@ export interface Dataset {
 
 interface DatasetProperties {
   status?: string[];
-  publicationDateForResource?: string[];
+  issued?: string[];
 }
 
 const isWebLink = (link: OgcApiRecordsLinkDto): boolean => /^https?:\/\//.test(link.href);
@@ -86,7 +86,7 @@ export class SeriesDatasetsService {
       id: record.id,
       title: properties.title ?? record.id,
       formats: [...new Set((properties.formats ?? []).flatMap((format) => format.name ?? []))],
-      published: properties.publicationDateForResource?.[0],
+      published: properties.issued?.[0],
       startYear: years?.start,
       endYear: years?.end,
       downloads: links.filter((link) => link.rel === 'enclosure').map(toDatasetLink),

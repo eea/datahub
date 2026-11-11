@@ -61,10 +61,6 @@
     },
     "landing": {
       "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
-      "placeholder": {
-        "popularRecords": "Populaire records",
-        "topics": "In één oogopslag: onze belangrijkste onderwerpen"
-      },
       "signInModal": {
         "close": "Aanmeldvenster sluiten",
         "demoHint": "Demogegevens: gebruik een willekeurig e-mailadres met wachtwoord",
@@ -95,7 +91,26 @@
         "loading": "Laden...",
         "name": "Naam",
         "seriesFailed": "De series konden niet worden geladen.",
-        "title": "Alle onderwerpen"
+        "title": "Alle onderwerpen",
+        "showAll": "Alle onderwerpen bekijken",
+        "hideAll": "Alle onderwerpen verbergen"
+      },
+      "atAGlance": {
+        "title": "In één oogopslag: onze belangrijkste onderwerpen",
+        "topics": {
+          "europesEnvironment": "De toestand van het milieu in Europa",
+          "climate": "Klimaat",
+          "economyAndResources": "Economie en hulpbronnen",
+          "health": "Gezondheid",
+          "nature": "Natuur",
+          "sustainability": "Duurzaamheid"
+        }
+      },
+      "popular": {
+        "title": "Populaire records",
+        "views": "{{count}} weergaven",
+        "seeAll": "Bekijk populaire records",
+        "noPreview": "Geen voorbeeld beschikbaar"
       }
     },
     "recordDetails": {
@@ -115,6 +130,7 @@
       },
       "lastModified": "Laatst gewijzigd op {{date}}",
       "metadataFactsheet": "Metadatafiche",
+      "published": "Gepubliceerd op {{date}}",
       "rss": "RSS",
       "seeLess": "Minder tonen",
       "seeMore": "Meer tonen"
@@ -139,11 +155,12 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "placeholder": "Zoeken in de Datahub...",
       "suggestions": "Zoeksuggesties"
     },
     "searchResults": {
       "allFilters": "Alle filters",
+      "backToSearchHome": "Terug naar de zoekstartpagina",
       "card": {
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"

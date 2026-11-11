@@ -16,7 +16,7 @@ import { RecordDetails } from './record-details';
 
 describe('RecordDetails', () => {
   const uuid = 'e006507d-15c8-49e6-959c-53b61facd873';
-  const properties = signal<Record<string, string | string[]> | undefined>({});
+  const properties = signal<Record<string, unknown> | undefined>({});
   const datasets = vi.fn();
   const sentence = 'Urban Atlas provides comparable land use and land cover data for urban areas. ';
   const longDescription = sentence.repeat(4);
@@ -72,6 +72,7 @@ describe('RecordDetails', () => {
       find: {
         recordDetails: {
           lastModified: 'Last modified {{date}}',
+          published: 'Published {{date}}',
           seeLess: 'See less',
           seeMore: 'See more',
         },
@@ -86,7 +87,23 @@ describe('RecordDetails', () => {
 
     expect(fixture.nativeElement.querySelector('h1').textContent.trim()).toBe('Urban Atlas');
     expect(byTestId(fixture, 'last-modified').textContent.trim()).toBe('Last modified 02 Dec 2025');
+    expect(byTestId(fixture, 'published')).toBeNull();
     expect(byTestId(fixture, 'rss-link').getAttribute('href')).toBe('/catalogue/rss');
+  });
+
+  it('shows the publication date from issued before the last modified date', async () => {
+    properties.set({
+      title: 'Urban Atlas',
+      issued: ['2018-06-01'],
+      updated: '2025-12-02T09:30:00Z',
+    });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'published').textContent.trim()).toBe('Published 01 Jun 2018');
+    expect(byTestId(fixture, 'last-modified').textContent.trim()).toBe('Last modified 02 Dec 2025');
+    expect(byTestId(fixture, 'record-dates').textContent.replace(/\s+/g, ' ').trim()).toBe(
+      'Published 01 Jun 2018 | Last modified 02 Dec 2025',
+    );
   });
 
   it('keeps the Datahub overview link and shows an error when the record is not found', async () => {

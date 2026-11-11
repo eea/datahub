@@ -18,13 +18,29 @@
           {{ record.properties.title ?? ('record.field.title.notAvailable' | translate) }}
         </h1>
         <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pt-2">
-          @if (record.properties.updated; as updated) {
-            <p class="text-paragraph text-primary-contrast" data-testid="last-modified">
-              {{
-                'find.recordDetails.lastModified' | translate: { date: updated | date: 'dd MMM y' }
-              }}
-            </p>
-          }
+          <p
+            class="flex flex-wrap gap-x-4 text-paragraph text-primary-contrast"
+            data-testid="record-dates"
+          >
+            @if (published(); as published) {
+              <span data-testid="published">
+                {{
+                  'find.recordDetails.published' | translate: { date: published | date: 'dd MMM y' }
+                }}
+              </span>
+            }
+            @if (published() && record.properties.updated) {
+              <span aria-hidden="true">|</span>
+            }
+            @if (record.properties.updated; as updated) {
+              <span data-testid="last-modified">
+                {{
+                  'find.recordDetails.lastModified'
+                    | translate: { date: updated | date: 'dd MMM y' }
+                }}
+              </span>
+            }
+          </p>
           <a
             [href]="rssUrl"
             class="flex items-center gap-1.5 text-base text-banner-muted hover:underline"
