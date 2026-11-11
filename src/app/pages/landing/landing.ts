@@ -25,6 +25,7 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { PopularRecords } from '../../popular-records/popular-records';
 import { Share } from '../../share/share';
 import { TopicTiles } from '../../topic-tiles/topic-tiles';
 
@@ -61,6 +62,7 @@ export const roundedCount = (count: number): string => {
     DomainTree,
     Footer,
     Header,
+    PopularRecords,
     Share,
     TopicTiles,
     StatCard,
