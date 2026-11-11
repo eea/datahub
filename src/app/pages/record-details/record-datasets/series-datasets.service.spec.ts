@@ -78,7 +78,7 @@ describe('SeriesDatasetsService', () => {
         properties: {
           title: 'Urban Atlas 2018',
           formats: [{ name: 'SHP' }, { name: 'GeoTIFF' }, { name: 'SHP' }],
-          publicationDateForResource: ['2020-05-06'],
+          issued: ['2020-05-06'],
         },
       }),
     );

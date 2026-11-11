@@ -35,7 +35,7 @@ export interface Dataset {
 
 interface DatasetProperties {
   status?: string[];
-  publicationDateForResource?: string[];
+  issued?: string[];
 }
 
 interface DatasetTime {
@@ -97,7 +97,7 @@ export class SeriesDatasetsService {
       id: record.id,
       title: properties.title ?? record.id,
       formats: [...new Set((properties.formats ?? []).flatMap((format) => format.name ?? []))],
-      published: properties.publicationDateForResource?.[0],
+      published: properties.issued?.[0],
       startYear: yearOf(start) ?? yearOf(end),
       endYear: yearOf(end) ?? yearOf(start),
       downloads: links.filter((link) => link.rel === 'enclosure').map(toDatasetLink),
