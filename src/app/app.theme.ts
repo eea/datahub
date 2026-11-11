@@ -162,6 +162,14 @@ const AppTheme = definePreset(Aura, {
         color: '{eea.white}',
       },
     },
+    popularRecord: {
+      imageHeight: '200px',
+      title: {
+        fontSize: '1.125rem',
+        fontWeight: '700',
+        lineHeight: '1.375rem',
+      },
+    },
     fontSize: {
       base: '0.875rem',
       body: '0.875rem',
@@ -211,6 +219,32 @@ const AppTheme = definePreset(Aura, {
     }
   `,
   components: {
+    carousel: {
+      indicatorList: {
+        padding: '1rem 1rem 2rem',
+        gap: '0.625rem',
+      },
+      indicator: {
+        width: '1.25rem',
+        height: '1.25rem',
+        borderRadius: '50%',
+      },
+      colorScheme: {
+        light: {
+          indicator: {
+            background: 'transparent',
+            hoverBackground: '{eea.hover}',
+            activeBackground: '{primary.600}',
+          },
+        },
+      },
+      // Only the current page's dot is filled, so the others need an outline to show.
+      css: ({ dt }) => `
+        .p-carousel-indicator-button {
+          border: 1px solid ${dt('primary.600')};
+        }
+      `,
+    },
     card: {
       root: {
         borderRadius: '{border.radius.md}',
