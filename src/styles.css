@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @plugin "@openng/optimus-ui-tailwindcss";
 @import '@openng/icons/openng-icons.css';
+@import '@fontsource/roboto/200.css';
 @import '@fontsource/roboto/400.css';
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/600.css';
@@ -64,6 +65,10 @@
   --text-popular-record-title--font-weight: var(--p-popular-record-title-font-weight);
   --text-popular-record-title--line-height: var(--p-popular-record-title-line-height);
   --spacing-popular-record-image: var(--p-popular-record-image-height);
+  --text-search-control: var(--p-font-size-search-control);
+  --text-search-control--font-weight: var(--p-font-weight-search-control);
+  --text-search-input: var(--p-font-size-search-input);
+  --text-search-input--font-weight: var(--p-font-weight-search-input);
   --text-stat-value: var(--p-stat-card-value-font-size);
   --text-stat-value--font-weight: var(--p-stat-card-value-font-weight);
   --text-stat-label: var(--p-stat-card-label-font-size);
@@ -94,6 +99,7 @@
   --text-lead--line-height: 1.5;
   --text-paragraph--line-height: 1.5;
   --text-paragraph-small--line-height: 1.5;
+  --text-search-input--line-height: 1.2;
   --text-stat-value--line-height: 1.5;
   --text-stat-label--line-height: 1.5;
 }

@@ -180,10 +180,13 @@ const AppTheme = definePreset(Aura, {
       lead: '1.125rem',
       paragraph: '1rem',
       paragraphSmall: '0.9375rem',
+      searchControl: '1rem',
+      searchInput: '2.5rem',
       mobile: {
         h1: '1.875rem',
         h2: '1.5rem',
         h3: '1.25rem',
+        searchInput: '1.75rem',
       },
       footer: {
         contact: '1.25rem',
@@ -201,6 +204,8 @@ const AppTheme = definePreset(Aura, {
       h1: '700',
       h2: '600',
       h3: '600',
+      searchControl: '600',
+      searchInput: '200',
     },
   },
   css: ({ dt }) => `
@@ -209,6 +214,7 @@ const AppTheme = definePreset(Aura, {
         --p-font-size-h1: ${dt('fontSize.mobile.h1')};
         --p-font-size-h2: ${dt('fontSize.mobile.h2')};
         --p-font-size-h3: ${dt('fontSize.mobile.h3')};
+        --p-font-size-search-input: ${dt('fontSize.mobile.searchInput')};
       }
     }
   `,

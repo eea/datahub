@@ -176,11 +176,12 @@
       },
       "ariaLabel": "Search metadata catalog",
       "clear": "Clear search",
-      "placeholder": "Search datasets, maps, or documentation...",
+      "placeholder": "Search Datahub...",
       "suggestions": "Search suggestions"
     },
     "searchResults": {
       "allFilters": "All filters",
+      "backToSearchHome": "Back to search home",
       "card": {
         "thumbnailPlaceholder": "Thumbnail or spatial footprint",
         "updated": "Updated {{date}}"

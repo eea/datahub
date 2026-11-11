@@ -126,11 +126,12 @@
       },
       "ariaLabel": "Zoeken in metadatacatalogus",
       "clear": "Zoekopdracht wissen",
-      "placeholder": "Zoek datasets, kaarten of documentatie...",
+      "placeholder": "Zoeken in de Datahub...",
       "suggestions": "Zoeksuggesties"
     },
     "searchResults": {
       "allFilters": "Alle filters",
+      "backToSearchHome": "Terug naar de zoekstartpagina",
       "card": {
         "thumbnailPlaceholder": "Miniatuur of ruimtelijke contour",
         "updated": "Bijgewerkt op {{date}}"
