@@ -14,4 +14,8 @@ module.exports = {
   },
   '/eea-website/@actions': eeaWebsite,
   '/eea-website/@navigation': eeaWebsite,
+  '/eea-website/at-a-glance': {
+    ...eeaWebsite,
+    pathRewrite: { '^/eea-website': '/++api++/en/topics' },
+  },
 };

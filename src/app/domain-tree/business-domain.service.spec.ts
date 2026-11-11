@@ -34,54 +34,92 @@ describe('BusinessDomainService', () => {
   const queryOf = ({ params }: HttpRequest<unknown>) =>
     Object.fromEntries(params.keys().map((key) => [key, params.get(key)]));
 
-  const businessDomain = (name: string) => ({
-    scheme:
-      'https://sdi.eea.europa.eu/catalogue/srv/api/registries/vocabularies/external.theme.eea-business-domains',
-    concepts: [{ id: name }],
+  const facet = (...values: string[]) => ({
+    facets: {
+      eeaBusinessDomain: {
+        type: 'term',
+        property: 'eeaBusinessDomain',
+        buckets: values.map((value) => ({ value, count: 1 })),
+      },
+    },
   });
 
   const snowAndIce = { name: 'Snow & Ice', path: 'Freshwater & Water Management^Snow & Ice' };
 
-  it('lists the business domains with their subdomains', async () => {
-    const domains = await firstValueFrom(service().domains());
+  it('asks the series for their business domain facet', () => {
+    const { request } = respond(service().domains(), facet());
 
-    expect(domains.map((domain) => domain.name)).toContain('Freshwater & Water Management');
-    expect(domains.flatMap((domain) => domain.subdomains)).toContainEqual(snowAndIce);
+    expect(queryOf(request)).toEqual({
+      limit: '1',
+      offset: '0',
+      filter: "resourceType = 'series'",
+      facets: 'eeaBusinessDomain',
+    });
+    expect(request.headers.get('Accept')).toBe('application/json');
   });
 
-  it('asks for the series with the subdomain as keyword, sorted by title', () => {
+  it('lists the business domains with their subdomains, both by name', async () => {
+    const { result } = respond(
+      service().domains(),
+      facet(
+        'Reference Data',
+        'Reference Data^Elevation',
+        'Freshwater & Water Management',
+        'Freshwater & Water Management^Snow & Ice',
+        'Reference Data^Basemaps',
+      ),
+    );
+
+    expect(await result).toEqual([
+      { name: 'Freshwater & Water Management', subdomains: [snowAndIce] },
+      {
+        name: 'Reference Data',
+        subdomains: [
+          { name: 'Basemaps', path: 'Reference Data^Basemaps' },
+          { name: 'Elevation', path: 'Reference Data^Elevation' },
+        ],
+      },
+    ]);
+  });
+
+  it('finds no business domains when GN5 sends no facet', async () => {
+    const { result } = respond(service().domains(), { features: [] });
+
+    expect(await result).toEqual([]);
+  });
+
+  it('skips facet buckets without a value', async () => {
+    const { result } = respond(service().domains(), {
+      facets: {
+        eeaBusinessDomain: {
+          type: 'term',
+          property: 'eeaBusinessDomain',
+          buckets: [{ value: '', count: 1 }, { count: 1 }, { value: 'Reference Data', count: 1 }],
+        },
+      },
+    });
+
+    expect(await result).toEqual([{ name: 'Reference Data', subdomains: [] }]);
+  });
+
+  it('asks for the series of the subdomain by its full path, sorted by title', () => {
     const { request } = respond(service().series(snowAndIce), { features: [] });
 
     expect(queryOf(request)).toEqual({
       limit: '100',
       offset: '0',
       sortby: 'resourceTitleObject',
-      filter: "resourceType = 'series' AND keywords = 'Snow & Ice'",
+      filter:
+        "resourceType = 'series' AND eeaBusinessDomain = 'Freshwater & Water Management^Snow & Ice'",
       facets: '',
     });
-    expect(request.headers.get('Accept')).toBe('application/json');
   });
 
-  it('keeps only the series whose business domain is the subdomain', async () => {
+  it('lists the series by title, or by id when the title is missing', async () => {
     const { result } = respond(service().series(snowAndIce), {
       features: [
-        {
-          id: 'a',
-          properties: { title: 'Lake ice phenology', themes: [businessDomain('Snow & Ice')] },
-        },
-        { id: 'b', properties: { themes: [businessDomain('Snow & Ice')] } },
-        {
-          id: 'c',
-          properties: {
-            title: 'Snow cover',
-            themes: [{ scheme: 'external.theme.gemet', concepts: [{ id: 'Snow & Ice' }] }],
-          },
-        },
-        {
-          id: 'd',
-          properties: { title: 'Glaciers', themes: [businessDomain('Floods & Droughts')] },
-        },
-        { id: 'e', properties: { title: 'Sea ice' } },
+        { id: 'a', properties: { title: 'Lake ice phenology' } },
+        { id: 'b', properties: {} },
       ],
     });
 
@@ -89,23 +127,6 @@ describe('BusinessDomainService', () => {
       { id: 'a', title: 'Lake ice phenology' },
       { id: 'b', title: 'b' },
     ]);
-  });
-
-  it('skips a record whose themes lack a scheme', async () => {
-    const { result } = respond(service().series(snowAndIce), {
-      features: [
-        {
-          id: 'a',
-          properties: { title: 'No scheme', themes: [{ concepts: [{ id: 'Snow & Ice' }] }] },
-        },
-        {
-          id: 'b',
-          properties: { title: 'Lake ice phenology', themes: [businessDomain('Snow & Ice')] },
-        },
-      ],
-    });
-
-    expect(await result).toEqual([{ id: 'b', title: 'Lake ice phenology' }]);
   });
 
   it('finds no series when GN5 leaves out an empty features list', async () => {
@@ -118,14 +139,14 @@ describe('BusinessDomainService', () => {
     expect(await result).toEqual([]);
   });
 
-  it('escapes quotes in the name of a subdomain', () => {
+  it('escapes quotes in the path of a subdomain', () => {
     const { request } = respond(
       service().series({ name: "Europe's air", path: "Air^Europe's air" }),
       { features: [] },
     );
 
     expect(request.params.get('filter')).toBe(
-      "resourceType = 'series' AND keywords = 'Europe''s air'",
+      "resourceType = 'series' AND eeaBusinessDomain = 'Air^Europe''s air'",
     );
   });
 });
