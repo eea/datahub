@@ -152,17 +152,9 @@
         "selectPlaceholder": "Selecteer {{label}}"
       },
       "filters": {
-        "availableIn": "Beschikbaar in",
-        "creationYear": "Aanmaakjaar",
-        "dateAdded": "Datum toegevoegd",
-        "format": "Formaat",
-        "keywords": "Trefwoorden",
-        "organization": "Organisatie",
-        "resourceType": "Brontype",
-        "scales": "Schalen",
-        "spatialRepresentationType": "Ruimtelijk representatietype",
-        "topic": "Onderwerp",
-        "updateFrequency": "Bijwerkfrequentie"
+        "format": "Beschikbare formaten",
+        "organization": "Organisaties",
+        "spatialRepresentationType": "Type ruimtelijke representatie"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
       "noResults": "Geen resultaten gevonden",

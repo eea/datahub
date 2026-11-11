@@ -202,17 +202,9 @@
         "selectPlaceholder": "Select {{label}}"
       },
       "filters": {
-        "availableIn": "Available in",
-        "creationYear": "Creation Year",
-        "dateAdded": "Date added",
-        "format": "Format",
-        "keywords": "Keywords",
-        "organization": "Organization",
-        "resourceType": "Resource Type",
-        "scales": "Scales",
-        "spatialRepresentationType": "Spatial Representation",
-        "topic": "Topic",
-        "updateFrequency": "Update frequency"
+        "format": "Available formats",
+        "organization": "Organisations",
+        "spatialRepresentationType": "Spatial representation type"
       },
       "loadFailed": "Could not load search results. Please try again.",
       "noResults": "No results found",

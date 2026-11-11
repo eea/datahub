@@ -153,17 +153,9 @@
         "selectPlaceholder": "Sélectionner : {{label}}"
       },
       "filters": {
-        "availableIn": "Disponible en",
-        "creationYear": "Année de création",
-        "dateAdded": "Date d'ajout",
-        "format": "Format",
-        "keywords": "Mots-clés",
-        "organization": "Organisation",
-        "resourceType": "Type de ressource",
-        "scales": "Échelles",
-        "spatialRepresentationType": "Type de représentation spatiale",
-        "topic": "Thème",
-        "updateFrequency": "Fréquence de mise à jour"
+        "format": "Formats disponibles",
+        "organization": "Organisations",
+        "spatialRepresentationType": "Type de représentation spatiale"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
       "noResults": "Aucun résultat trouvé",
