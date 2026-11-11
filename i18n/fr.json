@@ -117,6 +117,7 @@
     "recordDetails": {
       "datahubOverview": "Aperçu du Datahub",
       "lastModified": "Dernière modification le {{date}}",
+      "published": "Publié le {{date}}",
       "rss": "RSS",
       "seeLess": "Voir moins",
       "seeMore": "Voir plus"

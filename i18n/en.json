@@ -166,6 +166,7 @@
     "recordDetails": {
       "datahubOverview": "Datahub overview",
       "lastModified": "Last modified {{date}}",
+      "published": "Published {{date}}",
       "rss": "RSS",
       "seeLess": "See less",
       "seeMore": "See more"

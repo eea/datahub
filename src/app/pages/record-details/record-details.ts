@@ -17,6 +17,10 @@ import { Header } from '../../header/header';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
+interface RecordDates {
+  issued?: string[];
+}
+
 @Component({
   selector: 'app-record-details',
   imports: [DatePipe, RouterLink, TranslatePipe, Message, RecordSkeleton, Footer, Header],
@@ -58,6 +62,10 @@ export class RecordDetails {
   );
   recordStatus = computed(() =>
     this.recordResource.error() ? 'record.view.notFoundOrNotShared' : undefined,
+  );
+
+  protected readonly published = computed(
+    () => (this.record()?.properties as RecordDates | undefined)?.issued?.[0],
   );
 
   private description = computed(() => this.record()?.properties?.description ?? '');

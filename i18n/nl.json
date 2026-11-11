@@ -116,6 +116,7 @@
     "recordDetails": {
       "datahubOverview": "Datahub-overzicht",
       "lastModified": "Laatst gewijzigd op {{date}}",
+      "published": "Gepubliceerd op {{date}}",
       "rss": "RSS",
       "seeLess": "Minder tonen",
       "seeMore": "Meer tonen"
