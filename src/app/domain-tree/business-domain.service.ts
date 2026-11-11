@@ -1,13 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { OgcApiRecordsGetRecords200ResponseDto, RecordsService } from '@geocat/frontend-api-client';
 import { COLLECTION_ID } from '@geocat/frontend-library';
-import { map, Observable, of } from 'rxjs';
-
-import { SUBDOMAINS_BY_DOMAIN } from './business-domains';
+import { map, Observable } from 'rxjs';
 
 const LEVEL_SEPARATOR = '^';
 const SERIES_FILTER = "resourceType = 'series'";
-const BUSINESS_DOMAIN_SCHEME = 'external.theme.eea-business-domains';
+const BUSINESS_DOMAIN = 'eeaBusinessDomain';
 const SERIES_PAGE_SIZE = 100;
 
 export interface Subdomain {
@@ -25,14 +23,24 @@ export interface SeriesLink {
   title: string;
 }
 
-const BUSINESS_DOMAINS: BusinessDomain[] = Object.entries(SUBDOMAINS_BY_DOMAIN).map(
-  ([domain, subdomains]) => ({
-    name: domain,
-    subdomains: subdomains.map((name) => ({ name, path: `${domain}${LEVEL_SEPARATOR}${name}` })),
-  }),
-);
-
 const escapeCql = (value: string): string => value.replace(/'/g, "''");
+
+const byName = (a: { name: string }, b: { name: string }): number => a.name.localeCompare(b.name);
+
+const toBusinessDomains = (paths: string[]): BusinessDomain[] => {
+  const subdomains = paths
+    .filter((path) => path.includes(LEVEL_SEPARATOR))
+    .map((path) => ({ name: path.slice(path.indexOf(LEVEL_SEPARATOR) + 1), path }));
+  return paths
+    .filter((path) => !path.includes(LEVEL_SEPARATOR))
+    .map((name) => ({
+      name,
+      subdomains: subdomains
+        .filter((subdomain) => subdomain.path.startsWith(`${name}${LEVEL_SEPARATOR}`))
+        .sort(byName),
+    }))
+    .sort(byName);
+};
 
 @Injectable({ providedIn: 'root' })
 export class BusinessDomainService {
@@ -40,43 +48,56 @@ export class BusinessDomainService {
   private readonly collectionId = inject(COLLECTION_ID);
 
   domains(): Observable<BusinessDomain[]> {
-    return of(BUSINESS_DOMAINS);
-  }
-
-  series(subdomain: Subdomain): Observable<SeriesLink[]> {
-    return this.getRecords(`${SERIES_FILTER} AND keywords = '${escapeCql(subdomain.name)}'`).pipe(
+    return this.getRecords({ limit: 1, filter: SERIES_FILTER, facets: BUSINESS_DOMAIN }).pipe(
       map((response) =>
-        (response.features ?? [])
-          .filter((record) =>
-            (record.properties.themes ?? []).some(
-              (theme) =>
-                theme.scheme?.endsWith(BUSINESS_DOMAIN_SCHEME) &&
-                theme.concepts.some((concept) => concept.id === subdomain.name),
-            ),
-          )
-          .map((record) => ({ id: record.id, title: record.properties.title ?? record.id })),
+        toBusinessDomains(
+          (response.facets?.[BUSINESS_DOMAIN]?.buckets ?? []).flatMap((bucket) =>
+            bucket.value ? [bucket.value] : [],
+          ),
+        ),
       ),
     );
   }
 
-  private getRecords(filter: string): Observable<OgcApiRecordsGetRecords200ResponseDto> {
+  series(subdomain: Subdomain): Observable<SeriesLink[]> {
+    return this.getRecords({
+      limit: SERIES_PAGE_SIZE,
+      filter: `${SERIES_FILTER} AND ${BUSINESS_DOMAIN} = '${escapeCql(subdomain.path)}'`,
+      sortby: 'resourceTitleObject',
+      facets: '',
+    }).pipe(
+      map((response) =>
+        (response.features ?? []).map((record) => ({
+          id: record.id,
+          title: record.properties.title ?? record.id,
+        })),
+      ),
+    );
+  }
+
+  private getRecords(request: {
+    limit: number;
+    filter: string;
+    facets: string;
+    sortby?: string;
+  }): Observable<OgcApiRecordsGetRecords200ResponseDto> {
     return this.recordsApi
       .getRecords(
         this.collectionId,
         undefined,
         undefined,
-        String(SERIES_PAGE_SIZE),
+        String(request.limit),
         '0',
         undefined,
         undefined,
         undefined,
         undefined,
-        'resourceTitleObject',
-        filter,
+        request.sortby,
+        request.filter,
         undefined,
         undefined,
         undefined,
-        '',
+        request.facets,
         'body',
         false,
         { httpHeaderAccept: 'application/json' },

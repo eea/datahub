@@ -42,6 +42,7 @@ const AppTheme = definePreset(Aura, {
       supplementary: '#f9f9f9',
       infoBackground: '#f8ffff',
       hover: '#edf1f2',
+      overlay: 'rgba(29, 42, 54, 0.6)',
       white: '#ffffff',
       green: '#007b6c',
       navy: '#212d38',
@@ -166,6 +167,26 @@ const AppTheme = definePreset(Aura, {
         color: '{eea.white}',
       },
     },
+    imageTile: {
+      height: '210px',
+      overlay: {
+        color: '{eea.overlay}',
+      },
+      label: {
+        color: '{eea.white}',
+        fontSize: '1.875rem',
+        fontWeight: '700',
+        lineHeight: '2.25rem',
+      },
+    },
+    popularRecord: {
+      imageHeight: '200px',
+      title: {
+        fontSize: '1.125rem',
+        fontWeight: '700',
+        lineHeight: '1.375rem',
+      },
+    },
     fontSize: {
       base: '0.875rem',
       body: '0.875rem',
@@ -176,10 +197,13 @@ const AppTheme = definePreset(Aura, {
       lead: '1.125rem',
       paragraph: '1rem',
       paragraphSmall: '0.9375rem',
+      searchControl: '1rem',
+      searchInput: '2.5rem',
       mobile: {
         h1: '1.875rem',
         h2: '1.5rem',
         h3: '1.25rem',
+        searchInput: '1.75rem',
       },
       footer: {
         contact: '1.25rem',
@@ -200,6 +224,8 @@ const AppTheme = definePreset(Aura, {
       h1: '700',
       h2: '600',
       h3: '600',
+      searchControl: '600',
+      searchInput: '200',
     },
   },
   css: ({ dt }) => `
@@ -209,10 +235,57 @@ const AppTheme = definePreset(Aura, {
         --p-font-size-h2: ${dt('fontSize.mobile.h2')};
         --p-font-size-h3: ${dt('fontSize.mobile.h3')};
         --p-font-size-record-title: ${dt('fontSize.mobile.h1')};
+        --p-font-size-search-input: ${dt('fontSize.mobile.searchInput')};
       }
     }
   `,
   components: {
+    button: {
+      root: {
+        borderRadius: '0',
+        paddingX: '1.75rem',
+      },
+      colorScheme: {
+        light: {
+          root: {
+            primary: {
+              background: '{primary.600}',
+              hoverBackground: '{primary.700}',
+              activeBackground: '{primary.800}',
+              borderColor: '{primary.600}',
+              hoverBorderColor: '{primary.700}',
+              activeBorderColor: '{primary.800}',
+            },
+          },
+        },
+      },
+    },
+    carousel: {
+      indicatorList: {
+        padding: '1rem 1rem 2rem',
+        gap: '0.625rem',
+      },
+      indicator: {
+        width: '1.25rem',
+        height: '1.25rem',
+        borderRadius: '50%',
+      },
+      colorScheme: {
+        light: {
+          indicator: {
+            background: 'transparent',
+            hoverBackground: '{eea.hover}',
+            activeBackground: '{primary.600}',
+          },
+        },
+      },
+      // Only the current page's dot is filled, so the others need an outline to show.
+      css: ({ dt }) => `
+        .p-carousel-indicator-button {
+          border: 1px solid ${dt('primary.600')};
+        }
+      `,
+    },
     card: {
       root: {
         borderRadius: '{border.radius.md}',
