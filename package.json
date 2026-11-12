@@ -38,7 +38,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^22.2.4",
-    "@angular/cdk": "^22.2.5",
+    "@angular/cdk": "^22.2.6",
     "@angular/common": "^22.2.4",
     "@angular/compiler": "^22.2.4",
     "@angular/core": "^22.2.4",
@@ -61,8 +61,8 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.5",
-    "@angular/cli": "^22.2.5",
+    "@angular/build": "^22.2.6",
+    "@angular/cli": "^22.2.6",
     "@angular/compiler-cli": "^22.2.4",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^19.8.1",
