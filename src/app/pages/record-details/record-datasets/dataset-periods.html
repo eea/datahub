@@ -52,7 +52,7 @@
                           {{ 'find.recordDetails.datasets.published' | translate }}
                         </dt>
                         <dd class="text-muted-foreground" data-testid="dataset-published">
-                          {{ published | date: 'dd MMM y' }}
+                          {{ published | date: dateFormat }}
                         </dd>
                       </div>
                     }

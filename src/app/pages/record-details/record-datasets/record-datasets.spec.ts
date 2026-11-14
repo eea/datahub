@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
-import { Observable, of, throwError } from 'rxjs';
+import { NEVER, Observable, of, throwError } from 'rxjs';
 
 import { RecordDatasets } from './record-datasets';
 import { Dataset, SeriesDatasetsService } from './series-datasets.service';
@@ -58,6 +58,16 @@ describe('RecordDatasets', () => {
   });
 
   afterEach(() => vi.unstubAllGlobals());
+
+  it('shows a placeholder while the datasets load', () => {
+    datasets.mockReturnValue(NEVER);
+    const fixture = TestBed.createComponent(RecordDatasets);
+    fixture.componentRef.setInput('childUuids', ['a', 'b']);
+    fixture.detectChanges();
+
+    expect(byTestId(fixture, 'datasets-loading')).not.toBeNull();
+    expect(byTestId(fixture, 'record-datasets')).toBeNull();
+  });
 
   it('lists superseded datasets in a block of their own', async () => {
     datasets.mockReturnValue(of([dataset('current'), dataset('old', true)]));

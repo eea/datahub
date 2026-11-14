@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { RecordSkeleton } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
@@ -8,7 +9,7 @@ import { SeriesDatasetsService } from './series-datasets.service';
 
 @Component({
   selector: 'app-record-datasets',
-  imports: [TranslatePipe, Message, DatasetPeriods],
+  imports: [TranslatePipe, Message, RecordSkeleton, DatasetPeriods],
   templateUrl: './record-datasets.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

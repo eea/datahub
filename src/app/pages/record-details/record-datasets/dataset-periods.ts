@@ -22,6 +22,7 @@ import {
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@openng/optimus-ui/tabs';
 import { Tag } from '@openng/optimus-ui/tag';
 
+import { RECORD_DATE_FORMAT } from '../record-date-format';
 import { Dataset } from './series-datasets.service';
 
 const OTHER_PERIOD = 'other';
@@ -89,6 +90,7 @@ export class DatasetPeriods {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly injector = inject(Injector);
+  protected readonly dateFormat = RECORD_DATE_FORMAT;
 
   protected readonly periods = computed(() => groupByPeriod(this.datasets()));
 
