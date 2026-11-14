@@ -429,6 +429,10 @@ const AppTheme = definePreset(Aura, {
           fontWeight: '600',
           padding: '0.0625rem 0.5rem',
         },
+        outlined: {
+          background: 'transparent',
+          borderWidth: '1px',
+        },
       },
       css: ({ dt }) => `
         .p-tag-secondary {
@@ -436,6 +440,10 @@ const AppTheme = definePreset(Aura, {
           font-size: ${dt('tag.secondary.font.size')};
           font-weight: ${dt('tag.secondary.font.weight')};
           padding: ${dt('tag.secondary.padding')};
+        }
+        .p-tag.p-tag-outlined {
+          background: ${dt('tag.outlined.background')};
+          border: ${dt('tag.outlined.border.width')} solid currentColor;
         }
       `,
     },

@@ -173,6 +173,8 @@
         "metadataFactsheet": "Metadata Factsheet",
         "otherPeriod": "Other",
         "published": "Published:",
+        "superseded": "Superseded",
+        "supersededTitle": "Superseded or restricted datasets",
         "temporalCoverage": "Temporal coverage:",
         "title": "Datasets"
       },

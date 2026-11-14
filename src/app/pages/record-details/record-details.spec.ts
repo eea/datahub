@@ -17,7 +17,7 @@ import { RecordDetails } from './record-details';
 describe('RecordDetails', () => {
   const uuid = 'e006507d-15c8-49e6-959c-53b61facd873';
   const properties = signal<Record<string, unknown> | undefined>({});
-  const currentDatasets = vi.fn();
+  const datasets = vi.fn();
   const sentence = 'Urban Atlas provides comparable land use and land cover data for urban areas. ';
   const longDescription = sentence.repeat(4);
 
@@ -33,7 +33,7 @@ describe('RecordDetails', () => {
 
   beforeEach(async () => {
     properties.set({});
-    currentDatasets.mockReset().mockReturnValue(of([]));
+    datasets.mockReset().mockReturnValue(of([]));
     await TestBed.configureTestingModule({
       imports: [RecordDetails],
       providers: [
@@ -54,7 +54,7 @@ describe('RecordDetails', () => {
             },
           },
         },
-        { provide: SeriesDatasetsService, useValue: { currentDatasets } },
+        { provide: SeriesDatasetsService, useValue: { datasets } },
         { provide: COLLECTION_ID, useValue: 'collection' },
         { provide: BASE_PATH, useValue: '/catalogue' },
         {
@@ -165,14 +165,14 @@ describe('RecordDetails', () => {
     properties.set({ title: 'Urban Atlas', childUuid: ['a', 'b'] });
     await render();
 
-    expect(currentDatasets).toHaveBeenCalledWith(['a', 'b']);
+    expect(datasets).toHaveBeenCalledWith(['a', 'b']);
   });
 
   it('shows no datasets block for a record without datasets', async () => {
     properties.set({ title: 'Urban Atlas 2018' });
     const fixture = await render();
 
-    expect(currentDatasets).not.toHaveBeenCalled();
+    expect(datasets).not.toHaveBeenCalled();
     expect(byTestId(fixture, 'record-datasets')).toBeNull();
   });
 });

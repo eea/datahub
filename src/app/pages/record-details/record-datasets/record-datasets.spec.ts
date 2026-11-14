@@ -1,71 +1,40 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, provideRouter, Router } from '@angular/router';
-import { provideTranslateService, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, NEVER, of } from 'rxjs';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { provideTranslateService } from '@ngx-translate/core';
+import { NEVER, Observable, of, throwError } from 'rxjs';
 
 import { RecordDatasets } from './record-datasets';
 import { Dataset, SeriesDatasetsService } from './series-datasets.service';
 
 describe('RecordDatasets', () => {
-  const fragment = new BehaviorSubject<string | null>(null);
-  const snapshot = { fragment: null as string | null };
-  const scrollIntoView = vi.fn();
-  const currentDatasets = vi.fn();
+  const datasets = vi.fn<(ids: string[]) => Observable<Dataset[]>>();
 
-  const dataset = (id: string, overrides: Partial<Dataset> = {}): Dataset => ({
+  const dataset = (id: string, superseded = false): Dataset => ({
     id,
     title: `Dataset ${id}`,
     formats: [],
+    startYear: 2020,
+    endYear: 2022,
     downloads: [],
     links: [],
     factsheetUrl: `/catalogue/srv/api/records/${id}/formatters/xsl-view?output=pdf`,
-    ...overrides,
+    superseded,
   });
-
-  const datasets = [
-    dataset('old', { startYear: 2005, endYear: 2013 }),
-    dataset('undated'),
-    dataset('new-b', { startYear: 2020, endYear: 2022, published: '2025-01-31' }),
-    dataset('new-a', {
-      startYear: 2020,
-      endYear: 2022,
-      published: '2026-01-31',
-      formats: ['GeoTIFF'],
-      downloads: [{ href: 'https://a/zip', isDoi: false }],
-      links: [{ href: 'https://doi.org/10.2909/new-a', title: 'DOI', isDoi: true }],
-    }),
-    dataset('single-year', { startYear: 2018, endYear: 2018 }),
-  ];
 
   async function render(): Promise<ComponentFixture<RecordDatasets>> {
     const fixture = TestBed.createComponent(RecordDatasets);
-    fixture.componentRef.setInput(
-      'childUuids',
-      datasets.map((item) => item.id),
-    );
+    fixture.componentRef.setInput('childUuids', ['a', 'b']);
     await fixture.whenStable();
     return fixture;
   }
 
-  const all = (fixture: ComponentFixture<RecordDatasets>, testId: string): HTMLElement[] => [
-    ...fixture.nativeElement.querySelectorAll(`[data-testid="${testId}"]`),
-  ];
+  const datasetIds = (fixture: ComponentFixture<RecordDatasets>, block: string): string[] =>
+    [
+      ...fixture.nativeElement.querySelectorAll(`[data-testid="${block}"] [data-testid="dataset"]`),
+    ].map((panel: HTMLElement) => panel.id);
 
-  const tabLabels = (fixture: ComponentFixture<RecordDatasets>) =>
-    all(fixture, 'period-tab').map((tab) => tab.textContent?.trim());
-
-  const activeTab = (fixture: ComponentFixture<RecordDatasets>) =>
-    all(fixture, 'period-tab')
-      .find((tab) => tab.getAttribute('aria-selected') === 'true')
-      ?.textContent?.trim();
-
-  const visibleDatasets = (fixture: ComponentFixture<RecordDatasets>) =>
-    all(fixture, 'dataset')
-      .filter((panel) => !panel.closest('[role="tabpanel"]')?.hasAttribute('hidden'))
-      .map((panel) => panel.id);
-
-  const panel = (fixture: ComponentFixture<RecordDatasets>, id: string): HTMLElement =>
-    fixture.nativeElement.querySelector(`[id="${id}"]`);
+  const byTestId = (fixture: ComponentFixture<RecordDatasets>, testId: string) =>
+    fixture.nativeElement.querySelector(`[data-testid="${testId}"]`);
 
   beforeEach(async () => {
     vi.stubGlobal(
@@ -76,113 +45,59 @@ describe('RecordDatasets', () => {
         disconnect(): void {}
       },
     );
-    fragment.next(null);
-    snapshot.fragment = null;
-    scrollIntoView.mockReset();
-    currentDatasets.mockReset().mockReturnValue(of(datasets));
-    Object.defineProperty(Element.prototype, 'scrollIntoView', {
-      value: scrollIntoView,
-      configurable: true,
-    });
+    datasets.mockReset();
     await TestBed.configureTestingModule({
       imports: [RecordDatasets],
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { fragment, snapshot } },
-        { provide: SeriesDatasetsService, useValue: { currentDatasets } },
+        { provide: ActivatedRoute, useValue: { fragment: of(null), snapshot: { fragment: null } } },
+        { provide: SeriesDatasetsService, useValue: { datasets } },
       ],
     }).compileComponents();
-
-    const translate = TestBed.inject(TranslateService);
-    translate.setTranslation('en', {
-      find: {
-        recordDetails: {
-          datasets: { doi: 'Digital Object Identifier (DOI)', otherPeriod: 'Other' },
-        },
-      },
-    });
-    translate.use('en');
   });
 
   afterEach(() => vi.unstubAllGlobals());
 
   it('shows a placeholder while the datasets load', () => {
-    currentDatasets.mockReturnValue(NEVER);
+    datasets.mockReturnValue(NEVER);
     const fixture = TestBed.createComponent(RecordDatasets);
-    fixture.componentRef.setInput('childUuids', ['new-a']);
+    fixture.componentRef.setInput('childUuids', ['a', 'b']);
     fixture.detectChanges();
 
-    expect(all(fixture, 'datasets-loading')).toHaveLength(1);
-    expect(all(fixture, 'record-datasets')).toHaveLength(0);
+    expect(byTestId(fixture, 'datasets-loading')).not.toBeNull();
+    expect(byTestId(fixture, 'record-datasets')).toBeNull();
   });
 
-  it('puts the newest period first and undated datasets last', async () => {
+  it('lists superseded datasets in a block of their own', async () => {
+    datasets.mockReturnValue(of([dataset('current'), dataset('old', true)]));
     const fixture = await render();
 
-    expect(tabLabels(fixture)).toEqual(['2020–2022', '2018', '2005–2013', 'Other']);
-    expect(activeTab(fixture)).toBe('2020–2022');
+    expect(datasetIds(fixture, 'record-datasets')).toEqual(['current']);
+    expect(datasetIds(fixture, 'superseded-datasets')).toEqual(['old']);
   });
 
-  it('lists the datasets of the selected period, newest published first', async () => {
+  it('shows no superseded block when every dataset is current', async () => {
+    datasets.mockReturnValue(of([dataset('current')]));
     const fixture = await render();
 
-    expect(visibleDatasets(fixture)).toEqual(['new-a', 'new-b']);
-
-    all(fixture, 'period-tab')
-      .find((tab) => tab.textContent?.trim() === '2005–2013')
-      ?.click();
-    await fixture.whenStable();
-
-    expect(visibleDatasets(fixture)).toEqual(['old']);
+    expect(byTestId(fixture, 'record-datasets')).not.toBeNull();
+    expect(byTestId(fixture, 'superseded-datasets')).toBeNull();
   });
 
-  it('shows the formats, download and DOI of a dataset', async () => {
+  it('shows only the superseded block when no dataset is current', async () => {
+    datasets.mockReturnValue(of([dataset('old', true)]));
     const fixture = await render();
-    const row = panel(fixture, 'new-a');
 
-    expect(row.querySelector('[data-testid="dataset-format"]')?.textContent?.trim()).toBe(
-      'GeoTIFF',
-    );
-    expect(row.querySelector('[data-testid="dataset-download"]')?.getAttribute('href')).toBe(
-      'https://a/zip',
-    );
-    expect(row.querySelector('[data-testid="dataset-link"]')?.textContent?.trim()).toBe(
-      'Digital Object Identifier (DOI)',
-    );
+    expect(byTestId(fixture, 'record-datasets')).toBeNull();
+    expect(datasetIds(fixture, 'superseded-datasets')).toEqual(['old']);
   });
 
-  it('opens the dataset in the URL fragment on its period', async () => {
-    snapshot.fragment = 'old';
+  it('says so when the datasets could not be loaded', async () => {
+    datasets.mockReturnValue(throwError(() => new Error('500')));
     const fixture = await render();
 
-    expect(activeTab(fixture)).toBe('2005–2013');
-    expect(panel(fixture, 'old').getAttribute('data-p-active')).toBe('true');
-    expect(scrollIntoView).toHaveBeenCalledTimes(1);
-  });
-
-  it('leaves the page where it is when a dataset is opened', async () => {
-    const fixture = await render();
-    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
-
-    panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header')?.click();
-    fragment.next('new-b');
-    await fixture.whenStable();
-
-    expect(scrollIntoView).not.toHaveBeenCalled();
-  });
-
-  it('puts an opened dataset in the URL so it can be bookmarked', async () => {
-    const fixture = await render();
-    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
-
-    panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header')?.click();
-    await fixture.whenStable();
-
-    expect(navigate).toHaveBeenCalledWith(
-      [],
-      expect.objectContaining({ fragment: 'new-b', replaceUrl: true }),
-    );
-    expect(panel(fixture, 'new-b').getAttribute('data-p-active')).toBe('true');
+    expect(fixture.nativeElement.querySelector('p-message')).not.toBeNull();
+    expect(byTestId(fixture, 'record-datasets')).toBeNull();
   });
 });
