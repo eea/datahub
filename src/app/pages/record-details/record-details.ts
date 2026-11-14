@@ -14,6 +14,7 @@ import { Observable, of } from 'rxjs';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
+import { RecordDatasets } from './record-datasets/record-datasets';
 import { RECORD_DATE_FORMAT } from './record-date-format';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
@@ -24,7 +25,16 @@ interface RecordDates {
 
 @Component({
   selector: 'app-record-details',
-  imports: [DatePipe, RouterLink, TranslatePipe, Message, RecordSkeleton, Footer, Header],
+  imports: [
+    DatePipe,
+    RouterLink,
+    TranslatePipe,
+    Message,
+    RecordSkeleton,
+    Footer,
+    Header,
+    RecordDatasets,
+  ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -64,6 +74,10 @@ export class RecordDetails {
   );
   recordStatus = computed(() =>
     this.recordResource.error() ? 'record.view.notFoundOrNotShared' : undefined,
+  );
+
+  protected readonly childUuids = computed(
+    () => (this.record()?.properties as { childUuid?: string[] } | undefined)?.childUuid ?? [],
   );
 
   protected readonly published = computed(
