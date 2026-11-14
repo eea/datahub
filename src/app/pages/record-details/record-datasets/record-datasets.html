@@ -1,4 +1,6 @@
-@if (datasetsResource.error()) {
+@if (datasetsResource.isLoading()) {
+  <app-record-skeleton class="mt-14 block" data-testid="datasets-loading" />
+} @else if (datasetsResource.error()) {
   <p-message severity="error" class="mt-14">
     {{ 'find.recordDetails.datasets.loadFailed' | translate }}
   </p-message>

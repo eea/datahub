@@ -15,6 +15,7 @@ import { Observable, of } from 'rxjs';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { RecordDatasets } from './record-datasets/record-datasets';
+import { RECORD_DATE_FORMAT } from './record-date-format';
 import { RecordMoreInformation } from './record-more-information/record-more-information';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
@@ -46,6 +47,7 @@ export class RecordDetails {
   private collectionId = inject(COLLECTION_ID);
   private searchQuery = inject(SearchStateService).query;
   protected readonly rssUrl = `${inject(BASE_PATH)}/rss`;
+  protected readonly dateFormat = RECORD_DATE_FORMAT;
   protected readonly resultsQueryParams = computed(() => {
     const query = this.searchQuery();
     return query ? { q: query } : {};
