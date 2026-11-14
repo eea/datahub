@@ -26,7 +26,7 @@
             <span class="block">{{ obligation.label }}</span>
           }
         } @empty {
-          —
+          {{ emptyValue }}
         }
       </dd>
     </div>
@@ -35,7 +35,7 @@
         {{ 'find.recordDetails.moreInformation.temporalCoverage' | translate }}
       </dt>
       <dd class="text-paragraph text-muted-foreground" data-testid="temporal-coverage">
-        {{ temporalCoverage() ?? '—' }}
+        {{ temporalCoverage() ?? emptyValue }}
       </dd>
     </div>
     <div class="min-w-0">
@@ -43,7 +43,7 @@
         {{ 'find.recordDetails.moreInformation.organisation' | translate }}
       </dt>
       <dd class="text-paragraph text-muted-foreground" data-testid="organisation">
-        {{ organisations() || '—' }}
+        {{ organisations() || emptyValue }}
       </dd>
     </div>
   </dl>

@@ -6,6 +6,7 @@ import { catalogueRecordUrl, factsheetUrl } from '../gn4-links';
 import { formatYearRange, RecordTime, yearRange } from '../year-range';
 
 const REPORTING_OBLIGATIONS_SCHEME = 'rod-eionet-europa-eu';
+const EMPTY_VALUE = '—';
 
 interface ReportingObligation {
   label: string;
@@ -22,6 +23,7 @@ export class RecordMoreInformation {
   readonly record = input.required<OgcApiRecordsRecordGeoJSONDto>();
 
   private readonly basePath = inject(BASE_PATH);
+  protected readonly emptyValue = EMPTY_VALUE;
 
   protected readonly reportingObligations = computed<ReportingObligation[]>(() =>
     (this.record().properties.themes ?? [])
