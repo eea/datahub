@@ -78,7 +78,7 @@ describe('RecordDetails', () => {
     properties.set({ title: 'Urban Atlas', updated: '2025-12-02T09:30:00Z' });
     const fixture = await render();
 
-    expect(fixture.nativeElement.querySelector('h1').textContent.trim()).toBe('Urban Atlas');
+    expect(byTestId(fixture, 'record-title').textContent.trim()).toBe('Urban Atlas');
     expect(byTestId(fixture, 'last-modified').textContent.trim()).toBe('Last modified 02 Dec 2025');
     expect(byTestId(fixture, 'published')).toBeNull();
     expect(byTestId(fixture, 'rss-link').getAttribute('href')).toBe('/catalogue/rss');
@@ -104,8 +104,8 @@ describe('RecordDetails', () => {
     const fixture = await render();
 
     expect(byTestId(fixture, 'datahub-overview-link')).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('h1')).toBeNull();
-    expect(fixture.nativeElement.querySelector('p-message').textContent.trim()).toBe(
+    expect(byTestId(fixture, 'record-title')).toBeNull();
+    expect(byTestId(fixture, 'record-error').textContent.trim()).toBe(
       'record.view.notFoundOrNotShared',
     );
   });

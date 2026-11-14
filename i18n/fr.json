@@ -52,7 +52,6 @@
   "find": {
     "appName": "Datahub",
     "common": {
-      "backToHome": "Retour à l'accueil",
       "placeholder": {
         "footer": "Pied de page de l'Agence européenne pour l'environnement",
         "header": "En-tête de l'Agence européenne pour l'environnement"
