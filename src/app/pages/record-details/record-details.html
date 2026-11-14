@@ -2,44 +2,98 @@
   <app-header />
 
   <div class="bg-primary">
-    <div
-      class="max-w-7xl mx-auto px-6 pt-16 pb-10 flex flex-wrap items-end justify-between gap-x-6"
-    >
-      <p class="text-h1 text-primary-contrast">
-        {{ 'find.appName' | translate }}
-      </p>
-      <app-share />
+    <div class="max-w-7xl mx-auto px-6 py-12.5 text-primary-contrast">
+      <a
+        routerLink="/search"
+        [queryParams]="resultsQueryParams()"
+        class="flex w-fit items-center gap-1.5 mb-3 text-lead font-bold hover:underline"
+        data-testid="datahub-overview-link"
+      >
+        <i class="pi pi-chevron-left text-banner-muted text-[1rem]!" aria-hidden="true"></i>
+        {{ 'find.recordDetails.datahubOverview' | translate }}
+      </a>
+
+      @if (record(); as record) {
+        <h1 class="text-record-title max-w-210 mb-3.5" data-testid="record-title">
+          {{ record.properties.title ?? ('record.field.title.notAvailable' | translate) }}
+        </h1>
+        <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pt-2">
+          <p class="flex flex-wrap gap-x-4 text-paragraph" data-testid="record-dates">
+            @if (published(); as published) {
+              <span data-testid="published">
+                {{
+                  'find.recordDetails.published' | translate: { date: published | date: dateFormat }
+                }}
+              </span>
+            }
+            @if (published() && record.properties.updated) {
+              <span aria-hidden="true">|</span>
+            }
+            @if (record.properties.updated; as updated) {
+              <span data-testid="last-modified">
+                {{
+                  'find.recordDetails.lastModified'
+                    | translate: { date: updated | date: dateFormat }
+                }}
+              </span>
+            }
+          </p>
+          <a
+            [href]="rssUrl"
+            class="flex items-center gap-1.5 text-base text-banner-muted hover:underline"
+            data-testid="rss-link"
+          >
+            <svg viewBox="0 0 14 14" fill="none" class="size-3.5" aria-hidden="true">
+              <path
+                d="M2 2a10 10 0 0110 10M2 2a5 5 0 015 5M2 8a2 2 0 012 2"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              />
+            </svg>
+            {{ 'find.recordDetails.rss' | translate }}
+          </a>
+        </div>
+      }
     </div>
   </div>
 
-  <article class="max-w-7xl mx-auto px-6 py-8">
-    <button
-      type="button"
-      (click)="goHome()"
-      class="flex items-center gap-2 mb-4 text-base font-medium hover:text-primary transition-colors cursor-pointer"
-    >
-      <i class="pi pi-arrow-left text-[0.875rem]!"></i>
-      {{ 'find.common.backToHome' | translate }}
-    </button>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 space-y-6">
-        @if (recordResource.isLoading()) {
-          <app-record-skeleton />
-        } @else if (recordStatus()) {
-          <p-message severity="error">
-            {{ recordStatus() | translate: { uuid: recordUuid() } }}
-          </p-message>
-        } @else {
-          <p-card>
-            <app-record-field-title [record]="record()" />
-            <a pButton [href]="gn4RecordUrl()" class="mt-4" data-testid="gn4-record-link">
-              {{ 'find.recordDetails.viewInCatalogue' | translate }}
-            </a>
-          </p-card>
+  <article class="max-w-7xl mx-auto px-6 pt-8 pb-16">
+    @if (recordResource.isLoading()) {
+      <app-record-skeleton />
+    } @else if (recordStatus()) {
+      <p-message severity="error" data-testid="record-error">
+        {{ recordStatus() | translate: { uuid: recordUuid() } }}
+      </p-message>
+    } @else if (visibleDescription()) {
+      <p
+        class="border-l-8 border-primary-700 px-7 py-2.5 mt-5 text-lead whitespace-pre-line"
+        data-testid="record-description"
+      >
+        {{ visibleDescription() }}
+        @if (isDescriptionLong()) {
+          <button
+            type="button"
+            (click)="isDescriptionExpanded.set(!isDescriptionExpanded())"
+            [attr.aria-expanded]="isDescriptionExpanded()"
+            class="inline-flex items-center gap-1 text-paragraph font-semibold text-primary cursor-pointer"
+            data-testid="description-toggle"
+          >
+            {{
+              (isDescriptionExpanded()
+                ? 'find.recordDetails.seeLess'
+                : 'find.recordDetails.seeMore'
+              ) | translate
+            }}
+            <i
+              class="pi pi-chevron-down text-[0.625rem]! transition-transform"
+              [class.rotate-180]="isDescriptionExpanded()"
+              aria-hidden="true"
+            ></i>
+          </button>
         }
-      </div>
-    </div>
+      </p>
+    }
   </article>
 
   <app-footer />
