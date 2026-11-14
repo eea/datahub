@@ -7,7 +7,7 @@ import { SeriesDatasetsService } from './series-datasets.service';
 
 describe('SeriesDatasetsService', () => {
   const getRecords = vi.fn();
-  let service: SeriesDatasetsService;
+  const service = () => TestBed.inject(SeriesDatasetsService);
 
   const feature = (id: string, overrides: Record<string, unknown> = {}) => ({
     id,
@@ -31,13 +31,12 @@ describe('SeriesDatasetsService', () => {
         { provide: BASE_PATH, useValue: '/catalogue' },
       ],
     });
-    service = TestBed.inject(SeriesDatasetsService);
   });
 
   it('asks for each dataset once', async () => {
     respondWith();
 
-    await firstValueFrom(service.currentDatasets(['a', 'b', 'a']));
+    await firstValueFrom(service().currentDatasets(['a', 'b', 'a']));
 
     expect(getRecords).toHaveBeenCalledTimes(1);
     expect(requestedIds(0)).toEqual(['a', 'b']);
@@ -47,7 +46,7 @@ describe('SeriesDatasetsService', () => {
     respondWith();
     const ids = Array.from({ length: 150 }, (_, i) => `id-${i}`);
 
-    await firstValueFrom(service.currentDatasets(ids));
+    await firstValueFrom(service().currentDatasets(ids));
 
     expect(getRecords).toHaveBeenCalledTimes(2);
     expect(requestedIds(0)).toHaveLength(100);
@@ -55,7 +54,7 @@ describe('SeriesDatasetsService', () => {
   });
 
   it('makes no request for a series without datasets', async () => {
-    expect(await firstValueFrom(service.currentDatasets([]))).toEqual([]);
+    expect(await firstValueFrom(service().currentDatasets([]))).toEqual([]);
     expect(getRecords).not.toHaveBeenCalled();
   });
 
@@ -66,7 +65,7 @@ describe('SeriesDatasetsService', () => {
       feature('gone', { properties: { title: 'Gone', status: ['obsolete'] } }),
     );
 
-    const datasets = await firstValueFrom(service.currentDatasets(['current', 'old', 'gone']));
+    const datasets = await firstValueFrom(service().currentDatasets(['current', 'old', 'gone']));
 
     expect(datasets.map((dataset) => dataset.id)).toEqual(['current']);
   });
@@ -83,7 +82,7 @@ describe('SeriesDatasetsService', () => {
       }),
     );
 
-    const [dataset] = await firstValueFrom(service.currentDatasets(['a']));
+    const [dataset] = await firstValueFrom(service().currentDatasets(['a']));
 
     expect(dataset).toMatchObject({
       title: 'Urban Atlas 2018',
@@ -112,7 +111,7 @@ describe('SeriesDatasetsService', () => {
       }),
     );
 
-    const [dataset] = await firstValueFrom(service.currentDatasets(['a']));
+    const [dataset] = await firstValueFrom(service().currentDatasets(['a']));
 
     expect(dataset.downloads).toEqual([
       { href: 'https://a/zip', title: 'Direct download', isDoi: false },

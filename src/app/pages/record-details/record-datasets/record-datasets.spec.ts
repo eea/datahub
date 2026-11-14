@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, NEVER, of } from 'rxjs';
 
 import { RecordDatasets } from './record-datasets';
 import { Dataset, SeriesDatasetsService } from './series-datasets.service';
@@ -10,6 +10,7 @@ describe('RecordDatasets', () => {
   const fragment = new BehaviorSubject<string | null>(null);
   const snapshot = { fragment: null as string | null };
   const scrollIntoView = vi.fn();
+  const currentDatasets = vi.fn();
 
   const dataset = (id: string, overrides: Partial<Dataset> = {}): Dataset => ({
     id,
@@ -78,6 +79,7 @@ describe('RecordDatasets', () => {
     fragment.next(null);
     snapshot.fragment = null;
     scrollIntoView.mockReset();
+    currentDatasets.mockReset().mockReturnValue(of(datasets));
     Object.defineProperty(Element.prototype, 'scrollIntoView', {
       value: scrollIntoView,
       configurable: true,
@@ -88,10 +90,7 @@ describe('RecordDatasets', () => {
         provideRouter([]),
         provideTranslateService(),
         { provide: ActivatedRoute, useValue: { fragment, snapshot } },
-        {
-          provide: SeriesDatasetsService,
-          useValue: { currentDatasets: () => of(datasets) },
-        },
+        { provide: SeriesDatasetsService, useValue: { currentDatasets } },
       ],
     }).compileComponents();
 
@@ -107,6 +106,16 @@ describe('RecordDatasets', () => {
   });
 
   afterEach(() => vi.unstubAllGlobals());
+
+  it('shows a placeholder while the datasets load', () => {
+    currentDatasets.mockReturnValue(NEVER);
+    const fixture = TestBed.createComponent(RecordDatasets);
+    fixture.componentRef.setInput('childUuids', ['new-a']);
+    fixture.detectChanges();
+
+    expect(all(fixture, 'datasets-loading')).toHaveLength(1);
+    expect(all(fixture, 'record-datasets')).toHaveLength(0);
+  });
 
   it('puts the newest period first and undated datasets last', async () => {
     const fixture = await render();

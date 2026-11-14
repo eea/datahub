@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RecordSkeleton } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
   Accordion,
@@ -24,6 +25,7 @@ import { Message } from '@openng/optimus-ui/message';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@openng/optimus-ui/tabs';
 import { Tag } from '@openng/optimus-ui/tag';
 
+import { RECORD_DATE_FORMAT } from '../record-date-format';
 import { Dataset, SeriesDatasetsService } from './series-datasets.service';
 
 const OTHER_PERIOD = 'other';
@@ -76,6 +78,7 @@ const groupByPeriod = (datasets: Dataset[]): DatasetPeriod[] =>
     AccordionHeader,
     AccordionPanel,
     Message,
+    RecordSkeleton,
     Tab,
     TabList,
     TabPanel,
@@ -93,6 +96,7 @@ export class RecordDatasets {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly injector = inject(Injector);
+  protected readonly dateFormat = RECORD_DATE_FORMAT;
 
   protected readonly datasetsResource = rxResource({
     params: () => ({ ids: this.childUuids() }),

@@ -163,7 +163,7 @@ describe('RecordDetails', () => {
 
   it('lists the datasets of a series', async () => {
     properties.set({ title: 'Urban Atlas', childUuid: ['a', 'b'] });
-    const fixture = await render();
+    await render();
 
     expect(currentDatasets).toHaveBeenCalledWith(['a', 'b']);
   });
