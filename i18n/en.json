@@ -50,7 +50,6 @@
   "find": {
     "appName": "Datahub",
     "common": {
-      "backToHome": "Back to Home",
       "eeaLogo": "European Environment Agency",
       "search": "Search",
       "selectLanguage": "Select language"
