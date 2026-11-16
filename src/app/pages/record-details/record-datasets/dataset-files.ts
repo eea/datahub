@@ -15,6 +15,8 @@ import { Dataset } from './series-datasets.service';
 
 const TABLE_TOKENS = { headerCell: { background: '{content.background}' } };
 
+const withoutQuery = (url: string): string => url.split('?')[0];
+
 @Component({
   selector: 'app-dataset-files',
   imports: [DatePipe, TranslatePipe, Skeleton, TreeTableModule, FileSizePipe],
@@ -36,9 +38,9 @@ export class DatasetFiles {
   });
 
   private readonly files = computed(() => {
-    const overviews = this.dataset().overviews;
+    const overviews = new Set(this.dataset().overviews.map(withoutQuery));
     return this.filesResource.hasValue()
-      ? this.filesResource.value().filter((file) => !overviews.includes(file.url))
+      ? this.filesResource.value().filter((file) => !overviews.has(withoutQuery(file.url)))
       : [];
   });
 

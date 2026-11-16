@@ -27,9 +27,9 @@ describe('DatasetFiles', () => {
     url: `https://host/a/${path}`,
   });
 
-  async function render(): Promise<ComponentFixture<DatasetFiles>> {
+  async function render(item = dataset): Promise<ComponentFixture<DatasetFiles>> {
     const fixture = TestBed.createComponent(DatasetFiles);
-    fixture.componentRef.setInput('dataset', dataset);
+    fixture.componentRef.setInput('dataset', item);
     await fixture.whenStable();
     return fixture;
   }
@@ -151,6 +151,17 @@ describe('DatasetFiles', () => {
     files.mockReturnValue(of([file('overview.png'), file('README.md')]));
 
     const fixture = await render();
+
+    expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
+  });
+
+  it('recognises the overview image when its link carries a query', async () => {
+    files.mockReturnValue(of([file('overview.png'), file('README.md')]));
+
+    const fixture = await render({
+      ...dataset,
+      overviews: ['https://host/a/overview.png?approved=true'],
+    });
 
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
   });
