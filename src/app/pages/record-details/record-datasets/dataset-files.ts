@@ -13,7 +13,7 @@ import { DatasetFilesService } from './dataset-files.service';
 import { FileSizePipe } from './file-size.pipe';
 import { Dataset } from './series-datasets.service';
 
-const TABLE_TOKENS = { headerCell: { background: 'transparent' } };
+const TABLE_TOKENS = { headerCell: { background: '{content.background}' } };
 
 @Component({
   selector: 'app-dataset-files',
