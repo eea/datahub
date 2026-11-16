@@ -1,5 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
@@ -74,7 +81,10 @@ export class RecordDetails {
   protected readonly isDescriptionLong = computed(
     () => this.description().length > DESCRIPTION_PREVIEW_LENGTH,
   );
-  protected readonly isDescriptionExpanded = signal(false);
+  protected readonly isDescriptionExpanded = linkedSignal({
+    source: this.recordUuid,
+    computation: () => false,
+  });
   protected readonly visibleDescription = computed(() =>
     this.isDescriptionLong() && !this.isDescriptionExpanded()
       ? `${this.description().slice(0, DESCRIPTION_PREVIEW_LENGTH).trim()}…`

@@ -1,10 +1,10 @@
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, provideRouter } from '@angular/router';
+import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { BASE_PATH, RecordService } from '@geocat/frontend-api-client';
 import { COLLECTION_ID, SearchStateService } from '@geocat/frontend-library';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
-import { of, throwError } from 'rxjs';
+import { BehaviorSubject, of, throwError } from 'rxjs';
 
 import {
   EEA_WEBSITE_ACTIONS,
@@ -16,6 +16,7 @@ import { RecordDetails } from './record-details';
 describe('RecordDetails', () => {
   const uuid = 'e006507d-15c8-49e6-959c-53b61facd873';
   const properties = signal<Record<string, unknown> | undefined>({});
+  const params = new BehaviorSubject<Params>({ uuid });
   const sentence = 'Urban Atlas provides comparable land use and land cover data for urban areas. ';
   const longDescription = sentence.repeat(4);
 
@@ -31,12 +32,13 @@ describe('RecordDetails', () => {
 
   beforeEach(async () => {
     properties.set({});
+    params.next({ uuid });
     await TestBed.configureTestingModule({
       imports: [RecordDetails],
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { params: of({ uuid }) } },
+        { provide: ActivatedRoute, useValue: { params } },
         {
           provide: RecordService,
           useValue: {
@@ -142,6 +144,20 @@ describe('RecordDetails', () => {
     expect(byTestId(fixture, 'record-description').textContent).toContain(longDescription.trim());
     expect(toggle.textContent.trim()).toBe('See less');
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('collapses the description again when another record opens', async () => {
+    properties.set({ description: longDescription });
+    const fixture = await render();
+
+    byTestId(fixture, 'description-toggle').click();
+    await fixture.whenStable();
+    expect(byTestId(fixture, 'description-toggle').getAttribute('aria-expanded')).toBe('true');
+
+    params.next({ uuid: 'other-uuid' });
+    await fixture.whenStable();
+
+    expect(byTestId(fixture, 'description-toggle').getAttribute('aria-expanded')).toBe('false');
   });
 
   it('shows a short description in full without See more', async () => {
