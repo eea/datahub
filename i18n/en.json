@@ -168,6 +168,13 @@
         "directDownload": "Direct download",
         "doi": "Digital Object Identifier (DOI)",
         "download": "Download:",
+        "files": {
+          "download": "Download",
+          "fileCount": "{{count}} files",
+          "modified": "Modified",
+          "oneFile": "1 file",
+          "size": "Size"
+        },
         "links": "Links:",
         "loadFailed": "The datasets of this series could not be loaded.",
         "otherPeriod": "Other",

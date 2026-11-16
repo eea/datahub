@@ -125,4 +125,23 @@ describe('SeriesDatasetsService', () => {
       { href: 'https://a/viewer', title: 'Viewer', isDoi: false },
     ]);
   });
+
+  it('reads the overview images so they stay out of the file list', async () => {
+    respondWith(
+      feature('a', {
+        properties: {
+          title: 'Dataset a',
+          thumbnails: [{ url: 'https://a/attachments/overview.png' }, { name: 'no url' }],
+        },
+      }),
+      feature('b'),
+    );
+
+    const datasets = await firstValueFrom(service().datasets(['a', 'b']));
+
+    expect(datasets.map(({ overviews }) => overviews)).toEqual([
+      ['https://a/attachments/overview.png'],
+      [],
+    ]);
+  });
 });

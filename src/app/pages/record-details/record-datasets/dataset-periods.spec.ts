@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
+import { DatasetFilesService } from './dataset-files.service';
 import { DatasetPeriods } from './dataset-periods';
 import { Dataset } from './series-datasets.service';
 
@@ -10,6 +11,7 @@ describe('DatasetPeriods', () => {
   const fragment = new BehaviorSubject<string | null>(null);
   const snapshot = { fragment: null as string | null };
   const scrollIntoView = vi.fn();
+  const files = vi.fn(() => of([]));
 
   const dataset = (id: string, overrides: Partial<Dataset> = {}): Dataset => ({
     id,
@@ -17,6 +19,7 @@ describe('DatasetPeriods', () => {
     formats: [],
     downloads: [],
     links: [],
+    overviews: [],
     factsheetUrl: `/catalogue/srv/api/records/${id}/formatters/xsl-view?output=pdf`,
     superseded: false,
     ...overrides,
@@ -76,6 +79,7 @@ describe('DatasetPeriods', () => {
     fragment.next(null);
     snapshot.fragment = null;
     scrollIntoView.mockReset();
+    files.mockClear();
     Object.defineProperty(Element.prototype, 'scrollIntoView', {
       value: scrollIntoView,
       configurable: true,
@@ -86,6 +90,7 @@ describe('DatasetPeriods', () => {
         provideRouter([]),
         provideTranslateService(),
         { provide: ActivatedRoute, useValue: { fragment, snapshot } },
+        { provide: DatasetFilesService, useValue: { files } },
       ],
     }).compileComponents();
 
@@ -126,19 +131,30 @@ describe('DatasetPeriods', () => {
     expect(visibleDatasets(fixture)).toEqual(['old']);
   });
 
-  it('shows the formats, download and DOI of a dataset', async () => {
+  it('shows the formats and DOI of a dataset', async () => {
     const fixture = await render();
     const row = panel(fixture, 'new-a');
 
     expect(row.querySelector('[data-testid="dataset-format"]')?.textContent?.trim()).toBe(
       'GeoTIFF',
     );
-    expect(row.querySelector('[data-testid="dataset-download"]')?.getAttribute('href')).toBe(
-      'https://a/zip',
-    );
     expect(row.querySelector('[data-testid="dataset-link"]')?.textContent?.trim()).toBe(
       'Digital Object Identifier (DOI)',
     );
+  });
+
+  it('loads the files of a dataset only once it is opened', async () => {
+    const fixture = await render();
+    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+
+    expect(files).not.toHaveBeenCalled();
+    expect(panel(fixture, 'new-a').querySelector('app-dataset-files')).toBeNull();
+
+    panel(fixture, 'new-a').querySelector<HTMLElement>('p-accordion-header')?.click();
+    await fixture.whenStable();
+
+    expect(files).toHaveBeenCalledExactlyOnceWith('new-a');
+    expect(panel(fixture, 'new-a').querySelector('app-dataset-files')).not.toBeNull();
   });
 
   it('marks a superseded dataset and shows only its dates', async () => {
@@ -153,13 +169,17 @@ describe('DatasetPeriods', () => {
         superseded: true,
       }),
     ]);
+    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     const row = panel(fixture, 'old');
+    row.querySelector<HTMLElement>('p-accordion-header')?.click();
+    await fixture.whenStable();
     const chips = [...row.querySelectorAll('p-tag')].map((tag) => tag.textContent?.trim());
 
     expect(chips).toEqual(['SHP', 'Superseded']);
     expect(row.querySelector('[data-testid="dataset-published"]')).not.toBeNull();
     expect(row.querySelector('[data-testid="dataset-factsheet"]')).toBeNull();
-    expect(row.querySelector('[data-testid="dataset-download"]')).toBeNull();
+    expect(row.querySelector('app-dataset-files')).toBeNull();
+    expect(files).not.toHaveBeenCalled();
     expect(row.querySelector('[data-testid="dataset-link"]')).toBeNull();
   });
 

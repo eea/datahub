@@ -1,0 +1,122 @@
+@if (filesResource.isLoading()) {
+  <p-skeleton height="2.75rem" class="block mb-9" data-testid="dataset-files-loading" />
+} @else if (nodes().length) {
+  <p-treetable
+    class="block mb-9 text-paragraph"
+    [value]="tableOpen() ? nodes() : []"
+    [rowTrackBy]="trackByKey"
+    [dt]="tableTokens"
+    (onNodeExpand)="expand($event.node)"
+    (onNodeCollapse)="collapse($event.node)"
+    data-testid="dataset-files"
+  >
+    <ng-template #header>
+      <tr>
+        <th>
+          <button
+            type="button"
+            class="flex items-center gap-2 text-lead font-bold cursor-pointer"
+            [attr.aria-expanded]="tableOpen()"
+            (click)="toggleTable()"
+            data-testid="dataset-files-toggle"
+          >
+            <i
+              class="pi text-[0.75rem]!"
+              [class]="tableOpen() ? 'pi-chevron-down' : 'pi-chevron-right'"
+              aria-hidden="true"
+            ></i>
+            {{ 'find.recordDetails.datasets.files.download' | translate }}
+          </button>
+        </th>
+        <th class="w-28 text-paragraph-small font-normal text-muted-foreground">
+          {{ 'find.recordDetails.datasets.files.size' | translate }}
+        </th>
+        <th
+          class="hidden sm:table-cell w-32 text-paragraph-small font-normal text-muted-foreground"
+        >
+          {{ 'find.recordDetails.datasets.files.modified' | translate }}
+        </th>
+        <th class="hidden sm:table-cell w-12">
+          <span class="sr-only">{{
+            'find.recordDetails.datasets.files.download' | translate
+          }}</span>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-rowNode let-row="rowData">
+      <tr
+        [ttRow]="rowNode"
+        class="relative"
+        [class.cursor-pointer]="row.kind === 'folder'"
+        (click)="toggleFolder($event, rowNode.node)"
+        data-testid="dataset-file-row"
+      >
+        <td>
+          <div class="flex items-center gap-2">
+            <p-treetable-toggler [rowNode]="rowNode" />
+            @if (row.kind === 'folder') {
+              <i class="pi pi-folder text-[1rem]!" aria-hidden="true"></i>
+              <span class="wrap-anywhere" data-testid="dataset-folder">{{ row.name }}</span>
+            } @else {
+              <i class="pi pi-file text-[1rem]!" aria-hidden="true"></i>
+              <a
+                [href]="row.url"
+                target="_blank"
+                rel="noopener"
+                class="text-primary wrap-anywhere hover:underline after:absolute after:inset-0"
+                data-testid="dataset-file"
+              >
+                {{ row.name }}
+              </a>
+            }
+          </div>
+        </td>
+        <td class="text-paragraph-small text-muted-foreground" data-testid="dataset-file-size">
+          @if (row.kind === 'folder') {
+            {{
+              row.fileCount === 1
+                ? ('find.recordDetails.datasets.files.oneFile' | translate)
+                : ('find.recordDetails.datasets.files.fileCount'
+                  | translate: { count: row.fileCount })
+            }}
+          } @else {
+            {{ row.size | fileSize }}
+          }
+        </td>
+        <td class="hidden sm:table-cell text-paragraph-small text-muted-foreground">
+          @if (row.kind === 'file' && row.modified) {
+            {{ row.modified | date: dateFormat }}
+          } @else {
+            {{ emptyValue }}
+          }
+        </td>
+        <td class="hidden sm:table-cell">
+          @if (row.kind === 'file') {
+            <i class="pi pi-download text-primary text-[1rem]!" aria-hidden="true"></i>
+          }
+        </td>
+      </tr>
+    </ng-template>
+  </p-treetable>
+} @else if (dataset().downloads.length) {
+  <h3 class="text-lead font-bold mb-4.5">
+    {{ 'find.recordDetails.datasets.download' | translate }}
+  </h3>
+  <ul class="flex flex-col gap-3 mb-9">
+    @for (link of dataset().downloads; track link.href) {
+      <li>
+        <a
+          [href]="link.href"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2.5 text-paragraph font-semibold text-primary hover:underline"
+          data-testid="dataset-download"
+        >
+          <i class="pi pi-download text-foreground text-[1.125rem]!" aria-hidden="true"></i>
+          {{ link.title ?? ('find.recordDetails.datasets.directDownload' | translate) }}
+        </a>
+      </li>
+    }
+  </ul>
+}

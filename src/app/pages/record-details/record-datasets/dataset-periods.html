@@ -79,31 +79,10 @@
                   }
                 </div>
 
-                @if (!dataset.superseded && dataset.downloads.length) {
-                  <h3 class="text-lead font-bold mb-4.5">
-                    {{ 'find.recordDetails.datasets.download' | translate }}
-                  </h3>
-                  <ul class="flex flex-col gap-3 mb-9">
-                    @for (link of dataset.downloads; track link.href) {
-                      <li>
-                        <a
-                          [href]="link.href"
-                          target="_blank"
-                          rel="noopener"
-                          class="flex items-center gap-2.5 text-paragraph font-semibold text-primary hover:underline"
-                          data-testid="dataset-download"
-                        >
-                          <i
-                            class="pi pi-download text-foreground text-[1.125rem]!"
-                            aria-hidden="true"
-                          ></i>
-                          {{
-                            link.title ?? ('find.recordDetails.datasets.directDownload' | translate)
-                          }}
-                        </a>
-                      </li>
-                    }
-                  </ul>
+                @if (!dataset.superseded) {
+                  @defer (when openDatasets().includes(dataset.id)) {
+                    <app-dataset-files [dataset]="dataset" />
+                  }
                 }
 
                 @if (!dataset.superseded && dataset.links.length) {

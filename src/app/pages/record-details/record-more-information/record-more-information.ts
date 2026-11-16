@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { BASE_PATH, OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { EMPTY_VALUE } from '../empty-value';
 import { catalogueRecordUrl, factsheetUrl } from '../gn4-links';
 import { formatYearRange, RecordTime, yearRange } from '../year-range';
 
 const REPORTING_OBLIGATIONS_SCHEME = 'rod-eionet-europa-eu';
-const EMPTY_VALUE = '—';
 
 interface ReportingObligation {
   label: string;
