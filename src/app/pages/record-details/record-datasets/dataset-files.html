@@ -13,20 +13,22 @@
     <ng-template #header>
       <tr>
         <th>
-          <button
-            type="button"
-            class="flex items-center gap-2 text-lead font-bold cursor-pointer"
-            [attr.aria-expanded]="tableOpen()"
-            (click)="toggleTable()"
-            data-testid="dataset-files-toggle"
-          >
-            <i
-              class="pi text-[0.75rem]!"
-              [class]="tableOpen() ? 'pi-chevron-down' : 'pi-chevron-right'"
-              aria-hidden="true"
-            ></i>
-            {{ 'find.recordDetails.datasets.files.download' | translate }}
-          </button>
+          <span role="heading" aria-level="3">
+            <button
+              type="button"
+              class="flex items-center gap-2 text-lead font-bold cursor-pointer"
+              [attr.aria-expanded]="tableOpen()"
+              (click)="toggleTable()"
+              data-testid="dataset-files-toggle"
+            >
+              <i
+                class="pi text-[0.75rem]!"
+                [class]="tableOpen() ? 'pi-chevron-down' : 'pi-chevron-right'"
+                aria-hidden="true"
+              ></i>
+              {{ 'find.recordDetails.datasets.files.download' | translate }}
+            </button>
+          </span>
         </th>
         <th class="w-28 text-paragraph-small font-normal text-muted-foreground">
           {{ 'find.recordDetails.datasets.files.size' | translate }}
@@ -36,11 +38,7 @@
         >
           {{ 'find.recordDetails.datasets.files.modified' | translate }}
         </th>
-        <th class="hidden sm:table-cell w-12">
-          <span class="sr-only">{{
-            'find.recordDetails.datasets.files.download' | translate
-          }}</span>
-        </th>
+        <th class="hidden sm:table-cell w-12" aria-hidden="true"></th>
       </tr>
     </ng-template>
 
@@ -91,9 +89,9 @@
             {{ emptyValue }}
           }
         </td>
-        <td class="hidden sm:table-cell">
+        <td class="hidden sm:table-cell" aria-hidden="true">
           @if (row.kind === 'file') {
-            <i class="pi pi-download text-primary text-[1rem]!" aria-hidden="true"></i>
+            <i class="pi pi-download text-primary text-[1rem]!"></i>
           }
         </td>
       </tr>

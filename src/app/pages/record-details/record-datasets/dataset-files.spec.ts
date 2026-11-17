@@ -147,6 +147,18 @@ describe('DatasetFiles', () => {
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
   });
 
+  it('names the table with a heading and hides the icon column from screen readers', async () => {
+    files.mockReturnValue(of([file('README.md')]));
+    const fixture = await render();
+    const [toggle] = all(fixture, 'dataset-files-toggle');
+    const headers: HTMLElement[] = [...fixture.nativeElement.querySelectorAll('th')];
+
+    expect(toggle.closest('[role="heading"]')?.getAttribute('aria-level')).toBe('3');
+    expect(headers.filter((header) => header.getAttribute('aria-hidden') !== 'true')).toHaveLength(
+      3,
+    );
+  });
+
   it('leaves out the overview image of the record', async () => {
     files.mockReturnValue(of([file('overview.png'), file('README.md')]));
 
