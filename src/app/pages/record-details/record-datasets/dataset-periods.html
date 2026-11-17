@@ -1,0 +1,146 @@
+<p-tabs [value]="activePeriod()" (valueChange)="selectPeriod($event)">
+  <p-tablist>
+    @for (period of periods(); track period.key) {
+      <p-tab [value]="period.key" class="text-xl" data-testid="period-tab">
+        {{ period.years ?? ('find.recordDetails.datasets.otherPeriod' | translate) }}
+      </p-tab>
+    }
+  </p-tablist>
+
+  <p-tabpanels>
+    @for (period of periods(); track period.key) {
+      <p-tabpanel [value]="period.key">
+        <p-accordion
+          [multiple]="true"
+          [value]="openDatasets()"
+          (valueChange)="setOpenDatasets($event)"
+          class="flex flex-col gap-3"
+        >
+          @for (dataset of period.datasets; track dataset.id) {
+            <p-accordion-panel
+              [value]="dataset.id"
+              [attr.id]="dataset.id"
+              class="rounded-md overflow-hidden scroll-mt-4"
+              data-testid="dataset"
+            >
+              <p-accordion-header>
+                <span class="flex flex-wrap items-center gap-2.5 min-w-0 text-left">
+                  <span class="text-lead">{{ dataset.title }}</span>
+                  @for (format of dataset.formats; track format) {
+                    <p-tag [value]="format" severity="secondary" data-testid="dataset-format" />
+                  }
+                  @if (dataset.superseded) {
+                    <p-tag
+                      [value]="'find.recordDetails.datasets.superseded' | translate"
+                      severity="secondary"
+                      class="p-tag-outlined"
+                      data-testid="dataset-superseded"
+                    />
+                  }
+                </span>
+              </p-accordion-header>
+
+              <p-accordion-content>
+                <div
+                  class="flex flex-wrap items-start justify-between gap-4"
+                  [class.mb-8]="!dataset.superseded"
+                >
+                  <dl class="flex flex-col gap-2.5 text-paragraph">
+                    @if (dataset.published; as published) {
+                      <div class="flex gap-1">
+                        <dt class="font-bold">
+                          {{ 'find.recordDetails.datasets.published' | translate }}
+                        </dt>
+                        <dd class="text-muted-foreground" data-testid="dataset-published">
+                          {{ published | date: dateFormat }}
+                        </dd>
+                      </div>
+                    }
+                    @if (period.years; as years) {
+                      <div class="flex gap-1">
+                        <dt class="font-bold">
+                          {{ 'find.recordDetails.datasets.temporalCoverage' | translate }}
+                        </dt>
+                        <dd class="text-muted-foreground">{{ years }}</dd>
+                      </div>
+                    }
+                  </dl>
+                  @if (!dataset.superseded) {
+                    <a
+                      [href]="dataset.factsheetUrl"
+                      target="_blank"
+                      rel="noopener"
+                      class="flex items-center gap-2 text-base font-semibold text-primary hover:underline"
+                      data-testid="dataset-factsheet"
+                    >
+                      <i class="pi pi-file-pdf text-[1.125rem]!" aria-hidden="true"></i>
+                      {{ 'find.recordDetails.datasets.metadataFactsheet' | translate }}
+                    </a>
+                  }
+                </div>
+
+                @if (!dataset.superseded && dataset.downloads.length) {
+                  <h3 class="text-lead font-bold mb-4.5">
+                    {{ 'find.recordDetails.datasets.download' | translate }}
+                  </h3>
+                  <ul class="flex flex-col gap-3 mb-9">
+                    @for (link of dataset.downloads; track link.href) {
+                      <li>
+                        <a
+                          [href]="link.href"
+                          target="_blank"
+                          rel="noopener"
+                          class="flex items-center gap-2.5 text-paragraph font-semibold text-primary hover:underline"
+                          data-testid="dataset-download"
+                        >
+                          <i
+                            class="pi pi-download text-foreground text-[1.125rem]!"
+                            aria-hidden="true"
+                          ></i>
+                          {{
+                            link.title ?? ('find.recordDetails.datasets.directDownload' | translate)
+                          }}
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                }
+
+                @if (!dataset.superseded && dataset.links.length) {
+                  <h3 class="text-lead font-bold mb-4.5">
+                    {{ 'find.recordDetails.datasets.links' | translate }}
+                  </h3>
+                  <ul class="flex flex-col divide-y divide-border">
+                    @for (link of dataset.links; track link.href) {
+                      <li>
+                        <a
+                          [href]="link.href"
+                          target="_blank"
+                          rel="noopener"
+                          class="flex items-center gap-2.5 py-4.5 text-paragraph font-semibold text-primary hover:underline"
+                          data-testid="dataset-link"
+                        >
+                          <i
+                            class="pi text-foreground text-[1rem]!"
+                            [class.pi-info-circle]="link.isDoi"
+                            [class.pi-link]="!link.isDoi"
+                            aria-hidden="true"
+                          ></i>
+                          @if (link.isDoi) {
+                            {{ 'find.recordDetails.datasets.doi' | translate }}
+                          } @else {
+                            {{ link.title ?? link.href }}
+                          }
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                }
+              </p-accordion-content>
+            </p-accordion-panel>
+          }
+        </p-accordion>
+      </p-tabpanel>
+    }
+  </p-tabpanels>
+</p-tabs>

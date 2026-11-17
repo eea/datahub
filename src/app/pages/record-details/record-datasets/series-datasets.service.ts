@@ -10,7 +10,7 @@ import { COLLECTION_ID, DEFAULT_SPACE } from '@geocat/frontend-library';
 import { forkJoin, map, Observable, of } from 'rxjs';
 
 const IDS_PER_REQUEST = 100;
-const PAST_STATUSES = ['superseded', 'obsolete'];
+const SUPERSEDED_STATUSES = ['superseded', 'obsolete'];
 const SERVICE_TYPE_PREFIXES = ['OGC:', 'ESRI:'];
 const FOLDER_PATH_TYPE = 'EEA:FOLDERPATH';
 const DOI_TYPE = 'DOI';
@@ -31,6 +31,7 @@ export interface Dataset {
   downloads: DatasetLink[];
   links: DatasetLink[];
   factsheetUrl: string;
+  superseded: boolean;
 }
 
 interface DatasetProperties {
@@ -64,7 +65,7 @@ export class SeriesDatasetsService {
   private readonly collectionId = inject(COLLECTION_ID);
   private readonly basePath = inject(BASE_PATH);
 
-  currentDatasets(ids: string[]): Observable<Dataset[]> {
+  datasets(ids: string[]): Observable<Dataset[]> {
     const uniqueIds = [...new Set(ids)];
     if (uniqueIds.length === 0) return of([]);
 
@@ -76,15 +77,9 @@ export class SeriesDatasetsService {
       map((responses) =>
         responses
           .flatMap((response) => response.features ?? [])
-          .filter((record) => !this.isPast(record))
           .map((record) => this.toDataset(record)),
       ),
     );
-  }
-
-  private isPast(record: OgcApiRecordsRecordGeoJSONDto): boolean {
-    const { status } = record.properties as DatasetProperties;
-    return (status ?? []).some((value) => PAST_STATUSES.includes(value));
   }
 
   private toDataset(record: OgcApiRecordsRecordGeoJSONDto): Dataset {
@@ -108,6 +103,7 @@ export class SeriesDatasetsService {
         )
         .map(toDatasetLink),
       factsheetUrl: `${this.basePath}/${DEFAULT_SPACE}/api/records/${record.id}/formatters/xsl-view?output=pdf&language=eng&approved=true`,
+      superseded: (properties.status ?? []).some((status) => SUPERSEDED_STATUSES.includes(status)),
     };
   }
 
