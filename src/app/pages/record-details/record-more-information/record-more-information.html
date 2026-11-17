@@ -13,7 +13,7 @@
         {{ 'find.recordDetails.moreInformation.reportingObligations' | translate }}
       </dt>
       <dd class="text-paragraph text-muted-foreground" data-testid="reporting-obligations">
-        @for (obligation of reportingObligations(); track obligation.label) {
+        @for (obligation of reportingObligations(); track obligation.label + obligation.url) {
           @if (obligation.url; as url) {
             <a
               [href]="url"
