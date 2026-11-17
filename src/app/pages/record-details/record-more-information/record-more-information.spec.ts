@@ -79,6 +79,31 @@ describe('RecordMoreInformation', () => {
     expect(byTestId(fixture, 'reporting-obligations').querySelectorAll('a').length).toBe(1);
   });
 
+  it('keeps reporting obligations that share a name but link to different pages', async () => {
+    const fixture = await render(
+      record({
+        themes: [
+          {
+            scheme: ROD_SCHEME,
+            concepts: [
+              { id: 'Annual report', url: 'http://rod.eionet.europa.eu/obligations/1' },
+              { id: 'Annual report', url: 'http://rod.eionet.europa.eu/obligations/2' },
+            ],
+          },
+        ],
+      }),
+    );
+
+    expect(
+      [...byTestId(fixture, 'reporting-obligations').querySelectorAll('a')].map((link: Element) =>
+        link.getAttribute('href'),
+      ),
+    ).toEqual([
+      'http://rod.eionet.europa.eu/obligations/1',
+      'http://rod.eionet.europa.eu/obligations/2',
+    ]);
+  });
+
   it('shows the temporal coverage and each organisation once', async () => {
     const fixture = await render(
       record(

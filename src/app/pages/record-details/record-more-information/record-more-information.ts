@@ -32,7 +32,9 @@ export class RecordMoreInformation {
       .map((concept) => ({ label: concept.title ?? concept.id, url: concept.url }))
       .filter(
         (obligation, index, obligations) =>
-          obligations.findIndex(({ label }) => label === obligation.label) === index,
+          obligations.findIndex(
+            ({ label, url }) => label === obligation.label && url === obligation.url,
+          ) === index,
       ),
   );
 
