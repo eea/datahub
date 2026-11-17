@@ -17,6 +17,7 @@ const SUPERSEDED_STATUSES = ['superseded', 'obsolete'];
 const SERVICE_TYPE_PREFIXES = ['OGC:', 'ESRI:'];
 const FOLDER_PATH_TYPE = 'EEA:FOLDERPATH';
 const DOI_TYPE = 'DOI';
+const INTERNAL_HOSTS = ['taskman.eionet.europa.eu'];
 
 export interface DatasetLink {
   href: string;
@@ -44,6 +45,9 @@ interface DatasetProperties {
 }
 
 const isWebLink = (link: OgcApiRecordsLinkDto): boolean => /^https?:\/\//.test(link.href);
+
+const isInternalLink = (link: OgcApiRecordsLinkDto): boolean =>
+  INTERNAL_HOSTS.includes(new URL(link.href).hostname);
 
 const isServiceLink = (link: OgcApiRecordsLinkDto): boolean =>
   SERVICE_TYPE_PREFIXES.some((prefix) => link.type?.startsWith(prefix));
@@ -81,7 +85,7 @@ export class SeriesDatasetsService {
     const properties = record.properties as OgcApiRecordsRecordGeoJSONDto['properties'] &
       DatasetProperties;
     const years = yearRange(record.time as RecordTime | undefined);
-    const links = (record.links ?? []).filter(isWebLink);
+    const links = (record.links ?? []).filter(isWebLink).filter((link) => !isInternalLink(link));
 
     return {
       id: record.id,
