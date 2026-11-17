@@ -38,6 +38,12 @@ describe('fileTree', () => {
     ]);
   });
 
+  it('keeps folders whose names differ only in case apart', () => {
+    const tree = fileTree([file('gdb/a.atx'), file('GDB/b.atx'), file('gdb/c.atx')], new Set());
+
+    expect(outline(tree)).toEqual([{ 'GDB (1)': ['b.atx'] }, { 'gdb (2)': ['a.atx', 'c.atx'] }]);
+  });
+
   it('keeps folders collapsed unless their key is expanded', () => {
     const tree = fileTree([file('GDB/a.gdb/x.atx'), file('GPKG/b.gpkg')], new Set(['GDB/']));
 

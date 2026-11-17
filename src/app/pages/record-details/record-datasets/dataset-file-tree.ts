@@ -11,32 +11,36 @@ interface PlacedFile {
   file: DatasetFile;
 }
 
+const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
 const byName = (a: string, b: string): number =>
-  a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+  collator.compare(a, b) || Number(a > b) - Number(a < b);
 
 const level = (
   placed: PlacedFile[],
   parentKey: string,
   expanded: ReadonlySet<string>,
 ): TreeNode<FileRow>[] => {
-  const nested = placed.filter(({ segments }) => segments.length > 1);
-  const folders = [...new Set(nested.map(({ segments }) => segments[0]))]
-    .sort(byName)
-    .map((name): TreeNode<FileRow> => {
-      const key = `${parentKey}${name}/`;
-      const inside = nested
-        .filter(({ segments }) => segments[0] === name)
-        .map(({ segments, file }) => ({ segments: segments.slice(1), file }));
-      return {
-        key,
-        data: { kind: 'folder', name, fileCount: inside.length },
-        expanded: expanded.has(key),
-        children: level(inside, key, expanded),
-      };
-    });
-  const files = placed
+  const sorted = [...placed].sort((a, b) => byName(a.segments[0], b.segments[0]));
+  const nested = sorted.filter(({ segments }) => segments.length > 1);
+  const folderStarts = nested.flatMap(({ segments: [name] }, index) =>
+    index > 0 && nested[index - 1].segments[0] === name ? [] : [index],
+  );
+  const folders = folderStarts.map((start, index): TreeNode<FileRow> => {
+    const name = nested[start].segments[0];
+    const key = `${parentKey}${name}/`;
+    const inside = nested
+      .slice(start, folderStarts[index + 1])
+      .map(({ segments: [, ...rest], file }) => ({ segments: rest, file }));
+    return {
+      key,
+      data: { kind: 'folder', name, fileCount: inside.length },
+      expanded: expanded.has(key),
+      children: level(inside, key, expanded),
+    };
+  });
+  const files = sorted
     .filter(({ segments }) => segments.length === 1)
-    .sort((a, b) => byName(a.segments[0], b.segments[0]))
     .map(({ segments: [name], file }): TreeNode<FileRow> => ({
       key: file.path,
       data: { kind: 'file', name, size: file.size, modified: file.modified, url: file.url },
