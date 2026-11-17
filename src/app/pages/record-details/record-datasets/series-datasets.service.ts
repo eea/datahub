@@ -33,6 +33,7 @@ export interface Dataset {
   endYear?: number;
   downloads: DatasetLink[];
   links: DatasetLink[];
+  overviews: string[];
   factsheetUrl: string;
   superseded: boolean;
 }
@@ -96,6 +97,7 @@ export class SeriesDatasetsService {
             link.rel === 'related' && !isServiceLink(link) && link.type !== FOLDER_PATH_TYPE,
         )
         .map(toDatasetLink),
+      overviews: (properties.thumbnails ?? []).flatMap((thumbnail) => thumbnail.url ?? []),
       factsheetUrl: factsheetUrl(this.basePath, record.id),
       superseded: (properties.status ?? []).some((status) => SUPERSEDED_STATUSES.includes(status)),
     };

@@ -5,3 +5,6 @@ export const factsheetUrl = (basePath: string, id: string): string =>
 
 export const catalogueRecordUrl = (basePath: string, id: string): string =>
   `${basePath}/${DEFAULT_SPACE}/eng/catalog.search#/metadata/${id}`;
+
+export const attachmentsUrl = (basePath: string, id: string): string =>
+  `${basePath}/${DEFAULT_SPACE}/api/records/${id}/attachments`;

@@ -24,6 +24,7 @@ import { Tag } from '@openng/optimus-ui/tag';
 
 import { RECORD_DATE_FORMAT } from '../record-date-format';
 import { formatYearRange } from '../year-range';
+import { DatasetFiles } from './dataset-files';
 import { Dataset } from './series-datasets.service';
 
 const OTHER_PERIOD = 'other';
@@ -79,6 +80,7 @@ const groupByPeriod = (datasets: Dataset[]): DatasetPeriod[] =>
     TabPanels,
     Tabs,
     Tag,
+    DatasetFiles,
   ],
   templateUrl: './dataset-periods.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -17,6 +17,7 @@ describe('RecordDatasets', () => {
     endYear: 2022,
     downloads: [],
     links: [],
+    overviews: [],
     factsheetUrl: `/catalogue/srv/api/records/${id}/formatters/xsl-view?output=pdf`,
     superseded,
   });
