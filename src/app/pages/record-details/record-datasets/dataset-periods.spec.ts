@@ -202,4 +202,34 @@ describe('DatasetPeriods', () => {
     );
     expect(panel(fixture, 'new-b').getAttribute('data-p-active')).toBe('true');
   });
+
+  it('takes a closed dataset out of the URL', async () => {
+    snapshot.fragment = 'new-b';
+    const fixture = await render();
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+
+    panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header')?.click();
+    await fixture.whenStable();
+
+    expect(navigate).toHaveBeenCalledWith(
+      [],
+      expect.objectContaining({ fragment: undefined, replaceUrl: true }),
+    );
+    expect(panel(fixture, 'new-b').getAttribute('data-p-active')).toBe('false');
+  });
+
+  it('keeps a dataset of the other block in the URL', async () => {
+    snapshot.fragment = 'elsewhere';
+    const fixture = await render();
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const header = panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header');
+
+    header?.click();
+    await fixture.whenStable();
+    navigate.mockClear();
+    header?.click();
+    await fixture.whenStable();
+
+    expect(navigate).not.toHaveBeenCalled();
+  });
 });
