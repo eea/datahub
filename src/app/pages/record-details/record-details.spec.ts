@@ -11,12 +11,14 @@ import {
   EEA_WEBSITE_NAVIGATION,
   EeaWebsiteLinks,
 } from '../../eea-website/eea-website-links';
+import { SeriesDatasetsService } from './record-datasets/series-datasets.service';
 import { RecordDetails } from './record-details';
 
 describe('RecordDetails', () => {
   const uuid = 'e006507d-15c8-49e6-959c-53b61facd873';
   const properties = signal<Record<string, unknown> | undefined>({});
   const params = new BehaviorSubject<Params>({ uuid });
+  const currentDatasets = vi.fn();
   const sentence = 'Urban Atlas provides comparable land use and land cover data for urban areas. ';
   const longDescription = sentence.repeat(4);
 
@@ -33,12 +35,16 @@ describe('RecordDetails', () => {
   beforeEach(async () => {
     properties.set({});
     params.next({ uuid });
+    currentDatasets.mockReset().mockReturnValue(of([]));
     await TestBed.configureTestingModule({
       imports: [RecordDetails],
       providers: [
         provideRouter([]),
         provideTranslateService(),
-        { provide: ActivatedRoute, useValue: { params } },
+        {
+          provide: ActivatedRoute,
+          useValue: { params, fragment: of(null), snapshot: { fragment: null } },
+        },
         {
           provide: RecordService,
           useValue: {
@@ -50,6 +56,7 @@ describe('RecordDetails', () => {
             },
           },
         },
+        { provide: SeriesDatasetsService, useValue: { currentDatasets } },
         { provide: COLLECTION_ID, useValue: 'collection' },
         { provide: BASE_PATH, useValue: '/catalogue' },
         {
@@ -168,5 +175,20 @@ describe('RecordDetails', () => {
       'Land use and land cover data.',
     );
     expect(byTestId(fixture, 'description-toggle')).toBeNull();
+  });
+
+  it('lists the datasets of a series', async () => {
+    properties.set({ title: 'Urban Atlas', childUuid: ['a', 'b'] });
+    await render();
+
+    expect(currentDatasets).toHaveBeenCalledWith(['a', 'b']);
+  });
+
+  it('shows no datasets block for a record without datasets', async () => {
+    properties.set({ title: 'Urban Atlas 2018' });
+    const fixture = await render();
+
+    expect(currentDatasets).not.toHaveBeenCalled();
+    expect(byTestId(fixture, 'record-datasets')).toBeNull();
   });
 });
