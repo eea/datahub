@@ -50,7 +50,6 @@
   "find": {
     "appName": "Datahub",
     "common": {
-      "backToHome": "Back to Home",
       "eeaLogo": "European Environment Agency",
       "search": "Search",
       "selectLanguage": "Select language"
@@ -164,7 +163,12 @@
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "View the full record in the catalogue"
+      "datahubOverview": "Datahub overview",
+      "lastModified": "Last modified {{date}}",
+      "published": "Published {{date}}",
+      "rss": "RSS",
+      "seeLess": "See less",
+      "seeMore": "See more"
     },
     "searchBar": {
       "advanced": {
