@@ -132,7 +132,7 @@ export class DatasetPeriods {
     const open = (Array.isArray(value) ? value : value == null ? [] : [value]).map(String);
     const opened = open.find((id) => !this.openDatasets().includes(id));
     const linked = this.route.snapshot.fragment;
-    const linkedClosed = !!linked && !open.includes(linked);
+    const linkedClosed = !!linked && this.openDatasets().includes(linked) && !open.includes(linked);
     this.openDatasets.set(open);
     if (opened || linkedClosed) {
       this.router.navigate([], {
