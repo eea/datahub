@@ -170,7 +170,6 @@
         "download": "Download:",
         "links": "Links:",
         "loadFailed": "The datasets of this series could not be loaded.",
-        "metadataFactsheet": "Metadata Factsheet",
         "otherPeriod": "Other",
         "published": "Published:",
         "superseded": "Superseded",
@@ -179,6 +178,14 @@
         "title": "Datasets"
       },
       "lastModified": "Last modified {{date}}",
+      "metadataCatalogue": "Metadata catalogue",
+      "metadataFactsheet": "Metadata Factsheet",
+      "moreInformation": {
+        "organisation": "Organisation",
+        "reportingObligations": "Reporting obligations (ROD)",
+        "temporalCoverage": "Temporal coverage",
+        "title": "More information"
+      },
       "published": "Published {{date}}",
       "rss": "RSS",
       "seeLess": "See less",

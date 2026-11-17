@@ -23,6 +23,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@openng/optimus-ui/tabs
 import { Tag } from '@openng/optimus-ui/tag';
 
 import { RECORD_DATE_FORMAT } from '../record-date-format';
+import { formatYearRange } from '../year-range';
 import { Dataset } from './series-datasets.service';
 
 const OTHER_PERIOD = 'other';
@@ -36,12 +37,10 @@ interface DatasetPeriod {
 const periodKey = (dataset: Dataset): string =>
   dataset.startYear === undefined ? OTHER_PERIOD : `${dataset.startYear}-${dataset.endYear}`;
 
-const periodYears = (dataset: Dataset): string | undefined =>
-  dataset.startYear === undefined
+const periodYears = ({ startYear, endYear }: Dataset): string | undefined =>
+  startYear === undefined || endYear === undefined
     ? undefined
-    : dataset.startYear === dataset.endYear
-      ? `${dataset.startYear}`
-      : `${dataset.startYear}–${dataset.endYear}`;
+    : formatYearRange({ start: startYear, end: endYear });
 
 const byNewestPeriod = (a: DatasetPeriod, b: DatasetPeriod): number => {
   const [first, second] = [a.datasets[0], b.datasets[0]];

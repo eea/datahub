@@ -23,6 +23,7 @@ import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { RecordDatasets } from './record-datasets/record-datasets';
 import { RECORD_DATE_FORMAT } from './record-date-format';
+import { RecordMoreInformation } from './record-more-information/record-more-information';
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
@@ -41,6 +42,7 @@ interface RecordDates {
     Footer,
     Header,
     RecordDatasets,
+    RecordMoreInformation,
   ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
