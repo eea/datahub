@@ -185,4 +185,19 @@ describe('RecordDatasets', () => {
     );
     expect(panel(fixture, 'new-b').getAttribute('data-p-active')).toBe('true');
   });
+
+  it('takes a closed dataset out of the URL', async () => {
+    snapshot.fragment = 'new-b';
+    const fixture = await render();
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+
+    panel(fixture, 'new-b').querySelector<HTMLElement>('p-accordion-header')?.click();
+    await fixture.whenStable();
+
+    expect(navigate).toHaveBeenCalledWith(
+      [],
+      expect.objectContaining({ fragment: undefined, replaceUrl: true }),
+    );
+    expect(panel(fixture, 'new-b').getAttribute('data-p-active')).toBe('false');
+  });
 });

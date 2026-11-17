@@ -118,11 +118,13 @@ export class RecordDatasets {
 
   constructor() {
     const id = this.route.snapshot.fragment;
+    if (!id) return;
+
     const showLinkedDataset = effect(() => {
       const period = this.periods().find((candidate) =>
         candidate.datasets.some((dataset) => dataset.id === id),
       );
-      if (!id || !period) return;
+      if (!period) return;
 
       showLinkedDataset.destroy();
       untracked(() => {
@@ -142,11 +144,13 @@ export class RecordDatasets {
   protected setOpenDatasets(value: string | number | (string | number)[] | null | undefined): void {
     const open = (Array.isArray(value) ? value : value == null ? [] : [value]).map(String);
     const opened = open.find((id) => !this.openDatasets().includes(id));
+    const linked = this.route.snapshot.fragment;
+    const linkedClosed = !!linked && !open.includes(linked);
     this.openDatasets.set(open);
-    if (opened) {
+    if (opened || linkedClosed) {
       this.router.navigate([], {
         relativeTo: this.route,
-        fragment: opened,
+        fragment: opened ?? open.at(-1),
         queryParamsHandling: 'preserve',
         replaceUrl: true,
       });
