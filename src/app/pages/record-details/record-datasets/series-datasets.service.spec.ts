@@ -126,6 +126,45 @@ describe('SeriesDatasetsService', () => {
     ]);
   });
 
+  it('leaves out the EEA Taskman ticket links', async () => {
+    respondWith(
+      feature('a', {
+        links: [
+          {
+            rel: 'related',
+            title: 'EEA Taskman ticket',
+            href: 'https://taskman.eionet.europa.eu/issues/293393',
+          },
+          {
+            rel: 'enclosure',
+            title: 'Taskman',
+            href: 'https://taskman.eionet.europa.eu/issues/1',
+          },
+          { rel: 'related', title: 'Data dictionary', href: 'https://dd.eionet.europa.eu/a' },
+        ],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.downloads).toEqual([]);
+    expect(dataset.links).toEqual([
+      { href: 'https://dd.eionet.europa.eu/a', title: 'Data dictionary', isDoi: false },
+    ]);
+  });
+
+  it('keeps a link whose address cannot be parsed', async () => {
+    respondWith(
+      feature('a', {
+        links: [{ rel: 'related', title: 'Broken', href: 'https://foo bar' }],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.links).toEqual([{ href: 'https://foo bar', title: 'Broken', isDoi: false }]);
+  });
+
   it('reads the overview images so they stay out of the file list', async () => {
     respondWith(
       feature('a', {
