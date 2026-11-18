@@ -149,6 +149,7 @@
       "filters": {
         "eeaTopics": "EEA-thema's",
         "format": "Beschikbare formaten",
+        "gemetKeywords": "GEMET-trefwoorden",
         "organization": "Organisaties",
         "reportingObligations": "Rapportageverplichtingen",
         "spatialRepresentationType": "Type ruimtelijke representatie"

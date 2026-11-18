@@ -199,6 +199,7 @@
       "filters": {
         "eeaTopics": "EEA topics",
         "format": "Available formats",
+        "gemetKeywords": "GEMET keywords",
         "organization": "Organisations",
         "reportingObligations": "Reporting obligations",
         "spatialRepresentationType": "Spatial representation type"
