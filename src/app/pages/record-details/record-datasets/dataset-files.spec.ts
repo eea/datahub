@@ -185,7 +185,7 @@ describe('DatasetFiles', () => {
 
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
     expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
-    expect(fixture.nativeElement.querySelectorAll('h3')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download-heading')).toHaveLength(0);
   });
 
   it('falls back to the download links when the dataset has no files', async () => {
@@ -194,6 +194,7 @@ describe('DatasetFiles', () => {
     const fixture = await render();
 
     expect(all(fixture, 'dataset-files')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download-heading')).toHaveLength(1);
     expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
   });
 
