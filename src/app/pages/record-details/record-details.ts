@@ -27,6 +27,13 @@ import { RecordMoreInformation } from './record-more-information/record-more-inf
 
 const DESCRIPTION_PREVIEW_LENGTH = 220;
 
+function previewOf(text: string): string {
+  const wholeWords = text.slice(0, DESCRIPTION_PREVIEW_LENGTH + 1).replace(/\s+\S*$/, '');
+  return wholeWords.length > DESCRIPTION_PREVIEW_LENGTH
+    ? text.slice(0, DESCRIPTION_PREVIEW_LENGTH)
+    : wholeWords.replace(/[.,;:]+$/, '');
+}
+
 interface RecordDates {
   issued?: string[];
 }
@@ -103,7 +110,7 @@ export class RecordDetails {
   });
   protected readonly visibleDescription = computed(() =>
     this.isDescriptionLong() && !this.isDescriptionExpanded()
-      ? `${this.description().slice(0, DESCRIPTION_PREVIEW_LENGTH).trim()}…`
+      ? `${previewOf(this.description())}…`
       : this.description(),
   );
 }

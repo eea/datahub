@@ -18,7 +18,10 @@
           {{ record.properties.title ?? ('record.field.title.notAvailable' | translate) }}
         </h1>
         <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pt-2">
-          <p class="flex flex-wrap gap-x-4 text-paragraph" data-testid="record-dates">
+          <p
+            class="flex flex-col sm:flex-row sm:flex-wrap gap-x-4 text-paragraph"
+            data-testid="record-dates"
+          >
             @if (published(); as published) {
               <span data-testid="published">
                 {{
@@ -27,7 +30,7 @@
               </span>
             }
             @if (published() && record.properties.updated) {
-              <span aria-hidden="true">|</span>
+              <span class="hidden sm:block" aria-hidden="true">|</span>
             }
             @if (record.properties.updated; as updated) {
               <span data-testid="last-modified">
@@ -77,7 +80,7 @@
               type="button"
               (click)="isDescriptionExpanded.set(!isDescriptionExpanded())"
               [attr.aria-expanded]="isDescriptionExpanded()"
-              class="inline-flex items-center gap-1 text-paragraph font-semibold text-primary cursor-pointer"
+              class="flex items-center gap-1 w-fit mt-2 text-paragraph font-semibold text-primary cursor-pointer"
               data-testid="description-toggle"
             >
               {{
