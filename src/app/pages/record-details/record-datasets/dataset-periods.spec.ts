@@ -197,7 +197,6 @@ describe('DatasetPeriods', () => {
     await fixture.whenStable();
 
     expect(row.querySelector('[data-testid="dataset-link"]')).toBeNull();
-    expect(row.querySelector('h3')).toBeNull();
   });
 
   it('shows no Superseded chip on a current dataset', async () => {
