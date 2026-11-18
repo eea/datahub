@@ -55,22 +55,22 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
     choices: [
       {
         value: '1_upTo100000',
-        label: 'Up to 1:100,000',
+        label: '*-100,000',
         cql: `${SCALE} < 100000`,
       },
       {
         value: '2_100000to1000000',
-        label: '1:100,000 to 1:1,000,000',
+        label: '100,000-1,000,000',
         cql: `(${SCALE} >= 100000 AND ${SCALE} < 1000000)`,
       },
       {
         value: '3_1000000to10000000',
-        label: '1:1,000,000 to 1:10,000,000',
+        label: '1,000,000-10,000,000',
         cql: `(${SCALE} >= 1000000 AND ${SCALE} < 10000000)`,
       },
       {
         value: '4_above10000000',
-        label: 'Above 1:10,000,000',
+        label: '10,000,000-*',
         cql: `${SCALE} >= 10000000`,
       },
     ],
