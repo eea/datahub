@@ -152,6 +152,7 @@
         "gemetKeywords": "GEMET-trefwoorden",
         "organization": "Organisaties",
         "reportingObligations": "Rapportageverplichtingen",
+        "scales": "Schalen",
         "spatialRepresentationType": "Type ruimtelijke representatie"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
