@@ -47,7 +47,7 @@ interface DatasetProperties {
 const isWebLink = (link: OgcApiRecordsLinkDto): boolean => /^https?:\/\//.test(link.href);
 
 const isInternalLink = (link: OgcApiRecordsLinkDto): boolean =>
-  INTERNAL_HOSTS.includes(new URL(link.href).hostname);
+  URL.canParse(link.href) && INTERNAL_HOSTS.includes(new URL(link.href).hostname);
 
 const isServiceLink = (link: OgcApiRecordsLinkDto): boolean =>
   SERVICE_TYPE_PREFIXES.some((prefix) => link.type?.startsWith(prefix));

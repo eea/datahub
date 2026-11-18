@@ -153,6 +153,18 @@ describe('SeriesDatasetsService', () => {
     ]);
   });
 
+  it('keeps a link whose address cannot be parsed', async () => {
+    respondWith(
+      feature('a', {
+        links: [{ rel: 'related', title: 'Broken', href: 'https://foo bar' }],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.links).toEqual([{ href: 'https://foo bar', title: 'Broken', isDoi: false }]);
+  });
+
   it('reads the overview images so they stay out of the file list', async () => {
     respondWith(
       feature('a', {
