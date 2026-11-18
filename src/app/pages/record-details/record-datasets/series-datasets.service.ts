@@ -85,7 +85,7 @@ export class SeriesDatasetsService {
     const properties = record.properties as OgcApiRecordsRecordGeoJSONDto['properties'] &
       DatasetProperties;
     const years = yearRange(record.time as RecordTime | undefined);
-    const links = (record.links ?? []).filter(isWebLink).filter((link) => !isInternalLink(link));
+    const links = (record.links ?? []).filter((link) => isWebLink(link) && !isInternalLink(link));
 
     return {
       id: record.id,
