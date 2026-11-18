@@ -150,6 +150,7 @@
         "eeaTopics": "EEA-thema's",
         "format": "Beschikbare formaten",
         "organization": "Organisaties",
+        "reportingObligations": "Rapportageverplichtingen",
         "spatialRepresentationType": "Type ruimtelijke representatie"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
