@@ -178,6 +178,16 @@ describe('DatasetFiles', () => {
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
   });
 
+  it('lists the download links under the files without a second heading', async () => {
+    files.mockReturnValue(of([file('README.md')]));
+
+    const fixture = await render();
+
+    expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
+    expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
+    expect(fixture.nativeElement.querySelectorAll('h3')).toHaveLength(0);
+  });
+
   it('falls back to the download links when the dataset has no files', async () => {
     files.mockReturnValue(of([file('overview.png')]));
 

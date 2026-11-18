@@ -2,7 +2,8 @@
   <p-skeleton height="2.75rem" class="block mb-9" data-testid="dataset-files-loading" />
 } @else if (nodes().length) {
   <p-treetable
-    class="block mb-9 text-paragraph"
+    class="block text-paragraph"
+    [class]="dataset().downloads.length ? 'mb-4.5' : 'mb-9'"
     [value]="tableOpen() ? nodes() : []"
     [rowTrackBy]="trackByKey"
     [dt]="tableTokens"
@@ -101,6 +102,9 @@
   <h3 class="text-lead font-bold mb-4.5">
     {{ 'find.recordDetails.datasets.download' | translate }}
   </h3>
+}
+
+@if (!filesResource.isLoading() && dataset().downloads.length) {
   <ul class="flex flex-col gap-3 mb-9">
     @for (link of dataset().downloads; track link.href) {
       <li>
