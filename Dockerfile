@@ -12,7 +12,7 @@ RUN --mount=type=secret,id=npm_token,required=true \
 COPY . .
 RUN npx ng build
 
-FROM nginxinc/nginx-unprivileged:1.30-alpine
+FROM nginx/nginx-unprivileged:1.30-alpine
 
 # GeoNetwork 5 API base path used by the UI, served in /config.json.
 # nginx.conf is a template: the image entrypoint runs envsubst on it at
