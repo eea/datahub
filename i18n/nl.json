@@ -147,6 +147,7 @@
         "selectPlaceholder": "Selecteer {{label}}"
       },
       "filters": {
+        "eeaTopics": "EEA-thema's",
         "format": "Beschikbare formaten",
         "organization": "Organisaties",
         "spatialRepresentationType": "Type ruimtelijke representatie"

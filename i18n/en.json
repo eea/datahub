@@ -197,6 +197,7 @@
         "selectPlaceholder": "Select {{label}}"
       },
       "filters": {
+        "eeaTopics": "EEA topics",
         "format": "Available formats",
         "organization": "Organisations",
         "spatialRepresentationType": "Spatial representation type"
