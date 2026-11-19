@@ -108,10 +108,13 @@
           [href]="link.href"
           target="_blank"
           rel="noopener"
-          class="flex items-center gap-2.5 text-paragraph font-semibold text-primary hover:underline"
+          class="flex items-start gap-2.5 text-paragraph font-semibold text-primary wrap-anywhere hover:underline"
           data-testid="dataset-download"
         >
-          <i class="pi pi-download text-foreground text-[1.125rem]!" aria-hidden="true"></i>
+          <i
+            class="pi pi-download text-foreground text-[1.125rem]! leading-6!"
+            aria-hidden="true"
+          ></i>
           {{ link.title ?? ('find.recordDetails.datasets.directDownload' | translate) }}
         </a>
       </li>
