@@ -28,6 +28,7 @@ const AppTheme = definePreset(Aura, {
         900: '#002d4c',
         950: '#001e33',
       },
+      paleBlue: '#cfe6f7',
       red: {
         50: '#fbeef8',
         100: '#f6ddf0',
@@ -41,12 +42,14 @@ const AppTheme = definePreset(Aura, {
       supplementary: '#f9f9f9',
       infoBackground: '#f8ffff',
       hover: '#edf1f2',
+      overlay: 'rgba(29, 42, 54, 0.6)',
       white: '#ffffff',
       green: '#007b6c',
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
       lightGrey: '#f2f3f4',
+      coolGrey: '#eef1f4',
       darkGrey: '#2e3e4c',
     },
   },
@@ -137,6 +140,9 @@ const AppTheme = definePreset(Aura, {
       },
       color: '{eea.white}',
     },
+    banner: {
+      mutedColor: '{eea.paleBlue}',
+    },
     stats: {
       background: '{eea.lightGrey}',
     },
@@ -160,6 +166,26 @@ const AppTheme = definePreset(Aura, {
       menu: {
         background: '{eea.darkBlue}',
         color: '{eea.white}',
+      },
+    },
+    imageTile: {
+      height: '210px',
+      overlay: {
+        color: '{eea.overlay}',
+      },
+      label: {
+        color: '{eea.white}',
+        fontSize: '1.875rem',
+        fontWeight: '700',
+        lineHeight: '2.25rem',
+      },
+    },
+    popularRecord: {
+      imageHeight: '200px',
+      title: {
+        fontSize: '1.125rem',
+        fontWeight: '700',
+        lineHeight: '1.375rem',
       },
     },
     fontSize: {
@@ -191,6 +217,9 @@ const AppTheme = definePreset(Aura, {
         navigation: '1.125rem',
         menuLink: '1.25rem',
       },
+      record: {
+        title: '2.5rem',
+      },
     },
     fontWeight: {
       h1: '700',
@@ -206,11 +235,83 @@ const AppTheme = definePreset(Aura, {
         --p-font-size-h1: ${dt('fontSize.mobile.h1')};
         --p-font-size-h2: ${dt('fontSize.mobile.h2')};
         --p-font-size-h3: ${dt('fontSize.mobile.h3')};
+        --p-font-size-record-title: ${dt('fontSize.mobile.h1')};
         --p-font-size-search-input: ${dt('fontSize.mobile.searchInput')};
       }
     }
   `,
   components: {
+    accordion: {
+      panel: {
+        borderWidth: '1px',
+      },
+      header: {
+        color: '{text.color}',
+        hoverColor: '{text.color}',
+        activeColor: '{text.color}',
+        activeHoverColor: '{text.color}',
+        padding: '1rem 1.25rem',
+        background: '{eea.coolGrey}',
+        hoverBackground: '{eea.coolGrey}',
+        activeBackground: '{eea.coolGrey}',
+        activeHoverBackground: '{eea.coolGrey}',
+        toggleIcon: {
+          color: '{surface.500}',
+          hoverColor: '{surface.500}',
+          activeColor: '{surface.500}',
+          activeHoverColor: '{surface.500}',
+        },
+      },
+      content: {
+        padding: '1.75rem',
+      },
+    },
+    button: {
+      root: {
+        borderRadius: '0',
+        paddingX: '1.75rem',
+      },
+      colorScheme: {
+        light: {
+          root: {
+            primary: {
+              background: '{primary.600}',
+              hoverBackground: '{primary.700}',
+              activeBackground: '{primary.800}',
+              borderColor: '{primary.600}',
+              hoverBorderColor: '{primary.700}',
+              activeBorderColor: '{primary.800}',
+            },
+          },
+        },
+      },
+    },
+    carousel: {
+      indicatorList: {
+        padding: '1rem 1rem 2rem',
+        gap: '0.625rem',
+      },
+      indicator: {
+        width: '1.25rem',
+        height: '1.25rem',
+        borderRadius: '50%',
+      },
+      colorScheme: {
+        light: {
+          indicator: {
+            background: 'transparent',
+            hoverBackground: '{eea.hover}',
+            activeBackground: '{primary.600}',
+          },
+        },
+      },
+      // Only the current page's dot is filled, so the others need an outline to show.
+      css: ({ dt }) => `
+        .p-carousel-indicator-button {
+          border: 1px solid ${dt('primary.600')};
+        }
+      `,
+    },
     card: {
       root: {
         borderRadius: '{border.radius.md}',
@@ -273,6 +374,35 @@ const AppTheme = definePreset(Aura, {
         size: '1.5rem',
       },
     },
+    tabs: {
+      tab: {
+        borderWidth: '0 0 0.25rem 0',
+        borderColor: 'transparent',
+        hoverBorderColor: 'transparent',
+        color: '{text.color}',
+        hoverColor: '{primary.color}',
+        padding: '0 0 0.75rem 0',
+        fontWeight: '400',
+      },
+      tabpanel: {
+        padding: '2rem 0 0 0',
+      },
+      activeBar: {
+        height: '0',
+      },
+      extend: {
+        list: {
+          rowGap: '0.75rem',
+          columnGap: '1.75rem',
+        },
+      },
+      css: ({ dt }) => `
+        .p-tablist-tab-list {
+          flex-wrap: wrap;
+          gap: ${dt('tabs.list.row.gap')} ${dt('tabs.list.column.gap')};
+        }
+      `,
+    },
     tag: {
       root: {
         borderRadius: '{border.radius.sm}',
@@ -286,8 +416,36 @@ const AppTheme = definePreset(Aura, {
             background: '{primary.50}',
             color: '{primary.color}',
           },
+          secondary: {
+            background: '{surface.100}',
+            color: '{surface.500}',
+          },
         },
       },
+      extend: {
+        secondary: {
+          borderRadius: '{border.radius.md}',
+          fontSize: '0.75rem',
+          fontWeight: '600',
+          padding: '0.0625rem 0.5rem',
+        },
+        outlined: {
+          background: 'transparent',
+          borderWidth: '1px',
+        },
+      },
+      css: ({ dt }) => `
+        .p-tag-secondary {
+          border-radius: ${dt('tag.secondary.border.radius')};
+          font-size: ${dt('tag.secondary.font.size')};
+          font-weight: ${dt('tag.secondary.font.weight')};
+          padding: ${dt('tag.secondary.padding')};
+        }
+        .p-tag.p-tag-outlined {
+          background: ${dt('tag.outlined.background')};
+          border: ${dt('tag.outlined.border.width')} solid currentColor;
+        }
+      `,
     },
     toggleswitch: {
       root: {
