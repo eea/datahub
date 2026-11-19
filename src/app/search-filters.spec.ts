@@ -27,11 +27,11 @@ describe('SEARCH_FILTERS_LIST', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('puts only EEA topics on the filter line', () => {
+  it('puts EEA topics and Reporting obligations on the filter line, in that order', () => {
     const primary = SEARCH_FILTERS_LIST.filter(
       (filter) => 'placement' in filter && filter.placement === 'primary',
     ).map((filter) => filter.key);
 
-    expect(primary).toEqual(['eeaTopics']);
+    expect(primary).toEqual(['eeaTopics', 'reportingObligations']);
   });
 });
