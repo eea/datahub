@@ -183,6 +183,7 @@
       "filters": {
         "eeaTopics": "Thèmes de l'AEE",
         "format": "Formats disponibles",
+        "includeArchived": "Inclure le contenu archivé",
         "organization": "Organisations",
         "spatialRepresentationType": "Type de représentation spatiale"
       },
