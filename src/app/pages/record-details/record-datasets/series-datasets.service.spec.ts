@@ -142,6 +142,18 @@ describe('SeriesDatasetsService', () => {
     expect(dataset.links.map(({ isDoi }) => isDoi)).toEqual([true, true, false]);
   });
 
+  it('recognises a link with the DOI type as a DOI whatever its address', async () => {
+    respondWith(
+      feature('a', {
+        links: [{ rel: 'related', type: 'DOI', href: 'https://hdl.handle.net/10.2909/a' }],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.links).toEqual([{ href: 'https://hdl.handle.net/10.2909/a', isDoi: true }]);
+  });
+
   it('keeps only the DOI among the links of a superseded dataset', async () => {
     respondWith(
       feature('old', {
