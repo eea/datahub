@@ -171,6 +171,15 @@ describe('RecordDetails', () => {
     );
   });
 
+  it('cuts at the preview length when the whole words are too short', async () => {
+    properties.set({ description: `See ${'x'.repeat(300)}` });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(
+      `See ${'x'.repeat(216)}…`,
+    );
+  });
+
   it('collapses the description again when another record opens', async () => {
     properties.set({ description: longDescription });
     const fixture = await render();

@@ -29,7 +29,8 @@ const DESCRIPTION_PREVIEW_LENGTH = 220;
 
 function previewOf(text: string): string {
   const wholeWords = text.slice(0, DESCRIPTION_PREVIEW_LENGTH + 1).replace(/\s+\S*$/, '');
-  return wholeWords.length > DESCRIPTION_PREVIEW_LENGTH
+  return wholeWords.length > DESCRIPTION_PREVIEW_LENGTH ||
+    wholeWords.length < DESCRIPTION_PREVIEW_LENGTH / 2
     ? text.slice(0, DESCRIPTION_PREVIEW_LENGTH)
     : wholeWords.replace(/[.,;:]+$/, '');
 }
