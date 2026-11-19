@@ -36,4 +36,10 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
     field: 'spatialRepresentationType',
     placement: 'more',
   },
+  {
+    kind: 'toggle',
+    key: 'includeArchived',
+    labelKey: 'find.searchResults.filters.includeArchived',
+    cqlWhenOff: "NOT (status = 'obsolete' OR status = 'superseded')",
+  },
 ];

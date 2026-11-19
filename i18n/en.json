@@ -246,6 +246,7 @@
       "filters": {
         "eeaTopics": "EEA topics",
         "format": "Available formats",
+        "includeArchived": "Include archived content",
         "organization": "Organisations",
         "reportingObligations": "Reporting obligations",
         "spatialRepresentationType": "Spatial representation type"
