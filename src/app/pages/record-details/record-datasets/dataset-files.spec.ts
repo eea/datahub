@@ -130,7 +130,7 @@ describe('DatasetFiles', () => {
     expect(texts(fixture, 'dataset-file')).toEqual([]);
   });
 
-  it('hides and shows the whole table from its header', async () => {
+  it('hides and shows the files and the download links from the header', async () => {
     files.mockReturnValue(of([file('README.md')]));
     const fixture = await render();
     const [toggle] = all(fixture, 'dataset-files-toggle');
@@ -140,12 +140,14 @@ describe('DatasetFiles', () => {
 
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
     expect(all(fixture, 'dataset-file')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download')).toHaveLength(0);
 
     toggle.click();
     await fixture.whenStable();
 
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
+    expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
   });
 
   it('names the table with a heading and hides the icon column from screen readers', async () => {

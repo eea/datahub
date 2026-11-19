@@ -3,7 +3,7 @@
 } @else if (nodes().length) {
   <p-treetable
     class="block text-paragraph"
-    [class]="dataset().downloads.length ? 'mb-4.5' : 'mb-9'"
+    [class]="tableOpen() && dataset().downloads.length ? 'mb-4.5' : 'mb-9'"
     [value]="tableOpen() ? nodes() : []"
     [rowTrackBy]="trackByKey"
     [dt]="tableTokens"
@@ -104,7 +104,7 @@
   </h3>
 }
 
-@if (!filesResource.isLoading() && dataset().downloads.length) {
+@if (!filesResource.isLoading() && dataset().downloads.length && (tableOpen() || !nodes().length)) {
   <ul class="flex flex-col gap-3 mb-9">
     @for (link of dataset().downloads; track link.href) {
       <li>
