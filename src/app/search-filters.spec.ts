@@ -34,4 +34,13 @@ describe('SEARCH_FILTERS_LIST', () => {
 
     expect(primary).toEqual(['eeaTopics', 'reportingObligations']);
   });
+
+  it('starts each GEMET keyword with a capital, as the catalogue sends them in lower case', () => {
+    const gemet = SEARCH_FILTERS_LIST.find((filter) => filter.key === 'gemetKeywords');
+    const label = gemet?.kind === 'terms' ? gemet.label : undefined;
+
+    expect(label?.('natural areas, landscape, ecosystems')).toBe(
+      'Natural areas, landscape, ecosystems',
+    );
+  });
 });

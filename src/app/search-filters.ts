@@ -24,6 +24,14 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
   },
   {
     kind: 'terms',
+    key: 'gemetKeywords',
+    labelKey: 'find.searchResults.filters.gemetKeywords',
+    field: 'gemetKeywords',
+    placement: 'more',
+    label: (value) => value.charAt(0).toUpperCase() + value.slice(1),
+  },
+  {
+    kind: 'terms',
     key: 'organization',
     labelKey: 'find.searchResults.filters.organization',
     field: 'orgForResource',

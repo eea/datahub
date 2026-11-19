@@ -182,6 +182,7 @@
       "filters": {
         "eeaTopics": "EEA-thema's",
         "format": "Beschikbare formaten",
+        "gemetKeywords": "GEMET-trefwoorden",
         "includeArchived": "Gearchiveerde inhoud tonen",
         "organization": "Organisaties",
         "reportingObligations": "Rapportageverplichtingen",
