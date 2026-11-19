@@ -244,6 +244,7 @@
         "selectPlaceholder": "Select {{label}}"
       },
       "filters": {
+        "eeaTopics": "EEA topics",
         "format": "Available formats",
         "includeArchived": "Include archived content",
         "organization": "Organisations",

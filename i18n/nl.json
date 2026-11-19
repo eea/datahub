@@ -180,6 +180,7 @@
         "selectPlaceholder": "Selecteer {{label}}"
       },
       "filters": {
+        "eeaTopics": "EEA-thema's",
         "format": "Beschikbare formaten",
         "includeArchived": "Gearchiveerde inhoud tonen",
         "organization": "Organisaties",
