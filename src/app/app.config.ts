@@ -3,7 +3,12 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideApi } from '@geocat/frontend-api-client';
-import { COLLECTION_ID, DEFAULT_LANGUAGE, SEARCH_SCOPE } from '@geocat/frontend-library';
+import {
+  COLLECTION_ID,
+  DEFAULT_LANGUAGE,
+  SEARCH_FILTERS,
+  SEARCH_SCOPE,
+} from '@geocat/frontend-library';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideOptimus } from '@openng/optimus-ui/config';
@@ -11,6 +16,7 @@ import { provideOptimus } from '@openng/optimus-ui/config';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import AppTheme from './app.theme';
+import { SEARCH_FILTERS_LIST } from './search-filters';
 
 export const appConfig = (geonetworkApiUrl: string): ApplicationConfig => ({
   providers: [
@@ -21,6 +27,7 @@ export const appConfig = (geonetworkApiUrl: string): ApplicationConfig => ({
     provideApi(geonetworkApiUrl),
     { provide: COLLECTION_ID, useValue: environment.collectionId },
     { provide: SEARCH_SCOPE, useValue: { resourceType: ['series'] } },
+    { provide: SEARCH_FILTERS, useValue: SEARCH_FILTERS_LIST },
     provideTranslateService({
       loader: provideTranslateHttpLoader({ prefix: 'i18n/', suffix: '.json' }),
       fallbackLang: DEFAULT_LANGUAGE,
