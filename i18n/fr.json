@@ -184,6 +184,7 @@
         "eeaTopics": "Thèmes de l'AEE",
         "format": "Formats disponibles",
         "gemetKeywords": "Mots-clés GEMET",
+        "includeArchived": "Inclure le contenu archivé",
         "organization": "Organisations",
         "reportingObligations": "Obligations de rapportage",
         "spatialRepresentationType": "Type de représentation spatiale"

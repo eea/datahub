@@ -247,6 +247,7 @@
         "eeaTopics": "EEA topics",
         "format": "Available formats",
         "gemetKeywords": "GEMET keywords",
+        "includeArchived": "Include archived content",
         "organization": "Organisations",
         "reportingObligations": "Reporting obligations",
         "spatialRepresentationType": "Spatial representation type"
