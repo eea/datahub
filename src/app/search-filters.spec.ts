@@ -26,4 +26,12 @@ describe('SEARCH_FILTERS_LIST', () => {
 
     expect(new Set(keys).size).toBe(keys.length);
   });
+
+  it('puts only EEA topics on the filter line', () => {
+    const primary = SEARCH_FILTERS_LIST.filter(
+      (filter) => 'placement' in filter && filter.placement === 'primary',
+    ).map((filter) => filter.key);
+
+    expect(primary).toEqual(['eeaTopics']);
+  });
 });
