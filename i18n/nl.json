@@ -51,7 +51,6 @@
   "find": {
     "appName": "Datahub",
     "common": {
-      "backToHome": "Terug naar start",
       "placeholder": {
         "footer": "Voettekst van het Europees Milieuagentschap",
         "header": "Koptekst van het Europees Milieuagentschap"
@@ -61,10 +60,6 @@
     },
     "landing": {
       "intro": "Met deze Datahub kunt u hoogwaardige datasets over milieu, klimaat en duurzaamheid verkennen, raadplegen en downloaden. Via ons netwerk en andere institutionele partners in 38 Europese landen verzamelen we gegevens over een breed scala aan onderwerpen en wetgeving op het gebied van milieu, klimaat en duurzaamheid, en borgen en controleren we de kwaliteit ervan.",
-      "placeholder": {
-        "popularRecords": "Populaire records",
-        "topics": "In één oogopslag: onze belangrijkste onderwerpen"
-      },
       "signInModal": {
         "close": "Aanmeldvenster sluiten",
         "demoHint": "Demogegevens: gebruik een willekeurig e-mailadres met wachtwoord",
@@ -95,11 +90,49 @@
         "loading": "Laden...",
         "name": "Naam",
         "seriesFailed": "De series konden niet worden geladen.",
-        "title": "Alle onderwerpen"
+        "title": "Alle onderwerpen",
+        "showAll": "Alle onderwerpen bekijken",
+        "hideAll": "Alle onderwerpen verbergen"
+      },
+      "atAGlance": {
+        "title": "In één oogopslag: onze belangrijkste onderwerpen",
+        "topics": {
+          "europesEnvironment": "De toestand van het milieu in Europa",
+          "climate": "Klimaat",
+          "economyAndResources": "Economie en hulpbronnen",
+          "health": "Gezondheid",
+          "nature": "Natuur",
+          "sustainability": "Duurzaamheid"
+        }
+      },
+      "popular": {
+        "title": "Populaire records",
+        "views": "{{count}} weergaven",
+        "seeAll": "Bekijk populaire records",
+        "noPreview": "Geen voorbeeld beschikbaar"
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "Bekijk het volledige record in de catalogus"
+      "datahubOverview": "Datahub-overzicht",
+      "datasets": {
+        "directDownload": "Direct downloaden",
+        "doi": "Digital Object Identifier (DOI)",
+        "download": "Downloaden:",
+        "links": "Links:",
+        "loadFailed": "De datasets van deze serie konden niet worden geladen.",
+        "otherPeriod": "Overige",
+        "published": "Gepubliceerd:",
+        "superseded": "Vervangen",
+        "supersededTitle": "Vervangen of beperkte datasets",
+        "temporalCoverage": "Tijdsdekking:",
+        "title": "Datasets"
+      },
+      "lastModified": "Laatst gewijzigd op {{date}}",
+      "metadataFactsheet": "Metadatafiche",
+      "published": "Gepubliceerd op {{date}}",
+      "rss": "RSS",
+      "seeLess": "Minder tonen",
+      "seeMore": "Meer tonen"
     },
     "searchBar": {
       "advanced": {
@@ -162,13 +195,13 @@
       "results": "Resultaten:",
       "searching": "Zoeken…",
       "sort": {
-        "dateNewest": "Datum (nieuwste)",
-        "dateOldest": "Datum (oudste)",
+        "dateNewest": "Nieuwste",
+        "dateOldest": "Oudste",
         "label": "Sorteren op",
-        "popularity": "Populariteit",
+        "popularity": "Populairste",
         "relevance": "Relevantie",
-        "titleAsc": "Titel (A-Z)",
-        "titleDesc": "Titel (Z-A)"
+        "titleAsc": "Titel a-z",
+        "titleDesc": "Titel z-a"
       },
       "activeFilters": {
         "clearAll": "alles wissen",
