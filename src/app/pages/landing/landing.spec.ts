@@ -100,17 +100,26 @@ describe('Landing', () => {
     expect(roundedCount(count)).toBe(shown);
   });
 
-  it('shows all topics as a tree', () => {
+  it('shows and hides all topics as a tree', () => {
     const fixture = TestBed.createComponent(Landing);
     fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement;
+    const toggle = element.querySelector<HTMLButtonElement>('button[aria-controls="all-topics"]')!;
+    const tree = () => element.querySelector('#all-topics app-domain-tree');
 
-    const section: HTMLElement = fixture.nativeElement.querySelector(
-      'section[aria-labelledby="all-topics-title"]',
-    );
-    expect(section.querySelector('#all-topics-title')?.textContent?.trim()).toBe(
-      'find.landing.topics.title',
-    );
-    expect(section.querySelector('app-domain-tree')).not.toBeNull();
+    expect(tree()).toBeNull();
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(toggle.textContent?.trim()).toBe('find.landing.topics.showAll');
+
+    toggle.click();
+    fixture.detectChanges();
+    expect(tree()).not.toBeNull();
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(toggle.textContent?.trim()).toBe('find.landing.topics.hideAll');
+
+    toggle.click();
+    fixture.detectChanges();
+    expect(tree()).toBeNull();
   });
 
   it.each([
