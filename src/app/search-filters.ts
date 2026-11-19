@@ -10,6 +10,13 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
   },
   {
     kind: 'terms',
+    key: 'reportingObligations',
+    labelKey: 'find.searchResults.filters.reportingObligations',
+    field: 'reportingObligations',
+    placement: 'primary',
+  },
+  {
+    kind: 'terms',
     key: 'format',
     labelKey: 'find.searchResults.filters.format',
     field: 'format',
