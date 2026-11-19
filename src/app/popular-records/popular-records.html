@@ -1,0 +1,54 @@
+@if (records().length) {
+  <section aria-labelledby="popular-records-title" class="max-w-7xl mx-auto px-6 py-12">
+    <h2 id="popular-records-title" class="text-h2 mb-4">
+      {{ 'find.landing.popular.title' | translate }}
+    </h2>
+    <p-carousel
+      [value]="records()"
+      [numVisible]="CARDS_PER_PAGE"
+      [numScroll]="CARDS_PER_PAGE"
+      [responsiveOptions]="responsiveOptions"
+      [showNavigators]="false"
+      class="block -mx-2.5"
+    >
+      <ng-template #item let-record>
+        <!-- Half the 20px gap on each side of every card; the carousel's negative margin
+             lines the outer cards up with the heading and the button. -->
+        <a [routerLink]="record.link" class="group block px-2.5">
+          @if (record.image) {
+            <img
+              [src]="record.image"
+              alt=""
+              class="w-full h-popular-record-image object-cover"
+              (error)="dropImage(record)"
+            />
+          } @else {
+            <!-- Hidden from screen readers like the alt="" image: the title names the card. -->
+            <div
+              class="w-full h-popular-record-image bg-primary p-4 flex flex-col text-primary-contrast"
+              aria-hidden="true"
+            >
+              <img src="logos/eea-logo-white.svg" alt="" class="w-24" />
+              <p class="text-h2 font-bold leading-tight text-center m-auto">
+                {{ 'find.landing.popular.noPreview' | translate }}
+              </p>
+            </div>
+          }
+          <div class="p-4">
+            <p class="text-paragraph text-right">
+              {{ 'find.landing.popular.views' | translate: { count: record.views } }}
+            </p>
+            <h3 class="text-popular-record-title mt-2 group-hover:underline">
+              {{ record.title }}
+            </h3>
+          </div>
+        </a>
+      </ng-template>
+    </p-carousel>
+    <div class="flex justify-end">
+      <button pButton type="button" data-testid="see-popular-records" (click)="seeAll()">
+        <span pButtonLabel>{{ 'find.landing.popular.seeAll' | translate }}</span>
+      </button>
+    </div>
+  </section>
+}
