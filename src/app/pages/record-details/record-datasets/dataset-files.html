@@ -52,13 +52,13 @@
         data-testid="dataset-file-row"
       >
         <td>
-          <div class="flex items-center gap-2">
+          <div class="flex items-start gap-2">
             <p-treetable-toggler [rowNode]="rowNode" />
             @if (row.kind === 'folder') {
-              <i class="pi pi-folder text-[1rem]!" aria-hidden="true"></i>
+              <i class="pi pi-folder text-[1rem]! leading-6!" aria-hidden="true"></i>
               <span class="wrap-anywhere" data-testid="dataset-folder">{{ row.name }}</span>
             } @else {
-              <i class="pi pi-file text-[1rem]!" aria-hidden="true"></i>
+              <i class="pi pi-file text-[1rem]! leading-6!" aria-hidden="true"></i>
               <a
                 [href]="row.url"
                 target="_blank"
@@ -112,10 +112,13 @@
           [href]="link.href"
           target="_blank"
           rel="noopener"
-          class="flex items-center gap-2.5 text-paragraph font-semibold text-primary hover:underline"
+          class="flex items-start gap-2.5 text-paragraph font-semibold text-primary wrap-anywhere hover:underline"
           data-testid="dataset-download"
         >
-          <i class="pi pi-download text-foreground text-[1.125rem]!" aria-hidden="true"></i>
+          <i
+            class="pi pi-download text-foreground text-[1.125rem]! leading-6!"
+            aria-hidden="true"
+          ></i>
           {{ link.title ?? ('find.recordDetails.datasets.directDownload' | translate) }}
         </a>
       </li>

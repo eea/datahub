@@ -96,11 +96,11 @@
                           [href]="link.href"
                           target="_blank"
                           rel="noopener"
-                          class="flex items-center gap-2.5 py-4.5 text-paragraph font-semibold text-primary hover:underline"
+                          class="flex items-start gap-2.5 py-4.5 text-paragraph font-semibold text-primary wrap-anywhere hover:underline"
                           data-testid="dataset-link"
                         >
                           <i
-                            class="pi text-foreground text-[1rem]!"
+                            class="pi text-foreground text-[1rem]! leading-6!"
                             [class.pi-info-circle]="link.isDoi"
                             [class.pi-link]="!link.isDoi"
                             aria-hidden="true"
