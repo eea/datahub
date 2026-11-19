@@ -1,0 +1,28 @@
+@if (datasetsResource.isLoading()) {
+  <app-record-skeleton class="mt-14 block" data-testid="datasets-loading" />
+} @else if (datasetsResource.error()) {
+  <p-message severity="error" class="mt-14">
+    {{ 'find.recordDetails.datasets.loadFailed' | translate }}
+  </p-message>
+} @else {
+  @if (currentDatasets().length) {
+    <section class="mt-14" aria-labelledby="datasets-title" data-testid="record-datasets">
+      <h2 id="datasets-title" class="text-h2 mb-6">
+        {{ 'find.recordDetails.datasets.title' | translate }}
+      </h2>
+      <app-dataset-periods [datasets]="currentDatasets()" />
+    </section>
+  }
+  @if (supersededDatasets().length) {
+    <section
+      class="mt-14 pt-10 border-t border-border"
+      aria-labelledby="superseded-datasets-title"
+      data-testid="superseded-datasets"
+    >
+      <h2 id="superseded-datasets-title" class="text-h2 mb-6">
+        {{ 'find.recordDetails.datasets.supersededTitle' | translate }}
+      </h2>
+      <app-dataset-periods [datasets]="supersededDatasets()" />
+    </section>
+  }
+}

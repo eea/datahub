@@ -52,7 +52,6 @@
   "find": {
     "appName": "Datahub",
     "common": {
-      "backToHome": "Retour à l'accueil",
       "placeholder": {
         "footer": "Pied de page de l'Agence européenne pour l'environnement",
         "header": "En-tête de l'Agence européenne pour l'environnement"
@@ -62,10 +61,6 @@
     },
     "landing": {
       "intro": "Ce Datahub vous permet d'explorer, de consulter et de télécharger des jeux de données de haute qualité sur l'environnement, le climat et la durabilité. Grâce à notre réseau et à d'autres partenaires institutionnels dans 38 pays européens, nous collectons des données sur un large éventail de thèmes et de législations liés à l'environnement, au climat et à la durabilité, et nous en assurons et contrôlons la qualité.",
-      "placeholder": {
-        "popularRecords": "Fiches populaires",
-        "topics": "En bref : nos principaux thèmes"
-      },
       "signInModal": {
         "close": "Fermer la fenêtre de connexion",
         "demoHint": "Identifiants de démonstration : utilisez n'importe quel email avec le mot de passe",
@@ -96,11 +91,49 @@
         "loading": "Chargement...",
         "name": "Nom",
         "seriesFailed": "Les séries n'ont pas pu être chargées.",
-        "title": "Tous les thèmes"
+        "title": "Tous les thèmes",
+        "showAll": "Voir tous les thèmes",
+        "hideAll": "Masquer tous les thèmes"
+      },
+      "atAGlance": {
+        "title": "En bref : nos principaux thèmes",
+        "topics": {
+          "europesEnvironment": "L’état de l’environnement en Europe",
+          "climate": "Climat",
+          "economyAndResources": "Économie et ressources",
+          "health": "Santé",
+          "nature": "Nature",
+          "sustainability": "Durabilité"
+        }
+      },
+      "popular": {
+        "title": "Fiches populaires",
+        "views": "{{count}} vues",
+        "seeAll": "Voir les fiches populaires",
+        "noPreview": "Aucun aperçu disponible"
       }
     },
     "recordDetails": {
-      "viewInCatalogue": "Voir la fiche complète dans le catalogue"
+      "datahubOverview": "Aperçu du Datahub",
+      "datasets": {
+        "directDownload": "Téléchargement direct",
+        "doi": "Identifiant d'objet numérique (DOI)",
+        "download": "Téléchargement:",
+        "links": "Liens:",
+        "loadFailed": "Les jeux de données de cette série n'ont pas pu être chargés.",
+        "otherPeriod": "Autres",
+        "published": "Publié:",
+        "superseded": "Remplacé",
+        "supersededTitle": "Jeux de données remplacés ou restreints",
+        "temporalCoverage": "Couverture temporelle:",
+        "title": "Jeux de données"
+      },
+      "lastModified": "Dernière modification le {{date}}",
+      "metadataFactsheet": "Fiche de métadonnées",
+      "published": "Publié le {{date}}",
+      "rss": "RSS",
+      "seeLess": "Voir moins",
+      "seeMore": "Voir plus"
     },
     "searchBar": {
       "advanced": {
@@ -162,13 +195,13 @@
       "results": "Résultats:",
       "searching": "Recherche…",
       "sort": {
-        "dateNewest": "Date (plus récente)",
-        "dateOldest": "Date (plus ancienne)",
+        "dateNewest": "Plus récents",
+        "dateOldest": "Plus anciens",
         "label": "Trier par",
-        "popularity": "Popularité",
+        "popularity": "Les plus populaires",
         "relevance": "Pertinence",
-        "titleAsc": "Titre (A-Z)",
-        "titleDesc": "Titre (Z-A)"
+        "titleAsc": "Titre a-z",
+        "titleDesc": "Titre z-a"
       },
       "activeFilters": {
         "clearAll": "tout effacer",
