@@ -157,7 +157,7 @@ describe('DatasetPeriods', () => {
     expect(panel(fixture, 'new-a').querySelector('app-dataset-files')).not.toBeNull();
   });
 
-  it('marks a superseded dataset and shows only its dates', async () => {
+  it('marks a superseded dataset and shows only its dates and DOI', async () => {
     const fixture = await render([
       dataset('old', {
         startYear: 2005,
@@ -180,6 +180,22 @@ describe('DatasetPeriods', () => {
     expect(row.querySelector('[data-testid="dataset-factsheet"]')).toBeNull();
     expect(row.querySelector('app-dataset-files')).toBeNull();
     expect(files).not.toHaveBeenCalled();
+    expect(
+      [...row.querySelectorAll('[data-testid="dataset-link"]')].map((link) =>
+        link.textContent?.trim(),
+      ),
+    ).toEqual(['Digital Object Identifier (DOI)']);
+  });
+
+  it('shows no links on a superseded dataset without a DOI', async () => {
+    const fixture = await render([
+      dataset('old', { startYear: 2005, endYear: 2013, superseded: true }),
+    ]);
+    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const row = panel(fixture, 'old');
+    row.querySelector<HTMLElement>('p-accordion-header')?.click();
+    await fixture.whenStable();
+
     expect(row.querySelector('[data-testid="dataset-link"]')).toBeNull();
   });
 

@@ -126,6 +126,50 @@ describe('SeriesDatasetsService', () => {
     ]);
   });
 
+  it('recognises a doi.org link as a DOI when it has no type', async () => {
+    respondWith(
+      feature('a', {
+        links: [
+          { rel: 'related', href: 'https://doi.org/10.2909/a' },
+          { rel: 'related', href: 'http://dx.doi.org/10.2909/b' },
+          { rel: 'related', href: 'https://a/doi.org/viewer' },
+        ],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.links.map(({ isDoi }) => isDoi)).toEqual([true, true, false]);
+  });
+
+  it('recognises a link with the DOI type as a DOI whatever its address', async () => {
+    respondWith(
+      feature('a', {
+        links: [{ rel: 'related', type: 'DOI', href: 'https://hdl.handle.net/10.2909/a' }],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['a']));
+
+    expect(dataset.links).toEqual([{ href: 'https://hdl.handle.net/10.2909/a', isDoi: true }]);
+  });
+
+  it('keeps only the DOI among the links of a superseded dataset', async () => {
+    respondWith(
+      feature('old', {
+        properties: { title: 'Old', status: ['superseded'] },
+        links: [
+          { rel: 'related', title: 'Viewer', href: 'https://a/viewer' },
+          { rel: 'related', href: 'https://doi.org/10.2909/old' },
+        ],
+      }),
+    );
+
+    const [dataset] = await firstValueFrom(service().datasets(['old']));
+
+    expect(dataset.links).toEqual([{ href: 'https://doi.org/10.2909/old', isDoi: true }]);
+  });
+
   it('leaves out the EEA Taskman ticket links', async () => {
     respondWith(
       feature('a', {

@@ -17,6 +17,7 @@ const SUPERSEDED_STATUSES = ['superseded', 'obsolete'];
 const SERVICE_TYPE_PREFIXES = ['OGC:', 'ESRI:'];
 const FOLDER_PATH_TYPE = 'EEA:FOLDERPATH';
 const DOI_TYPE = 'DOI';
+const DOI_URL = /^https?:\/\/(dx\.)?doi\.org\//i;
 const INTERNAL_HOSTS = ['taskman.eionet.europa.eu'];
 
 export interface DatasetLink {
@@ -55,7 +56,7 @@ const isServiceLink = (link: OgcApiRecordsLinkDto): boolean =>
 const toDatasetLink = (link: OgcApiRecordsLinkDto): DatasetLink => ({
   href: link.href,
   title: link.title || undefined,
-  isDoi: link.type === DOI_TYPE,
+  isDoi: link.type === DOI_TYPE || DOI_URL.test(link.href),
 });
 
 @Injectable({ providedIn: 'root' })
@@ -86,6 +87,14 @@ export class SeriesDatasetsService {
       DatasetProperties;
     const years = yearRange(record.time as RecordTime | undefined);
     const links = (record.links ?? []).filter((link) => isWebLink(link) && !isInternalLink(link));
+    const superseded = (properties.status ?? []).some((status) =>
+      SUPERSEDED_STATUSES.includes(status),
+    );
+    const relatedLinks = links
+      .filter(
+        (link) => link.rel === 'related' && !isServiceLink(link) && link.type !== FOLDER_PATH_TYPE,
+      )
+      .map(toDatasetLink);
 
     return {
       id: record.id,
@@ -95,15 +104,10 @@ export class SeriesDatasetsService {
       startYear: years?.start,
       endYear: years?.end,
       downloads: links.filter((link) => link.rel === 'enclosure').map(toDatasetLink),
-      links: links
-        .filter(
-          (link) =>
-            link.rel === 'related' && !isServiceLink(link) && link.type !== FOLDER_PATH_TYPE,
-        )
-        .map(toDatasetLink),
+      links: superseded ? relatedLinks.filter((link) => link.isDoi) : relatedLinks,
       overviews: (properties.thumbnails ?? []).flatMap((thumbnail) => thumbnail.url ?? []),
       factsheetUrl: factsheetUrl(this.basePath, record.id),
-      superseded: (properties.status ?? []).some((status) => SUPERSEDED_STATUSES.includes(status)),
+      superseded,
     };
   }
 

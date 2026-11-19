@@ -43,7 +43,7 @@
               <p-accordion-content>
                 <div
                   class="flex flex-wrap items-start justify-between gap-4"
-                  [class.mb-8]="!dataset.superseded"
+                  [class.mb-8]="!dataset.superseded || dataset.links.length"
                 >
                   <dl class="flex flex-col gap-2.5 text-paragraph">
                     @if (dataset.published; as published) {
@@ -85,7 +85,7 @@
                   }
                 }
 
-                @if (!dataset.superseded && dataset.links.length) {
+                @if (dataset.links.length) {
                   <h3 class="text-lead font-bold mb-4.5">
                     {{ 'find.recordDetails.datasets.links' | translate }}
                   </h3>
