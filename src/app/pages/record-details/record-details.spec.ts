@@ -153,6 +153,40 @@ describe('RecordDetails', () => {
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
   });
 
+  it('ends the description preview on the last whole word', async () => {
+    properties.set({ description: `A ${longDescription}` });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(
+      `A ${sentence.repeat(2)}Urban Atlas provides comparable land use and land cover data…`,
+    );
+  });
+
+  it('drops the punctuation in front of the ellipsis', async () => {
+    properties.set({ description: `${'Land cover. '.repeat(18)}Urban Atlas.` });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(
+      `${'Land cover. '.repeat(17)}Land cover…`,
+    );
+  });
+
+  it('cuts a preview with no space at the preview length', async () => {
+    properties.set({ description: 'x'.repeat(300) });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(`${'x'.repeat(220)}…`);
+  });
+
+  it('cuts at the preview length when the whole words are too short', async () => {
+    properties.set({ description: `See ${'x'.repeat(300)}` });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(
+      `See ${'x'.repeat(216)}…`,
+    );
+  });
+
   it('collapses the description again when another record opens', async () => {
     properties.set({ description: longDescription });
     const fixture = await render();
