@@ -1,50 +1,72 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   BASE_PATH,
   OgcApiRecordsRecordGeoJSONDto,
   RecordService,
 } from '@geocat/frontend-api-client';
-import {
-  COLLECTION_ID,
-  DEFAULT_SPACE,
-  RecordFieldTitle,
-  RecordSkeleton,
-} from '@geocat/frontend-library';
+import { COLLECTION_ID, RecordSkeleton, SearchStateService } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonDirective } from '@openng/optimus-ui/button';
-import { Card } from '@openng/optimus-ui/card';
 import { Message } from '@openng/optimus-ui/message';
 import { Observable, of } from 'rxjs';
 
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
-import { Share } from '../../share/share';
+import { RecordDatasets } from './record-datasets/record-datasets';
+import { RECORD_DATE_FORMAT } from './record-date-format';
+import { RecordMoreInformation } from './record-more-information/record-more-information';
+
+const DESCRIPTION_PREVIEW_LENGTH = 220;
+
+function previewOf(text: string): string {
+  const wholeWords = text.slice(0, DESCRIPTION_PREVIEW_LENGTH + 1).replace(/\s+\S*$/, '');
+  return wholeWords.length > DESCRIPTION_PREVIEW_LENGTH ||
+    wholeWords.length < DESCRIPTION_PREVIEW_LENGTH / 2
+    ? text.slice(0, DESCRIPTION_PREVIEW_LENGTH)
+    : wholeWords.replace(/[.,;:]+$/, '');
+}
+
+interface RecordDates {
+  issued?: string[];
+}
 
 @Component({
   selector: 'app-record-details',
   imports: [
+    DatePipe,
+    RouterLink,
     TranslatePipe,
     Message,
-    Card,
-    ButtonDirective,
-    RecordFieldTitle,
     RecordSkeleton,
     Footer,
     Header,
-    Share,
+    RecordDatasets,
+    RecordMoreInformation,
   ],
   templateUrl: './record-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordDetails {
-  private router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   recordUuid = signal('');
   recordService = inject(RecordService);
   private collectionId = inject(COLLECTION_ID);
-  private basePath = inject(BASE_PATH);
+  private searchQuery = inject(SearchStateService).query;
+  protected readonly rssUrl = `${inject(BASE_PATH)}/rss`;
+  protected readonly dateFormat = RECORD_DATE_FORMAT;
+  protected readonly resultsQueryParams = computed(() => {
+    const query = this.searchQuery();
+    return query ? { q: query } : {};
+  });
 
   constructor() {
     this.activatedRoute.params.subscribe((params) => this.recordUuid.set(params['uuid']));
@@ -64,15 +86,32 @@ export class RecordDetails {
     },
   });
 
-  record = computed(() => this.recordResource.value());
+  record = computed(() =>
+    this.recordResource.hasValue() ? this.recordResource.value() : undefined,
+  );
   recordStatus = computed(() =>
     this.recordResource.error() ? 'record.view.notFoundOrNotShared' : undefined,
   );
-  gn4RecordUrl = computed(
-    () => `${this.basePath}/${DEFAULT_SPACE}/eng/catalog.search#/metadata/${this.recordUuid()}`,
+
+  protected readonly childUuids = computed(
+    () => (this.record()?.properties as { childUuid?: string[] } | undefined)?.childUuid ?? [],
   );
 
-  protected goHome(): void {
-    this.router.navigate(['/home']);
-  }
+  protected readonly published = computed(
+    () => (this.record()?.properties as RecordDates | undefined)?.issued?.[0],
+  );
+
+  private description = computed(() => this.record()?.properties?.description ?? '');
+  protected readonly isDescriptionLong = computed(
+    () => this.description().length > DESCRIPTION_PREVIEW_LENGTH,
+  );
+  protected readonly isDescriptionExpanded = linkedSignal({
+    source: this.recordUuid,
+    computation: () => false,
+  });
+  protected readonly visibleDescription = computed(() =>
+    this.isDescriptionLong() && !this.isDescriptionExpanded()
+      ? `${previewOf(this.description())}…`
+      : this.description(),
+  );
 }
