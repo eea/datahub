@@ -27,6 +27,14 @@ describe('SEARCH_FILTERS_LIST', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
+  it('puts EEA topics and Reporting obligations on the filter line, in that order', () => {
+    const primary = SEARCH_FILTERS_LIST.filter(
+      (filter) => 'placement' in filter && filter.placement === 'primary',
+    ).map((filter) => filter.key);
+
+    expect(primary).toEqual(['eeaTopics', 'reportingObligations']);
+  });
+
   it('starts each GEMET keyword with a capital, as the catalogue sends them in lower case', () => {
     const gemet = SEARCH_FILTERS_LIST.find((filter) => filter.key === 'gemetKeywords');
     const label = gemet?.kind === 'terms' ? gemet.label : undefined;
