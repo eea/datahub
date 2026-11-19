@@ -84,6 +84,7 @@ describe('DatasetFiles', () => {
 
     expect(all(fixture, 'dataset-files-loading')).toHaveLength(1);
     expect(all(fixture, 'dataset-files')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download')).toHaveLength(0);
   });
 
   it('lists folders collapsed with their file count, then the files', async () => {
