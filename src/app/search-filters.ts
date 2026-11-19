@@ -75,4 +75,10 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
       },
     ],
   },
+  {
+    kind: 'toggle',
+    key: 'includeArchived',
+    labelKey: 'find.searchResults.filters.includeArchived',
+    cqlWhenOff: "NOT (status = 'obsolete' OR status = 'superseded')",
+  },
 ];
