@@ -171,6 +171,13 @@ describe('RecordDetails', () => {
     );
   });
 
+  it('cuts a preview with no space at the preview length', async () => {
+    properties.set({ description: 'x'.repeat(300) });
+    const fixture = await render();
+
+    expect(byTestId(fixture, 'record-description').textContent).toContain(`${'x'.repeat(220)}…`);
+  });
+
   it('cuts at the preview length when the whole words are too short', async () => {
     properties.set({ description: `See ${'x'.repeat(300)}` });
     const fixture = await render();
