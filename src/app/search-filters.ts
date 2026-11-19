@@ -1,5 +1,7 @@
 import { SearchFilter } from '@geocat/frontend-library';
 
+const SCALE = 'resolutionScaleDenominator';
+
 export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
   {
     kind: 'terms',
@@ -43,6 +45,35 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
     labelKey: 'find.searchResults.filters.spatialRepresentationType',
     field: 'spatialRepresentationType',
     placement: 'more',
+  },
+  {
+    kind: 'choices',
+    key: 'scales',
+    labelKey: 'find.searchResults.filters.scales',
+    placement: 'more',
+    countFacet: 'resolutionScaleDenominatorRanges',
+    choices: [
+      {
+        value: '1_upTo100000',
+        label: '*-100,000',
+        cql: `${SCALE} < 100000`,
+      },
+      {
+        value: '2_100000to1000000',
+        label: '100,000-1,000,000',
+        cql: `(${SCALE} >= 100000 AND ${SCALE} < 1000000)`,
+      },
+      {
+        value: '3_1000000to10000000',
+        label: '1,000,000-10,000,000',
+        cql: `(${SCALE} >= 1000000 AND ${SCALE} < 10000000)`,
+      },
+      {
+        value: '4_above10000000',
+        label: '10,000,000-*',
+        cql: `${SCALE} >= 10000000`,
+      },
+    ],
   },
   {
     kind: 'toggle',

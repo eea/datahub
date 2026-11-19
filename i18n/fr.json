@@ -187,6 +187,7 @@
         "includeArchived": "Inclure le contenu archivé",
         "organization": "Organisations",
         "reportingObligations": "Obligations de rapportage",
+        "scales": "Échelles",
         "spatialRepresentationType": "Type de représentation spatiale"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
