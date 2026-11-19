@@ -84,6 +84,7 @@ describe('DatasetFiles', () => {
 
     expect(all(fixture, 'dataset-files-loading')).toHaveLength(1);
     expect(all(fixture, 'dataset-files')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download')).toHaveLength(0);
   });
 
   it('lists folders collapsed with their file count, then the files', async () => {
@@ -129,7 +130,7 @@ describe('DatasetFiles', () => {
     expect(texts(fixture, 'dataset-file')).toEqual([]);
   });
 
-  it('hides and shows the whole table from its header', async () => {
+  it('hides and shows the files and the download links from the header', async () => {
     files.mockReturnValue(of([file('README.md')]));
     const fixture = await render();
     const [toggle] = all(fixture, 'dataset-files-toggle');
@@ -139,12 +140,14 @@ describe('DatasetFiles', () => {
 
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
     expect(all(fixture, 'dataset-file')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download')).toHaveLength(0);
 
     toggle.click();
     await fixture.whenStable();
 
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
+    expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
   });
 
   it('names the table with a heading and hides the icon column from screen readers', async () => {
@@ -178,12 +181,23 @@ describe('DatasetFiles', () => {
     expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
   });
 
+  it('lists the download links under the files without a second heading', async () => {
+    files.mockReturnValue(of([file('README.md')]));
+
+    const fixture = await render();
+
+    expect(texts(fixture, 'dataset-file')).toEqual(['README.md']);
+    expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
+    expect(all(fixture, 'dataset-download-heading')).toHaveLength(0);
+  });
+
   it('falls back to the download links when the dataset has no files', async () => {
     files.mockReturnValue(of([file('overview.png')]));
 
     const fixture = await render();
 
     expect(all(fixture, 'dataset-files')).toHaveLength(0);
+    expect(all(fixture, 'dataset-download-heading')).toHaveLength(1);
     expect(texts(fixture, 'dataset-download')).toEqual(['Direct download']);
   });
 
