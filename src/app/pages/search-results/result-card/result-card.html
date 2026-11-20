@@ -1,0 +1,43 @@
+<article
+  class="relative bg-card border border-border rounded-md p-6 transition-colors hover:bg-secondary"
+>
+  <h3 class="text-h3 mb-3">
+    <a
+      [routerLink]="detailsLink()"
+      class="hover:underline after:absolute after:inset-0 after:content-['']"
+      data-testid="result-title"
+    >
+      {{ title() || ('record.field.title.notAvailable' | translate) }}
+    </a>
+    @if (isNew()) {
+      <p-tag
+        [value]="'find.searchResults.card.new' | translate"
+        class="p-tag-outlined ml-2.5 align-middle"
+        data-testid="result-new"
+      />
+    }
+  </h3>
+
+  @if (description()) {
+    <p class="text-paragraph max-w-221 mb-5 line-clamp-3" data-testid="result-description">
+      {{ description() }}
+    </p>
+  }
+
+  @if (details().length) {
+    <p class="flex flex-wrap items-center gap-2 text-base text-muted-foreground">
+      @for (detail of details(); track detail.key) {
+        @if (!$first) {
+          <span aria-hidden="true">•</span>
+        }
+        <span
+          [class.font-medium]="detail.key === 'organisation'"
+          [class.text-foreground]="detail.key === 'organisation'"
+          [attr.data-testid]="'result-' + detail.key"
+        >
+          {{ detail.text }}
+        </span>
+      }
+    </p>
+  }
+</article>
