@@ -24,7 +24,7 @@ interface EeaRecordProperties {
 }
 
 interface CardDetail {
-  key: 'organisation' | 'published' | 'topics' | 'formats';
+  key: 'organisation' | 'published' | 'topic' | 'formats';
   text: string;
 }
 
@@ -66,7 +66,7 @@ export class ResultCard {
         key: 'published',
         text: published ? formatDate(published, RECORD_DATE_FORMAT, this.locale) : '',
       },
-      { key: 'topics', text: [...new Set(properties.eeaTopics ?? [])].join(', ') },
+      { key: 'topic', text: properties.eeaTopics?.[0] ?? '' },
       {
         key: 'formats',
         text: [...new Set((properties.formats ?? []).flatMap((format) => format.name ?? []))].join(

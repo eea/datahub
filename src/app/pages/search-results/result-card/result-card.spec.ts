@@ -74,20 +74,24 @@ describe('ResultCard', () => {
     );
   });
 
-  it('lists organisation, publication date, EEA topics and formats in that order', async () => {
+  it('lists organisation, publication date, first EEA topic and formats in that order', async () => {
     const fixture = await render(record());
 
     expect(detailsLine(fixture)).toBe(
-      'European Environment Agency • 10 Feb 2024 • Land use, Urban sustainability • GeoTIFF, SHP',
+      'European Environment Agency • 10 Feb 2024 • Land use • GeoTIFF, SHP',
     );
+  });
+
+  it('shows only the first EEA topic of the record', async () => {
+    const fixture = await render(record({ eeaTopics: ['Water', 'Agriculture and food system'] }));
+
+    expect(byTestId(fixture, 'result-topic')?.textContent?.trim()).toBe('Water');
   });
 
   it('leaves out the details a record does not have, with no stray separator', async () => {
     const fixture = await render(record({ issued: undefined, formats: [] }));
 
-    expect(detailsLine(fixture)).toBe(
-      'European Environment Agency • Land use, Urban sustainability',
-    );
+    expect(detailsLine(fixture)).toBe('European Environment Agency • Land use');
     expect(byTestId(fixture, 'result-published')).toBeNull();
     expect(byTestId(fixture, 'result-formats')).toBeNull();
   });
