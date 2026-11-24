@@ -21,6 +21,18 @@ describe('SEARCH_FILTERS_LIST', () => {
     });
   });
 
+  LANGUAGES.forEach(([language, translations]) => {
+    it(`has a ${language} label for All time and every period`, () => {
+      const missing = SEARCH_FILTERS_LIST.flatMap((filter) =>
+        filter.kind === 'period'
+          ? [filter.allLabelKey, ...filter.periods.map((period) => period.labelKey)]
+          : [],
+      ).filter((key) => typeof translationOf(translations, key) !== 'string');
+
+      expect(missing).toEqual([]);
+    });
+  });
+
   it('gives every filter its own key', () => {
     const keys = SEARCH_FILTERS_LIST.map((filter) => filter.key);
 

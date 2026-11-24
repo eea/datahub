@@ -249,6 +249,7 @@
         "gemetKeywords": "GEMET keywords",
         "includeArchived": "Include archived content",
         "organization": "Organisations",
+        "period": "Published",
         "reportingObligations": "Reporting obligations",
         "scales": "Scales",
         "spatialRepresentationType": "Spatial representation type"
@@ -258,6 +259,14 @@
       "pagination": {
         "next": "Next",
         "previous": "Previous"
+      },
+      "period": {
+        "allTime": "All time",
+        "lastWeek": "Last week",
+        "lastMonth": "Last month",
+        "last3Months": "Last 3 months",
+        "lastYear": "Last year",
+        "last2Years": "Last 2 years"
       },
       "results": "Results:",
       "searching": "Searching…",
