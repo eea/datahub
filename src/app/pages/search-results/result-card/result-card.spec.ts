@@ -40,7 +40,8 @@ describe('ResultCard', () => {
 
   const detailsLine = (fixture: ComponentFixture<ResultCard>) =>
     byTestId(fixture, 'result-organisation')
-      ?.parentElement?.textContent?.replace(/\s+/g, ' ')
+      ?.closest('p')
+      ?.textContent?.replace(/\s+/g, ' ')
       .trim();
 
   beforeEach(async () => {

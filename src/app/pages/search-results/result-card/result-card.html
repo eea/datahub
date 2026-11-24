@@ -25,17 +25,21 @@
   }
 
   @if (details().length) {
-    <p class="flex flex-wrap items-center gap-2 text-base text-muted-foreground">
+    <p
+      class="flex flex-wrap items-center gap-x-5 gap-y-2 overflow-hidden text-base text-muted-foreground"
+    >
       @for (detail of details(); track detail.key) {
-        @if (!$first) {
-          <span aria-hidden="true">•</span>
-        }
-        <span
-          [class.font-medium]="detail.key === 'organisation'"
-          [class.text-foreground]="detail.key === 'organisation'"
-          [attr.data-testid]="'result-' + detail.key"
-        >
-          {{ detail.text }}
+        <span class="relative">
+          @if (!$first) {
+            <span aria-hidden="true" class="absolute right-full w-5 text-center">•</span>
+          }
+          <span
+            [class.font-medium]="detail.key === 'organisation'"
+            [class.text-foreground]="detail.key === 'organisation'"
+            [attr.data-testid]="'result-' + detail.key"
+          >
+            {{ detail.text }}
+          </span>
         </span>
       }
     </p>
