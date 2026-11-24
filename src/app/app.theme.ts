@@ -146,6 +146,9 @@ const AppTheme = definePreset(Aura, {
     stats: {
       background: '{eea.lightGrey}',
     },
+    activeFilters: {
+      borderColor: '{eea.grey}',
+    },
     statCard: {
       value: {
         color: '{eea.blue.700}',

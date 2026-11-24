@@ -20,6 +20,7 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
+import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-panel';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Share } from '../../share/share';
@@ -29,7 +30,17 @@ const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, RouterLink, SearchPanel, RecordCard, Message, Footer, Header, Share],
+  imports: [
+    TranslatePipe,
+    RouterLink,
+    SearchPanel,
+    ActiveFiltersPanel,
+    RecordCard,
+    Message,
+    Footer,
+    Header,
+    Share,
+  ],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

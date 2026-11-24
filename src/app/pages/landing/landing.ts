@@ -22,6 +22,7 @@ import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 
+import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-panel';
 import { DomainTree } from '../../domain-tree/domain-tree';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
@@ -55,6 +56,7 @@ export const roundedCount = (count: number): string => {
   imports: [
     FormsModule,
     SearchPanel,
+    ActiveFiltersPanel,
     ButtonModule,
     DialogModule,
     InputTextModule,
