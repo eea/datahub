@@ -12,7 +12,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   DEFAULT_PAGE_SIZE,
-  RecordCard,
   SearchPanel,
   SearchService,
   SearchStateService,
@@ -24,6 +23,7 @@ import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-pa
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Share } from '../../share/share';
+import { ResultCard } from './result-card/result-card';
 
 /** Page buttons the paginator shows at once. */
 const PAGE_WINDOW = 7;
@@ -35,7 +35,7 @@ const PAGE_WINDOW = 7;
     RouterLink,
     SearchPanel,
     ActiveFiltersPanel,
-    RecordCard,
+    ResultCard,
     Message,
     Footer,
     Header,

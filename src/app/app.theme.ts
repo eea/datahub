@@ -438,7 +438,8 @@ const AppTheme = definePreset(Aura, {
         },
       },
       css: ({ dt }) => `
-        .p-tag-secondary {
+        .p-tag-secondary,
+        .p-tag.p-tag-outlined {
           border-radius: ${dt('tag.secondary.border.radius')};
           font-size: ${dt('tag.secondary.font.size')};
           font-weight: ${dt('tag.secondary.font.weight')};

@@ -52,7 +52,7 @@
     <!-- Results list -->
     <div class="flex flex-col gap-4">
       @for (record of records(); track record.id) {
-        <app-record-card [record]="record"></app-record-card>
+        <app-result-card [record]="record" />
       } @empty {
         @if (!loading() && !failed()) {
           <div class="text-center py-16 text-muted-foreground text-base">
