@@ -16,9 +16,12 @@
     <!-- Search and filter area: identical to the one on the search results page -->
     <app-search-panel
       class="block mb-10"
+      [showActiveFilters]="false"
       (search)="onSearch()"
       (filtersChange)="onFiltersChange()"
-    ></app-search-panel>
+    >
+      <app-active-filters-panel (filtersChange)="onFiltersChange()" />
+    </app-search-panel>
     <p class="border-l-8 border-primary-700 px-7 py-2.5 text-lead">
       {{ 'find.landing.intro' | translate }}
     </p>

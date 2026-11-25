@@ -38,9 +38,12 @@
     <!-- Search and filter area: identical to the one on the landing page -->
     <app-search-panel
       class="block mb-8"
+      [showActiveFilters]="false"
       (search)="onSearchChange()"
       (filtersChange)="onSearchChange()"
-    />
+    >
+      <app-active-filters-panel (filtersChange)="onSearchChange()" />
+    </app-search-panel>
 
     @if (failed()) {
       <p-message severity="error">{{ 'find.searchResults.loadFailed' | translate }}</p-message>
