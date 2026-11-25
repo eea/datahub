@@ -47,6 +47,21 @@ describe('SEARCH_FILTERS_LIST', () => {
     expect(primary).toEqual(['eeaTopics', 'reportingObligations']);
   });
 
+  it('lists the other filters behind All filters in the order of the design', () => {
+    const more = SEARCH_FILTERS_LIST.filter(
+      (filter) => 'placement' in filter && filter.placement === 'more',
+    ).map((filter) => filter.key);
+
+    expect(more).toEqual([
+      'format',
+      'gemetKeywords',
+      'organization',
+      'spatialRepresentationType',
+      'scales',
+      'timeCoverage',
+    ]);
+  });
+
   it('starts each GEMET keyword with a capital, as the catalogue sends them in lower case', () => {
     const gemet = SEARCH_FILTERS_LIST.find((filter) => filter.key === 'gemetKeywords');
     const label = gemet?.kind === 'terms' ? gemet.label : undefined;

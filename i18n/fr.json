@@ -189,7 +189,8 @@
         "period": "Publié",
         "reportingObligations": "Obligations de rapportage",
         "scales": "Échelles",
-        "spatialRepresentationType": "Type de représentation spatiale"
+        "spatialRepresentationType": "Type de représentation spatiale",
+        "timeCoverage": "Couverture temporelle"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
       "noResults": "Aucun résultat trouvé",

@@ -76,6 +76,14 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
     ],
   },
   {
+    kind: 'yearRange',
+    key: 'timeCoverage',
+    labelKey: 'find.searchResults.filters.timeCoverage',
+    placement: 'more',
+    facet: 'temporalExtent',
+    minYear: 1985,
+  },
+  {
     kind: 'period',
     key: 'period',
     labelKey: 'find.searchResults.filters.period',

@@ -188,7 +188,8 @@
         "period": "Gepubliceerd",
         "reportingObligations": "Rapportageverplichtingen",
         "scales": "Schalen",
-        "spatialRepresentationType": "Type ruimtelijke representatie"
+        "spatialRepresentationType": "Type ruimtelijke representatie",
+        "timeCoverage": "Tijdsdekking"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
       "noResults": "Geen resultaten gevonden",
