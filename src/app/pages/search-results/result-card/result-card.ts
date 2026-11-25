@@ -50,7 +50,10 @@ export class ResultCard {
 
   protected readonly description = computed(() => this.properties().description ?? '');
 
-  private readonly published = computed(() => this.properties().issued?.[0]);
+  private readonly published = computed(() => {
+    const issued = this.properties().issued?.[0];
+    return issued && !Number.isNaN(Date.parse(issued)) ? issued : undefined;
+  });
 
   protected readonly isNew = computed(() => {
     const published = Date.parse(this.published() ?? '');

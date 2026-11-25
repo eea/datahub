@@ -96,6 +96,13 @@ describe('ResultCard', () => {
     expect(byTestId(fixture, 'result-formats')).toBeNull();
   });
 
+  it('leaves out a publication date it cannot read', async () => {
+    const fixture = await render(record({ issued: ['n/a'] }));
+
+    expect(detailsLine(fixture)).toBe('European Environment Agency • Land use • GeoTIFF, SHP');
+    expect(byTestId(fixture, 'result-new')).toBeNull();
+  });
+
   it('names a format once when several datasets share it', async () => {
     const fixture = await render(
       record({ formats: [{ name: 'GeoTIFF' }, { name: 'GeoTIFF' }, { name: 'SHP' }] }),
