@@ -32,38 +32,36 @@
       </button>
     </div>
 
-    @if (expanded()) {
-      <ul id="active-filters-body" class="mt-4 flex flex-wrap gap-2">
-        @for (group of groups(); track group.key) {
-          <li
-            class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-card border border-primary rounded-sm px-2.5 py-1.25 text-[0.8125rem] text-primary"
-            [attr.data-testid]="'active-filters-group-' + group.key"
-          >
-            <span class="font-medium">{{ group.labelKey | translate }}:</span>
-            @for (value of group.values; track value.value + value.excluded) {
-              <span
-                class="flex items-center gap-1.5"
-                [class.text-excluded-chip-foreground]="value.excluded"
+    <ul id="active-filters-body" class="mt-4 flex flex-wrap gap-2" [hidden]="!expanded()">
+      @for (group of groups(); track group.key) {
+        <li
+          class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-card border border-primary rounded-sm px-2.5 py-1.25 text-[0.8125rem] text-primary"
+          [attr.data-testid]="'active-filters-group-' + group.key"
+        >
+          <span class="font-medium">{{ group.labelKey | translate }}:</span>
+          @for (value of group.values; track value.value + value.excluded) {
+            <span
+              class="flex items-center gap-1.5"
+              [class.text-excluded-chip-foreground]="value.excluded"
+            >
+              <span [class.line-through]="value.excluded">{{ value.label }}</span>
+              <button
+                type="button"
+                (click)="remove(group, value)"
+                [attr.aria-label]="
+                  (value.excluded
+                    ? 'find.searchResults.activeFilters.removeExcluded'
+                    : 'find.searchResults.activeFilters.remove'
+                  ) | translate: { label: value.label }
+                "
+                class="size-6 -m-1.75 flex items-center justify-center"
               >
-                <span [class.line-through]="value.excluded">{{ value.label }}</span>
-                <button
-                  type="button"
-                  (click)="remove(group, value)"
-                  [attr.aria-label]="
-                    (value.excluded
-                      ? 'find.searchResults.activeFilters.removeExcluded'
-                      : 'find.searchResults.activeFilters.remove'
-                    ) | translate: { label: value.label }
-                  "
-                  class="flex items-center"
-                >
-                  <i class="pi pi-times text-[0.625rem]!"></i>
-                </button>
-              </span>
-            }
-          </li>
-        }
-      </ul>
-    }
+                <i class="pi pi-times text-[0.625rem]!"></i>
+              </button>
+            </span>
+          }
+        </li>
+      }
+    </ul>
   </section>
 }

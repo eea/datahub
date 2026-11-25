@@ -70,6 +70,23 @@ describe('ActiveFiltersPanel', () => {
     expect(changes).toBe(1);
   });
 
+  it('removes an excluded value from the excluded side only', () => {
+    select('eeaTopics', ['Air pollution'], ['Noise']);
+    const buttons = group('eeaTopics')!.querySelectorAll('button');
+
+    expect(buttons[0].getAttribute('aria-label')).toBe('find.searchResults.activeFilters.remove');
+    expect(buttons[1].getAttribute('aria-label')).toBe(
+      'find.searchResults.activeFilters.removeExcluded',
+    );
+
+    buttons[1].click();
+    fixture.detectChanges();
+
+    expect(state.selection('eeaTopics')).toEqual({ included: ['Air pollution'], excluded: [] });
+    expect(group('eeaTopics')!.querySelector('.line-through')).toBeNull();
+    expect(changes).toBe(1);
+  });
+
   it('clears every filter with clear all and goes away', () => {
     select('eeaTopics', ['Air pollution']);
     select('format', ['SHP']);
@@ -93,7 +110,9 @@ describe('ActiveFiltersPanel', () => {
     fixture.detectChanges();
 
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect(host().querySelector('#active-filters-body')).toBeNull();
+    const body = host().querySelector<HTMLElement>('#active-filters-body');
+    expect(body?.hidden).toBe(true);
+    expect(toggle.getAttribute('aria-controls')).toBe(body?.id);
     expect(text(host().querySelector('h2'))).toBe('find.searchResults.activeFilters.title');
     expect(host().querySelector('[data-testid="active-filters-clear-all"]')).not.toBeNull();
   });
