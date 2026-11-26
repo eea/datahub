@@ -4,7 +4,7 @@ import { provideRouter, RouterLink } from '@angular/router';
 import { SearchResult, SearchService } from '@geocat/frontend-library';
 import { provideTranslateService, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
-import { NEVER, Observable, of } from 'rxjs';
+import { NEVER, Observable, of, Subject } from 'rxjs';
 
 import en from '../../../../i18n/en.json';
 import fr from '../../../../i18n/fr.json';
@@ -83,6 +83,24 @@ describe('SearchResults', () => {
 
     expect(count(fixture).textContent?.trim()).toBe('');
     expect(fixture.nativeElement.querySelector('p-message')).not.toBeNull();
+  });
+
+  it('shows the newest search when an older one answers last', () => {
+    const responses: Subject<SearchResult>[] = [];
+    search.mockImplementation(() => {
+      const response = new Subject<SearchResult>();
+      responses.push(response);
+      return response;
+    });
+    const fixture = render();
+    const page = fixture.componentInstance as unknown as { onSearchChange(): void };
+
+    page.onSearchChange();
+    responses[1].next(result(206));
+    responses[0].next(result(284));
+    fixture.detectChanges();
+
+    expect(count(fixture).textContent?.replace(/\s+/g, ' ').trim()).toBe('Results: 206');
   });
 
   it('links back to the landing page', () => {
