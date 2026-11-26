@@ -21,6 +21,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@openng/optimus-ui/tabs';
 
 import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-panel';
 import { DomainTree } from '../../domain-tree/domain-tree';
@@ -29,6 +30,7 @@ import { Header } from '../../header/header';
 import { PopularRecords } from '../../popular-records/popular-records';
 import { Share } from '../../share/share';
 import { TopicTiles } from '../../topic-tiles/topic-tiles';
+import { TopicsAZ } from '../../topics-a-z/topics-a-z';
 
 /**
  * The landing panel needs facet options and counts but shows no results, so it asks for the
@@ -67,7 +69,13 @@ export const roundedCount = (count: number): string => {
     PopularRecords,
     Share,
     TopicTiles,
+    TopicsAZ,
     StatCard,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
   ],
   templateUrl: './landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

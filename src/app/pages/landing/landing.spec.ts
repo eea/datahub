@@ -29,6 +29,14 @@ describe('Landing', () => {
     );
 
   beforeEach(async () => {
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe(): void {}
+        unobserve(): void {}
+        disconnect(): void {}
+      },
+    );
     getRecords.mockReset();
     getRecords.mockReturnValue(
       of(
@@ -55,6 +63,8 @@ describe('Landing', () => {
       ],
     }).compileComponents();
   });
+
+  afterEach(() => vi.unstubAllGlobals());
 
   it('counts resource types from the resourceType facet', () => {
     const fixture = TestBed.createComponent(Landing);
@@ -98,6 +108,19 @@ describe('Landing', () => {
     [12999, '12000+'],
   ])('rounds %i down to %s', (count, shown) => {
     expect(roundedCount(count)).toBe(shown);
+  });
+
+  it('opens all topics on the Tree tab, with A - Z next to it', () => {
+    const fixture = TestBed.createComponent(Landing);
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement;
+    const tabs = [...element.querySelectorAll('#all-topics [role="tab"]')];
+
+    expect(tabs.map((tab) => tab.textContent?.trim())).toEqual([
+      'find.landing.topics.az',
+      'find.landing.topics.tree',
+    ]);
+    expect(tabs.map((tab) => tab.getAttribute('aria-selected'))).toEqual(['false', 'true']);
   });
 
   it('shows all topics as a tree from the start, with no button to hide them', () => {
