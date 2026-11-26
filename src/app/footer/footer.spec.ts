@@ -5,6 +5,9 @@ import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { EEA_WEBSITE_ACTIONS, EeaWebsiteLinks } from '../eea-website/eea-website-links';
 import { Footer } from './footer';
 
+const HIDDEN = ['sitemap', 'login'];
+const isHidden = ({ id }: { id: string }) => HIDDEN.includes(id);
+
 describe('Footer', () => {
   const footer = signal(EEA_WEBSITE_ACTIONS);
 
@@ -65,27 +68,23 @@ describe('Footer', () => {
 
     const missing = Object.values(EEA_WEBSITE_ACTIONS)
       .flat()
-      .filter(({ id }) => !['sitemap', 'login'].includes(id))
+      .filter((link) => !isHidden(link))
       .filter(({ url }) => linkText(fixture, url) === undefined);
     expect(missing).toEqual([]);
   });
 
   it('leaves out Sitemap and Login', () => {
     const fixture = render();
-    const hidden = EEA_WEBSITE_ACTIONS.copyright_actions.filter(({ id }) =>
-      ['sitemap', 'login'].includes(id),
-    );
+    const hidden = EEA_WEBSITE_ACTIONS.copyright_actions.filter(isHidden);
 
-    expect(hidden.map(({ id }) => id)).toEqual(['sitemap', 'login']);
+    expect(hidden.map(({ id }) => id)).toEqual(HIDDEN);
     expect(hidden.map(({ url }) => linkText(fixture, url))).toEqual([undefined, undefined]);
   });
 
   it('gives the other links the whole row when Sitemap and Login were the only copyright links', () => {
     footer.set({
       ...EEA_WEBSITE_ACTIONS,
-      copyright_actions: EEA_WEBSITE_ACTIONS.copyright_actions.filter(({ id }) =>
-        ['sitemap', 'login'].includes(id),
-      ),
+      copyright_actions: EEA_WEBSITE_ACTIONS.copyright_actions.filter(isHidden),
     });
     const fixture = render();
     const [privacy] = EEA_WEBSITE_ACTIONS.footer_actions;
