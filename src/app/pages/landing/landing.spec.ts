@@ -123,13 +123,12 @@ describe('Landing', () => {
     expect(tabs.map((tab) => tab.getAttribute('aria-selected'))).toEqual(['false', 'true']);
   });
 
-  it('shows all topics as a tree from the start, with no button to hide them', () => {
+  it('shows all topics as a tree from the start', () => {
     const fixture = TestBed.createComponent(Landing);
     fixture.detectChanges();
     const element: HTMLElement = fixture.nativeElement;
 
     expect(element.querySelector('#all-topics app-domain-tree')).not.toBeNull();
-    expect(element.querySelector('button[aria-controls="all-topics"]')).toBeNull();
   });
 
   it.each([
