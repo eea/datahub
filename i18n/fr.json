@@ -91,9 +91,7 @@
         "loading": "Chargement...",
         "name": "Nom",
         "seriesFailed": "Les séries n'ont pas pu être chargées.",
-        "title": "Tous les thèmes",
-        "showAll": "Voir tous les thèmes",
-        "hideAll": "Masquer tous les thèmes"
+        "title": "Tous les thèmes"
       },
       "atAGlance": {
         "title": "En bref : nos principaux thèmes",
