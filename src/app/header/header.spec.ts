@@ -157,6 +157,18 @@ describe('Header', () => {
     expect(tabletMenuLinks(fixture)).toEqual([]);
   });
 
+  it('puts focus back on the menu button when Escape closes the tablet menu', async () => {
+    const fixture = render();
+    const button = tabletMenuButton(fixture);
+    await click(fixture, button);
+    fixture.nativeElement.querySelector('#header-tablet-menu a').focus();
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+
+    expect(document.activeElement).toBe(button);
+  });
+
   it('closes the Featured data panel when the tablet menu opens', async () => {
     const fixture = render();
     await click(fixture, featuredDataButton(fixture));

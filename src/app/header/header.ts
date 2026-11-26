@@ -5,6 +5,7 @@ import {
   ElementRef,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -43,12 +44,14 @@ function slug(item: EeaWebsiteNavigationItem): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:click)': 'closeMenuOnOutsideClick($event)',
-    '(document:keydown.escape)': 'closeMenus()',
+    '(document:keydown.escape)': 'closeOnEscape()',
   },
 })
 export class Header {
   private readonly links = inject(EeaWebsiteLinks).header;
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
+  private readonly tabletMenuButton =
+    viewChild.required<ElementRef<HTMLButtonElement>>('tabletMenuButton');
 
   private readonly systemLabels = translatedLabels('find.header.informationSystems');
   private readonly navigationLabels = translatedLabels('find.header.navigation');
@@ -90,6 +93,13 @@ export class Header {
   protected closeMenus(): void {
     this.openMenu.set(null);
     this.tabletMenuOpen.set(false);
+  }
+
+  protected closeOnEscape(): void {
+    if (this.tabletMenuOpen()) {
+      this.tabletMenuButton().nativeElement.focus();
+    }
+    this.closeMenus();
   }
 
   protected closeMenuOnOutsideClick(event: MouseEvent): void {
