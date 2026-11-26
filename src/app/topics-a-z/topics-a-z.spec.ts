@@ -100,17 +100,6 @@ describe('TopicsAZ', () => {
     expect(navigate).toHaveBeenCalledWith(['/search']);
   });
 
-  it('leaves a click that opens a new tab to the browser', () => {
-    search.mockReturnValue(of(result([topic('Soil')])));
-    const { element, navigate } = render();
-    const event = new MouseEvent('click', { bubbles: true, cancelable: true, metaKey: true });
-
-    element.querySelector('a')!.dispatchEvent(event);
-
-    expect(event.defaultPrevented).toBe(false);
-    expect(navigate).not.toHaveBeenCalled();
-  });
-
   it.each([
     ['find.landing.topics.loading', () => new Subject<SearchResult>()],
     ['find.landing.topics.failed', () => of(result(undefined, true))],

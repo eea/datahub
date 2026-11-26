@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
-import { FilterOption, SearchService, SearchStateService } from '@geocat/frontend-library';
+import { FilterOption, SearchService } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 
-const EEA_TOPICS = 'eeaTopics';
+import { EeaTopicsSearch } from '../eea-topics-search';
+import { EEA_TOPICS } from '../search-filters';
 
 export interface TopicLetter {
   letter: string;
@@ -35,8 +35,7 @@ export function groupByLetter(options: FilterOption[]): TopicLetter[] {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopicsAZ {
-  private readonly router = inject(Router);
-  private readonly searchState = inject(SearchStateService);
+  private readonly eeaTopicsSearch = inject(EeaTopicsSearch);
 
   private readonly topics = toSignal(
     inject(SearchService)
@@ -49,11 +48,6 @@ export class TopicsAZ {
   protected readonly letters = computed(() => groupByLetter(this.topics() ?? []));
 
   protected open(event: MouseEvent, topic: FilterOption): void {
-    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey) return;
-    event.preventDefault();
-    this.searchState.setQuery('');
-    this.searchState.clearFilters();
-    this.searchState.setFilter(EEA_TOPICS, { included: [topic.value], excluded: [] });
-    this.router.navigate(['/search']);
+    this.eeaTopicsSearch.open(event, [topic.value]);
   }
 }

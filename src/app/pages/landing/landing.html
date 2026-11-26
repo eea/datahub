@@ -31,14 +31,10 @@
         {{ 'find.landing.topics.title' | translate }}
       </h2>
       <p class="text-paragraph pt-2 pb-4">{{ 'find.landing.topics.intro' | translate }}</p>
-      <p-tabs value="tree">
+      <p-tabs value="tree" class="topics-tabs">
         <p-tablist>
-          <p-tab value="az" class="text-[1.75rem] font-bold!">
-            {{ 'find.landing.topics.az' | translate }}
-          </p-tab>
-          <p-tab value="tree" class="text-[1.75rem] font-bold!">
-            {{ 'find.landing.topics.tree' | translate }}
-          </p-tab>
+          <p-tab value="az">{{ 'find.landing.topics.az' | translate }}</p-tab>
+          <p-tab value="tree">{{ 'find.landing.topics.tree' | translate }}</p-tab>
         </p-tablist>
         <p-tabpanels>
           <p-tabpanel value="az"><app-topics-a-z /></p-tabpanel>

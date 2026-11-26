@@ -2,10 +2,12 @@ import { SearchFilter } from '@geocat/frontend-library';
 
 const SCALE = 'resolutionScaleDenominator';
 
+export const EEA_TOPICS = 'eeaTopics';
+
 export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
   {
     kind: 'terms',
-    key: 'eeaTopics',
+    key: EEA_TOPICS,
     labelKey: 'find.searchResults.filters.eeaTopics',
     field: 'eeaTopics',
     placement: 'primary',
