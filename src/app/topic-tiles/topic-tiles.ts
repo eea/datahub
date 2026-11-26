@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { ImageTile, SearchStateService } from '@geocat/frontend-library';
+import { ImageTile } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
+
+import { EeaTopicsSearch } from '../eea-topics-search';
 
 interface TopicTile {
   key: string;
   url: string;
   image: string;
-  /** The catalogue's EEA topics the tile opens the results for, instead of `url`. */
   eeaTopics?: readonly string[];
 }
 
@@ -25,13 +25,9 @@ const topic = (slug: string, key: string, eeaTopics: readonly string[]): TopicTi
   return { key: `find.landing.atAGlance.topics.${key}`, url, image: largeImage(url), eeaTopics };
 };
 
-const AGRICULTURE = 'Agriculture and food system';
-const ADAPTATION = 'Climate change impacts, risks and adaptation';
-const MITIGATION = 'Climate change mitigation: reducing emissions';
-
 const TOPIC_TILES: readonly TopicTile[] = [
   topic('nature', 'nature', [
-    AGRICULTURE,
+    'Agriculture and food system',
     'Bathing water quality',
     'Biodiversity: state of habitats and species',
     'Fisheries and aquaculture',
@@ -45,17 +41,17 @@ const TOPIC_TILES: readonly TopicTile[] = [
   topic('health', 'health', [
     'Air pollution',
     'Chemicals',
-    ADAPTATION,
+    'Climate change impacts, risks and adaptation',
     'Environmental health impacts',
     'Noise',
     'Pollution',
     'Environmental inequalities',
   ]),
   topic('climate', 'climate', [
-    ADAPTATION,
-    AGRICULTURE,
+    'Climate change impacts, risks and adaptation',
+    'Agriculture and food system',
     'Buildings and construction',
-    MITIGATION,
+    'Climate change mitigation: reducing emissions',
     'Energy',
     'Energy efficiency',
     'Extreme weather: floods, droughts, heatwaves',
@@ -68,7 +64,7 @@ const TOPIC_TILES: readonly TopicTile[] = [
   ]),
   topic('economy-and-resources', 'economyAndResources', [
     'Circular economy',
-    MITIGATION,
+    'Climate change mitigation: reducing emissions',
     'Fisheries and aquaculture',
     'Industry',
     'Plastics',
@@ -78,7 +74,7 @@ const TOPIC_TILES: readonly TopicTile[] = [
     'Waste and recycling',
   ]),
   topic('sustainability', 'sustainability', [
-    AGRICULTURE,
+    'Agriculture and food system',
     'Energy',
     'Production and consumption',
     'Sustainability challenges',
@@ -106,18 +102,11 @@ const TOPIC_TILES: readonly TopicTile[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopicTiles {
-  private readonly router = inject(Router);
-  private readonly searchState = inject(SearchStateService);
+  private readonly eeaTopicsSearch = inject(EeaTopicsSearch);
 
   protected readonly tiles = TOPIC_TILES;
 
   protected open(event: MouseEvent, tile: TopicTile): void {
-    const newTab = event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey;
-    if (!tile.eeaTopics || newTab) return;
-    event.preventDefault();
-    this.searchState.setQuery('');
-    this.searchState.clearFilters();
-    this.searchState.setFilter('eeaTopics', { included: [...tile.eeaTopics], excluded: [] });
-    this.router.navigate(['/search']);
+    if (tile.eeaTopics) this.eeaTopicsSearch.open(event, tile.eeaTopics);
   }
 }

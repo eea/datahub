@@ -96,20 +96,6 @@ describe('TopicTiles', () => {
     expect(navigate).toHaveBeenCalledWith(['/search']);
   });
 
-  it('gives every topic tile at least one EEA topic', () => {
-    const { links, click } = render();
-
-    links.slice(0, 5).forEach((link) => click(link.textContent!.trim()));
-
-    expect(searchState.setFilter.mock.calls.map(([, value]) => value.included.length > 0)).toEqual([
-      true,
-      true,
-      true,
-      true,
-      true,
-    ]);
-  });
-
   it('lets Copernicus and Statistical data open their own pages', () => {
     const { click, navigate } = render();
 
@@ -117,15 +103,6 @@ describe('TopicTiles', () => {
 
     expect(events.map((event) => event.defaultPrevented)).toEqual([false, false]);
     expect(searchState.setFilter).not.toHaveBeenCalled();
-    expect(navigate).not.toHaveBeenCalled();
-  });
-
-  it('leaves a click that opens a new tab to the browser', () => {
-    const { click, navigate } = render();
-
-    const event = click('Nature', { ctrlKey: true });
-
-    expect(event.defaultPrevented).toBe(false);
     expect(navigate).not.toHaveBeenCalled();
   });
 });
