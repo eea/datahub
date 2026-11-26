@@ -76,6 +76,20 @@ export const SEARCH_FILTERS_LIST: readonly SearchFilter[] = [
     ],
   },
   {
+    kind: 'period',
+    key: 'period',
+    labelKey: 'find.searchResults.filters.period',
+    field: 'issued',
+    allLabelKey: 'find.searchResults.period.allTime',
+    periods: [
+      { value: 'lastWeek', labelKey: 'find.searchResults.period.lastWeek', days: 7 },
+      { value: 'lastMonth', labelKey: 'find.searchResults.period.lastMonth', months: 1 },
+      { value: 'last3Months', labelKey: 'find.searchResults.period.last3Months', months: 3 },
+      { value: 'lastYear', labelKey: 'find.searchResults.period.lastYear', months: 12 },
+      { value: 'last2Years', labelKey: 'find.searchResults.period.last2Years', months: 24 },
+    ],
+  },
+  {
     kind: 'toggle',
     key: 'includeArchived',
     labelKey: 'find.searchResults.filters.includeArchived',
