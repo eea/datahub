@@ -96,6 +96,7 @@ describe('SearchResults', () => {
     const page = fixture.componentInstance as unknown as { onSearchChange(): void };
 
     page.onSearchChange();
+    expect(responses[0].observed).toBe(false);
     responses[1].next(result(206));
     responses[0].next(result(284));
     fixture.detectChanges();
