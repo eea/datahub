@@ -96,14 +96,15 @@
         "hideAll": "Masquer tous les thèmes"
       },
       "atAGlance": {
-        "title": "En bref : nos principaux thèmes",
+        "title": "En bref :",
         "topics": {
-          "europesEnvironment": "L’état de l’environnement en Europe",
           "climate": "Climat",
           "economyAndResources": "Économie et ressources",
           "health": "Santé",
           "nature": "Nature",
-          "sustainability": "Durabilité"
+          "sustainability": "Durabilité",
+          "copernicus": "Copernicus",
+          "statisticalData": "Données statistiques"
         }
       },
       "popular": {

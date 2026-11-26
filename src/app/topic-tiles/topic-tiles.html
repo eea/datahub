@@ -3,13 +3,9 @@
     {{ 'find.landing.atAGlance.title' | translate }}
   </h2>
   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    @for (tile of tiles(); track tile.url) {
+    @for (tile of tiles; track tile.url) {
       <li>
-        <app-image-tile
-          [label]="tile.key ? (tile.key | translate) : tile.title"
-          [link]="tile.url"
-          [image]="tile.image"
-        />
+        <app-image-tile [label]="tile.key | translate" [link]="tile.url" [image]="tile.image" />
       </li>
     }
   </ul>
