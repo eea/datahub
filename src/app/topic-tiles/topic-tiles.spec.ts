@@ -1,5 +1,3 @@
-import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 
@@ -11,9 +9,7 @@ const FEATURED_DATA = 'https://www.eea.europa.eu/en/datahub/featured-data';
 
 describe('TopicTiles', () => {
   const render = () => {
-    TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting(), provideTranslateService()],
-    });
+    TestBed.configureTestingModule({ providers: [provideTranslateService()] });
     const translate = TestBed.inject(TranslateService);
     translate.setTranslation('en', en);
     translate.use('en');
@@ -56,11 +52,5 @@ describe('TopicTiles', () => {
       'https://www.eea.europa.eu/en/datahub/copernicus-2.jpg/@@images/image/large',
       'https://www.eea.europa.eu/en/datahub/chris-liverani-dbi_my696rk-unsplash.jpg/@@images/image/large',
     ]);
-  });
-
-  it('asks the EEA website for nothing', () => {
-    render();
-
-    expect(() => TestBed.inject(HttpTestingController).verify()).not.toThrow();
   });
 });

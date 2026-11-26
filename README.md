@@ -57,14 +57,14 @@ Run both before pushing to confirm the build and formatting are clean.
 
 ### Useful Commands
 
-| Command                | Description                                 |
-| ---------------------- | ------------------------------------------- |
-| `npm run start`        | Start dev server at `http://localhost:4200` |
-| `npm run build`        | Full production build                       |
-| `npm run build:check`  | Format check                                |
-| `npm run prettier`     | Auto-format all source files                |
-| `npm run format:check` | Check formatting without modifying files    |
-| `npm run test`         | Run unit tests (interactive)                |
+| Command                       | Description                                   |
+| ----------------------------- | --------------------------------------------- |
+| `npm run start`               | Start dev server at `http://localhost:4200`   |
+| `npm run build`               | Full production build                         |
+| `npm run build:check`         | Format check                                  |
+| `npm run prettier`            | Auto-format all source files                  |
+| `npm run format:check`        | Check formatting without modifying files      |
+| `npm run test`                | Run unit tests (interactive)                  |
 
 ## API Endpoint Configuration
 
@@ -103,7 +103,7 @@ The header and the footer read their content from the EEA website: the header na
 
 The labels come from the `find.header.navigation` and `find.footer.links` translations, keyed by the page name or link id. A link the EEA website adds later shows its English name until it gets a translation. The header leaves out the EEA Datahub About page, which EEA asked to drop.
 
-The tile labels come from the `find.landing.atAGlance.topics` translations, keyed by the topic page. The EEA website only publishes these pages in English, so a topic it adds later shows its English title until it gets a translation.
+The landing page's At a glance tiles are a fixed list in `src/app/topic-tiles/topic-tiles.ts`. They link to EEA website pages and show those pages' images, and their labels come from the `find.landing.atAGlance.topics` translations.
 
 ## Docker Image
 
@@ -118,9 +118,9 @@ The token is passed as a BuildKit secret, taken from `GITHUB_PACKAGES_AUTH_TOKEN
 
 The container is configured with environment variables, served to the app in `/config.json`:
 
-| Variable             | Default      | Description                                                  |
-| -------------------- | ------------ | ------------------------------------------------------------ |
-| `GEONETWORK_API_URL` | `/catalogue` | GeoNetwork 5 base path or URL used by the UI to call its API |
+| Variable             | Default      | Description                                                      |
+| -------------------- | ------------ | ---------------------------------------------------------------- |
+| `GEONETWORK_API_URL` | `/catalogue` | GeoNetwork 5 base path or URL used by the UI to call its API     |
 
 ```sh
 docker run --rm -p 8080:8080 -e GEONETWORK_API_URL=/geonetwork eea-datahub
