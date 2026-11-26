@@ -5,7 +5,12 @@
   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     @for (tile of tiles; track tile.url) {
       <li>
-        <app-image-tile [label]="tile.key | translate" [link]="tile.url" [image]="tile.image" />
+        <app-image-tile
+          [label]="tile.key | translate"
+          [link]="tile.eeaTopics ? '/search' : tile.url"
+          [image]="tile.image"
+          (click)="open($event, tile)"
+        />
       </li>
     }
   </ul>
