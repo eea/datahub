@@ -75,7 +75,7 @@
       </div>
 
       <nav
-        class="md:ml-auto md:self-end"
+        class="md:ml-auto md:self-end md:max-lg:hidden"
         [attr.aria-label]="'find.header.navigationLabel' | translate"
       >
         <ul class="flex flex-wrap gap-5 text-header-navigation font-medium text-primary-600">
@@ -109,7 +109,47 @@
     >
       <img src="icons/ai-search.svg" alt="" class="size-8 md:size-11.25" />
     </a>
+    <button
+      type="button"
+      (click)="toggleTabletMenu()"
+      [attr.aria-expanded]="tabletMenuOpen()"
+      aria-controls="header-tablet-menu"
+      [attr.aria-label]="'find.header.menu' | translate"
+      class="hidden md:max-lg:flex w-18 items-center justify-center bg-header-menu text-header-menu-foreground cursor-pointer"
+    >
+      <i
+        class="pi text-[1.75rem]!"
+        [class]="tabletMenuOpen() ? 'pi-times' : 'pi-bars'"
+        aria-hidden="true"
+      ></i>
+    </button>
   </div>
+
+  @if (tabletMenuOpen()) {
+    <div
+      id="header-tablet-menu"
+      class="hidden md:max-lg:block absolute inset-x-0 top-full z-50 py-4 bg-header-menu text-header-menu-foreground"
+    >
+      <ul class="max-w-7xl mx-auto px-6 py-4">
+        @for (item of navigation(); track item.url) {
+          <li class="border-b border-current/30">
+            <a [href]="item.url" class="block py-3 text-header-menu-link font-bold hover:underline">
+              {{ item.label }}
+            </a>
+            @if (item.items.length) {
+              <ul class="pb-3 pl-6">
+                @for (child of item.items; track child.url) {
+                  <li>
+                    <a [href]="child.url" class="block py-1.5 hover:underline">{{ child.label }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+  }
 
   @if (openItem(); as item) {
     <div

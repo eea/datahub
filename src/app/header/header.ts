@@ -43,7 +43,7 @@ function slug(item: EeaWebsiteNavigationItem): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:click)': 'closeMenuOnOutsideClick($event)',
-    '(document:keydown.escape)': 'openMenu.set(null)',
+    '(document:keydown.escape)': 'closeMenus()',
   },
 })
 export class Header {
@@ -54,6 +54,7 @@ export class Header {
   private readonly navigationLabels = translatedLabels('find.header.navigation');
 
   protected readonly openMenu = signal<string | null>(null);
+  protected readonly tabletMenuOpen = signal(false);
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({
@@ -81,9 +82,19 @@ export class Header {
     this.openMenu.update((open) => (open === url ? null : url));
   }
 
+  protected toggleTabletMenu(): void {
+    this.openMenu.set(null);
+    this.tabletMenuOpen.update((open) => !open);
+  }
+
+  protected closeMenus(): void {
+    this.openMenu.set(null);
+    this.tabletMenuOpen.set(false);
+  }
+
   protected closeMenuOnOutsideClick(event: MouseEvent): void {
     if (!this.host.nativeElement.contains(event.target as Node)) {
-      this.openMenu.set(null);
+      this.closeMenus();
     }
   }
 

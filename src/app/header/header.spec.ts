@@ -33,6 +33,16 @@ describe('Header', () => {
     )!;
   }
 
+  function tabletMenuButton(fixture: ComponentFixture<Header>): HTMLButtonElement {
+    return fixture.nativeElement.querySelector('button[aria-controls="header-tablet-menu"]');
+  }
+
+  function tabletMenuLinks(fixture: ComponentFixture<Header>): string[] {
+    return Array.from<HTMLAnchorElement>(
+      fixture.nativeElement.querySelectorAll('#header-tablet-menu a'),
+    ).map((link) => `${link.textContent?.trim()} ${link.getAttribute('href')}`);
+  }
+
   async function click(fixture: ComponentFixture<Header>, element: HTMLElement): Promise<void> {
     element.click();
     fixture.detectChanges();
@@ -108,6 +118,50 @@ describe('Header', () => {
 
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();
+
+    expect(menuLinks(fixture)).toEqual([]);
+  });
+
+  it('opens the whole navigation from the menu button, the way tablets show it', async () => {
+    const fixture = render();
+    const button = tabletMenuButton(fixture);
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(button.getAttribute('aria-label')).toBe('find.header.menu');
+
+    await click(fixture, button);
+
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(tabletMenuLinks(fixture)).toEqual([
+      'Our featured data https://www.eea.europa.eu/en/datahub/featured-data',
+      'Copernicus data https://www.eea.europa.eu/en/datahub/featured-data/copernicus-data',
+      'Statistical data https://www.eea.europa.eu/en/datahub/featured-data/statistical-data',
+      'Our data policy https://www.eea.europa.eu/en/datahub/eea-data-policy',
+    ]);
+  });
+
+  it('closes the tablet menu from its button, on Escape and on a click outside', async () => {
+    const fixture = render();
+    const button = tabletMenuButton(fixture);
+
+    await click(fixture, button);
+    await click(fixture, button);
+    expect(tabletMenuLinks(fixture)).toEqual([]);
+
+    await click(fixture, button);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+    expect(tabletMenuLinks(fixture)).toEqual([]);
+
+    await click(fixture, button);
+    await click(fixture, document.body);
+    expect(tabletMenuLinks(fixture)).toEqual([]);
+  });
+
+  it('closes the Featured data panel when the tablet menu opens', async () => {
+    const fixture = render();
+    await click(fixture, featuredDataButton(fixture));
+
+    await click(fixture, tabletMenuButton(fixture));
 
     expect(menuLinks(fixture)).toEqual([]);
   });
