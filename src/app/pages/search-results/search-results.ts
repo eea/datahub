@@ -12,7 +12,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   DEFAULT_PAGE_SIZE,
-  RecordCard,
   SearchPanel,
   SearchService,
   SearchStateService,
@@ -20,16 +19,28 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
 
+import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-panel';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Share } from '../../share/share';
+import { ResultCard } from './result-card/result-card';
 
 /** Page buttons the paginator shows at once. */
 const PAGE_WINDOW = 7;
 
 @Component({
   selector: 'app-search-results',
-  imports: [TranslatePipe, RouterLink, SearchPanel, RecordCard, Message, Footer, Header, Share],
+  imports: [
+    TranslatePipe,
+    RouterLink,
+    SearchPanel,
+    ActiveFiltersPanel,
+    ResultCard,
+    Message,
+    Footer,
+    Header,
+    Share,
+  ],
   templateUrl: './search-results.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

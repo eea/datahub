@@ -43,6 +43,7 @@
   --color-image-tile-overlay: var(--p-image-tile-overlay-color);
   --color-image-tile-label-foreground: var(--p-image-tile-label-color);
   --color-stats: var(--p-stats-background);
+  --color-active-filters-border: var(--p-active-filters-border-color);
   --color-stat-value-foreground: var(--p-stat-card-value-color);
   --color-stat-label-foreground: var(--p-stat-card-label-color);
   --text-base: var(--p-font-size-base);
