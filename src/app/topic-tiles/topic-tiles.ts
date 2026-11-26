@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { ImageTile, SearchStateService } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 
-export interface TopicTile {
-  /** Translation key for the label. */
+interface TopicTile {
   key: string;
   url: string;
   image: string;
@@ -21,22 +20,16 @@ const DATAHUB = 'https://www.eea.europa.eu/en/datahub';
  */
 const largeImage = (url: string) => `${url}/@@images/image/large`;
 
-const topic = (slug: string, key: string, eeaTopics: readonly string[]): TopicTile => ({
-  key: `find.landing.atAGlance.topics.${key}`,
-  url: `${AT_A_GLANCE}/${slug}`,
-  image: largeImage(`${AT_A_GLANCE}/${slug}`),
-  eeaTopics,
-});
+const topic = (slug: string, key: string, eeaTopics: readonly string[]): TopicTile => {
+  const url = `${AT_A_GLANCE}/${slug}`;
+  return { key: `find.landing.atAGlance.topics.${key}`, url, image: largeImage(url), eeaTopics };
+};
 
 const AGRICULTURE = 'Agriculture and food system';
 const ADAPTATION = 'Climate change impacts, risks and adaptation';
 const MITIGATION = 'Climate change mitigation: reducing emissions';
 
-/**
- * The tiles EEA picked on Taskman #310773: five topics at a glance, then the two featured data
- * pages with the images the EEA Datahub page shows for them.
- */
-export const TOPIC_TILES: readonly TopicTile[] = [
+const TOPIC_TILES: readonly TopicTile[] = [
   topic('nature', 'nature', [
     AGRICULTURE,
     'Bathing water quality',

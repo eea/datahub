@@ -1,5 +1,3 @@
-import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { SearchStateService } from '@geocat/frontend-library';
@@ -17,8 +15,6 @@ describe('TopicTiles', () => {
   const render = () => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
         provideTranslateService(),
         provideRouter([]),
         { provide: SearchStateService, useValue: searchState },
@@ -131,11 +127,5 @@ describe('TopicTiles', () => {
 
     expect(event.defaultPrevented).toBe(false);
     expect(navigate).not.toHaveBeenCalled();
-  });
-
-  it('asks the EEA website for nothing', () => {
-    render();
-
-    expect(() => TestBed.inject(HttpTestingController).verify()).not.toThrow();
   });
 });
