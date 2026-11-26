@@ -38,9 +38,12 @@
     <!-- Search and filter area: identical to the one on the landing page -->
     <app-search-panel
       class="block mb-8"
+      [showActiveFilters]="false"
       (search)="onSearchChange()"
       (filtersChange)="onSearchChange()"
-    />
+    >
+      <app-active-filters-panel (filtersChange)="onSearchChange()" />
+    </app-search-panel>
 
     @if (failed()) {
       <p-message severity="error">{{ 'find.searchResults.loadFailed' | translate }}</p-message>
@@ -49,7 +52,7 @@
     <!-- Results list -->
     <div class="flex flex-col gap-4">
       @for (record of records(); track record.id) {
-        <app-record-card [record]="record"></app-record-card>
+        <app-result-card [record]="record" />
       } @empty {
         @if (!loading() && !failed()) {
           <div class="text-center py-16 text-muted-foreground text-base">

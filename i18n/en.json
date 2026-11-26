@@ -225,8 +225,7 @@
       "allFilters": "All filters",
       "backToSearchHome": "Back to search home",
       "card": {
-        "thumbnailPlaceholder": "Thumbnail or spatial footprint",
-        "updated": "Updated {{date}}"
+        "new": "New"
       },
       "dateFilter": {
         "apply": "Apply",
