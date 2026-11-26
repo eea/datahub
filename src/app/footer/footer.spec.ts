@@ -60,13 +60,41 @@ describe('Footer', () => {
     expect(linkText(render(), jobs.url)).toBe('Jobs');
   });
 
-  it('shows the links of every group', () => {
+  it('shows the links of every group except Sitemap and Login', () => {
     const fixture = render();
 
     const missing = Object.values(EEA_WEBSITE_ACTIONS)
       .flat()
+      .filter(({ id }) => !['sitemap', 'login'].includes(id))
       .filter(({ url }) => linkText(fixture, url) === undefined);
     expect(missing).toEqual([]);
+  });
+
+  it('leaves out Sitemap and Login', () => {
+    const fixture = render();
+    const hidden = EEA_WEBSITE_ACTIONS.copyright_actions.filter(({ id }) =>
+      ['sitemap', 'login'].includes(id),
+    );
+
+    expect(hidden.map(({ id }) => id)).toEqual(['sitemap', 'login']);
+    expect(hidden.map(({ url }) => linkText(fixture, url))).toEqual([undefined, undefined]);
+  });
+
+  it('gives the other links the whole row when Sitemap and Login were the only copyright links', () => {
+    footer.set({
+      ...EEA_WEBSITE_ACTIONS,
+      copyright_actions: EEA_WEBSITE_ACTIONS.copyright_actions.filter(({ id }) =>
+        ['sitemap', 'login'].includes(id),
+      ),
+    });
+    const fixture = render();
+    const [privacy] = EEA_WEBSITE_ACTIONS.footer_actions;
+    const row: HTMLElement = fixture.nativeElement
+      .querySelector(`a[href="${privacy.url}"]`)
+      .closest('ul').parentElement;
+
+    expect(row.querySelectorAll('ul').length).toBe(1);
+    expect(row.classList).not.toContain('md:grid-cols-2');
   });
 
   it('shows every social link as an icon with its name for screen readers', () => {

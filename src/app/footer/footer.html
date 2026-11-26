@@ -68,7 +68,10 @@
       }
     </ul>
 
-    <div class="w-full grid md:grid-cols-2 gap-6 pt-13 text-base">
+    <div
+      class="w-full grid gap-6 pt-13 text-base"
+      [class]="{ 'md:grid-cols-2': copyrightLinks().length > 0 }"
+    >
       <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
         @for (link of links().footer_actions; track link.id) {
           <li>
@@ -76,13 +79,15 @@
           </li>
         }
       </ul>
-      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        @for (link of links().copyright_actions; track link.id) {
-          <li>
-            <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
-          </li>
-        }
-      </ul>
+      @if (copyrightLinks().length) {
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          @for (link of copyrightLinks(); track link.id) {
+            <li>
+              <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
+            </li>
+          }
+        </ul>
+      }
     </div>
   </div>
 </footer>
