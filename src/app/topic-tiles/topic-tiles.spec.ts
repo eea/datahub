@@ -20,10 +20,10 @@ describe('TopicTiles', () => {
     return { element, links };
   };
 
-  it('titles the block "At a glance:"', () => {
+  it('titles the block "At a glance"', () => {
     const { element } = render();
 
-    expect(element.querySelector('h2')?.textContent?.trim()).toBe('At a glance:');
+    expect(element.querySelector('h2')?.textContent?.trim()).toBe('At a glance');
   });
 
   it('shows the five topics, then Copernicus and Statistical data', () => {
