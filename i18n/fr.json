@@ -91,7 +91,9 @@
         "loading": "Chargement...",
         "name": "Nom",
         "seriesFailed": "Les séries n'ont pas pu être chargées.",
-        "title": "Tous les thèmes"
+        "title": "Tous les thèmes",
+        "az": "A - Z",
+        "tree": "Arborescence"
       },
       "atAGlance": {
         "title": "En bref : nos principaux thèmes",

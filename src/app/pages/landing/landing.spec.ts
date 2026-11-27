@@ -29,6 +29,14 @@ describe('Landing', () => {
     );
 
   beforeEach(async () => {
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe(): void {}
+        unobserve(): void {}
+        disconnect(): void {}
+      },
+    );
     getRecords.mockReset();
     getRecords.mockReturnValue(
       of(
@@ -55,6 +63,8 @@ describe('Landing', () => {
       ],
     }).compileComponents();
   });
+
+  afterEach(() => vi.unstubAllGlobals());
 
   it('counts resource types from the resourceType facet', () => {
     const fixture = TestBed.createComponent(Landing);
@@ -100,12 +110,17 @@ describe('Landing', () => {
     expect(roundedCount(count)).toBe(shown);
   });
 
-  it('shows all topics as a tree from the start', () => {
+  it('opens all topics on the A - Z tab, with Tree next to it', () => {
     const fixture = TestBed.createComponent(Landing);
     fixture.detectChanges();
     const element: HTMLElement = fixture.nativeElement;
+    const tabs = [...element.querySelectorAll('#all-topics [role="tab"]')];
 
-    expect(element.querySelector('#all-topics app-domain-tree')).not.toBeNull();
+    expect(tabs.map((tab) => tab.textContent?.trim())).toEqual([
+      'find.landing.topics.az',
+      'find.landing.topics.tree',
+    ]);
+    expect(tabs.map((tab) => tab.getAttribute('aria-selected'))).toEqual(['true', 'false']);
   });
 
   it.each([

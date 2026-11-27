@@ -48,6 +48,7 @@ const AppTheme = definePreset(Aura, {
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
+      silver: '#d3d3d3',
       lightGrey: '#f2f3f4',
       coolGrey: '#eef1f4',
       darkGrey: '#2e3e4c',
@@ -398,11 +399,37 @@ const AppTheme = definePreset(Aura, {
           rowGap: '0.75rem',
           columnGap: '1.75rem',
         },
+        topics: {
+          columnGap: '2.5rem',
+          borderColor: '{eea.grey}',
+          color: '{eea.silver}',
+          fontSize: '1.75rem',
+          fontWeight: '700',
+          activeColor: '{primary.700}',
+          activeBorderColor: '{primary.600}',
+          panelPadding: '1rem 0 0 0',
+        },
       },
       css: ({ dt }) => `
         .p-tablist-tab-list {
           flex-wrap: wrap;
           gap: ${dt('tabs.list.row.gap')} ${dt('tabs.list.column.gap')};
+        }
+        .p-tabs.topics-tabs .p-tablist-tab-list {
+          column-gap: ${dt('tabs.topics.column.gap')};
+          border-color: ${dt('tabs.topics.border.color')};
+        }
+        .p-tabs.topics-tabs .p-tab {
+          color: ${dt('tabs.topics.color')};
+          font-size: ${dt('tabs.topics.font.size')};
+          font-weight: ${dt('tabs.topics.font.weight')};
+        }
+        .p-tabs.topics-tabs .p-tab-active {
+          color: ${dt('tabs.topics.active.color')};
+          border-color: ${dt('tabs.topics.active.border.color')};
+        }
+        .p-tabs.topics-tabs .p-tabpanel {
+          padding: ${dt('tabs.topics.panel.padding')};
         }
       `,
     },

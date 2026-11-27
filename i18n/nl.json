@@ -90,7 +90,9 @@
         "loading": "Laden...",
         "name": "Naam",
         "seriesFailed": "De series konden niet worden geladen.",
-        "title": "Alle onderwerpen"
+        "title": "Alle onderwerpen",
+        "az": "A - Z",
+        "tree": "Boom"
       },
       "atAGlance": {
         "title": "In één oogopslag: onze belangrijkste onderwerpen",

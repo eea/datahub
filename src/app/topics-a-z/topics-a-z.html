@@ -1,0 +1,28 @@
+@if (loading()) {
+  <p class="text-paragraph">{{ 'find.landing.topics.loading' | translate }}</p>
+} @else if (failed()) {
+  <p class="text-paragraph">{{ 'find.landing.topics.failed' | translate }}</p>
+} @else if (!letters().length) {
+  <p class="text-paragraph">{{ 'find.landing.topics.empty' | translate }}</p>
+} @else {
+  <div class="columns-1 sm:columns-2 md:columns-4 gap-10">
+    @for (group of letters(); track group.letter) {
+      <section class="break-inside-avoid mb-4">
+        <h3 class="text-lead font-bold mb-1">{{ group.letter }}</h3>
+        <ul>
+          @for (topic of group.topics; track topic.value) {
+            <li>
+              <a
+                href="/search"
+                class="text-paragraph text-primary-700 hover:underline"
+                (click)="open($event, topic)"
+              >
+                {{ topic.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+  </div>
+}
