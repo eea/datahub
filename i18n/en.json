@@ -99,6 +99,7 @@
         "statistical-data": "Statistical data",
         "eea-data-policy": "EEA data policy"
       },
+      "menu": "Menu",
       "menuOverview": "{{label}} overview",
       "navigationLabel": "Datahub navigation",
       "official": {

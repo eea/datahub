@@ -5,6 +5,7 @@ import {
   ElementRef,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -43,17 +44,20 @@ function slug(item: EeaWebsiteNavigationItem): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:click)': 'closeMenuOnOutsideClick($event)',
-    '(document:keydown.escape)': 'openMenu.set(null)',
+    '(document:keydown.escape)': 'closeOnEscape()',
   },
 })
 export class Header {
   private readonly links = inject(EeaWebsiteLinks).header;
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
+  private readonly tabletMenuButton =
+    viewChild.required<ElementRef<HTMLButtonElement>>('tabletMenuButton');
 
   private readonly systemLabels = translatedLabels('find.header.informationSystems');
   private readonly navigationLabels = translatedLabels('find.header.navigation');
 
   protected readonly openMenu = signal<string | null>(null);
+  protected readonly tabletMenuOpen = signal(false);
 
   protected readonly informationSystems = computed<MenuItem[]>(() =>
     INFORMATION_SYSTEMS.map(({ id, url }) => ({
@@ -81,9 +85,26 @@ export class Header {
     this.openMenu.update((open) => (open === url ? null : url));
   }
 
+  protected toggleTabletMenu(): void {
+    this.openMenu.set(null);
+    this.tabletMenuOpen.update((open) => !open);
+  }
+
+  private closeMenus(): void {
+    this.openMenu.set(null);
+    this.tabletMenuOpen.set(false);
+  }
+
+  protected closeOnEscape(): void {
+    if (this.tabletMenuOpen()) {
+      this.tabletMenuButton().nativeElement.focus();
+    }
+    this.closeMenus();
+  }
+
   protected closeMenuOnOutsideClick(event: MouseEvent): void {
     if (!this.host.nativeElement.contains(event.target as Node)) {
-      this.openMenu.set(null);
+      this.closeMenus();
     }
   }
 
