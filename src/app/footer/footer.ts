@@ -21,6 +21,17 @@ const SOCIAL_ICON_PATHS: Record<string, string> = {
 
 const HIDDEN_LINKS = new Set(['sitemap', 'login']);
 
+const SITE_PAGES: Record<string, string> = {
+  privacy: '/en/privacy/',
+  accessibility: '/en/accessibility',
+};
+
+const SYSTEM_STATUS: EeaWebsiteAction = {
+  id: 'status_page',
+  title: 'System status',
+  url: 'https://status.eea.europa.eu/',
+};
+
 @Component({
   selector: 'app-footer',
   imports: [TranslatePipe],
@@ -33,9 +44,16 @@ export class Footer {
 
   private readonly labels = translatedLabels('find.footer.links');
 
-  protected readonly copyrightLinks = computed(() =>
-    this.links().copyright_actions.filter((link) => !HIDDEN_LINKS.has(link.id)),
+  protected readonly footerLinks = computed(() =>
+    this.links().footer_actions.map((link) => ({ ...link, url: SITE_PAGES[link.id] ?? link.url })),
   );
+
+  protected readonly copyrightLinks = computed(() => [
+    ...this.links().copyright_actions.filter(
+      ({ id }) => !HIDDEN_LINKS.has(id) && id !== SYSTEM_STATUS.id,
+    ),
+    SYSTEM_STATUS,
+  ]);
 
   protected readonly contacts = computed(() => {
     const [main, ...others] = this.links().contact_actions;
