@@ -48,6 +48,7 @@ const AppTheme = definePreset(Aura, {
       navy: '#212d38',
       darkBlue: '#0a3d61',
       grey: '#e6e7e8',
+      silver: '#d3d3d3',
       lightGrey: '#f2f3f4',
       coolGrey: '#eef1f4',
       darkGrey: '#2e3e4c',
@@ -400,6 +401,8 @@ const AppTheme = definePreset(Aura, {
         },
         topics: {
           columnGap: '2.5rem',
+          borderColor: '{eea.grey}',
+          color: '{eea.silver}',
           fontSize: '1.75rem',
           fontWeight: '700',
           activeColor: '{primary.700}',
@@ -414,8 +417,10 @@ const AppTheme = definePreset(Aura, {
         }
         .p-tabs.topics-tabs .p-tablist-tab-list {
           column-gap: ${dt('tabs.topics.column.gap')};
+          border-color: ${dt('tabs.topics.border.color')};
         }
         .p-tabs.topics-tabs .p-tab {
+          color: ${dt('tabs.topics.color')};
           font-size: ${dt('tabs.topics.font.size')};
           font-weight: ${dt('tabs.topics.font.weight')};
         }

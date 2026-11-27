@@ -110,7 +110,7 @@ describe('Landing', () => {
     expect(roundedCount(count)).toBe(shown);
   });
 
-  it('opens all topics on the Tree tab, with A - Z next to it', () => {
+  it('opens all topics on the A - Z tab, with Tree next to it', () => {
     const fixture = TestBed.createComponent(Landing);
     fixture.detectChanges();
     const element: HTMLElement = fixture.nativeElement;
@@ -120,15 +120,7 @@ describe('Landing', () => {
       'find.landing.topics.az',
       'find.landing.topics.tree',
     ]);
-    expect(tabs.map((tab) => tab.getAttribute('aria-selected'))).toEqual(['false', 'true']);
-  });
-
-  it('shows all topics as a tree from the start', () => {
-    const fixture = TestBed.createComponent(Landing);
-    fixture.detectChanges();
-    const element: HTMLElement = fixture.nativeElement;
-
-    expect(element.querySelector('#all-topics app-domain-tree')).not.toBeNull();
+    expect(tabs.map((tab) => tab.getAttribute('aria-selected'))).toEqual(['true', 'false']);
   });
 
   it.each([
