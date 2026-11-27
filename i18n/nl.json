@@ -185,15 +185,25 @@
         "gemetKeywords": "GEMET-trefwoorden",
         "includeArchived": "Gearchiveerde inhoud tonen",
         "organization": "Organisaties",
+        "period": "Gepubliceerd",
         "reportingObligations": "Rapportageverplichtingen",
         "scales": "Schalen",
-        "spatialRepresentationType": "Type ruimtelijke representatie"
+        "spatialRepresentationType": "Type ruimtelijke representatie",
+        "timeCoverage": "Tijdsdekking"
       },
       "loadFailed": "Kan de zoekresultaten niet laden. Probeer het opnieuw.",
       "noResults": "Geen resultaten gevonden",
       "pagination": {
         "next": "Volgende",
         "previous": "Vorige"
+      },
+      "period": {
+        "allTime": "Altijd",
+        "lastWeek": "Afgelopen week",
+        "lastMonth": "Afgelopen maand",
+        "last3Months": "Afgelopen 3 maanden",
+        "lastYear": "Afgelopen jaar",
+        "last2Years": "Afgelopen 2 jaar"
       },
       "results": "Resultaten:",
       "searching": "Zoeken…",

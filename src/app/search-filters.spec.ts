@@ -21,6 +21,18 @@ describe('SEARCH_FILTERS_LIST', () => {
     });
   });
 
+  LANGUAGES.forEach(([language, translations]) => {
+    it(`has a ${language} label for All time and every period`, () => {
+      const missing = SEARCH_FILTERS_LIST.flatMap((filter) =>
+        filter.kind === 'period'
+          ? [filter.allLabelKey, ...filter.periods.map((period) => period.labelKey)]
+          : [],
+      ).filter((key) => typeof translationOf(translations, key) !== 'string');
+
+      expect(missing).toEqual([]);
+    });
+  });
+
   it('gives every filter its own key', () => {
     const keys = SEARCH_FILTERS_LIST.map((filter) => filter.key);
 
@@ -33,6 +45,21 @@ describe('SEARCH_FILTERS_LIST', () => {
     ).map((filter) => filter.key);
 
     expect(primary).toEqual(['eeaTopics', 'reportingObligations']);
+  });
+
+  it('lists the other filters behind All filters in the order of the design', () => {
+    const more = SEARCH_FILTERS_LIST.filter(
+      (filter) => 'placement' in filter && filter.placement === 'more',
+    ).map((filter) => filter.key);
+
+    expect(more).toEqual([
+      'format',
+      'gemetKeywords',
+      'organization',
+      'spatialRepresentationType',
+      'scales',
+      'timeCoverage',
+    ]);
   });
 
   it('starts each GEMET keyword with a capital, as the catalogue sends them in lower case', () => {

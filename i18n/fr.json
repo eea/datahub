@@ -186,15 +186,25 @@
         "gemetKeywords": "Mots-clés GEMET",
         "includeArchived": "Inclure le contenu archivé",
         "organization": "Organisations",
+        "period": "Publié",
         "reportingObligations": "Obligations de rapportage",
         "scales": "Échelles",
-        "spatialRepresentationType": "Type de représentation spatiale"
+        "spatialRepresentationType": "Type de représentation spatiale",
+        "timeCoverage": "Couverture temporelle"
       },
       "loadFailed": "Impossible de charger les résultats de recherche. Veuillez réessayer.",
       "noResults": "Aucun résultat trouvé",
       "pagination": {
         "next": "Suivant",
         "previous": "Précédent"
+      },
+      "period": {
+        "allTime": "Toute période",
+        "lastWeek": "Dernière semaine",
+        "lastMonth": "Dernier mois",
+        "last3Months": "3 derniers mois",
+        "lastYear": "Dernière année",
+        "last2Years": "2 dernières années"
       },
       "results": "Résultats:",
       "searching": "Recherche…",
