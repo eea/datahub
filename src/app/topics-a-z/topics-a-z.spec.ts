@@ -84,11 +84,14 @@ describe('TopicsAZ', () => {
   });
 
   it('opens the results for a topic from a clean search', () => {
-    search.mockReturnValue(of(result([topic('Soil')])));
+    search.mockReturnValue(of(result([topic('Air'), topic('Soil')])));
     const { element, navigate } = render();
+    const soil = [...element.querySelectorAll('a')].find(
+      (link) => link.textContent?.trim() === 'Soil',
+    )!;
     const event = new MouseEvent('click', { bubbles: true, cancelable: true });
 
-    element.querySelector('a')!.dispatchEvent(event);
+    soil.dispatchEvent(event);
 
     expect(event.defaultPrevented).toBe(true);
     expect(searchState.setQuery).toHaveBeenCalledWith('');
