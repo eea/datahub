@@ -70,14 +70,14 @@
 
     <div class="w-full grid md:grid-cols-2 gap-6 pt-13 text-base">
       <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        @for (link of links().footer_actions; track link.id) {
+        @for (link of footerLinks(); track link.id) {
           <li>
             <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
           </li>
         }
       </ul>
       <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        @for (link of links().copyright_actions; track link.id) {
+        @for (link of copyrightLinks(); track link.id) {
           <li>
             <a [href]="link.url" class="hover:underline">{{ label(link) }}</a>
           </li>

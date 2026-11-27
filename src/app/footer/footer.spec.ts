@@ -2,8 +2,21 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 
-import { EEA_WEBSITE_ACTIONS, EeaWebsiteLinks } from '../eea-website/eea-website-links';
+import {
+  EEA_WEBSITE_ACTIONS,
+  EeaWebsiteAction,
+  EeaWebsiteLinks,
+} from '../eea-website/eea-website-links';
 import { Footer } from './footer';
+
+const HIDDEN = ['sitemap', 'login'];
+const SITE_PAGES: Record<string, string> = {
+  privacy: '/en/privacy/',
+  accessibility: '/en/accessibility',
+};
+const SYSTEM_STATUS_URL = 'https://status.eea.europa.eu/';
+const isHidden = ({ id }: { id: string }) => HIDDEN.includes(id);
+const href = ({ id, url }: EeaWebsiteAction) => SITE_PAGES[id] ?? url;
 
 describe('Footer', () => {
   const footer = signal(EEA_WEBSITE_ACTIONS);
@@ -16,6 +29,13 @@ describe('Footer', () => {
 
   function linkText(fixture: ComponentFixture<Footer>, href: string): string | undefined {
     return fixture.nativeElement.querySelector(`a[href="${href}"]`)?.textContent.trim();
+  }
+
+  function hrefs(fixture: ComponentFixture<Footer>, text: string): (string | null)[] {
+    const links: HTMLAnchorElement[] = Array.from(fixture.nativeElement.querySelectorAll('a'));
+    return links
+      .filter((link) => link.textContent?.trim() === text)
+      .map((link) => link.getAttribute('href'));
   }
 
   beforeEach(async () => {
@@ -60,13 +80,39 @@ describe('Footer', () => {
     expect(linkText(render(), jobs.url)).toBe('Jobs');
   });
 
-  it('shows the links of every group', () => {
+  it('shows the links of every group except Sitemap and Login', () => {
     const fixture = render();
 
     const missing = Object.values(EEA_WEBSITE_ACTIONS)
       .flat()
-      .filter(({ url }) => linkText(fixture, url) === undefined);
+      .filter((link) => !isHidden(link))
+      .filter((link) => linkText(fixture, href(link)) === undefined);
     expect(missing).toEqual([]);
+  });
+
+  it('leaves out Sitemap and Login', () => {
+    const fixture = render();
+    const hidden = EEA_WEBSITE_ACTIONS.copyright_actions.filter(isHidden);
+
+    expect(hidden.map(({ id }) => id)).toEqual(HIDDEN);
+    expect(hidden.map(({ url }) => linkText(fixture, url))).toEqual([undefined, undefined]);
+  });
+
+  it("points Privacy statement and Accessibility at this site's own pages", () => {
+    const fixture = render();
+
+    expect(hrefs(fixture, 'Privacy statement')).toEqual(['/en/privacy/']);
+    expect(hrefs(fixture, 'Accessibility')).toEqual(['/en/accessibility']);
+    expect(hrefs(fixture, 'Legal notice')).toEqual(['https://www.eea.europa.eu/en/legal-notice']);
+  });
+
+  it.each([
+    ['lists it', EEA_WEBSITE_ACTIONS.copyright_actions],
+    ['leaves it out', EEA_WEBSITE_ACTIONS.copyright_actions.filter(isHidden)],
+  ])('shows System status once when the EEA website %s', (_case, copyright_actions) => {
+    footer.set({ ...EEA_WEBSITE_ACTIONS, copyright_actions });
+
+    expect(hrefs(render(), 'System status')).toEqual([SYSTEM_STATUS_URL]);
   });
 
   it('shows every social link as an icon with its name for screen readers', () => {

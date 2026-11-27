@@ -15,6 +15,12 @@ export interface EeaWebsiteActions {
   social_actions: EeaWebsiteAction[];
 }
 
+export const SYSTEM_STATUS: EeaWebsiteAction = {
+  id: 'status_page',
+  title: 'System status',
+  url: 'https://status.eea.europa.eu/',
+};
+
 export const EEA_WEBSITE_ACTIONS: EeaWebsiteActions = {
   contact_actions: [
     { id: 'about', title: 'About us', url: 'https://www.eea.europa.eu/en/about' },
@@ -40,7 +46,7 @@ export const EEA_WEBSITE_ACTIONS: EeaWebsiteActions = {
   ],
   copyright_actions: [
     { id: 'sitemap', title: 'Sitemap', url: 'https://www.eea.europa.eu/en/sitemap' },
-    { id: 'status_page', title: 'System status', url: 'https://status.eea.europa.eu/' },
+    SYSTEM_STATUS,
     { id: 'login', title: 'Login', url: 'https://www.eea.europa.eu/en/datahub/login' },
   ],
   social_actions: [
