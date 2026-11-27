@@ -90,7 +90,7 @@ export class Header {
     this.tabletMenuOpen.update((open) => !open);
   }
 
-  protected closeMenus(): void {
+  private closeMenus(): void {
     this.openMenu.set(null);
     this.tabletMenuOpen.set(false);
   }
