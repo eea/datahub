@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { EeaWebsiteAction, EeaWebsiteLinks } from '../eea-website/eea-website-links';
+import { EeaWebsiteAction, EeaWebsiteLinks, SYSTEM_STATUS } from '../eea-website/eea-website-links';
 import { translatedLabels } from '../eea-website/translated-labels';
 
 const SOCIAL_ICON_PATHS: Record<string, string> = {
@@ -24,12 +24,6 @@ const HIDDEN_LINKS = new Set(['sitemap', 'login']);
 const SITE_PAGES: Record<string, string> = {
   privacy: '/en/privacy/',
   accessibility: '/en/accessibility',
-};
-
-const SYSTEM_STATUS: EeaWebsiteAction = {
-  id: 'status_page',
-  title: 'System status',
-  url: 'https://status.eea.europa.eu/',
 };
 
 @Component({
