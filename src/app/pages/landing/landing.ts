@@ -81,7 +81,6 @@ export class Landing implements OnInit {
   private readonly recordsApi = inject(RecordsService);
   private readonly collectionId = inject(COLLECTION_ID);
 
-  protected readonly showAllTopics = signal(false);
   protected readonly isSignInModalOpen = signal(false);
   protected readonly signInError = signal('');
   protected readonly isSigningIn = signal(false);

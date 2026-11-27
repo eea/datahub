@@ -140,9 +140,7 @@
         "loading": "Loading...",
         "name": "Name",
         "seriesFailed": "The series could not be loaded.",
-        "title": "All topics",
-        "showAll": "See all topics",
-        "hideAll": "Hide all topics"
+        "title": "All topics"
       },
       "atAGlance": {
         "title": "At a glance: our main topics",
