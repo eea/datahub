@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -13,11 +12,13 @@ import { OgcApiRecordsRecordGeoJSONDto } from '@geocat/frontend-api-client';
 import {
   DEFAULT_PAGE_SIZE,
   SearchPanel,
+  SearchParams,
   SearchService,
   SearchStateService,
 } from '@geocat/frontend-library';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Message } from '@openng/optimus-ui/message';
+import { Subject, switchMap } from 'rxjs';
 
 import { ActiveFiltersPanel } from '../../active-filters-panel/active-filters-panel';
 import { Footer } from '../../footer/footer';
@@ -48,7 +49,7 @@ export class SearchResults implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly searchService = inject(SearchService);
   private readonly searchState = inject(SearchStateService);
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly searches = new Subject<SearchParams>();
 
   protected readonly records = signal<OgcApiRecordsRecordGeoJSONDto[]>([]);
   protected readonly total = signal(0);
@@ -68,6 +69,21 @@ export class SearchResults implements OnInit {
     return Array.from({ length: PAGE_WINDOW }, (_unused, index) => start + index);
   });
 
+  constructor() {
+    this.searches
+      .pipe(
+        switchMap((params) => this.searchService.search(params)),
+        takeUntilDestroyed(),
+      )
+      .subscribe((result) => {
+        this.records.set(result.records);
+        this.total.set(result.total);
+        this.failed.set(result.failed);
+        this.searchState.applyFacets(result.facets);
+        this.loading.set(false);
+      });
+  }
+
   ngOnInit(): void {
     // A `q` in the URL wins, so a shared link searches for what it says. Everything else the
     // panel shows — filters, sort, date range — is whatever the shared state already holds,
@@ -82,16 +98,7 @@ export class SearchResults implements OnInit {
   /** Collect current search state and fetch a fresh page of results + facet counts. */
   private runSearch(): void {
     this.loading.set(true);
-    this.searchService
-      .search(this.searchState.toParams(this.currentPage(), this.pageSize))
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((result) => {
-        this.records.set(result.records);
-        this.total.set(result.total);
-        this.failed.set(result.failed);
-        this.searchState.applyFacets(result.facets);
-        this.loading.set(false);
-      });
+    this.searches.next(this.searchState.toParams(this.currentPage(), this.pageSize));
   }
 
   /** The panel changed the search: back to the first page and fetch again. */
