@@ -145,14 +145,15 @@
         "hideAll": "Hide all topics"
       },
       "atAGlance": {
-        "title": "At a glance: our main topics",
+        "title": "At a glance",
         "topics": {
-          "europesEnvironment": "State of Europe's environment",
           "climate": "Climate",
           "economyAndResources": "Economy and resources",
           "health": "Health",
           "nature": "Nature",
-          "sustainability": "Sustainability"
+          "sustainability": "Sustainability",
+          "copernicus": "Copernicus",
+          "statisticalData": "Statistical data"
         }
       },
       "popular": {

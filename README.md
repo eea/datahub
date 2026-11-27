@@ -99,11 +99,11 @@ The production build uses `/catalogue`, the GeoNetwork 5 context path in the `sd
 
 ## EEA Website Contentq
 
-The header, the footer and the landing page's main topics tiles read their content from the EEA website: the header navigation from `https://www.eea.europa.eu/++api++/en/datahub/@navigation`, the footer from `.../datahub/@actions` and the tiles from `https://www.eea.europa.eu/++api++/en/topics/at-a-glance`. The EEA website doesn't let other sites call it from the browser, so the app calls `/eea-website/` on its own host instead. `proxy.config.js` forwards it during development and nginx does it in the Docker image, where answers are cached for an hour. When the EEA website can't be reached the header and footer show the copy of the links in `src/app/eea-website/eea-website-links.ts`, and the tiles show the copy in `TOPIC_TILES` in `src/app/topic-tiles/topic-tiles.ts`.
+The header and the footer read their content from the EEA website: the header navigation from `https://www.eea.europa.eu/++api++/en/datahub/@navigation` and the footer from `.../datahub/@actions`. The EEA website doesn't let other sites call it from the browser, so the app calls `/eea-website/` on its own host instead. `proxy.config.js` forwards it during development and nginx does it in the Docker image, where answers are cached for an hour. When the EEA website can't be reached the header and footer show the copy of the links in `src/app/eea-website/eea-website-links.ts`.
 
 The labels come from the `find.header.navigation` and `find.footer.links` translations, keyed by the page name or link id. A link the EEA website adds later shows its English name until it gets a translation. The header leaves out the EEA Datahub About page, which EEA asked to drop.
 
-The tile labels come from the `find.landing.atAGlance.topics` translations, keyed by the topic page. The EEA website only publishes these pages in English, so a topic it adds later shows its English title until it gets a translation.
+The landing page's At a glance tiles are a fixed list in `src/app/topic-tiles/topic-tiles.ts`. They link to EEA website pages and show those pages' images, and their labels come from the `find.landing.atAGlance.topics` translations.
 
 ## Docker Image
 

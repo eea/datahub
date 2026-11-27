@@ -95,14 +95,15 @@
         "hideAll": "Alle onderwerpen verbergen"
       },
       "atAGlance": {
-        "title": "In één oogopslag: onze belangrijkste onderwerpen",
+        "title": "In één oogopslag",
         "topics": {
-          "europesEnvironment": "De toestand van het milieu in Europa",
           "climate": "Klimaat",
           "economyAndResources": "Economie en hulpbronnen",
           "health": "Gezondheid",
           "nature": "Natuur",
-          "sustainability": "Duurzaamheid"
+          "sustainability": "Duurzaamheid",
+          "copernicus": "Copernicus",
+          "statisticalData": "Statistische gegevens"
         }
       },
       "popular": {
